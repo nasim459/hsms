@@ -1,0 +1,98 @@
+.widtg150{
+    width: 150px;
+}
+.width200{
+    width: 200px;
+}
+.widtg115{
+    width: 115px;
+}
+.img-h-w{
+    height: 20px;
+    width: 20px;
+    margin-left: 5px;
+    border-radius: 5px 5px 5px;
+    //box-shadow: 1px 1px 0px #888888;
+}
+.rough_border{
+    border: 1px solid red;
+}
+.m-b-mi-15 {
+    margin-bottom: -10px!important;
+    //margin-bottom-minus-15;
+}
+.m-b-mi-23 {
+    margin-bottom: -23px!important;
+    //margin-bottom-minus-23;
+}
+.well-d {
+	border:none;
+	padding:20px;
+	background:#ebeced;
+	-webkit-box-shadow:0 1px rgba(0,0,0,.125);
+	box-shadow:0 1px rgba(0,0,0,.125)
+	//well-define
+}
+.table-h-20 {
+    height: 300px!important;
+    //table-height-20px;
+}
+
+
+
+.table-s {
+    width: 800px;
+    display:block;
+    //height: 800px;
+}
+.thead-s {
+    display: inline-block;
+    width: 100%;
+    height: 42px;
+}
+.tbody-s {
+    height: 165px;
+    display: inline-block;
+    width: 100%;
+    overflow: auto;
+}
+.tr-s {
+    //height: 200px;
+    //display: inline-block;
+    //width: 150px!important;
+    //overflow: auto;
+}
+hr.hr-d {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border: 0;
+    border-top: 1px solid #d5d8da;
+}
+hr.hr-w {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border: 0;
+    border-top: 1px solid red;
+}
+.m_t_40{
+    margin-top: 85px;
+}
+
+//------- Begin use only border of body -------
+.b_l_r_t_b_content{
+    //border: 2px solid #3b8e8a;
+}
+.b_t_header{
+    //border-top: 2px solid #3b8e8a;
+    //border-left: 2px solid #3b8e8a;
+    //border-right: 2px solid #3b8e8a;
+}
+.b_t_sidebar{
+    //border-left: 2px solid #3b8e8a;
+    //border-bottom: 2px solid #3b8e8a;
+}
+.b-c{
+    //background-color: red !important;
+}
+//------- End use only border of body ---------
+
