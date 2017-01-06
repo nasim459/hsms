@@ -95,4 +95,10 @@ hr.hr-w {
     //background-color: red !important;
 }
 //------- End use only border of body ---------
+.checkbox-n{
+    float: left; 
+    margin: 0 0 0 10px;
+    width: 20px;
+    height: 20px;
+}
 //--------rough

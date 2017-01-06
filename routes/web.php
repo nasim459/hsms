@@ -52,8 +52,7 @@ Route::get('regi-rental-save', 'RegiController@save_rental_regi');
 Route::post('regi-emp-save', 'RegiController@save_emp_regi');
 //----------End Regi Controller--------------------
 
-Route::post('add-salary', 'SalaryController@save_salary_add');
-Route::post('update-salary', 'SalaryController@salary_update');
+
 
 //----------BroadCasting Controller
 Route::get('broadcasting-sms', 'BroadCastingController@sms');
@@ -85,8 +84,14 @@ Route::get('bld-rough', 'InventoryController@bld_rough');
 //----------Profile Controller
 Route::get('profile-admin', 'ProfileController@admin_profile');
 
+
+//----------Salary Controller
+Route::post('add-salary', 'SalaryController@save_salary_add');
+Route::post('update-salary', 'SalaryController@salary_update');
+
 //----------SalaryMake Controller
 Route::get('make-salary', 'SalaryMakeController@salary_make');
+Route::post('make-salary-invoice', 'SalaryMakeController@invoice_salary_make');
 //-------------------- End Pages history ----------------------------------
 
 

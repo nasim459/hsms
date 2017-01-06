@@ -292,7 +292,7 @@
                             <div class="col-md-2 col-md-offset-1">
                                 <!-- begin widget -->
                                 <p>
-                                    <a href="{{URL::to('info-owner')}}" class="btn btn-lg btn-success widtg150">
+                                    <a href="{{URL::to('make-salary')}}" class="btn btn-lg btn-success widtg150">
                                         <i class="fa fa-gear fa-2x"></i><br />
                                         <small>Settings</small>
                                     </a>
