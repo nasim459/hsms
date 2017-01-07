@@ -82,18 +82,18 @@
                                                 <option>Select Year</option>
                                                 <option value="2017">2017</option>
                                                 <option value="2018">2018</option>
-                                                <option value="2019">2018</option>
-                                                <option value="2020">2018</option>
+                                                <option value="2019">2019</option>
+                                                <option value="2020">2020</option>
                                             </select>
                                         </div>
                                         <div class="col-sm-2">
-                                            <button type="submit" class="btn btn-success width-xs">Submit</button>
+                                            <button type="submit" class="btn btn-success width-xs" title="Create Employer Salary For This Month">Generate</button>
                                         </div>
                                     </div>
                                     <table class="table table-bordered table-hover" style="border:5px solid #EBECED !important">
                                         <thead>
                                             <tr class="default">
-                                                <th class="text-center"><b>ID</b></th>
+                                                <th class="text-center"><b>Employee ID</b></th>
                                                 <th><b>Employee Name</b></th>
                                                 <th class="text-center"><b>Basic</b></th>
                                                 <th class="text-center"><b>House</b></th>
@@ -108,7 +108,7 @@
                                         <tbody>
                                             @foreach($salary_view as $v)
                                             <tr>
-                                                <td class="text-center"><b>{{$v->emp_id_no}}</b></td>
+                                                <td class="text-center"><b><a href="#">{{$v->emp_id_no}}</a></b></b></td>
                                                 <td>{{$v->emp_name}}</td>
                                                 <td>{{$v->salary_basic}}</td>
                                                 <td class="text-center">{{$v->salary_house}}</td>
@@ -146,27 +146,30 @@
                                 <!-- begin panel -->
                                 <div class="panel without-pagination clearfix m-b-0">
                                     <div class="form-group">
-                                        <div class="col-sm-4 m-b-10">
+                                        <div class="col-sm-4">
+                                            <strong class="text-success m-t-10">Employer Salary Chart</strong>
+                                        </div>
+                                        <div class="col-sm-4 m-b-10 col-md-offset-4">
                                             <input class="form-control text-center" type="text" id="fullname" value="" placeholder=" Search here..." data-parsley-required="true" />
                                         </div>
                                     </div>
                                     <table class="table table-bordered table-hover" style="border:5px solid #EBECED !important">
                                         <thead>
                                             <tr class="default">
-                                                <th class="text-center"><b>No</b></th>
+                                                <th class="text-center"><b>Invoice No</b></th>
+                                                <th class="text-center"><b>Employee ID</b></th>
                                                 <th class="text-center"><b>Month</b></th>
                                                 <th class="text-center"><b>Year</b></th>
                                                 <th class="text-center"><b>Amount</b></th>
                                                 <th class="text-center"><b>Created Time</b></th>
-                                                <th class="text-center"><b>Status &nbsp;</b>
-<!--                                                    <a href="{{URL::to('inventory-grant-total')}}" class="btn btn-white btn-xs"><i class="fa fa-calculator"></i> Grant Total</a>-->
-                                                </th>
+                                                <th class="text-center"><b>Payment Action</b></th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach($invoice_view as $v)
                                             <tr>
                                                 <td class="text-center"><span class="text-success"><b>#{{$v->emp_invoice_id}}</b></span></td>
+                                                <td class="text-center">{{$v->emp_id_no}}</td>
                                                 <td class="text-center">
                                                     @if($v->pay_month == 1)
                                                     January
@@ -176,21 +179,21 @@
                                                     March
                                                     @elseif($v->pay_month == 4)
                                                     April
-                                                    @elseif($v->pay_month == 2)
+                                                    @elseif($v->pay_month == 5)
                                                     May
-                                                    @elseif($v->pay_month == 2)
+                                                    @elseif($v->pay_month == 6)
                                                     June
-                                                    @elseif($v->pay_month == 2)
+                                                    @elseif($v->pay_month == 7)
                                                     July
-                                                    @elseif($v->pay_month == 2)
+                                                    @elseif($v->pay_month == 8)
                                                     August
-                                                    @elseif($v->pay_month == 2)
+                                                    @elseif($v->pay_month == 9)
                                                     September
-                                                    @elseif($v->pay_month == 2)
+                                                    @elseif($v->pay_month == 10)
                                                     October
-                                                    @elseif($v->pay_month == 2)
+                                                    @elseif($v->pay_month == 11)
                                                     November
-                                                    @elseif($v->pay_month == 2)
+                                                    @elseif($v->pay_month == 12)
                                                     December
                                                     @endif
                                                 </td>
@@ -199,11 +202,11 @@
                                                 <td class="text-center">{{$v->crated_at}}</td>
                                                 <td class="text-center">
                                                     @if($v->invoice_status == 1)
-                                                    <a href="" class="btn btn-default btn-xs" title="Payment is Paid"><i class="fa fa-check"></i></a>&nbsp; &nbsp;
+                                                    <a href="#" class="btn btn-default btn-xs" title="Payment is Paid"><i class="fa fa-check text-success"></i> </a>&nbsp; &nbsp;
                                                     @else
-                                                    <a href="" class="btn btn-warning btn-xs" title="Payment is UnPaid"><i class="fa fa-remove"></i></a>&nbsp; &nbsp;
+                                                    <a href="{{URL::to('give-salary/'.$v->emp_invoice_id)}}" class="btn btn-warning btn-xs" title="Payment is UnPaid"><i class="fa fa-remove"></i> </a>&nbsp; &nbsp;
                                                     @endif
-                                                    <a href="#invoice-salary-satement" class="btn btn-default btn-xs" data-toggle="modal"><i class="fa fa-eye"></i> View</a>
+                                                    <a href="#invoice-salary-satement" class="btn btn-default btn-xs" data-toggle="modal" title="Payment View"><i class="fa fa-eye"></i> View</a>
                                                 </td>
                                             </tr>
                                             @endforeach()
@@ -220,73 +223,72 @@
                     <div class="tab-pane fade" id="default-tab-3">
                         <!-- begin row -->
                         <div class="row">
-                            <div class="col-md-10 col-md-offset-1 well">
+                            <!-- begin Add_Salary -->
+                            <div class="col-md-10 col-md-offset-1">
+                                <span><p class=""></p></span>
                                 <!-- begin panel -->
-                                <div class="panel">
-                                    <div class="panel-heading">
-                                        <div class="panel-heading-btn">
-                                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-grey" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                                <div class="panel without-pagination clearfix m-b-0">
+                                    <div class="form-group">
+                                        <div class="col-sm-4 m-b-10">
+                                            <strong class="text-success m-t-10">Employer Salary Has Been Completed</strong>
                                         </div>
-                                        <h4 class="panel-title text-center"><b>Your Payment</b></h4>
+                                        <div class="col-sm-4 m-b-10 col-md-offset-4">
+                                            <input class="form-control text-center" type="text" id="fullname" value="" placeholder=" Search here..." data-parsley-required="true" />
+                                        </div>
                                     </div>
-                                    <div class="table-responsive">
-                                        <table class="table table-td-valign-middle">
-                                            <thead>
-                                                <tr class="success">
-                                                    <th> No </th>
-                                                    <th>Mohnth</th>
-                                                    <th>Bill Jenareted</th>
-                                                    <th class="text-center">Payable </th>
-                                                    <th class="text-center">Reaceiable</th>
-                                                    <th class="text-center">Due</th>
-                                                    <th class="text-center">Total</th>
-                                                    <th class="text-center">Status</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td><a href="#" class="btn btn-default btn-xs">1</a></td>
-                                                    <td><b>January</b></td>
-                                                    <td>27-10-16</td>
-                                                    <td class="text-center">5000</td> 
-                                                    <td class="text-center">5000</td> 
-                                                    <td class="text-center">0.0</td> 
-                                                    <td><b>5000</b></td>
-                                                    <td><a href="#" class="btn btn-default btn-xs"><i class="fa fa-check"></i> &nbsp; Paid &nbsp;&nbsp;</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="#" class="btn btn-default btn-xs">2</a></td>
-                                                    <td><b>February</b></td>
-                                                    <td>29-01-16</td>
-                                                    <td class="text-center">6000</td> 
-                                                    <td class="text-center">5000</td> 
-                                                    <td class="text-center">1000</td> 
-                                                    <td><b>5000</b></td>
-                                                    <td><a href="#" class="btn btn-warning btn-xs"><i class="fa fa-remove"></i> UnPaid </a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="#" class="btn btn-default btn-xs">3</a></td>
-                                                    <td><b>March</b></td>
-                                                    <td>28-02-16</td>
-                                                    <td class="text-center">5000</td> 
-                                                    <td class="text-center">5000</td> 
-                                                    <td class="text-center">0.0</td> 
-                                                    <td><b>5000</b></td>
-                                                    <td><a href="#" class="btn btn-default btn-xs"><i class="fa fa-check"></i> &nbsp; Paid &nbsp;&nbsp;</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="#" class="btn btn-default btn-xs">4</a></td>
-                                                    <td><b>April</b></td>
-                                                    <td>28-03-16</td>
-                                                    <td class="text-center">6000</td> 
-                                                    <td class="text-center">5000</td> 
-                                                    <td class="text-center">1000</td> 
-                                                    <td><b>5000</b></td>
-                                                    <td><a href="#" class="btn btn-warning btn-xs"><i class="fa fa-remove"></i> UnPaid </a></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                    <table class="table table-bordered table-hover" style="border:5px solid #EBECED !important">
+                                        <thead>
+                                            
+                                            <tr class="default">
+                                                <th class="text-center"><b>Employee Id</b></th>
+                                                <th class="text-center"><b>Month</b></th>
+                                                <th class="text-center"><b>Salary Fixt</b></th>
+                                                <th class="text-center"><b>Give Salary</b></th>
+                                                <th class="text-center"><b>Due</b></th>
+                                                <th class="text-center"><b>Status</b></th>
+                                            </tr>
+                                            
+                                        </thead>
+                                        <tbody>
+                                            @foreach($payment_paid as $v)
+                                            <tr>
+                                                <td class="text-center"><b><a href="#">{{$v->emp_id_no}}</a></b></td>
+                                                <td class="text-center"><b>
+                                                    @if($v->pay_month == 1)
+                                                    January
+                                                    @elseif($v->pay_month == 2)
+                                                    February
+                                                    @elseif($v->pay_month == 3)
+                                                    March
+                                                    @elseif($v->pay_month == 4)
+                                                    April
+                                                    @elseif($v->pay_month == 5)
+                                                    May
+                                                    @elseif($v->pay_month == 6)
+                                                    June
+                                                    @elseif($v->pay_month == 7)
+                                                    July
+                                                    @elseif($v->pay_month == 8)
+                                                    August
+                                                    @elseif($v->pay_month == 9)
+                                                    September
+                                                    @elseif($v->pay_month == 10)
+                                                    October
+                                                    @elseif($v->pay_month == 11)
+                                                    November
+                                                    @elseif($v->pay_month == 12)
+                                                    December
+                                                    @endif
+                                                     - {{$v->pay_year}}
+                                                    </b></td>
+                                                <td class="text-center">{{$v->total_amount}}</td> 
+                                                <td class="text-center">{{$v->give_amount}}</td> 
+                                                <td class="text-center">{{$v->due_amount}}</td> 
+                                                <td class="text-center"><a href="#" class="btn btn-default btn-xs"><i class="fa fa-check text-success-light"></i> &nbsp; Paid &nbsp;&nbsp;</a></td>
+                                            </tr>
+                                            @endforeach()
+                                        </tbody>
+                                    </table>
                                 </div>
                                 <!-- end panel -->
                             </div>
@@ -303,7 +305,9 @@
                                 <!-- begin panel -->
                                 <div class="panel without-pagination clearfix m-b-0">
                                     <div class="form-group">
-                                        <label class="control-label col-sm-4" for="fullname"> <span class="text-danger"></span></label>
+                                        <div class="col-sm-4">
+                                            <strong class="text-success m-t-10">Assign Employer Salary or Create</strong>
+                                        </div>
                                         <div class="col-sm-4 col-md-offset-4 m-b-10">
                                             <input class="form-control text-center" type="text" id="fullname" value="" placeholder=" Search here..." data-parsley-required="true" />
                                         </div>

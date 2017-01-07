@@ -92,6 +92,8 @@ Route::post('update-salary', 'SalaryController@salary_update');
 //----------SalaryMake Controller
 Route::get('make-salary', 'SalaryMakeController@salary_make');
 Route::post('make-salary-invoice', 'SalaryMakeController@invoice_salary_make');
+Route::get('give-salary/{emp_invoice_id}', 'SalaryMakeController@salary_give');
+Route::post('salary-due', 'SalaryMakeController@due_salary');
 //-------------------- End Pages history ----------------------------------
 
 
