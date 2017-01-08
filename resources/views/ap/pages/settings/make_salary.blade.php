@@ -31,12 +31,12 @@
                     </div>
                 </div>
                 <ul class="nav nav-tabs col-md-offset-1">
-                    <li class="active"><a href="#default-tab-1" data-toggle="tab"><i class="fa fa-list"></i> View Salary</a></li>
+                    <li class="active"><a href="#default-tab-1" data-toggle="tab"><i class="fa fa-list"> </i> Salary Statement</a></li>
                     <li class=""><a href="#default-tab-2" data-toggle="tab"><i class="fa fa-save"> </i> Invoice</a></li>
                     <li class=""><a href="#default-tab-3" data-toggle="tab"><i class="fa fa-credit-card"></i> Payment</a></li>
-                    <li class=""><a href="#default-tab-4" data-toggle="tab"><i class="fa fa-plus"></i> Add Salary</a></li>
-                    <li class=""><a href="#default-tab-5" data-toggle="tab"><i class="fa fa-user"></i> Complain</a></li>
-                    <li class=""><a href="#default-tab-6" data-toggle="tab"><i class="fa fa-user"></i> Salary Statement</a></li>
+                    <li class=""><a href="#default-tab-4" data-toggle="tab"><i class="fa fa-plus"></i> Add Salary Statement</a></li>
+                    <!--  <li class=""><a href="#default-tab-5" data-toggle="tab"><i class="fa fa-user"></i> Complain</a></li>
+                    <li class=""><a href="#default-tab-6" data-toggle="tab"><i class="fa fa-user"></i> Salary Statement</a></li>-->
                 </ul>
                 <div class="tab-content m-b-0">
                     <div class="tab-pane fade active in" id="default-tab-1">
@@ -315,96 +315,28 @@
                                     <table class="table table-bordered table-hover" style="border:5px solid #EBECED !important">
                                         <thead>
                                             <tr class="default">
-                                                <th>SL</th>
-                                                <th>Building Info</th>
-                                                <th>Month</th>
-                                                <th class="text-center">Payable &nbsp; &nbsp; - &nbsp; &nbsp; Reaceiable</th>
-                                                <th class="text-center">Dues</th>
-                                                <th class="text-center">
-                                                    Status &nbsp;
-                                                    <a href="{{URL::to('inventory-grant-total')}}" class="btn btn-white btn-xs"><i class="fa fa-calculator"></i> Grant Total</a>
-                                                </th>
-                                            </tr>
+                                                <th class="text-center"><b>Employee ID</b></th>
+                                                <th><b>Employee Name</b></th>
+                                                <th class="text-center"><b>Position</b></th>
+                                                <th class="text-center"><b>Join Date</b></th>
+                                                <th class="text-center"><b>Salary Statement</b></th>
                                         </thead>
                                         <tbody>
-                                            <tr class="odd gradeX">
-                                                <td>01</td>
-                                                <td>01 - Buliding</td>
-                                                <td>March</td>
-                                                <td class="text-center">12000 &nbsp; &nbsp; &nbsp; &nbsp; 12000</td>
-                                                <td class="text-center">0.0</td>
+                                            @foreach($add_salary_statement as $v)
+                                            <tr>
+                                                <td class="text-center"><b><a href="#">{{$v->emp_id_no}}</a></b></b></td>
+                                                <td>{{$v->emp_name}}</td>
+                                                <td class="text-center">{{$v->emp_position}}</td>
+                                                <td class="text-center">{{$v->created_at}}</td>
                                                 <td class="text-center">
-                                                    <a href="" class="btn btn-default btn-xs" title="Payment is Paid"><i class="fa fa-check"></i></a> 
-                                                    <!-- <a href="{{URL::to('payment-hand-cash-edit')}}" class="btn btn-default btn-xs"><i class="fa fa-edit"></i> Edit</a> --> 
-                                                    <a href="{{URL::to('info-owner-details')}}" class="btn btn-default btn-xs"><i class="fa fa-list-alt"></i> Details</a>
+                                                    @if($v->salary_status == 1)
+                                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-check text-success-light"></i> &nbsp; Running &nbsp;&nbsp;</a>
+                                                    @else
+                                                        <a href="#add-salary-statement" class="btn btn-warning btn-xs"  data-toggle="modal"><i class="fa fa-remove"></i> &nbsp; Pending &nbsp;&nbsp;</a>
+                                                    @endif
                                                 </td>
                                             </tr>
-                                            <tr class="odd gradeX">
-                                                <td>03</td>
-                                                <td>03 - Buliding</td>
-                                                <td>January</td>
-                                                <td class="text-center">12000 &nbsp; &nbsp; &nbsp; &nbsp; 12000</td>
-                                                <td class="text-center">0.0</td>
-                                                <td class="text-center">
-                                                    <a href="" class="btn btn-default btn-xs" title="Payment is Paid"><i class="fa fa-check"></i></a> 
-                                                    <a href="{{URL::to('info-owner-details')}}" class="btn btn-default btn-xs"><i class="fa fa-list-alt"></i> Details</a>
-                                                </td>
-                                            </tr>
-                                            <tr class="odd gradeX">
-                                                <td>04</td>
-                                                <td>04 - Buliding</td>
-                                                <td>January</td>
-                                                <td class="text-center">12000 &nbsp; &nbsp; &nbsp; &nbsp; 12000</td>
-                                                <td class="text-center">0.0</td>
-                                                <td class="text-center">
-                                                    <a href="" class="btn btn-default btn-xs" title="Payment is Paid"><i class="fa fa-check"></i></a> 
-                                                    <a href="{{URL::to('info-owner-details')}}" class="btn btn-default btn-xs"><i class="fa fa-list-alt"></i> Details</a>
-                                                </td>
-                                            </tr>
-                                            <tr class="odd gradeX">
-                                                <td>04</td>
-                                                <td>04 - Buliding</td>
-                                                <td>January</td>
-                                                <td class="text-center">12000 &nbsp; &nbsp; &nbsp; &nbsp; 12000</td>
-                                                <td class="text-center">0.0</td>
-                                                <td class="text-center">
-                                                    <a href="" class="btn btn-default btn-xs" title="Payment is Paid"><i class="fa fa-check"></i></a> 
-                                                    <a href="{{URL::to('info-owner-details')}}" class="btn btn-default btn-xs"><i class="fa fa-list-alt"></i> Details</a>
-                                                </td>
-                                            </tr>
-                                            <tr class="odd gradeX">
-                                                <td>06</td>
-                                                <td>06 - Buliding</td>
-                                                <td>January</td>
-                                                <td class="text-center">12000 &nbsp; &nbsp; &nbsp; &nbsp; 12000</td>
-                                                <td class="text-center">0.0</td>
-                                                <td class="text-center">
-                                                    <a href="" class="btn btn-default btn-xs" title="Payment is Paid"><i class="fa fa-check"></i></a> 
-                                                    <a href="{{URL::to('info-owner-details')}}" class="btn btn-default btn-xs"><i class="fa fa-list-alt"></i> Details</a>
-                                                </td>
-                                            </tr>
-                                            <tr class="odd gradeX">
-                                                <td>07</td>
-                                                <td>07 - Buliding</td>
-                                                <td>January</td>
-                                                <td class="text-center">12000 &nbsp; &nbsp; &nbsp; &nbsp; 12000</td>
-                                                <td class="text-center">0.0</td>
-                                                <td class="text-center">
-                                                    <a href="" class="btn btn-default btn-xs" title="Payment is Paid"><i class="fa fa-check"></i></a> 
-                                                    <a href="{{URL::to('info-owner-details')}}" class="btn btn-default btn-xs"><i class="fa fa-list-alt"></i> Details</a>
-                                                </td>
-                                            </tr>
-                                            <tr class="odd gradeX">
-                                                <td>08</td>
-                                                <td>08 - Buliding</td>
-                                                <td>January</td>
-                                                <td class="text-center">12000 &nbsp; &nbsp; &nbsp; &nbsp; 12000</td>
-                                                <td class="text-center">0.0</td>
-                                                <td class="text-center">
-                                                    <a href="" class="btn btn-default btn-xs" title="Payment is Paid"><i class="fa fa-check"></i></a> 
-                                                    <a href="{{URL::to('info-owner-details')}}" class="btn btn-default btn-xs"><i class="fa fa-list-alt"></i> Details</a>
-                                                </td>
-                                            </tr>
+                                            @endforeach()
                                         </tbody>
                                     </table>
                                 </div>
@@ -1087,6 +1019,89 @@
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                 <h4 class="modal-title">Edit Salary Statement </h4>
+                            </div>
+                            <div class="modal-body">
+                                <!-- begin row panel body --->
+                                <div class="row well">
+                                    <!-- begin section-container -->
+                                    <div class="section-container">
+                                        {!! Form::open(array('url'=>'update-salary', 'role'=>'form', 'method'=>'POST')) !!}
+                                        <span class="form-horizontal" data-parsley-validate="true" name="demo-form">
+
+                                            <div class="col-md-12 m-t-15">
+                                                <!-- start Personal Information -->
+                                                <div class="col-md-12">
+
+                                                    <div class="form-group">
+                                                        <label class="control-label col-sm-4" for="fullname">Salary Started Date <span class="text-danger">*</span></label>
+                                                        <div class="col-sm-6">
+                                                            <input class="form-control" type="date" id="fullname" value="" disabled="" data-parsley-required="true" />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label class="control-label col-sm-4" for="fullname"> <strong>Salary Basic</strong> <span class="text-danger">*</span></label>
+                                                        <div class="col-sm-6">
+                                                            <input class="form-control" type="text" id="fullname" name="a" value="" data-parsley-required="true" />
+                                                            <input type="hidden" name="sal_id" value="" />
+                                                            <input type="hidden" name="employee_id" value="" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="control-label col-sm-4" for="fullname"> <strong>Salary House</strong> <span class="text-danger">*</span></label>
+                                                        <div class="col-sm-6">
+                                                            <input class="form-control" type="text" id="fullname" name="b" value="" data-parsley-required="true" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="control-label col-sm-4 for="fullname"> <strong>Salary Health</strong> <span class="text-danger">*</span></label>
+                                                        <div class="col-sm-6">
+                                                            <input class="form-control" type="text" id="fullname" name="c" value="" data-parsley-required="true" />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label class="control-label col-sm-4" for="fullname"> <strong>Salary Transport</strong> <span class="text-danger">*</span></label>
+                                                        <div class="col-sm-6">
+                                                            <input class="form-control" type="text" id="fullname" name="d" value="" data-parsley-required="true" />
+                                                        </div>
+                                                    </div><hr class="hr-d m-b-15">
+
+                                                </div>
+                                                <!-- end Personal Information -->
+                                            </div>
+                                            <!-- begin submit button -->
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-4"></label>
+                                                <div class="col-sm-5">
+                                                    <button type="submit" class="btn btn-success width-xs m-l-10">Submit</button>
+                                                </div>
+                                            </div>
+                                            <!-- end submit button -->
+
+                                        </span>
+                                        {!! Form::close() !!}
+                                    </div>
+                                    <!-- end section-container -->    
+                                </div>
+                                <!-- end row panel body --->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+        <div class="col-md-6">
+            <div class="clearfix m-b-25">
+                <!-- #modal-dialog -->
+                <div class="modal fade" id="add-salary-statement">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h4 class="modal-title text-center">Add Salary Statement </h4>
                             </div>
                             <div class="modal-body">
                                 <!-- begin row panel body --->
