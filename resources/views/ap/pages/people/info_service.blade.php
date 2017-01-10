@@ -22,7 +22,7 @@
                     <div class="col-sm-2"></div>
                     <div class="col-sm-2"></div>
                     <div class="col-sm-2">
-                        <a href="#modal-s-people" class="btn btn-default width-xs m-l-30" title="Create Service People" data-toggle="modal"><i class="fa fa-plus"> </i> Add People</a>
+                        <a href="#modal-s-people" class="btn btn-default width-xs m-l-30" title="Create Service People" data-toggle="modal"><i class="fa fa-plus text-success-light"> </i> Add People</a>
                     </div>
                 </div>
                 <table class="table table-bordered table-hover" style="border-bottom:1px solid #EBECED !important; ">
@@ -38,7 +38,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php $number = 0; ?>
+                        <?php $number = 0; $off = 0; $on = 1; ?>
                         @foreach($emp_show as $v) 
                         <tr>
                             <td>
@@ -51,11 +51,12 @@
                             <td class="text-center">{{$v->service_person_phone2}}</td>
                             <td class="text-center">
                                 @if($v->service_status == 1)
-                                <a href="" class="btn btn-default btn-xs"> &nbsp; Active &nbsp; </a>
+                                <a href="{{URL::to('info-service-status/'.$v->service_id.'/'.$off)}}" class="btn btn-default btn-xs"> Active </a>
                                 @else
-                                <a href="" class="btn btn-warning btn-xs">DeActive</a>
+                                <a href="{{URL::to('info-service-status/'.$v->service_id.'/'.$on)}}" class="btn btn-warning btn-xs"> &nbsp; Stop &nbsp; </a>
                                 @endif
                             </td>
+                            
                             <td>
                                 <a href="{{URL::to('info-service-details/'.$v->service_person_id)}}" class="btn btn-default btn-xs"><i class="fa fa-list-alt"></i> Details</a>
                             </td>

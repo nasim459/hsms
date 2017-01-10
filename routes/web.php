@@ -56,9 +56,16 @@ Route::post('regi-emp-save', 'RegiController@save_emp_regi');
 Route::get('info-service', 'ServiceController@service_info');
 Route::get('info-service-details/{service_person_id}', 'ServiceController@details_service_info');
 Route::post('service-add', 'ServiceController@add_service');
+Route::post('service-add-name', 'ServiceController@name_add_service');
+Route::get('info-service-edit/{service_person_id}', 'ServiceController@edit_service_info');
+Route::post('info-service-update', 'ServiceController@update_service_info');
+Route::get('info-service-status/{service_id}/{status}', 'ServiceController@status_service_info');
 
 
 
+
+//----------Regi Service Assigned
+Route::post('service-assigned-add', 'ServiceAssignedController@add_assigned_service_info');
 
 
 

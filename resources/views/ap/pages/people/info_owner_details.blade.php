@@ -38,23 +38,30 @@
                                 <div class="col-md-8">
                                     <p class="f-s-14">
                                         <b>
-                                        &nbsp;<br/>
-                                        {{$v->rental_name}}<br/>
-                                        11 - 07 - 01<br/>
-                                        Payment: Paid<br/>
+                                            {{$v->rental_name}}<br/>
+                                            11 - 07 - 01<br/>
+                                            Payment: Paid<br/>
+                                            @if($v->person_status == 1)
+                                            Positoin: Flat Rental<br/>
+                                            @else
+                                            Positoin: Flat Owner<br/>
+                                            @endif
                                         </b>
                                     </p>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <p class="f-s-15">
-                                    &nbsp;<br/>
                                     {{$v->bld_name}}- Building, {{$v->bld_floor}} - Floor, {{$v->bld_unit}} - Unit<br/>
                                     Sukrabad, Dhanmondi, Dhaka<br/>
-                                    @if($v->person_status == 1)
-                                    <b>Positoin: Flat Rental</b><br/>
-                                    @else
-                                    <b>Positoin: Flat Owner</b><br/>
+                                    &nbsp;<br/>
+
+                                    @if(Session::get('service_taken') != NULL)
+                                    <b class="text-danger-light">{{Session::get('service_taken')}}</b>
+                                    @endif
+
+                                    @if(Session::get('service_assigned') != NULL)
+                                    <b class="text-success-light">{{Session::get('service_assigned')}}</b>
                                     @endif
                                 </p>
                             </div>
@@ -676,58 +683,42 @@
                     <div class="tab-pane fade" id="default-tab-6">
                         <div class="row">
                             <div class="col-md-10 col-md-offset-1">
-                                <div class="col-md-12 well">
-                                    <div class="table-responsive">
-                                        <table class="table table-td-valign-middle">
-                                            <thead>
-                                                <tr>
-                                                    <th class="text-center"></th>
-                                                    <th class="text-left">&nbsp; &nbsp; Your Facilities</th>
-                                                    <th class="text-center">
-                                                        <a href="{{URL::to('regi-driver')}}" class="btn btn-white btn-xs"><i class="fa fa-plus"></i> Driver Add</a> 
-                                                    </th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td class="">
-                                                        <a href="" class="btn btn-white btn-icon btn-circle btn-sm"><i class="fa fa-automobile"></i></a> 
-                                                        <a href=""><b>Driver</b></a>
-                                                    </td>
-                                                    <td class="text-center"> 
-                                                        <a href="">Khan Tuhin Alam Khan </a>
-                                                    </td>
-                                                    <td class="text-center"> 
-                                                        <a href="">01 - 07 - 01 </a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="">
-                                                        <a href="" class="btn btn-white btn-icon btn-circle btn-sm"><i class="fa fa-plug"></i></a> 
-                                                        <a href=""><b>Cleaner</b></a>
-                                                    </td>
-                                                    <td class="text-center"> 
-                                                        <a href="">Khan Tuhin Alam Khan </a>
-                                                    </td>
-                                                    <td class="text-center"> 
-                                                        <a href="">01 - 07 - 01 </a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="">
-                                                        <a href="" class="btn btn-white btn-icon btn-circle btn-sm"><i class="fa fa-street-view"></i></a> 
-                                                        <a href=""><b>Housekeeping</b></a>
-                                                    </td>
-                                                    <td class="text-center"> 
-                                                        <a href="">Khan Tuhin Alam Khan </a>
-                                                    </td>
-                                                    <td class="text-center"> 
-                                                        <a href="">01 - 07 - 01 </a>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                <div class="col-md-12">
+                                    <table class="table table-bordered table-hover" style="border:1px solid #EBECED !important;border-bottom:1px solid #EBECED !important;">
+                                        <thead>
+                                            <tr class="default">
+                                                <th class="text-center">Service Name</th>
+                                                <th class="text-center"> Amount</span></th>
+                                                <th><span class="m-l-20"> Person</span></th>
+                                                <th class="text-center">Mobile Number</th>
+                                                <th class="text-right">
+                                                    Status &nbsp; &nbsp; &nbsp;
+                                                    <a href="{{URL::to('regi-driver')}}" class="btn btn-white btn-xs"><i class="fa fa-plus"></i> Driver </a>
+                                                    <a href="#service-assign" class="btn btn-white btn-xs" data-toggle="modal"><i class="fa fa-plus"></i> Service </a>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php $number = 0; ?> 
+                                            @foreach($service_assigned_show as $v)
+                                            <tr>
+                                                <td><b><i class="fa fa-arrow-right"></i> {{$v->amount}}</b></td>
+                                                <td class="text-center">{{$v->amount}}</td>
+                                                <td>{{$v->amount}}</td>
+                                                <td class="text-center">{{$v->amount}}</td>
+                                                <td class="text-center">
+                                                    @if($v->status == 1)
+                                                    <a href="#" class="btn btn-default btn-xs" title="Running Service"><i class="fa fa-check text-success-light"></i> </a>
+                                                    @else
+                                                    <a href="#" class="btn btn-default btn-xs" title="Stop Service">&nbsp;<i class="fa fa-remove text-danger-light"></i>&nbsp; </a>
+                                                    @endif
+                                                    
+                                                    
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -741,6 +732,83 @@
         <!-- end col-6 --> 
     </div>
     <!-- end row -->
+
+    <!-- begin modal -->
+    <!-- begin service_assign of rental modal -->
+    <div class="col-md-6">
+        <div class="clearfix m-b-25">
+            <!-- #modal-dialog -->
+            <div class="modal fade" id="service-assign">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="modal-title text-center">Choose Your Service To Use</h4>
+                        </div>
+                        <div class="modal-body">
+                            <!-- begin row panel body --->
+                            <div class="row">
+                                <!-- begin section-container -->
+                                <div class="section-container">
+                                    {!! Form::open(array('url'=>'service-assigned-add', 'role'=>'form', 'method'=>'POST')) !!}
+
+                                    <div class="col-md-12">
+                                        <table class="table table-bordered table-hover" style="border:1px solid #EBECED !important;border-bottom:3px solid #EBECED !important;">
+                                            <thead>
+                                                <tr class="default">
+                                                    <th class="text-center"> Service Name </th>
+                                                    <th class="text-center"> Amount </th>
+                                                    <th> &nbsp; Choose All
+                                                        <input type="hidden" value=""  style="width:20px"/>
+                                                        <input type="checkbox" name="employee_sal_id[]" value="" style="float: left; margin: 0 0 0 30px;width: 20px;height: 20px;">
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php $number = 0; ?> 
+                                                @foreach($service_show as $v) 
+                                                <tr>
+                                                    <td class="text-center"><b><i class="fa fa-arrow-right"></i>{{$v->service_type}}</b></td>
+                                                    <td class="text-center">
+                                                        <input type="text" name="amount[]" placeholder=" 00.00 " style="width:80px; text-align: center;"/>
+                                                    </td>
+                                                    <td>
+                                                        <input type="hidden" name="aa" value="{{Session::get('rental_id')}}"  style="width:20px"/>
+                                                        <input type="hidden" name="bb" value="{{Session::get('flat_info_id')}}"  style="width:20px"/>
+
+                                                        <input type="hidden" name="sp_id[]" value="{{$v->service_person_id}}"  style="width:20px"/>
+                                                        <input type="checkbox" name="s_id[]" value="{{$v->service_id}}" style="float: left; margin: 0 0 0 30px;width: 20px;height: 20px;">
+                                                    </td>
+                                                </tr>
+                                                @endforeach()
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <!-- begin submit button -->
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-4"></label>
+                                        <div class="col-sm-5 m-b-20">
+                                            <button type="submit" class="btn btn-success width-xs">Submit</button>
+                                        </div>
+                                    </div>
+                                    <!-- end submit button -->
+
+                                    {!! Form::close() !!}
+                                </div>
+                                <!-- end section-container -->    
+                            </div>
+                            <!-- end row panel body --->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- end service_assign of rental modal -->
+    <!-- end modal -->
+
 </div>
 <!-- end section-container -->
 @endsection
