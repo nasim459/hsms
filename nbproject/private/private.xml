@@ -6,16 +6,14 @@
             <file>file:/D:/Xampp/htdocs/hsms/app/Http/Controllers/ServiceAssignedController.php</file>
             <file>file:/D:/Xampp/htdocs/hsms/app/Http/Controllers/ServiceController.php</file>
             <file>file:/D:/Xampp/htdocs/hsms/resources/views/ap/pages/people/info_service.blade.php</file>
-            <file>file:/D:/Xampp/htdocs/hsms/resources/views/ap/pages/settings/settings_master.blade.php</file>
-            <file>file:/D:/Xampp/htdocs/hsms/resources/views/ap/pages/settings/make_salary.blade.php</file>
+            <file>file:/D:/Xampp/htdocs/hsms/resources/views/ap/pages/settings/bld_add.blade.php</file>
             <file>file:/D:/Xampp/htdocs/hsms/resources/views/ap/pages/people/info_owner_details.blade.php</file>
             <file>file:/D:/Xampp/htdocs/hsms/routes/web.php</file>
+            <file>file:/D:/Xampp/htdocs/hsms/app/Http/Controllers/BldController.php</file>
             <file>file:/D:/Xampp/htdocs/hsms/app/Http/Controllers/PeopleController.php</file>
             <file>file:/D:/Xampp/htdocs/hsms/resources/views/ap/pages/people/info_service_details.blade.php</file>
-            <file>file:/D:/Xampp/htdocs/hsms/resources/views/master_ap.blade.php</file>
-            <file>file:/D:/Xampp/htdocs/hsms/resources/views/ap/pages/people/info_emp_details.blade.php</file>
             <file>file:/D:/Xampp/htdocs/hsms/app/Http/Controllers/SalaryMakeController.php</file>
-            <file>file:/D:/Xampp/htdocs/hsms/app/Http/Controllers/RegiController.php</file>
+            <file>file:/D:/Xampp/htdocs/hsms/app/Http/Controllers/SalaryController.php</file>
         </group>
     </open-files>
 </project-private>

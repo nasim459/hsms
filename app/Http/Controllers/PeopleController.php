@@ -59,12 +59,13 @@ class PeopleController extends Controller
         Session::put('flat_info_id', $flat_info_id);
         
         $service_show = DB::table('tbl_service')
-                ->select('tbl_service.*', 'tbl_service_person.*')
+                ->select('tbl_service.*')
                 ->get();
         
         $service_assigned_show = DB::table('tbl_service_assigned')
-                    ->join('tbl_service_person', 'tbl_service.service_person_id', '=', 'tbl_service_person.service_person_id')
-                    ->where('rental_id', $rental_id)
+                    ->join('tbl_service_person', 'tbl_service_assigned.service_person_id', '=', 'tbl_service_person.service_person_id')
+                    ->join('tbl_service', 'tbl_service_assigned.service_id', '=', 'tbl_service.service_person_id')
+                    ->where('tbl_service_assigned.rental_id', $rental_id)
                     ->get();
         
 //            echo '<pre>';

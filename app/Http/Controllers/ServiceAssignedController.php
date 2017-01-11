@@ -53,7 +53,11 @@ class ServiceAssignedController extends Controller
             
             
             $check = DB::table('tbl_service_assigned')
-                    ->where('rental_id', $rental_id)
+//                    ->where('tbl_service_assigned.service_id', $service_id[$i])
+                    ->where([
+                        ['tbl_service_assigned.service_id', '=', $service_id[$i]],
+                        ['tbl_service_assigned.rental_id', '=', $rental_id]
+                    ])
                     ->get();
             if(!isset($check[0])){
                 //echo 'Yes';

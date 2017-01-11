@@ -82,6 +82,9 @@ Route::get('info-service-status/{service_id}/{status}', 'ServiceController@statu
 //----------Regi Service Assigned
 Route::post('service-assigned-add', 'ServiceAssignedController@add_assigned_service_info');
 
+//----------Regi Building
+Route::get('bld-add', 'BldController@add_bld');
+
 
 
 
