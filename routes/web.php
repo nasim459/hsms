@@ -65,6 +65,7 @@ Route::get('regi-visitor', 'RegiController@visitor_regi');
 //----------Regi Save
 Route::get('regi-rental-save', 'RegiController@save_rental_regi');
 Route::post('regi-emp-save', 'RegiController@save_emp_regi');
+
 //----------End Regi Controller--------------------
 //
 //----------Regi Save
