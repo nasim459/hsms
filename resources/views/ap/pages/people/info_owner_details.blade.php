@@ -702,18 +702,16 @@
                                             <?php $number = 0; ?> 
                                             @foreach($service_assigned_show as $v)
                                             <tr>
-                                                <td><b><i class="fa fa-arrow-right"></i> {{$v->amount}}</b></td>
+                                                <td><b><i class="fa fa-arrow-right">&nbsp;</i> {{$v->service_type}}</b></td>
                                                 <td class="text-center">{{$v->amount}}</td>
-                                                <td>{{$v->amount}}</td>
-                                                <td class="text-center">{{$v->amount}}</td>
+                                                <td>{{$v->service_person_name}}</td>
+                                                <td class="text-center">{{$v->service_person_phone1}}</td>
                                                 <td class="text-center">
                                                     @if($v->status == 1)
                                                     <a href="#" class="btn btn-default btn-xs" title="Running Service"><i class="fa fa-check text-success-light"></i> </a>
                                                     @else
                                                     <a href="#" class="btn btn-default btn-xs" title="Stop Service">&nbsp;<i class="fa fa-remove text-danger-light"></i>&nbsp; </a>
                                                     @endif
-                                                    
-                                                    
                                                 </td>
                                             </tr>
                                             @endforeach
@@ -768,7 +766,7 @@
                                                 <?php $number = 0; ?> 
                                                 @foreach($service_show as $v) 
                                                 <tr>
-                                                    <td class="text-center"><b><i class="fa fa-arrow-right"></i>{{$v->service_type}}</b></td>
+                                                    <td><b><i class="fa fa-arrow-right">&nbsp;</i> {{$v->service_type}}</b></td>
                                                     <td class="text-center">
                                                         <input type="text" name="amount[]" placeholder=" 00.00 " style="width:80px; text-align: center;"/>
                                                     </td>
