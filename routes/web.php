@@ -1,5 +1,16 @@
 <?php
 
+
+
+// Test routes
+
+
+Route::get('send', 'HomeController@mailTest');
+
+
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,8 +44,12 @@ Route::get('info-housekeeping', 'PeopleController@housekeeping_info');
 Route::get('info-visiting', 'PeopleController@visiting_info');
 Route::get('info-service', 'PeopleController@service_info');
 
+
+
 //----------People Edit Controller
-Route::get('info-rental-edit/{rental_id}', 'EditController@edit_rental_info');
+Route::get('info-rental-edit/{rental_id}', 'EditController@edit_rental_info')->name('rental-edit');
+
+
 Route::get('info-emp-edit/{emp_details_id}', 'EditController@edit_emp_info');
 //----------People Update Controller
 Route::post('info-rental-update', 'EditController@update_rental_info');

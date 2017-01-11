@@ -14,6 +14,7 @@ class InventoryController extends Controller
         $inventory = view('ap.pages.inventory.i_at_a_glance');
         $master = view('ap.pages.inventory.i_master')
                 ->with('broadcasting_content', $inventory);
+
         return view('master_ap')
                 ->with('maincontent', $master);
     }
