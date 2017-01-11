@@ -33,6 +33,12 @@ class SalaryMakeController extends Controller
                 ->orderBy('emp_payment_id', 'desc')
                 ->get();
         
+        $add_salary_statement = DB::table('tbl_emp')
+                //->join('tbl_emp', 'tbl_emp_salary.emp_id', '=', 'tbl_emp.emp_id')
+                //->where('tbl_emp.salary_status', '1')
+                ->select('tbl_emp.*')
+                ->orderBy('emp_id', 'desc')
+                ->get();
 //        echo '<pre>';
 //        print_r($salary_view);
 //        exit();
@@ -40,7 +46,8 @@ class SalaryMakeController extends Controller
         $salary = view('ap.pages.settings.make_salary')
                 ->with('salary_view', $salary_view)
                 ->with('invoice_view', $invoice_view)
-                ->with('payment_paid', $payment_paid);
+                ->with('payment_paid', $payment_paid)
+                ->with('add_salary_statement', $add_salary_statement);
         $master = view('ap.pages.settings.settings_master')
                 ->with('settings_content', $salary);
         return view('master_ap')

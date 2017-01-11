@@ -66,6 +66,23 @@ Route::get('regi-visitor', 'RegiController@visitor_regi');
 Route::get('regi-rental-save', 'RegiController@save_rental_regi');
 Route::post('regi-emp-save', 'RegiController@save_emp_regi');
 //----------End Regi Controller--------------------
+//
+//----------Regi Save
+Route::get('info-service', 'ServiceController@service_info');
+Route::get('info-service-details/{service_person_id}', 'ServiceController@details_service_info');
+Route::post('service-add', 'ServiceController@add_service');
+Route::post('service-add-name', 'ServiceController@name_add_service');
+Route::get('info-service-edit/{service_person_id}', 'ServiceController@edit_service_info');
+Route::post('info-service-update', 'ServiceController@update_service_info');
+Route::get('info-service-status/{service_id}/{status}', 'ServiceController@status_service_info');
+
+
+
+
+//----------Regi Service Assigned
+Route::post('service-assigned-add', 'ServiceAssignedController@add_assigned_service_info');
+
+
 
 
 
@@ -103,6 +120,9 @@ Route::get('profile-admin', 'ProfileController@admin_profile');
 //----------Salary Controller
 Route::post('add-salary', 'SalaryController@save_salary_add');
 Route::post('update-salary', 'SalaryController@salary_update');
+
+Route::get('salary-statement-publish/{emp_id}', 'SalaryController@publish_statement_salary');
+Route::get('salary-statement-unpublish/{emp_id}', 'SalaryController@unpublish_statement_salary');
 
 //----------SalaryMake Controller
 Route::get('make-salary', 'SalaryMakeController@salary_make');

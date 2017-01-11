@@ -59,6 +59,24 @@ class SalaryController extends Controller
                 ->update($salary);
         return Redirect::to('info-emp');
     }
+    //-----Publish_Statement_Salary
+    public function publish_statement_salary($emp_id)
+    {        
+        DB::table('tbl_emp')
+            ->where('emp_id', $emp_id)
+            ->update(['salary_status' => 1]);
+    
+        return Redirect::to('make-salary');
+    }
+    //-----unPublish_Statement_Salary
+    public function unpublish_statement_salary($emp_id)
+    {        
+        DB::table('tbl_emp')
+            ->where('emp_id', $emp_id)
+            ->update(['salary_status' => 2]);
+    
+        return Redirect::to('make-salary');
+    }
     
     
     

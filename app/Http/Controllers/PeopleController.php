@@ -53,8 +53,31 @@ class PeopleController extends Controller
                 ->orderBy('rental_id', 'asc')
                 ->get();
         
+        $rental_id = $rental_details[0]->rental_id;
+        $flat_info_id = $rental_details[0]->flat_info_id;
+        Session::put('rental_id', $rental_id);
+        Session::put('flat_info_id', $flat_info_id);
+        
+        $service_show = DB::table('tbl_service')
+                ->select('tbl_service.*', 'tbl_service_person.*')
+                ->get();
+        
+        $service_assigned_show = DB::table('tbl_service_assigned')
+                    ->join('tbl_service_person', 'tbl_service.service_person_id', '=', 'tbl_service_person.service_person_id')
+                    ->where('rental_id', $rental_id)
+                    ->get();
+        
+//            echo '<pre>';
+//            print_r($rental_details);
+//            echo '<pre>';
+//            print_r($service_show);
+//            exit();
+        
+        
         $owner = view('ap.pages.people.info_owner_details')
-                ->with('rental_details', $rental_details);
+                ->with('rental_details', $rental_details)
+                ->with('service_show', $service_show)
+                ->with('service_assigned_show', $service_assigned_show);
         $master = view('ap.pages.people.people_master')
                 ->with('people_content', $owner);
         return view('master_ap')

@@ -98,7 +98,8 @@
                             <div class="row well">
                                 <!-- begin section-container -->
                                 <div class="section-container">
-                                    <form action="{{URL::to('regi-s-people-save')}}" class="form-horizontal" data-parsley-validate="true" name="demo-form">
+                                    {!! Form::open(array('url'=>'service-add', 'role'=>'form', 'method'=>'POST')) !!}
+                                    <span action="{{URL::to('regi-s-people-save')}}" class="form-horizontal" data-parsley-validate="true" name="demo-form">
 
                                         <div class="col-md-12 m-t-15">
                                             <!-- start Personal Information -->
@@ -107,7 +108,7 @@
                                                 <div class="form-group">
                                                     <label class="control-label col-sm-3" for="fullname"> <strong>Service Name</strong> <span class="text-danger">*</span></label>
                                                     <div class="col-sm-8">
-                                                        <input class="form-control" type="text" id="fullname" name="service_name" placeholder="Write Service Name" data-parsley-required="true" />
+                                                        <input class="form-control" type="text" id="fullname" name="a" placeholder="Write Service Name" data-parsley-required="true" />
                                                     </div>
                                                 </div><hr class="hr-d m-b-15">
 
@@ -115,24 +116,24 @@
                                                 <div class="form-group m-t-10">
                                                     <label class="control-label col-sm-3" for="fullname">Person Name <span class="text-danger">*</span></label>
                                                     <div class="col-sm-8">
-                                                        <input class="form-control" type="text" id="fullname" name="person_name" placeholder="Service Person Name" data-parsley-required="true" />
+                                                        <input class="form-control" type="text" id="fullname" name="b" placeholder="Service Person Name" data-parsley-required="true" />
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label class="control-label col-sm-3" for="fullname">Mobile No <span class="text-danger">*</span></label>
                                                     <div class="col-sm-4">
-                                                        <input class="form-control" type="text" id="fullname" name="service_phone1" placeholder="01xxxxxxxxx" data-parsley-required="true" />
+                                                        <input class="form-control" type="text" id="fullname" name="c" placeholder="01xxxxxxxxx" data-parsley-required="true" />
                                                     </div>
                                                     <div class="col-sm-4">
-                                                        <input class="form-control" type="text" id="fullname" name="service_phone2" placeholder="01xxxxxxxxx" />
+                                                        <input class="form-control" type="text" id="fullname" name="d" placeholder="01xxxxxxxxx" />
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label class="control-label col-sm-3" for="fullname">Address <span class="text-danger">*</span></label>
                                                     <div class="col-sm-8">
-                                                        <input class="form-control" type="text" id="fullname" name="service_address" placeholder="Write Address" data-parsley-required="true" />
+                                                        <input class="form-control" type="text" id="fullname" name="e" placeholder="Write Address" data-parsley-required="true" />
                                                     </div>
                                                 </div>
 
@@ -156,8 +157,7 @@
                                             </div>
                                             <!-- end Personal Information -->
                                         </div>
-
-
+                                        
                                         <!-- begin submit button -->
                                         <div class="form-group">
                                             <label class="control-label col-sm-4"></label>
@@ -167,7 +167,8 @@
                                         </div>
                                         <!-- end submit button -->
 
-                                    </form>
+                                    </span>
+                                    {!! Form::close() !!}
                                 </div>
                                 <!-- end section-container -->    
                             </div>

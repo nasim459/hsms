@@ -18,8 +18,8 @@
         <div class="col-md-12">
             <!-- begin menu bar -->
             <p class="text-center  m-b-mi-23 m-t-10">
-                <a href="{{URL::to('info-driver')}}" class="btn btn-default widtg115">Bill Generate</a>
-                <a href="{{URL::to('info-service')}}" class="btn btn-default widtg115">Salary Generate</a>
+                <a href="{{URL::to('make-salary')}}" class="btn btn-default widtg115">Employer Salary</a> &nbsp; 
+                <a href="{{URL::to('make-salary')}}" class="btn btn-default widtg115">Bill Generate</a>
             </p>
             <!-- end menu bar -->
         </div>
