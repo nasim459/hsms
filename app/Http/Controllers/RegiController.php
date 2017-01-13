@@ -159,7 +159,39 @@ class RegiController extends Controller
     }
     //=====End Registration=====================================
     
-    
+    public function save_driver_regi(Request $request)
+    {
+        //------tbl_driver_details---------------------
+        $details = array();
+        $details['driver_son_wife_off'] = $request->son_wife_off;
+        $details['driver_national_id'] = $request->national_id;
+        $details['driver_passport_no'] = $request->passport_no;
+        $details['driver_licence_no'] = $request->driving_licence;
+        $details['driver_car_regi_no'] = $request->driver_car_regi_no;
+        $details['dpi_gender'] = $request->g_radio;
+        //------driver permannent information----------------------------
+        $details['dpi_village'] = $request->dpi_village;
+        $details['dpi_police_station'] = $request->dpi_police_station;
+        $details['dpi_district'] = $request->dpi_district;
+        $details['dpi_country'] = $request->dpi_country;
+        $details['dpi_religion'] = $request->dpi_religion;
+
+        $details['driver_phone2'] = $request->driver_phone2;
+        $details_get_id = DB::table('tbl_driver_details')->insertGetId($details);
+        
+
+
+        //------tbl_driver------------------------------
+        $driver = array();
+        $driver['driver_name'] = $request->name;
+        $driver['driver_phone1'] = $request->driver_phone1;
+        $driver['driver_details_id'] = $details_get_id;
+  
+        DB::table('tbl_driver')->insertGetId($driver);
+        
+        Session::put('Driver_data_inserted', 'Data Inserted Successfully!!!');
+        return Redirect::to('info-driver');
+    }
     
     
  

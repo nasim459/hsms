@@ -48,9 +48,8 @@ Route::get('info-service', 'PeopleController@service_info');
 
 //----------People Edit Controller
 Route::get('info-rental-edit/{rental_id}', 'EditController@edit_rental_info')->name('rental-edit');
-
-
 Route::get('info-emp-edit/{emp_details_id}', 'EditController@edit_emp_info');
+
 //----------People Update Controller
 Route::post('info-rental-update', 'EditController@update_rental_info');
 Route::post('info-emp-update', 'EditController@update_emp_info');
@@ -62,9 +61,11 @@ Route::get('regi-driver', 'RegiController@driver_regi');
 Route::get('regi-s-people', 'RegiController@s_people_regi');
 Route::get('regi-emp', 'RegiController@emp_regi');
 Route::get('regi-visitor', 'RegiController@visitor_regi');
+
 //----------Regi Save
 Route::get('regi-rental-save', 'RegiController@save_rental_regi');
 Route::post('regi-emp-save', 'RegiController@save_emp_regi');
+Route::get('regi-driver-save', 'RegiController@save_driver_regi');
 
 //----------End Regi Controller--------------------
 //

@@ -33,17 +33,17 @@
 
                         <!-- begin section-container -->
                         <div class="section-container">
-                            <form action="{{URL::to('regi-rental-save')}}" class="form-horizontal" data-parsley-validate="true" name="demo-form">
+                            <form action="{{URL::to('regi-driver-save')}}" class="form-horizontal" data-parsley-validate="true" name="demo-form">
 
                                 <!-- begin Building Place -->
-                                <div class="col-md-8 col-md-offset-1">
+<!--                                <div class="col-md-8 col-md-offset-1">
                                     <div class="form-group">
                                         <label class="control-label col-sm-4" for="fullname"><b>Select Driver Owner </b><span class="text-danger">*</span></label>
                                         <div class="col-sm-8">
                                             <input class="form-control" type="text" id="fullname" name="rntl_name" placeholder="Write Driver Owner Name" data-parsley-required="true" />
                                         </div>
                                     </div>
-                                </div>
+                                </div>-->
                                 <!-- end Building Place -->
 
                                 <div class="col-md-12 m-t-15">
@@ -55,7 +55,7 @@
                                         <div class="form-group m-t-10">
                                             <label class="control-label col-sm-4" for="fullname">Driver Name <span class="text-danger">*</span></label>
                                             <div class="col-sm-8">
-                                                <input class="form-control" type="text" id="fullname" name="rntl_name" placeholder="Rental Name" data-parsley-required="true" />
+                                                <input class="form-control" type="text" id="fullname" name="name" placeholder="Driver Name" data-parsley-required="true" />
                                             </div>
                                         </div>
 
@@ -69,93 +69,96 @@
                                         <div class="form-group">
                                             <label class="control-label col-sm-4" for="fullname">National ID <span class="text-danger">*</span></label>
                                             <div class="col-sm-8">
-                                                <input class="form-control" type="text" id="fullname" name="national_no" placeholder=" National ID" data-parsley-required="true" />
+                                                <input class="form-control" type="text" id="fullname" name="national_id" placeholder=" National ID" data-parsley-required="true" />
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label class="control-label col-sm-4" for="fullname">Passport No <span class="text-danger"></span></label>
                                             <div class="col-sm-8">
-                                                <input class="form-control" type="text" id="fullname" name="national_no" placeholder=" National ID" />
+                                                <input class="form-control" type="text" id="fullname" name="passport_no" placeholder=" Passport No" />
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label class="control-label col-sm-4" for="fullname">Driving Licence <span class="text-danger">*</span></label>
                                             <div class="col-sm-8">
-                                                <input class="form-control" type="text" id="fullname" name="passport_no" placeholder="Passport No" data-parsley-required="true" />
+                                                <input class="form-control" type="text" id="fullname" name="driving_licence" placeholder="Driving Licence"  />
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label class="control-label col-sm-4" for="fullname">Car Registration No <span class="text-danger">*</span></label>
                                             <div class="col-sm-8">
-                                                <input class="form-control" type="text" id="fullname" name="passport_no" placeholder="Passport No" data-parsley-required="true" />
+                                                <input class="form-control" type="text" id="fullname" name="driver_car_regi_no" placeholder="Car Registration No"  />
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label class="control-label col-sm-4" for="fullname">Mobile No <span class="text-danger">*</span></label>
                                             <div class="col-sm-4">
-                                                <input class="form-control" type="text" id="fullname" name="rntl_phone1" placeholder="01xxxxxxxxx" data-parsley-required="true" />
+                                                <input class="form-control" type="text" id="fullname" name="driver_phone1" placeholder="01xxxxxxxxx"  />
                                             </div>
                                             <div class="col-sm-4">
-                                                <input class="form-control" type="text" id="fullname" name="rntl_phone2" placeholder="01xxxxxxxxx" data-parsley-required="true" />
+                                                <input class="form-control" type="text" id="fullname" name="driver_phone2" placeholder="01xxxxxxxxx"  />
                                             </div>
                                         </div>
 
-                                        <div class="form-group">
-                                            <label class="control-label col-sm-4" for="fullname">E-Mail <span class="text-danger">*</span></label>
-                                            <div class="col-sm-8">
-                                                <input class="form-control" type="text" id="fullname" name="national_no" placeholder=" National ID" data-parsley-required="true" />
-                                            </div>
-                                        </div>
+                                        
                                     </div>
                                     <!-- end Personal Information -->
 
                                     <!-- start Personal Information -->
                                     <div class="col-md-6">
                                         <strong class="text-success">Personal Information</strong>
-
-                                        <div class="form-group  m-t-10">
-                                            <label class="control-label col-sm-4">Country <span class="text-danger">*</span></label>
+                                        
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-4" for="email">Village</label>
                                             <div class="col-sm-8">
-                                                <select class="form-control" id="select-required" name="pi_country" data-parsley-required="true">
-                                                    <option value="">Select Country</option>
-                                                    <option value="Bangladesh">Bangladesh</option>
-                                                    <option value="India">India</option>
-                                                </select>
+                                                <input class="form-control" type="text" id="email" name="dpi_village"  placeholder="Driver Village"   />
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-4" for="email">Police Station <span class="text-danger">*</span></label>
+                                            <div class="col-sm-8">
+                                                <input class="form-control" type="text" id="email" name="dpi_police_station"  placeholder="Driver Police Station"   />
                                             </div>
                                         </div>
                                         
                                         <div class="form-group">
                                             <label class="control-label col-sm-4" for="email">District <span class="text-danger">*</span></label>
                                             <div class="col-sm-8">
-                                                <input class="form-control" type="text" id="email" name="rntl_email" data-parsley-type="email" placeholder="example@example.com"  data-parsley-required="true"  />
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                            <label class="control-label col-sm-4" for="email">Thana <span class="text-danger">*</span></label>
-                                            <div class="col-sm-8">
-                                                <input class="form-control" type="text" id="email" name="rntl_email" data-parsley-type="email" placeholder="example@example.com"  data-parsley-required="true"  />
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                            <label class="control-label col-sm-4" for="email">Village</label>
-                                            <div class="col-sm-8">
-                                                <input class="form-control" type="text" id="email" name="rntl_email" data-parsley-type="email" placeholder="example@example.com"  data-parsley-required="true"  />
+                                                <input class="form-control" type="text" id="email" name="dpi_district" placeholder="Driver district"/>
                                             </div>
                                         </div>
                                         
                                         <div class="form-group  m-t-10">
+                                            <label class="control-label col-sm-4">Country <span class="text-danger">*</span></label>
+                                            <div class="col-sm-8">
+                                                <select class="form-control" id="select-required" name="dpi_country" >
+                                                    <option value="">Select Country</option>
+                                                    <option value="Bangladesh">Bangladesh</option>
+                                                    <option value="India">India</option>
+                                                    <option value="Pakistan">Pakistan</option>
+                                                    <option value="Sri_lanka">Sri Lanka</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                        
+                                                                       
+                                        
+                                        
+                                        <div class="form-group  m-t-10">
                                             <label class="control-label col-sm-4">Religion <span class="text-danger">*</span></label>
                                             <div class="col-sm-8">
-                                                <select class="form-control" id="select-required" name="pi_country" data-parsley-required="true">
+                                                <select class="form-control" id="select-required" name="dpi_religion" >
                                                     <option value="">Select Religion</option>
-                                                    <option value="Islam">Islam</option>
-                                                    <option value="Hindue">Hindue</option>
+                                                    <option value="islam">Islam</option>
+                                                    <option value="hindue">Hindue</option>
+                                                    
                                                 </select>
                                             </div>
                                         </div>
@@ -165,7 +168,7 @@
                                                 <label class="control-label col-sm-4">Gender <span class="text-danger">*</span></label>
                                                 <div class="col-sm-8 m-t-5">
                                                     <label>
-                                                        <input type="radio" value="1" name="g_radio" id="radio-required" data-parsley-required="true" /> Male <span class="m-l-40"></span>
+                                                        <input type="radio" value="1" name="g_radio" id="radio-required"  /> Male <span class="m-l-40"></span>
                                                         <input type="radio" value="2" name="g_radio" id="radio-required2" /> Female
                                                     </label>
                                                 </div>
@@ -175,7 +178,7 @@
                                         <div class="form-group">
                                             <label class="control-label col-sm-4" for="fullname">Picture <span class="text-danger">*</span></label>
                                             <div class="col-sm-8">
-                                                <input  type="file" name="filename" id="fileToUpload" data-parsley-required="true">
+                                                <input  type="file" name="filename" id="fileToUpload" >
                                             </div>
                                         </div>
                                         
