@@ -35,8 +35,8 @@ Route::get('info-owner', 'PeopleController@owner_info');
 Route::get('info-emp', 'PeopleController@emp_info');
 
 Route::get('info-owner-details/{rental_details_id}', 'PeopleController@details_owner_info');
-Route::get('info-emp-details/{emp_details_id}', 'PeopleController@details_emp_info');
-Route::get('info-driver-details/{driver_details_id}', 'PeopleController@details_driver_info');
+Route::get('info-emp-details/{emp_details_id}', 'PeopleController@details_emp_info')->name('emp-info');
+Route::get('info-driver-details/{driver_details_id}', 'PeopleController@details_driver_info')->name('driver-info');
 
 Route::get('info-owner-invoice', 'InvoiceController@invoice_owner_info');
 Route::get('info-rental', 'PeopleController@rental_info');
@@ -49,8 +49,8 @@ Route::get('info-service', 'PeopleController@service_info');
 
 //----------People Edit Controller
 Route::get('info-rental-edit/{rental_id}', 'EditController@edit_rental_info')->name('rental-edit');
-Route::get('info-emp-edit/{emp_details_id}', 'EditController@edit_emp_info');
-Route::get('info-driver-edit/{driver_details_id}', 'EditController@edit_driver_info');
+Route::get('info-emp-edit/{emp_details_id}', 'EditController@edit_emp_info')->name('emp-edit');
+Route::get('info-driver-edit/{driver_details_id}', 'EditController@edit_driver_info')->name('driver-edit');
 
 //----------People Update Controller
 Route::post('info-rental-update', 'EditController@update_rental_info');

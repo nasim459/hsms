@@ -201,7 +201,7 @@ class EditController extends Controller
                 ->where('tbl_emp.emp_id', $emp_id)
                 ->update($emp);
         
-        return Redirect::to('info-emp');
+        return redirect()->route('emp-info', $emp_id);
         
         //echo '<pre>';
         //print_r($ref_get_id);
@@ -249,7 +249,7 @@ class EditController extends Controller
                 ->where('tbl_driver.driver_id', $driver_id)
                 ->update($driver);
         
-        return Redirect::to('info-driver');
+        return redirect()->route('driver-info', $driver_id);
         
         //echo '<pre>';
         //print_r($ref_get_id);
