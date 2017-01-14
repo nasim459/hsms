@@ -134,9 +134,9 @@ class EditController extends Controller
                 ->update($rental);
         
         //Session::put('rental_insert', 'Data Inserted Successfully!!!');
-        //return Redirect::to('info-owner-details', $rental_id);
+        return Redirect::to(Session::get('url_current'));
 
-        return redirect()->route('rental-edit', $rental_id);
+        //return redirect()->route('rental-edit', $rental_id);
         
         //echo '<pre>';
         //print_r($ref_get_id);

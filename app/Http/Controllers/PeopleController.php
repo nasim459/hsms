@@ -43,6 +43,9 @@ class PeopleController extends Controller
     
     public function details_owner_info($rental_details_id)
     {
+        $url_current = url()->current();
+        Session::put('url_current', $url_current);
+
         $rental_details = DB::table('tbl_rental_details')
                 ->join('tbl_rental', 'tbl_rental_details.rental_details_id', '=', 'tbl_rental.rental_details_id')
                 ->join('tbl_flat_info', 'tbl_rental.flat_info_id', '=', 'tbl_flat_info.flat_info_id')
