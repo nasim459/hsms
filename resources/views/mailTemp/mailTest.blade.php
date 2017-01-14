@@ -18,7 +18,7 @@
     Password: {{ $password }}<br /><br />
 
 
-    Welcome once again.<br /><br />
+    Welcome once again. mr <br /><br />
 
 </div>
 </body>
