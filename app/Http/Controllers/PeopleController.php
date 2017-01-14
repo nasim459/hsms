@@ -130,13 +130,45 @@ class PeopleController extends Controller
     
     public function driver_info()
     {
-        $owner = view('ap.pages.people.info_driver');
+        $driver_show= DB::table('tbl_driver')
+                ->select('tbl_driver.*')
+                ->get();
+        
+        $driver = view('ap.pages.people.info_driver')
+                ->with('driver_show',$driver_show);
+        
         $master = view('ap.pages.people.people_master')
-                ->with('people_content', $owner);
+                ->with('people_content', $driver);
         return view('master_ap')
                 ->with('maincontent', $master);
+      
     }
     
+    public function details_driver_info($driver_details_id) {
+
+        $driver_details = DB::table('tbl_driver')
+        ->join('tbl_driver_details', 'tbl_driver.driver_details_id', '=', 'tbl_driver_details.driver_details_id')
+        ->where('tbl_driver.driver_details_id', '=', $driver_details_id)
+        ->orderBy('driver_id', 'asc')
+        ->get();
+
+//        echo '<pre>';
+//        print_r($driver_details);
+//        exit();
+        
+         $driver = view('ap.pages.people.info_driver_details')
+                ->with('driver_details', $driver_details);
+                
+        $master = view('ap.pages.people.people_master')
+                ->with('people_content', $driver);
+        return view('master_ap')
+                ->with('maincontent', $master);
+        
+        
+        
+    }
+
+
     public function housekeeping_info()
     {
         $owner = view('ap.pages.people.info_housekeeping');

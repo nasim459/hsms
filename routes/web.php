@@ -36,6 +36,7 @@ Route::get('info-emp', 'PeopleController@emp_info');
 
 Route::get('info-owner-details/{rental_details_id}', 'PeopleController@details_owner_info');
 Route::get('info-emp-details/{emp_details_id}', 'PeopleController@details_emp_info');
+Route::get('info-driver-details/{driver_details_id}', 'PeopleController@details_driver_info');
 
 Route::get('info-owner-invoice', 'InvoiceController@invoice_owner_info');
 Route::get('info-rental', 'PeopleController@rental_info');

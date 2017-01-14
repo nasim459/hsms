@@ -10,153 +10,33 @@
                     <th>Picture &nbsp; &nbsp; &nbsp; ID &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  Name</th>
                     <th>Building Info</th>
                     <th>Mobile Number</th>
-                    <th data-sorting="disabled">E-Mail Address</th>
                     <th data-sorting="disabled">Payment</th>
+                    <th>Action</th>
                     <th data-sorting="disabled">
                         Action &nbsp; &nbsp; &nbsp;
-                        <a href="{{URL::to('info-regi')}}" class="btn btn-default btn-xs" title="Create New Account"><i class="fa fa-plus"></i> Add</a>
+                        <a href="{{URL::to('info-driver')}}" class="btn btn-default btn-xs" title="Create New Account"><i class="fa fa-plus"></i> Add</a>
                     </th>
                 </tr>
             </thead>
             <tbody>
+                <?php $number=0; ?>
+                @foreach($driver_show as $d)
                 <tr class="odd gradeX">
                     <td>01</td>
                     <td>
                         <img src="{{URL::asset('ap/assets/img/user_profile.jpg')}}" class="img-h-w" alt="" />
-                        &nbsp; &nbsp; <b>11-07-01</b>
-                        &nbsp; &nbsp; Md Nasim
+                        &nbsp; &nbsp; <b>{{$d->driver_id}}</b>
+                        &nbsp; &nbsp; {{$d->driver_name}}
                     </td>
                     <td>01-Buliding, D-Unit</td>
-                    <td>017778887777</td>
-                    <td>infovirus@gmail.com</td>
+                    <td>{{$d->driver_phone1}}</td>
+                    
                     <td><a href="" class="btn btn-default btn-xs">Paid</a> </td>
-                    <td><a href="{{URL::to('info-owner-details')}}" class="btn btn-default btn-xs"><i class="fa fa-list-alt"></i> Details</a></td>
+                    <td><a href="{{URL::to('info-driver-details/'.$d->driver_details_id)}}" class="btn btn-default btn-xs"><i class="fa fa-list-alt"></i> Details</a></td>
+                            <td><a href="" class="btn btn-default btn-xs"><i class="fa fa-list-alt"></i> Details</a></td>
                 </tr>
-                <tr class="odd gradeX">
-                    <td>02</td>
-                    <td>
-                        <img src="{{URL::asset('ap/assets/img/user_profile.jpg')}}" class="img-h-w" alt="" />
-                        &nbsp; &nbsp; <b>11-07-01</b>
-                        &nbsp; &nbsp; Md Nasim
-                    </td>
-                    <td>01-Buliding, D-Unit</td>
-                    <td>017778887777</td>
-                    <td>infovirus@gmail.com</td>
-                    <td><a href="" class="btn btn-default btn-xs">Paid</a> </td>
-                    <td><a href="{{URL::to('info-owner-details')}}" class="btn btn-default btn-xs"><i class="fa fa-list-alt"></i> Details</a></td>
-                </tr>
-                <tr class="odd gradeX">
-                    <td>03</td>
-                    <td>
-                        <img src="{{URL::asset('ap/assets/img/user_profile.jpg')}}" class="img-h-w" alt="" />
-                        &nbsp; &nbsp; <b>11-07-01</b>
-                        &nbsp; &nbsp; Md Nasim
-                    </td>
-                    <td>01-Buliding, D-Unit</td>
-                    <td>017778887777</td>
-                    <td>infovirus@gmail.com</td>
-                    <td><a href="" class="btn btn-default btn-xs">Paid</a> </td>
-                    <td><a href="{{URL::to('info-owner-details')}}" class="btn btn-default btn-xs"><i class="fa fa-list-alt"></i> Details</a></td>
-                </tr>
-                <tr class="">
-                    <td>04</td>
-                    <td>
-                        <img src="{{URL::asset('ap/assets/img/user_profile.jpg')}}" class="img-h-w" alt="" />
-                        &nbsp; &nbsp; <b>11-07-01</b>
-                        &nbsp; &nbsp; Md Nasim
-                    </td>
-                    <td>01-Buliding, D-Unit</td>
-                    <td>017778887777</td>
-                    <td>infovirus@gmail.com</td>
-                    <td><a href="" class="btn btn-default btn-xs">Paid</a> </td>
-                    <td><a href="{{URL::to('info-owner-details')}}" class="btn btn-default btn-xs"><i class="fa fa-list-alt"></i> Details</a></td>
-                </tr>
-                <tr class="">
-                    <td>05</td>
-                    <td>
-                        <img src="{{URL::asset('ap/assets/img/user_profile.jpg')}}" class="img-h-w" alt="" />
-                        &nbsp; &nbsp; <b>11-07-01</b>
-                        &nbsp; &nbsp; Md Nasim
-                    </td>
-                    <td>01-Buliding, D-Unit</td>
-                    <td>017778887777</td>
-                    <td>infovirus@gmail.com</td>
-                    <td><a href="" class="btn btn-default btn-xs">Paid</a> </td>
-                    <td><a href="{{URL::to('info-owner-details')}}" class="btn btn-default btn-xs"><i class="fa fa-list-alt"></i> Details</a></td>
-                </tr>
-                <tr class="even gradeC">
-                    <td><input type="checkbox" name="record[]" value="1" /></td>
-                    <td>Trident</td>
-                    <td>Internet Explorer 5.0</td>
-                    <td>Win 95+</td>
-                    <td>5</td>
-                    <td>C</td>
-                    <td><a href="#" class="btn btn-default btn-xs"><i class="fa fa-cog fa-fw"></i> Setting</a></td>
-                </tr>
-                <tr class="odd gradeA">
-                    <td><input type="checkbox" name="record[]" value="1" /></td>
-                    <td>Trident</td>
-                    <td>Internet Explorer 5.5</td>
-                    <td>Win 95+</td>
-                    <td>5.5</td>
-                    <td>A</td>
-                    <td><a href="#" class="btn btn-default btn-xs"><i class="fa fa-cog fa-fw"></i> Setting</a></td>
-                </tr>
-                <tr class="even gradeA">
-                    <td><input type="checkbox" name="record[]" value="1" /></td>
-                    <td>Trident</td>
-                    <td>Internet Explorer 6</td>
-                    <td>Win 98+</td>
-                    <td>6</td>
-                    <td>A</td>
-                    <td><a href="#" class="btn btn-default btn-xs"><i class="fa fa-cog fa-fw"></i> Setting</a></td>
-                </tr>
-                <tr class="gradeC">
-                    <td><input type="checkbox" name="record[]" value="1" /></td>
-                    <td>Misc</td>
-                    <td>IE Mobile</td>
-                    <td>Windows Mobile 6</td>
-                    <td>-</td>
-                    <td>C</td>
-                    <td><a href="#" class="btn btn-default btn-xs"><i class="fa fa-cog fa-fw"></i> Setting</a></td>
-                </tr>
-                <tr class="gradeC">
-                    <td><input type="checkbox" name="record[]" value="1" /></td>
-                    <td>Misc</td>
-                    <td>PSP browser</td>
-                    <td>PSP</td>
-                    <td>-</td>
-                    <td>C</td>
-                    <td><a href="#" class="btn btn-default btn-xs"><i class="fa fa-cog fa-fw"></i> Setting</a></td>
-                </tr>
-                <tr class="gradeU">
-                    <td><input type="checkbox" name="record[]" value="1" /></td>
-                    <td>Other browsers</td>
-                    <td>All others</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>U</td>
-                    <td><a href="#" class="btn btn-default btn-xs"><i class="fa fa-cog fa-fw"></i> Setting</a></td>
-                </tr>
-                <tr class="gradeC">
-                    <td><input type="checkbox" name="record[]" value="1" /></td>
-                    <td>Misc</td>
-                    <td>PSP browser</td>
-                    <td>PSP</td>
-                    <td>-</td>
-                    <td>C</td>
-                    <td><a href="#" class="btn btn-default btn-xs"><i class="fa fa-cog fa-fw"></i> Setting</a></td>
-                </tr>
-                <tr class="gradeU">
-                    <td><input type="checkbox" name="record[]" value="1" /></td>
-                    <td>Other browsers</td>
-                    <td>All others</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>U</td>
-                    <td><a href="#" class="btn btn-default btn-xs"><i class="fa fa-cog fa-fw"></i> Setting</a></td>
-                </tr>
-            </tbody>
+              @endforeach()
+            </tbody> 
         </table>
     </div>
     <!-- end panel -->
