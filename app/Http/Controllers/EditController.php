@@ -52,6 +52,24 @@ class EditController extends Controller
                 ->with('maincontent', $edit);
         
     }
+    
+    public function edit_driver_info($driver_details_id) {
+        
+        $edit_driver = DB::table('tbl_driver')
+                ->join('tbl_driver_details', 'tbl_driver.driver_details_id', '=', 'tbl_driver_details.driver_details_id')
+                ->where('tbl_driver.driver_details_id', '=', $driver_details_id)
+                ->get();
+        
+//        echo '<pre>';
+//        print_r($edit_driver);
+//        exit();
+        
+        $edit = view('ap.pages.people.info_driver_edit')
+                ->with('edit_driver', $edit_driver);
+        return view('master_ap')
+                ->with('maincontent', $edit);
+        
+    }
     //--------------End edit information-------------------------
     
     //--------------Begin update information-------------------------
@@ -149,6 +167,10 @@ class EditController extends Controller
         $emp_id = $request->emp_id;
         $emp_details_id = $request->emp_details_id;
         
+//        echo '<pre>';
+//        print_r($emp_id);
+//        exit();
+        
         //------tbl_emp_details---------------------
         $details = array();
         $details['son_wife_off'] = $request->son_wife_off;
@@ -180,6 +202,54 @@ class EditController extends Controller
                 ->update($emp);
         
         return Redirect::to('info-emp');
+        
+        //echo '<pre>';
+        //print_r($ref_get_id);
+        //exit();
+    }
+    
+    public function update_driver_info(Request $request)
+    {
+        
+        //------driver_id & driver_details_id---------------------
+        $driver_id = $request->driver_id;
+        $driver_details_id = $request->driver_details_id;
+        
+//        echo '<pre>';
+//        print_r($driver_id);
+//        exit();
+        
+        //------tbl_driver_details---------------------
+        $details = array();
+        $details['driver_son_wife_off'] = $request->son_wife_off;
+        $details['driver_phone2'] = $request->driver_phone2;
+        $details['driver_national_id'] = $request->national_id;
+        $details['driver_passport_no'] = $request->passport_no;
+        $details['driver_licence_no'] = $request->driving_licence;
+        $details['driver_car_regi_no'] = $request->driver_car_regi_no;
+        $details['dpi_religion'] = $request->dpi_religion;
+        $details['dpi_gender'] = $request->g_radio;
+      
+        $details['dpi_country'] = $request->dpi_country;
+        $details['dpi_district'] = $request->dpi_district;
+        $details['dpi_police_station'] = $request->dpi_district;
+        $details['dpi_village'] = $request->dpi_village;
+        
+        DB::table('tbl_driver_details')
+                ->where('tbl_driver_details.driver_details_id', $driver_details_id)
+                ->update($details);
+        
+        //------tbl_emp-----------------------
+        $driver= array();
+        $driver['driver_name'] = $request->name;
+        $driver['driver_phone1'] = $request->driver_phone1;
+      
+        
+        DB::table('tbl_driver')
+                ->where('tbl_driver.driver_id', $driver_id)
+                ->update($driver);
+        
+        return Redirect::to('info-driver');
         
         //echo '<pre>';
         //print_r($ref_get_id);

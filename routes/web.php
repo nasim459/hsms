@@ -50,10 +50,12 @@ Route::get('info-service', 'PeopleController@service_info');
 //----------People Edit Controller
 Route::get('info-rental-edit/{rental_id}', 'EditController@edit_rental_info')->name('rental-edit');
 Route::get('info-emp-edit/{emp_details_id}', 'EditController@edit_emp_info');
+Route::get('info-driver-edit/{driver_details_id}', 'EditController@edit_driver_info');
 
 //----------People Update Controller
 Route::post('info-rental-update', 'EditController@update_rental_info');
 Route::post('info-emp-update', 'EditController@update_emp_info');
+Route::post('info-driver-update', 'EditController@update_driver_info');
 
 //----------Begin Regi Controller------------------
 Route::get('regi-info', 'RegiController@regi_info');
