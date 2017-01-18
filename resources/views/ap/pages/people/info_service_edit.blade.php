@@ -40,18 +40,10 @@
                                     <!-- start Personal Information -->
                                     <div class="col-md-8 col-md-offset-2">
 
-                                        <div class="form-group">
-                                            <label class="control-label col-sm-3" for="fullname"> <strong>Service Name</strong> <span class="text-danger">*</span></label>
-                                            <div class="col-sm-8">
-                                                <input class="form-control" type="text" id="fullname" name="a" value="{{$v->service_type}}" data-parsley-required="true" />
-                                                <input type="hidden" name="s_p_id" value="{{$v->service_person_id}}" />
-                                                <input type="hidden" name="s_id" value="{{$v->service_id}}" />
-                                            </div>
-                                        </div><hr class="hr-d m-b-15">
-
                                         <strong class="text-success">Personal Information</strong>
                                         <div class="form-group m-t-10">
                                             <label class="control-label col-sm-3" for="fullname">Person Name <span class="text-danger">*</span></label>
+                                            <input type="hidden" name="s_p_id" value="{{$v->service_person_id}}" />
                                             <div class="col-sm-8">
                                                 <input class="form-control" type="text" id="fullname" name="b" value="{{$v->service_person_name}}" data-parsley-required="true" />
                                             </div>

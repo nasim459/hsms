@@ -8,8 +8,7 @@
             <!-- begin panel -->
             <div class="panel panel-default">
                 <?php $number = 0; $off = 0; $on = 1; ?>
-                @foreach($service_details as $index => $v)
-                @if( $index == 0)
+                @foreach($service_details as $v)
                 <div class="panel-heading">
                     <div class="btn-group pull-left">
                         <a href="{{URL::to('info-service')}}" class="btn btn-white btn-xs" title="Back to Service"><i class="fa fa-arrow-left"></i>&nbsp;</a>
@@ -22,8 +21,6 @@
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="#service-add-name" data-toggle="modal"><i class="fa fa-plus"></i> Add Service</a></li>
                             <li><a href="{{URL::to('info-service-edit/'.$v->service_person_id)}}"><i class="fa fa-edit"></i> Edit Profile</a></li>
-                            <li><a href="{{URL::to('regi-driver')}}"><i class="fa fa-plus"></i> Add Driver</a></li>
-                            <li><a href="{{URL::to('regi-driver')}}"><i class="fa fa-plus"></i> Add Service People</a></li>
                             <li class="divider"></li>
                             <li><a href="{{URL::to('')}}"><i class="fa fa-power-off"></i> SignOut</a></li>
                         </ul>
@@ -58,15 +55,20 @@
                                 <div>
                                     <b class="m-b-10">
                                         Service :
-                                        @if($v->service_status == 1)
-                                        &nbsp; <a href="{{URL::to('info-service-status/'.$v->service_id.'/'.$off)}}" class="btn btn-success btn-xs" title="Your Service is Active">&nbsp; Active &nbsp;</a>
+                                        @if($v->service_person_status == 1)
+                                        &nbsp; <a href="{{URL::to('info-service-status/'.$v->service_person_id.'/'.$off)}}" class="btn btn-success btn-xs" title="Your Service is Active">&nbsp; Active &nbsp;</a>
                                         @else
-                                        &nbsp; <a href="{{URL::to('info-service-status/'.$v->service_id.'/'.$on)}}" class="btn btn-warning btn-xs" title="Your Service is Stop"> &nbsp; Stop &nbsp; </a>
+                                        &nbsp; <a href="{{URL::to('info-service-status/'.$v->service_person_id.'/'.$on)}}" class="btn btn-warning btn-xs" title="Your Service is Stop"> &nbsp; Stop &nbsp; </a>
                                         @endif
                                     </b>
                                 </div><br/>
                                 <div>
                                     <b title="Present Address">Address : &nbsp; {{$v->service_person_address}}</b>
+                                </div><br/>
+                                <div>
+                                    @if(Session::get('service_person') != NULL)
+                                    <b class="text-success-light" title="Work Done!">{{Session::get('service_person')}}</b>
+                                    @endif
                                 </div><br/>
                             </div>
                         </div>
@@ -80,7 +82,7 @@
                 <div class="tab-content m-b-0">
                     <div class="tab-pane fade active in" id="default-tab-1">
                         <div class="row">
-                            <div class="col-md-10 col-md-offset-4">
+                            <div class="col-md-8 col-md-offset-4">
                                 <div class="">
                                     <h4><strong class="text-success">Personal Information of Service People</strong></h4>
                                     <dl class="dl-horizontal m-b-20">
@@ -121,7 +123,6 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php $number = 0; ?> 
                                                 <tr>
                                                     <td class="text-center">88-456-54</td>
                                                     <td>Md Nasim</td>
@@ -169,12 +170,29 @@
 
                     <div class="tab-pane fade" id="default-tab-3">
                         <div class="row">
-                            <div class="col-md-10 col-md-offset-2">
+                            <div class="col-md-10 col-md-offset-1">
                                 <div class="col-md-10">
 
-                                    <div class="col-md-4 col-md-offset-4 m-t-20 m-b-30">
+                                    <div class="col-md-8 col-md-offset-2 m-t-20 m-b-30">
+                                        <?php $number = 0; $off = 0; $on = 1; ?>
                                         @foreach($service_type as $v)
-                                        <div><a href="" class="btn btn-default btn-sm"><i class="fa fa-arrow-right"></i>&nbsp; {{$v}} &nbsp;</a></div></br>
+                                        <div class="col-md-12">
+                                            <span class="col-md-8">
+                                                <a href="#" class="btn btn-default btn-sm width-xs"><i class="fa fa-arrow-right"></i>&nbsp; {{$v->service_type}} &nbsp;</a>
+                                            </span>
+                                            <span class="col-md-offset-4">
+                                                <!--<a href="{{URL::to('info-service/'.$v->service_id)}}" class="text-muted" title="Edit Service"><i class="fa fa-pencil"></i>&nbsp; Edit &nbsp;</a>-->
+                                                
+                                                @if($v->service_status == 1)
+                                                <a href="{{URL::to('service-type-status/'.$v->service_id.'/'.$off)}}" class="btn btn-default btn-xs">&nbsp; Running &nbsp;</a>
+                                                @else
+                                                <a href="{{URL::to('service-type-status/'.$v->service_id.'/'.$on)}}" class="btn btn-warning btn-xs">&nbsp; &nbsp; &nbsp; Stop &nbsp;  &nbsp; &nbsp;</a>
+                                                @endif
+                                                &nbsp; &nbsp; &nbsp;
+                                                <a href="#modal-s-type" class="text-muted" data-toggle="modal" title="Edit Service"> Edit &nbsp;<i class="fa fa-pencil"></i></a>
+                                                
+                                            </span>
+                                        </div>&nbsp;</br>
                                         @endforeach()
                                     </div>
 
@@ -184,10 +202,9 @@
                     </div>
 
                 </div>
-                @endif
                 @endforeach()
 
-                
+
                 <!-- begin modal -->
                 <!-- begin add_service of people modal -->
                 <div class="col-md-6">
@@ -249,7 +266,7 @@
                     </div>
                 </div>
                 <!-- end add_service of people modal -->
-                
+
                 <!-- begin edit_service_people modal -->
                 <div class="col-md-6">
                     <div class="clearfix m-b-25">
@@ -349,7 +366,63 @@
                     </div>
                 </div>
                 <!-- end edit_service_people modal -->
-                
+                <!-- begin edit_service_people modal -->
+                <div class="col-md-6">
+                    <div class="clearfix m-b-25">
+                        <!-- #modal-dialog -->
+                        <div class="modal fade" id="modal-s-type">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        <h4 class="modal-title text-center">Update Your Service</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!-- begin row panel body --->
+                                        <div class="row well">
+                                            <!-- begin section-container -->
+                                            <div class="section-container">
+                                                {!! Form::open(array('url'=>'service-type-update', 'role'=>'form', 'method'=>'POST')) !!}
+                                                <span class="form-horizontal" data-parsley-validate="true" name="demo-form">
+
+                                                    <div class="col-md-12 m-t-15">
+                                                        <!-- start Personal Information -->
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label class="control-label col-sm-3" for="fullname"> <strong>Service Name</strong> <span class="text-danger">*</span></label>
+                                                                <div class="col-sm-8">
+                                                                    <input class="form-control" type="text" name="a" value="Blank Data" id="fullname" placeholder="Write Service Name" data-parsley-required="true" />
+                                                                    <input type="hidden" name="id" value="2" Data" data-parsley-required="true" />
+                                                                </div>
+                                                            </div><hr class="hr-d m-b-15">
+                                                        </div>
+                                                        <!-- end Personal Information -->
+                                                    </div>
+
+                                                    <!-- begin submit button -->
+                                                    <div class="form-group">
+                                                        <label class="control-label col-sm-4"></label>
+                                                        <div class="col-sm-5">
+                                                            <button type="submit" class="btn btn-success width-xs">Submit</button>
+                                                        </div>
+                                                    </div>
+                                                    <!-- end submit button -->
+
+                                                </span>
+                                                {!! Form::close() !!}
+                                            </div>
+                                            <!-- end section-container -->    
+                                        </div>
+                                        <!-- end row panel body --->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- end edit_service_people modal -->
+
                 <div class="col-md-6">
                     <div class="clearfix m-b-25">
                         <!-- #modal-dialog -->

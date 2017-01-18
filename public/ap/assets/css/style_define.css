@@ -26,12 +26,12 @@
     //margin-bottom-minus-23;
 }
 .well-d {
-	border:none;
-	padding:20px;
-	background:#ebeced;
-	-webkit-box-shadow:0 1px rgba(0,0,0,.125);
-	box-shadow:0 1px rgba(0,0,0,.125)
-	//well-define
+    border:none;
+    padding:20px;
+    background:#ebeced;
+    -webkit-box-shadow:0 1px rgba(0,0,0,.125);
+    box-shadow:0 1px rgba(0,0,0,.125)
+        //well-define
 }
 .table-h-20 {
     height: 300px!important;
@@ -102,3 +102,11 @@ hr.hr-w {
     height: 20px;
 }
 //--------rough
+
+
+//-------------------rough_test
+.scrollit {
+    overflow:scroll;
+    height:400px !important;
+}  
+//-------------------rough_test

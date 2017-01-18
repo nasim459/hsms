@@ -71,27 +71,40 @@ class ServiceController extends Controller
         return Redirect::to($previous_url);
     }
     
-    public function details_service_info($details_service_info)
+    public function details_service_info($service_person_id)
     {
-        $service_details = DB::table('tbl_service')
+        $service_details = DB::table('tbl_service_person')
+                //->join('tbl_service_person', 'tbl_service.service_person_id', '=', 'tbl_service_person.service_person_id')
+                ->where('service_person_id', $service_person_id)
+                ->select('tbl_service_person.*')
+                ->get();
+        
+        $service_type = DB::table('tbl_service')
                 ->join('tbl_service_person', 'tbl_service.service_person_id', '=', 'tbl_service_person.service_person_id')
-                ->where('tbl_service_person.service_person_id', $details_service_info)
-                ->select('tbl_service.*', 'tbl_service_person.*')
+                ->where('tbl_service_person.service_person_id', $service_person_id)
+                ->select('tbl_service.service_id', 'tbl_service.service_type', 'tbl_service.service_status')
                 ->get();
         
 //        $service_p_details = $service_details[0];
+        //echo '<pre>';
+        //print_r($service_details);
+        //print_r($service_p_details);
+        //echo $service_p_details->service_type;
+        //exit();
+        
+//        $length = count($service_details);
+//        //echo 'length='.$length."<br>";
+//        $service_type = array();
+//        for($i=0; $i<$length; $i++){
+//            $service_type[$i][$service_details[$i]->service_id] = $service_details[$i]->service_type;
+//        }
+        
 //        echo '<pre>';
-//        print_r($service_details);
-//        print_r($service_p_details);
-//        echo $service_p_details->service_type;
+//        print_r($service_type);
 //        exit();
         
-        $length = count($service_details);
-        //echo 'length='.$length."<br>";
-        $service_type = array();
-        for($i=0; $i<$length; $i++){
-            $service_type[$i] = $service_details[$i]->service_type;
-        }
+        $url_current = url()->current();
+        Session::put('url_current', $url_current);
         
         $emp = view('ap.pages.people.info_service_details')
                 ->with('service_details', $service_details)
@@ -105,13 +118,14 @@ class ServiceController extends Controller
     //--------------edit serevice
     public function edit_service_info($service_person_id)
     {
-        $service_edit = DB::table('tbl_service')
-                ->join('tbl_service_person', 'tbl_service.service_person_id', '=', 'tbl_service_person.service_person_id')
+       
+        $service_edit = DB::table('tbl_service_person')
+                //->join('tbl_service_person', 'tbl_service.service_person_id', '=', 'tbl_service_person.service_person_id')
                 ->where('tbl_service_person.service_person_id', $service_person_id)
-                ->select('tbl_service.*', 'tbl_service_person.*')
+                ->select('tbl_service_person.*')
                 ->get();
 //        echo '<pre>';
-//        print_r($service_details);
+//        print_r($service_edit);
 //        exit();
         
         $emp = view('ap.pages.people.info_service_edit')
@@ -126,7 +140,6 @@ class ServiceController extends Controller
     public function update_service_info(Request $request)
     {
         //------service_id & service_person_id
-        $service_id = $request->s_id;
         $service_person_id = $request->s_p_id;
         //------tbl_service_people
         $person = array();
@@ -139,32 +152,65 @@ class ServiceController extends Controller
                 ->where('tbl_service_person.service_person_id', $service_person_id)
                 ->update($person);
         
-        //------tbl_service
-        $service = array();
-        $service['service_person_id'] = $service_id;
-        DB::table('tbl_service')
-                ->where('tbl_service.service_id', $service_id)
-                ->update($service);
-        
-        Session::flash('update_service', 'Service Updated Successfully!');
-        return Redirect::to('info-service');
+        Session::flash('service_person', 'Your Profile Updated Successfully!');
+        $url_current = Session::get('url_current');
+        return Redirect::to($url_current);
     }
     
-    //--------------publication status
-    public function status_service_info($service_id, $status)
+    //--------------update serevice_type
+    public function update_type_service(Request $request)
     {
+        //------update service_type
+        $service_id = $request->id;
+        //------tbl_service_people
+        $service_type = array();
+        $service_type['service_type'] = $request->a;
+        DB::table('tbl_service')
+                ->where('service_id', $service_id)
+                ->update($service_type);
         
+        //Session::flash('service_person', 'Your Profile Updated Successfully!');
+        $url_current = Session::get('url_current');
+        return Redirect::to($url_current);
+    }
+    
+    //--------------status change of serevice_type
+    public function status_type_service($service_id, $status)
+    {
+
         if($status == 1){
             DB::table('tbl_service')
                 ->where('service_id', $service_id)
                 ->update(['service_status' => 1]);
-            return Redirect::to('info-service');
-            
+            $url_current = Session::get('url_current');
+            return Redirect::to($url_current);
+
         }else{
             DB::table('tbl_service')
                 ->where('service_id', $service_id)
                 ->update(['service_status' => 0]);
-            return Redirect::to('info-service');
+            $url_current = Session::get('url_current');
+            return Redirect::to($url_current);
+        }
+    }
+    
+    //--------------publication status
+    public function status_service_info($service_person_id, $status)
+    {
+        
+        if($status == 1){
+            DB::table('tbl_service_person')
+                ->where('service_person_id', $service_person_id)
+                ->update(['service_person_status' => 1]);
+            $url_current = Session::get('url_current');
+            return Redirect::to($url_current);
+            
+        }else{
+            DB::table('tbl_service_person')
+                ->where('service_person_id', $service_person_id)
+                ->update(['service_person_status' => 0]);
+            $url_current = Session::get('url_current');
+            return Redirect::to($url_current);
         }
     }
 

@@ -273,91 +273,16 @@
                     </div>
 
                     <div class="tab-pane fade" id="default-tab-3">
-                        <div class="row">
-                            <div class="col-md-10 col-md-offset-1 well">
-                                <!-- begin panel -->
-                                <div class="panel">
-                                    <div class="panel-heading">
-                                        <div class="panel-heading-btn">
-                                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-grey" data-click="panel-expand"><i class="fa fa-expand"></i></a>
-                                        </div>
-                                        <h4 class="panel-title text-center"><b>Your Payment</b></h4>
-                                    </div>
-                                    <div class="table-responsive">
-                                        <table class="table table-td-valign-middle">
-                                            <thead>
-                                                <tr class="success">
-                                                    <th> No </th>
-                                                    <th>Mohnth</th>
-                                                    <th>Bill Jenareted</th>
-                                                    <th class="text-center">Payable </th>
-                                                    <th class="text-center">Reaceiable</th>
-                                                    <th class="text-center">Due</th>
-                                                    <th class="text-center">Total</th>
-                                                    <th class="text-center">Status</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td><a href="#" class="btn btn-default btn-xs">1</a></td>
-                                                    <td><b>January</b></td>
-                                                    <td>27-10-16</td>
-                                                    <td class="text-center">5000</td> 
-                                                    <td class="text-center">5000</td> 
-                                                    <td class="text-center">0.0</td> 
-                                                    <td><b>5000</b></td>
-                                                    <td><a href="#" class="btn btn-default btn-xs"><i class="fa fa-check"></i> &nbsp; Paid &nbsp;&nbsp;</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="#" class="btn btn-default btn-xs">2</a></td>
-                                                    <td><b>February</b></td>
-                                                    <td>29-01-16</td>
-                                                    <td class="text-center">6000</td> 
-                                                    <td class="text-center">5000</td> 
-                                                    <td class="text-center">1000</td> 
-                                                    <td><b>5000</b></td>
-                                                    <td><a href="#" class="btn btn-warning btn-xs"><i class="fa fa-remove"></i> UnPaid </a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="#" class="btn btn-default btn-xs">3</a></td>
-                                                    <td><b>March</b></td>
-                                                    <td>28-02-16</td>
-                                                    <td class="text-center">5000</td> 
-                                                    <td class="text-center">5000</td> 
-                                                    <td class="text-center">0.0</td> 
-                                                    <td><b>5000</b></td>
-                                                    <td><a href="#" class="btn btn-default btn-xs"><i class="fa fa-check"></i> &nbsp; Paid &nbsp;&nbsp;</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="#" class="btn btn-default btn-xs">4</a></td>
-                                                    <td><b>April</b></td>
-                                                    <td>28-03-16</td>
-                                                    <td class="text-center">6000</td> 
-                                                    <td class="text-center">5000</td> 
-                                                    <td class="text-center">1000</td> 
-                                                    <td><b>5000</b></td>
-                                                    <td><a href="#" class="btn btn-warning btn-xs"><i class="fa fa-remove"></i> UnPaid </a></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                <!-- end panel -->
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="tab-pane fade" id="default-tab-4">
                         <!-- begin row -->
                         <div class="row">
-                            <!-- begin Add_Salary -->
+                            <!-- begin Payment -->
                             <div class="col-md-10 col-md-offset-1">
                                 <span><p class=""></p></span>
                                 <!-- begin panel -->
                                 <div class="panel without-pagination clearfix m-b-0">
                                     <div class="form-group">
                                         <div class="col-sm-4 m-b-10">
-                                            <strong class="text-success m-t-10">Employer Salary Has Been Completed</strong>
+                                            <strong class="text-success m-t-10">Rental Salary Has Been Completed</strong>
                                         </div>
                                         <div class="col-sm-4 m-b-10 col-md-offset-4">
                                             <input class="form-control text-center" type="text" id="fullname" value="" placeholder=" Search here..." data-parsley-required="true" />
@@ -442,6 +367,181 @@
                                 </div>
                                 <!-- end panel -->
                             </div>
+                            <!-- end Payment -->
+                        </div>
+                        <!-- end row -->
+                        
+                        
+                        <div class="row m-t-10">
+                            <div class="col-md-10 col-md-offset-1 well">
+                                <!-- begin panel -->
+                                <div class="panel">
+                                    <div class="panel-heading">
+                                        <div class="panel-heading-btn">
+                                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-grey" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                                        </div>
+                                        <h4 class="panel-title text-center"><b>Your Payment</b></h4>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table table-td-valign-middle">
+                                            <thead>
+                                                <tr class="success">
+                                                    <th> No </th>
+                                                    <th>Mohnth</th>
+                                                    <th>Bill Jenareted</th>
+                                                    <th class="text-center">Payable </th>
+                                                    <th class="text-center">Reaceiable</th>
+                                                    <th class="text-center">Due</th>
+                                                    <th class="text-center">Total</th>
+                                                    <th class="text-center">Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><a href="#" class="btn btn-default btn-xs">1</a></td>
+                                                    <td><b>January</b></td>
+                                                    <td>27-10-16</td>
+                                                    <td class="text-center">5000</td> 
+                                                    <td class="text-center">5000</td> 
+                                                    <td class="text-center">0.0</td> 
+                                                    <td><b>5000</b></td>
+                                                    <td><a href="#" class="btn btn-default btn-xs"><i class="fa fa-check"></i> &nbsp; Paid &nbsp;&nbsp;</a></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="btn btn-default btn-xs">2</a></td>
+                                                    <td><b>February</b></td>
+                                                    <td>29-01-16</td>
+                                                    <td class="text-center">6000</td> 
+                                                    <td class="text-center">5000</td> 
+                                                    <td class="text-center">1000</td> 
+                                                    <td><b>5000</b></td>
+                                                    <td><a href="#" class="btn btn-warning btn-xs"><i class="fa fa-remove"></i> UnPaid </a></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="btn btn-default btn-xs">3</a></td>
+                                                    <td><b>March</b></td>
+                                                    <td>28-02-16</td>
+                                                    <td class="text-center">5000</td> 
+                                                    <td class="text-center">5000</td> 
+                                                    <td class="text-center">0.0</td> 
+                                                    <td><b>5000</b></td>
+                                                    <td><a href="#" class="btn btn-default btn-xs"><i class="fa fa-check"></i> &nbsp; Paid &nbsp;&nbsp;</a></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#" class="btn btn-default btn-xs">4</a></td>
+                                                    <td><b>April</b></td>
+                                                    <td>28-03-16</td>
+                                                    <td class="text-center">6000</td> 
+                                                    <td class="text-center">5000</td> 
+                                                    <td class="text-center">1000</td> 
+                                                    <td><b>5000</b></td>
+                                                    <td><a href="#" class="btn btn-warning btn-xs"><i class="fa fa-remove"></i> UnPaid </a></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <!-- end panel -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="default-tab-4">
+                        <!-- begin row -->
+                        <div class="row">
+                            <!-- begin Invoice -->
+                            <div class="col-md-10 col-md-offset-1">
+                                <span><p class=""></p></span>
+                                <!-- begin panel -->
+                                <div class="panel without-pagination clearfix m-b-0">
+                                    <div class="form-group">
+                                        <div class="col-sm-4 m-b-10">
+                                            <strong class="text-success m-t-10"> Invoice Has Been Completed</strong>
+                                        </div>
+                                        <div class="col-sm-4 m-b-10 col-md-offset-4">
+                                            <input class="form-control text-center" type="text" id="fullname" value="" placeholder=" Search here..." data-parsley-required="true" />
+                                        </div>
+                                    </div>
+
+
+
+                                    <table class="table table-bordered table-hover" style="border:5px solid #EBECED !important">
+                                        <thead>
+                                            <tr class="default">
+                                                <th class="text-center"><b>Employee Id</b></th>
+                                                <th class="text-center"><b>Month</b></th>
+                                                <th class="text-center"><b>Salary Fixt</b></th>
+                                                <th class="text-center"><b>Give Salary</b></th>
+                                                <th class="text-center"><b>Due</b></th>
+                                                <th class="text-center"><b>Status</b></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="scrollit">
+                                            <tr>
+                                                <td class="text-center"><b><a href="#">sdfsd</a></b></td>
+                                                <td class="text-center">dfgdf</td>
+                                                <td class="text-center">353</td> 
+                                                <td class="text-center">5345</td> 
+                                                <td class="text-center">345</td> 
+                                                <td class="text-center"><a href="#" class="btn btn-default btn-xs"><i class="fa fa-check text-success-light"></i> &nbsp; Paid &nbsp;&nbsp;</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center"><b><a href="#">sdfsd</a></b></td>
+                                                <td class="text-center">dfgdf</td>
+                                                <td class="text-center">353</td> 
+                                                <td class="text-center">5345</td> 
+                                                <td class="text-center">345</td> 
+                                                <td class="text-center"><a href="#" class="btn btn-default btn-xs"><i class="fa fa-check text-success-light"></i> &nbsp; Paid &nbsp;&nbsp;</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center"><b><a href="#">sdfsd</a></b></td>
+                                                <td class="text-center">dfgdf</td>
+                                                <td class="text-center">353</td> 
+                                                <td class="text-center">5345</td> 
+                                                <td class="text-center">345</td> 
+                                                <td class="text-center"><a href="#" class="btn btn-default btn-xs"><i class="fa fa-check text-success-light"></i> &nbsp; Paid &nbsp;&nbsp;</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center"><b><a href="#">sdfsd</a></b></td>
+                                                <td class="text-center">dfgdf</td>
+                                                <td class="text-center">353</td> 
+                                                <td class="text-center">5345</td> 
+                                                <td class="text-center">345</td> 
+                                                <td class="text-center"><a href="#" class="btn btn-default btn-xs"><i class="fa fa-check text-success-light"></i> &nbsp; Paid &nbsp;&nbsp;</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center"><b><a href="#">sdfsd</a></b></td>
+                                                <td class="text-center">dfgdf</td>
+                                                <td class="text-center">353</td> 
+                                                <td class="text-center">5345</td> 
+                                                <td class="text-center">345</td> 
+                                                <td class="text-center"><a href="#" class="btn btn-default btn-xs"><i class="fa fa-check text-success-light"></i> &nbsp; Paid &nbsp;&nbsp;</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center"><b><a href="#">sdfsd</a></b></td>
+                                                <td class="text-center">dfgdf</td>
+                                                <td class="text-center">353</td> 
+                                                <td class="text-center">5345</td> 
+                                                <td class="text-center">345</td> 
+                                                <td class="text-center"><a href="#" class="btn btn-default btn-xs"><i class="fa fa-check text-success-light"></i> &nbsp; Paid &nbsp;&nbsp;</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center"><b><a href="#">sdfsd</a></b></td>
+                                                <td class="text-center">dfgdf</td>
+                                                <td class="text-center">353</td> 
+                                                <td class="text-center">5345</td> 
+                                                <td class="text-center">345</td> 
+                                                <td class="text-center"><a href="#" class="btn btn-default btn-xs"><i class="fa fa-check text-success-light"></i> &nbsp; Paid &nbsp;&nbsp;</a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+
+
+                                </div>
+                                <!-- end panel -->
+                            </div>
+                            <!-- end Invoice -->
                         </div>
                         <!-- end row -->
                     </div>

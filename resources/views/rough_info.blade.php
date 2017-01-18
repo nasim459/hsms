@@ -457,13 +457,6 @@
 
             <!-- begin #content -->
             <div id="content" class="content">
-                <!-- begin breadcrumb -->
-                <ol class="breadcrumb pull-right">
-                    <li><a href="javascript:;">Home</a></li>
-                    <li><a href="javascript:;">Tables</a></li>
-                    <li><a href="javascript:;">Managed Tables</a></li>
-                    <li class="active">Fixed Columns</li>
-                </ol>
                 <!-- end breadcrumb -->
                 <!-- begin page-header -->
 
@@ -474,221 +467,77 @@
                     <!-- begin panel -->
                     <!-- begin form-wizard -->
                     <form action="http://seantheme.com/" method="POST" data-parsley-validate="true" name="form-wizard" class="form-input-flat">
-                        <!-- begin #wizard -->
-                        <div id="wizard">
-                            <ol>
-                                <li>
-                                    Select package 
-                                    <small>Lorem ipsum dolor sit adipiscing elit.</small>
-                                </li>
-                                <li>
-                                    Your basic information
-                                    <small>Aliquam bibendum felis id purus ullamcorper.</small>
-                                </li>
-                                <li>
-                                    Login account
-                                    <small>Phasellus lacinia placerat neque condimentum.</small>
-                                </li>
-                                <li>
-                                    Payment Information
-                                    <small>Sed nunc neque, dapibueo sed dignissim elit.</small>
-                                </li>
-                                <li>
-                                    Sign-up Successfully
-                                    <small>Maecenas massa consequat dui dictum vel.</small>
-                                </li>
-                            </ol>
-                            <!-- begin wizard step-1 -->
-                            <div class="wizard-step-1">
-                                <fieldset>
-                                    <!-- begin row -->
-                                    <div class="row">
-                                        <!-- begin col-6 -->
-                                        <div class="col-md-6 col-md-offset-3">
-                                            <h3 class="form-header form-header-lg m-b-10"><span class="icon text-purple"><i class="fa fa-dropbox"></i></span> Select Package</h3>
-                                            <p class="m-b-20">
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vehicula nibh nunc, sed feugiat est interdum pharetra.
-                                            </p>
-                                            <div class="height-xs">
-                                                <div class="form-group m-b-20">
-                                                    <select class="form-control input-lg" name="package" data-parsley-required="true" data-parsley-group="wizard-step-1">
-                                                        <option value="">Please select package</option>
-                                                        <option value="300">Monthly - $300</option>
-                                                        <option value="3000">Annually - $3,000</option>
-                                                    </select>
-                                                </div>
-                                                <div class="f-s-11 text-muted">
-                                                    <span class="text-danger">*</span> Nullam faucibus mi eu suscipit hendrerit. In hac habitasse platea dictumst. 
-                                                    Proin semper eleifend vehicula. Morbi sit amet lectus iaculis, ultricies massa vel, lobortis magna.
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- end col-6 -->
-                                    </div>
-                                    <!-- end col-6 -->
-                                </fieldset>
-                            </div>
-                            <!-- end wizard step-1 -->
-                            <!-- begin wizard step-2 -->
-                            <div class="wizard-step-2">
-                                <fieldset>
-                                    <!-- begin row -->
-                                    <div class="row">
-                                        <!-- begin col-6 -->
-                                        <div class="col-md-6 col-md-offset-3">
-                                            <h3 class="form-header form-header-lg m-b-10"><span class="icon text-success"><i class="fa fa-credit-card"></i></span> Your basic information</h3>
-                                            <p class="m-b-20">
-                                                Aliquam tempus vehicula tortor, nec lacinia massa congue eu. Nulla ac dictum ante.
-                                            </p>
+                        <!-- begin rough_table -->
 
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>First Name</label>
-                                                        <input type="text" name="first_name" placeholder="" class="form-control input-lg" data-parsley-group="wizard-step-2" required />
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Last Name</label>
-                                                        <input type="text" name="last_name" placeholder="" class="form-control input-lg" data-parsley-group="wizard-step-2" required />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Your Age</label>
-                                                <select name="age" class="form-control input-lg" data-parsley-group="wizard-step-2" required>
-                                                    <option value="">Select Your Age</option>
-                                                    <option value="below 18">below 18</option>
-                                                    <option value="18 or older">18 or older</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Company Name</label>
-                                                <input type="text" name="last_name" placeholder="" class="form-control input-lg" data-parsley-group="wizard-step-2" required />
-                                            </div>
-                                            <div class="f-s-11 text-muted">
-                                                <span class="text-danger">*</span> Nullam faucibus mi eu suscipit hendrerit. In hac habitasse platea dictumst. 
-                                                Proin semper eleifend vehicula. Morbi sit amet lectus iaculis, ultricies massa vel, lobortis magna.
-                                            </div>
-                                        </div>
-                                        <!-- end col-6 -->
-                                    </div>
-                                    <!-- end row -->
-                                </fieldset>
-                            </div>
-                            <!-- end wizard step-2 -->
-                            <!-- begin wizard step-3 -->
-                            <div class="wizard-step-3">
-                                <fieldset>
-                                    <!-- begin row -->
-                                    <div class="row">
-                                        <!-- begin col-6 -->
-                                        <div class="col-md-6 col-md-offset-3">
-                                            <h3 class="form-header form-header-lg m-b-10"><span class="icon text-danger"><i class="fa fa-lock"></i></span> Login account information</h3>
-                                            <p class="m-b-20">
-                                                Ut eu eros neque. Donec aliquet augue nulla, vitae fermentum leo aliquam eget. Suspendisse ultricies ut ante ut tincidunt.
-                                            </p>
-                                            <div class="form-group">
-                                                <label>Email address</label>
-                                                <div class="controls">
-                                                    <input type="email" name="email" placeholder="" class="form-control input-lg" data-parsley-group="wizard-step-3" data-parsley-input="email" required />
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Password</label>
-                                                <div class="controls">
-                                                    <input type="password" name="password" placeholder="" class="form-control input-lg" data-parsley-group="wizard-step-3" required />
-                                                </div>
-                                            </div>
-                                            <div class="f-s-11 text-muted">
-                                                <span class="text-danger">*</span> Nullam faucibus mi eu suscipit hendrerit. In hac habitasse platea dictumst. 
-                                                Proin semper eleifend vehicula. Morbi sit amet lectus iaculis, ultricies massa vel, lobortis magna.
-                                            </div>
-                                        </div>
-                                        <!-- end col-6 -->
-                                    </div>
-                                    <!-- end row -->
-                                </fieldset>
-                            </div>
-                            <!-- end wizard step-3 -->
-                            <!-- begin wizard step-4 -->
-                            <div class="wizard-step-4">
-                                <fieldset>
-                                    <!-- begin row -->
-                                    <div class="row">
-                                        <!-- begin col-6 -->
-                                        <div class="col-md-6 col-md-offset-3">
-                                            <h3 class="form-header form-header-lg m-b-10"><span class="icon text-primary"><i class="fa fa-shopping-cart"></i></span> Payment information</h3>
-                                            <p class="m-b-20">
-                                                Ut eu eros neque. Donec aliquet augue nulla, vitae fermentum leo aliquam eget. Suspendisse ultricies ut ante ut tincidunt.
-                                            </p>
-                                            <div class="form-group">
-                                                <label>Payment Type</label>
-                                                <div class="controls">
-                                                    <select name="payment_type" class="form-control input-lg" data-parsley-group="wizard-step-4" required>
-                                                        <option value="">Select payment type</option>
-                                                        <option value="Credit Card">Credit Card</option>
-                                                        <option value="Paypal">Paypal</option>
-                                                        <option value="Online Bank-In">Online Bank-In</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Cardholder Name</label>
-                                                <div class="controls">
-                                                    <input type="text" name="card_name" placeholder="" class="form-control input-lg" data-parsley-group="wizard-step-4" required />
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Card Number</label>
-                                                        <div class="controls">
-                                                            <input type="text" name="card_number" placeholder="" class="form-control input-lg" data-parsley-group="wizard-step-4" required />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <label>Expiry Date</label>
-                                                        <div class="controls">
-                                                            <input type="text" name="expiry_date" placeholder="" class="form-control input-lg" data-parsley-group="wizard-step-4" required />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <label>CSV</label>
-                                                        <div class="controls">
-                                                            <input type="text" name="csv" placeholder="" class="form-control input-lg" data-parsley-group="wizard-step-4" required />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="f-s-11 text-muted">
-                                                <span class="text-danger">*</span> Nullam faucibus mi eu suscipit hendrerit. In hac habitasse platea dictumst. 
-                                                Proin semper eleifend vehicula. Morbi sit amet lectus iaculis, ultricies massa vel, lobortis magna.
-                                            </div>
-                                        </div>
-                                        <!-- end col-6 -->
-                                    </div>
-                                    <!-- end row -->
-                                </fieldset>
-                            </div>
-                            <!-- end wizard step-4 -->
-                            <!-- begin wizard step-5 -->
-                            <div class="wizard-step-5 text-center">
-                                <h2>
-                                    <i class="fa fa-check-square-o text-success fa-3x"></i><br />
-                                    Signup Successfully
-                                </h2>
-                                <p class="m-b-20">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris consequat commodo porttitor. Vivamus eleifend, arcu in tincidunt semper, lorem odio molestie lacus, sed malesuada est lacus ac ligula. Aliquam bibendum felis id purus ullamcorper, quis luctus leo sollicitudin. </p>
-                                <p><a href="javascript:;" class="btn btn-success btn-lg">Click here to login</a></p>
-                            </div>
-                            <!-- end wizard step-5 -->
-                        </div>
-                        <!-- end #wizard -->
+
+
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Head 1</th>
+                                    <th>Head 2</th>
+                                    <th>Head 3</th>
+                                    <th>Head 4</th>
+                                    <th>Head 5</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Content 1</td>
+                                    <td>Content 2</td>
+                                    <td>Content 3</td>
+                                    <td>Content 4</td>
+                                    <td>Content 5</td>
+                                </tr>
+                                <tr>
+                                    <td>Content 1</td>
+                                    <td>Content 2</td>
+                                    <td>Content 3</td>
+                                    <td>Content 4</td>
+                                    <td>Content 5</td>
+                                </tr>
+                                <tr>
+                                    <td>Content 1</td>
+                                    <td>Content 2</td>
+                                    <td>Content 3</td>
+                                    <td>Content 4</td>
+                                    <td>Content 5</td>
+                                </tr>
+                                <tr>
+                                    <td>Content 1</td>
+                                    <td>Content 2</td>
+                                    <td>Content 3</td>
+                                    <td>Content 4</td>
+                                    <td>Content 5</td>
+                                </tr>
+                                <tr>
+                                    <td>Content 1</td>
+                                    <td>Content 2</td>
+                                    <td>Content 3</td>
+                                    <td>Content 4</td>
+                                    <td>Content 5</td>
+                                </tr>
+                                <tr>
+                                    <td>Content 1</td>
+                                    <td>Content 2</td>
+                                    <td>Content 3</td>
+                                    <td>Content 4</td>
+                                    <td>Content 5</td>
+                                </tr>
+                                <tr>
+                                    <td>Content 1</td>
+                                    <td>Content 2</td>
+                                    <td>Content 3</td>
+                                    <td>Content 4</td>
+                                    <td>Content 5</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+
+
+
+                        <!-- end rough_table -->
                     </form>
                     <!-- end form-wizard -->
                     <!-- end panel -->
