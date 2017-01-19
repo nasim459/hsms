@@ -104,9 +104,11 @@ hr.hr-w {
 //--------rough
 
 
-//-------------------rough_test
-.scrollit {
-    overflow:scroll;
-    height:400px !important;
-}  
+//-------------------overflow
+/*.overflow-use{
+    overflow: scroll !important; 
+    overflow-x: hidden !important; 
+    overflow-y: no-content !important; 
+    height: 350px !important;
+}*/
 //-------------------rough_test

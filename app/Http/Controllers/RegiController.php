@@ -111,16 +111,17 @@ class RegiController extends Controller
         //------tbl_rental------------------------------
         $rental = array();
         $rental['rental_name'] = $request->rntl_name;
+        $rental['rental_id_no'] = $request->rntl_id;
         $rental['rental_phone_1'] = $request->rntl_phone1;
         $rental['rental_email'] = $request->rntl_email;
         $rental['rental_details_id'] = $details_get_id;
         $rental['rental_family_id'] = $f_get_id;
         $rental['rental_reference_id'] = $ref_get_id;
         $rental['flat_info_id'] = $flat_info_get_id;
-        DB::table('tbl_rental')->insertGetId($rental);
+        DB::table('tbl_rental')->insert($rental);
         
         Session::put('rental_inserted', 'Data Inserted Successfully!!!');
-        return Redirect::to('info-owner');
+        return Redirect::to('info-rental');
     }
     //--------------regi employee
     public function save_emp_regi(Request $request)

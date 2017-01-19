@@ -41,6 +41,7 @@ Route::get('info-driver-details/{driver_details_id}', 'PeopleController@details_
 Route::get('info-owner-invoice', 'InvoiceController@invoice_owner_info');
 Route::get('info-rental', 'PeopleController@rental_info');
 Route::get('info-rental-details/{rental_details_id}', 'PeopleController@details_rental_info');
+Route::get('info-rental-status/{rental_id}/{status}', 'PeopleController@status_rental_info');
 
 Route::get('info-driver', 'PeopleController@driver_info');
 Route::get('info-housekeeping', 'PeopleController@housekeeping_info');
@@ -141,6 +142,11 @@ Route::get('make-salary', 'SalaryMakeController@salary_make');
 Route::post('make-salary-invoice', 'SalaryMakeController@invoice_salary_make');
 Route::get('give-salary/{emp_invoice_id}', 'SalaryMakeController@salary_give');
 Route::post('salary-due', 'SalaryMakeController@due_salary');
+
+//----------ServiceBill Controller
+Route::get('make-service-bill', 'ServiceBillController@salary_make');
+
+
 //-------------------- End Pages history ----------------------------------
 
 

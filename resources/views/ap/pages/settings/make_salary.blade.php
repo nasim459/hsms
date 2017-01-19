@@ -8,7 +8,6 @@
             <!-- begin panel -->
             <div class="panel panel-default">
 
-
                 <div class="panel-heading">
                     <div class="btn-group pull-left">
                         <a href="{{URL::to('dboard')}}" class="btn btn-white btn-xs" title="Go To Dahsboard"><i class="fa fa-home"></i>&nbsp;</a>

@@ -20,9 +20,9 @@
                         </button>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{{URL::to('info-owner')}}"><i class="fa fa-pencil"></i> Edit Picture</a></li>
+                            <li><a href="#rental-bld-edit" data-toggle="modal" title="Edit Buinding-Floor-Unit"><i class="fa fa-pencil"></i> Edit Building</a></li>
                             <li><a href="{{URL::to('info-rental-edit/'.$v->rental_id)}}"><i class="fa fa-edit"></i> Edit All Profile</a></li>
-                            <li><a href="{{URL::to('regi-driver')}}"><i class="fa fa-plus"></i> Add Driver</a></li>
-                            <li><a href="{{URL::to('regi-driver')}}"><i class="fa fa-plus"></i> Add Service People</a></li>
+                            <li><a href="{{URL::to('dboard')}}"><i class="fa fa-home"></i> Go Dashboarde</a></li>
                             <li class="divider"></li>
                             <li><a href="{{URL::to('')}}"><i class="fa fa-power-off"></i> SignOut</a></li>
                         </ul>
@@ -39,12 +39,14 @@
                                     <p class="f-s-14">
                                         <b>
                                             {{$v->rental_name}}<br/>
-                                            11 - 07 - 01<br/>
+                                            {{$v->rental_id_no}}<br/>
                                             Payment: Paid<br/>
                                             @if($v->person_status == 1)
-                                            Positoin: Flat Rental<br/>
+                                            Positoin: <b class="text-success-light">Flat Rental</b> &nbsp;
+                                            <i class="fa fa-check text-success-light" title="Active Your Profile"></i><br/>
                                             @else
-                                            Positoin: Flat Owner<br/>
+                                            Positoin: <b class="text-danger-light">Flat Rental</b> &nbsp;
+                                            <i class="fa fa-remove text-danger-light" title="Stop Your Profile"></i><br/>
                                             @endif
                                         </b>
                                     </p>
@@ -52,7 +54,8 @@
                             </div>
                             <div class="col-md-4">
                                 <p class="f-s-15">
-                                    {{$v->bld_name}} - Building, {{$v->bld_floor}} - Floor, {{$v->bld_unit}} - Unit<br/>
+                                    {{$v->bld_name}} - Building, {{$v->bld_floor}} - Floor, {{$v->bld_unit}} - Unit &nbsp;
+                                    <a href="#rental-bld-edit" class="text-white" data-toggle="modal" title="Edit Buinding-Floor-Unit"> Edit &nbsp;<i class="fa fa-pencil"></i></a><br/>
                                     Sukrabad, Dhanmondi, Dhaka<br/>
                                     &nbsp;<br/>
 
@@ -76,7 +79,7 @@
                     <li class=""><a href="#default-tab-5" data-toggle="tab"><i class="fa fa-user"></i> Complain</a></li>
                     <li class=""><a href="#default-tab-6" data-toggle="tab"><i class="fa fa-user"></i> Facilities</a></li>
                 </ul>
-                <div class="tab-content m-b-0">
+                <div class="tab-content m-b-0" style="overflow: scroll; overflow-x: hidden; overflow-y: auto; height: 427px;">
                     <div class="tab-pane fade active in" id="default-tab-1">
                         <div class="row">
                             <div class="col-md-10 col-md-offset-1">
@@ -85,7 +88,7 @@
                                         <dt>Owner Name :</dt>
                                         <dd>{{$v->rental_name}}</dd>
                                         <dt>ID :</dt>
-                                        <dd>11 - 07 - 01</dd>
+                                        <dd>{{$v->rental_id_no}}</dd>
                                         <dt>Son off/wife off :</dt>
                                         <dd>{{$v->son_wife_off}}</dd>
                                         <dt>National ID :</dt>
@@ -289,8 +292,6 @@
                                         </div>
                                     </div>
 
-
-
                                     <table class="table table-bordered table-hover" style="border:5px solid #EBECED !important">
                                         <thead>
                                             <tr class="default">
@@ -302,7 +303,7 @@
                                                 <th class="text-center"><b>Status</b></th>
                                             </tr>
                                         </thead>
-                                        <tbody class="scrollit">
+                                        <tbody>
                                             <tr>
                                                 <td class="text-center"><b><a href="#">sdfsd</a></b></td>
                                                 <td class="text-center">dfgdf</td>
@@ -370,8 +371,8 @@
                             <!-- end Payment -->
                         </div>
                         <!-- end row -->
-                        
-                        
+
+
                         <div class="row m-t-10">
                             <div class="col-md-10 col-md-offset-1 well">
                                 <!-- begin panel -->
@@ -823,7 +824,87 @@
 
         </div>
     </div>
-    <!-- end service_assign of rental modal -->
+    <!-- end service_assign of rental -->
+
+    <!-- begin edit_rental_bld_floor_unit modal -->
+    <div class="col-md-6">
+        <div class="clearfix m-b-25">
+            <!-- #modal-dialog -->
+            <div class="modal fade" id="rental-bld-edit">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="modal-title text-center">Update Building-Floor-Unit</h4>
+                        </div>
+                        <div class="modal-body">
+                            <!-- begin row panel body --->
+                            <div class="row well">
+                                <!-- begin section-container -->
+                                <div class="section-container">
+                                    {!! Form::open(array('url'=>'service-type-update', 'role'=>'form', 'method'=>'POST')) !!}
+                                    <span class="form-horizontal" data-parsley-validate="true" name="demo-form">
+
+                                        <div class="col-md-12 m-t-15">
+                                            <!-- begin Building Place -->
+                                            <div class="col-md-12 col-md-offset-0">
+                                                <div class="form-group">
+                                                    <label class="control-label col-sm-3">Building Place <span class="text-danger"></span></label>
+                                                    <div class="col-sm-3">
+                                                        <select class="form-control" id="select-required" name="building" data-parsley-required="true">
+                                                            <option>Building</option>
+                                                            <option value="01">01</option>
+                                                            <option value="02">02</option>
+                                                            <option value="03">03</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                        <select class="form-control" id="select-required" name="floor" data-parsley-required="true">
+                                                            <option value="">Floor</option>
+                                                            <option value="01">01 Floor</option>
+                                                            <option value="02">02 Floor</option>
+                                                            <option value="03">03 Floor</option>
+                                                            <option value="04">04 Floor</option>
+                                                            <option value="05">05 Floor</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                        <select class="form-control" id="select-required" name="unit" data-parsley-required="true">
+                                                            <option value="">Unit</option>
+                                                            <option value="A">A</option>
+                                                            <option value="B">B</option>
+                                                            <option value="C">C</option>
+                                                            <option value="D">D</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- end Building Place -->
+
+                                            <!-- begin submit button -->
+                                            <div class="form-group">
+                                                <label class="control-label col-md-4"></label>
+                                                <div class="col-md-4">
+                                                    <button type="submit" class="btn btn-success width-xs">Submit</button>
+                                                </div>
+                                            </div>
+                                            <!-- end submit button -->
+                                        </div>
+
+                                    </span>
+                                    {!! Form::close() !!}
+                                </div>
+                                <!-- end section-container -->    
+                            </div>
+                            <!-- end row panel body --->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- end edit_rental_bld_floor_unit -->
     <!-- end modal -->
 
 </div>

@@ -366,6 +366,7 @@
                     </div>
                 </div>
                 <!-- end edit_service_people modal -->
+                
                 <!-- begin edit_service_people modal -->
                 <div class="col-md-6">
                     <div class="clearfix m-b-25">
