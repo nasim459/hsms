@@ -184,6 +184,24 @@ class PeopleController extends Controller
                 ->with('maincontent', $master);
     }
     
+    //----Rental rental_satus
+    public function status_rental_info($rental_id, $status)
+    {
+
+        if($status == 1){
+            DB::table('tbl_rental')
+                ->where('rental_id', $rental_id)
+                ->update(['person_status' => 1]);
+            return Redirect::to('info-rental');
+
+        }else{
+            DB::table('tbl_rental')
+                ->where('rental_id', $rental_id)
+                ->update(['person_status' => 0]);
+            return Redirect::to('info-rental');
+        }
+    }
+    
     public function driver_info()
     {
         $driver_show= DB::table('tbl_driver')

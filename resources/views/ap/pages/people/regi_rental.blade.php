@@ -19,7 +19,6 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <div class="panel-heading-btn">
-                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-inverse" data-click="panel-expand"><i class="fa fa-expand"></i></a>
                         <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-inverse" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                         <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-inverse" data-click="panel-remove"><i class="fa fa-times"></i></a>
                     </div>
@@ -42,19 +41,21 @@
                                         <div class="col-sm-3">
                                             <select class="form-control" id="select-required" name="building" data-parsley-required="true">
                                                 <option>Building</option>
-                                                <option value="01">01</option>
-                                                <option value="02">02</option>
-                                                <option value="03">03</option>
+                                                <option value="1">01</option>
+                                                <option value="2">02</option>
+                                                <option value="3">03</option>
+                                                <option value="4">04</option>
+                                                <option value="5">05</option>
                                             </select>
                                         </div>
                                         <div class="col-sm-3">
                                             <select class="form-control" id="select-required" name="floor" data-parsley-required="true">
                                                 <option value="">Floor</option>
-                                                <option value="01">01 Floor</option>
-                                                <option value="02">02 Floor</option>
-                                                <option value="03">03 Floor</option>
-                                                <option value="04">04 Floor</option>
-                                                <option value="05">05 Floor</option>
+                                                <option value="1">01 Floor</option>
+                                                <option value="2">02 Floor</option>
+                                                <option value="3">03 Floor</option>
+                                                <option value="4">04 Floor</option>
+                                                <option value="5">05 Floor</option>
                                             </select>
                                         </div>
                                         <div class="col-sm-3">
@@ -64,13 +65,33 @@
                                                 <option value="B">B</option>
                                                 <option value="C">C</option>
                                                 <option value="D">D</option>
+                                                <option value="E">E</option>
+                                                <option value="F">F</option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
                                 <!-- end Building Place -->
+                                
+                                <!-- begin id -->
+                                <div class="col-md-8 col-md-offset-1">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-3">Rental ID <span class="text-danger">*</span></label>
+                                        <div class="col-sm-3">
+                                            <input class="form-control" type="text" id="fullname" name="rntl_id" placeholder="11-22-33000" data-parsley-required="true" />
+                                        </div>
+                                        <div class="col-sm-6 m-t-10">
+                                            Last Id Number &nbsp;
+                                            @if(Session::get('last_id') != NULL )
+                                            @else
+                                            <b class="f-s-16 text-success-light" title="Create New ID, You have to add 1 of this id">11-22-33000</b>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end id -->
 
-                                <div class="col-md-12 m-t-15">
+                                <div class="col-md-12 m-t-0">
                                     &nbsp;<hr class="hr-d m-b-30">&nbsp;
                                     <!-- start Personal Information -->
                                     <div class="col-md-6">
