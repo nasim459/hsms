@@ -19,7 +19,7 @@
 <div class="page-wrapper">
  	
     <!-- Preloader -->
-    <div class="preloader"></div>
+    <!--<div class="preloader"></div>-->
  	
     <!-- Main Header / One Page Header-->
     <header class="main-header header-style-one one-page-header">

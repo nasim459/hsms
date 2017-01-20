@@ -8,7 +8,7 @@
 Route::get('send', 'HomeController@mailTest');
 
 //-------------Front End Controller
-Route::get('front-end', 'FrontEndController@index');
+Route::get('fe', 'FrontEndController@index');
 
 
 
@@ -106,6 +106,7 @@ Route::get('broadcasting-sms-add', 'BroadCastingController@sms_add');
 
 Route::get('broadcasting-notice', 'BroadCastingController@notice');
 Route::get('broadcasting-notice-add', 'BroadCastingController@notice_add');
+Route::post('broadcasting-notice-save', 'BroadCastingController@notice_save');
 
 Route::get('broadcasting-email-inbox', 'EmailController@inbox_email');
 Route::get('broadcasting-email-compose', 'EmailController@compose_email');
@@ -127,6 +128,7 @@ Route::get('inventory-utilities-details', 'InventoryController@utilities_details
 Route::get('inventory-utilities-grant-total', 'InventoryController@utilities_grant_inventory');
 Route::get('inventory-income', 'InventoryController@income_inventory');
 Route::get('bld-rough', 'InventoryController@bld_rough');
+
 //----------Profile Controller
 Route::get('profile-admin', 'ProfileController@admin_profile');
 
@@ -144,13 +146,12 @@ Route::post('make-salary-invoice', 'SalaryMakeController@invoice_salary_make');
 Route::get('give-salary/{emp_invoice_id}', 'SalaryMakeController@salary_give');
 Route::post('salary-due', 'SalaryMakeController@due_salary');
 
-<<<<<<< HEAD
-=======
+//<<<<<<< HEAD=======
 //----------ServiceBill Controller
 Route::get('make-service-bill', 'ServiceBillController@salary_make');
 
 
->>>>>>> 66c9a1207ab5d3ad0fc437c410ab0a208059e792
+//>>>>>>> 66c9a1207ab5d3ad0fc437c410ab0a208059e792
 //-------------------- End Pages history ----------------------------------
 
 

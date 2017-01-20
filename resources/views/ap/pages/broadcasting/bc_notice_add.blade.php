@@ -20,18 +20,30 @@
                 <div class="panel-body">
                     <h5 class="m-t-0"></h5>
                     <p class="m-b-15"></p>
-                    <form class="form-horizontal" data-parsley-validate="true" name="demo-form">
-
+                    <!--<form class="form-horizontal" data-parsley-validate="true" name="demo-form">-->
+                    {!! Form::open(array('url'=>'broadcasting-notice-save', 'role'=>'form', 'method'=>'POST')) !!}
+                    <span class="form-horizontal" data-parsley-validate="true" name="demo-form" >
                         <div class="form-group">
                             <label class="control-label col-sm-3">Title Notice<span class="text-danger">*</span></label>
                             <div class="col-sm-3">
-                                <input class="form-control" type="text" id="fullname" name="fullname" placeholder="Required" data-parsley-required="true" />
+                                <input class="form-control" type="text"  name="title" placeholder="Required" data-parsley-required="true" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-sm-3" for="message">Description Notice<span class="text-danger">*</span></label>
                             <div class="col-sm-6">
-                                <textarea class="form-control" id="message" name="message" rows="4"  value="foo" data-parsley-required="true" placeholder="Write your notice ..."></textarea>
+                                <textarea class="form-control"  name="description" rows="4"  value="foo" data-parsley-required="true" placeholder="Write your notice ..."></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-3" for="message">Publication Status<span class="text-danger">*</span></label>
+                            <div class="col-sm-3">
+                                <select class="form-control" id="select-required" name="publication_status" >
+                                    <!--<option value="">Select Status</option>-->
+                                    <option value="1">Published</option>
+                                    <option value="0">Unpublished</option>
+                                   
+                                </select>
                             </div>
                         </div>
                         <div class="form-group m-b-0">
@@ -41,7 +53,8 @@
                                 <a href="" class="btn btn-default width-xs">Cancel</a>
                             </div>
                         </div>
-                    </form>
+                    </span>
+                    {!! Form::close() !!}
                 </div>
             </div>
             <!-- end panel -->
