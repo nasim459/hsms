@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Redirect;
 class ServiceBillController extends Controller
 {
     //
-    public function salary_make()
+    public function bill_service_make()
     {
         
         $salary_view = DB::table('tbl_emp_salary')
@@ -21,11 +21,30 @@ class ServiceBillController extends Controller
                 ->orderBy('emp_salary_id', 'desc')
                 ->get();
         
+        
+        
+        
+        
+        
         $rental_show = DB::table('tbl_rental')
-                //->join('tbl_emp', 'tbl_emp_invoice.emp_id', '=', 'tbl_emp.emp_id')
-                ->select('tbl_rental.*')
-                //->orderBy('emp_invoice_id', 'desc')
+                ->join('tbl_flat_info', 'tbl_rental.flat_info_id', '=', 'tbl_flat_info.flat_info_id')
+                //->join('tbl_service_assigned', 'tbl_rental.rental_id', '=', 'tbl_service_assigned.rental_id')
+                //->join('tbl_service', 'tbl_service_assigned.service_id', '=', 'tbl_service.service_id')
+                //->join('tbl_service_person', 'tbl_service_assigned.service_person_id', '=', 'tbl_service_person.service_person_id')
+                ->select('tbl_rental.*', 'tbl_flat_info.*')
+                ->orderBy('bld_name', 'asc')
+                ->orderBy('bld_floor', 'asc')
+                ->orderBy('bld_unit', 'asc')
                 ->get();
+        
+        $rental_total = count($rental_show);
+        Session::put('rental_total', $rental_total);
+//        echo '<pre>';
+//        print_r($rental_show);
+//        exit();        
+        
+        
+        
         
         $payment_paid = DB::table('tbl_emp_payment')
                 ->join('tbl_emp', 'tbl_emp_payment.emp_id', '=', 'tbl_emp.emp_id')
