@@ -7,7 +7,8 @@
 
 Route::get('send', 'HomeController@mailTest');
 
-
+//-------------Front End Controller
+Route::get('front-end', 'FrontEndController@index');
 
 
 
