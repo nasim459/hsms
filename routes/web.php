@@ -12,6 +12,8 @@ Route::get('fe', 'FrontEndController@index');
 
 
 
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,7 +26,12 @@ Route::get('fe', 'FrontEndController@index');
 */
 //----------Rough Controller
 Route::get('rough', 'RoughController@rough');
-//Route::get('bld-rough', 'PeopleController@bld_rough');
+
+//-------------Rental Dboard Controller
+Route::get('rental-dboard', 'RentalDboardController@rental_dboard');
+
+//-------------Employee Dboard Controller
+Route::get('emp-dboard', 'EmpDboardController@emp_dboard');
 
 Route::get('', 'LoginController@index');
 Route::get('signup', 'LoginController@signup');
