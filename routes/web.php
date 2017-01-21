@@ -145,6 +145,8 @@ Route::post('salary-due', 'SalaryMakeController@due_salary');
 
 //----------ServiceBill Controller
 Route::get('make-service-bill', 'ServiceBillController@bill_service_make');
+Route::post('service-bill-statement', 'ServiceBillController@statement_bill_service');
+Route::post('service-bill-generate', 'ServiceBillController@generate_bill_service');
 
 
 //-------------------- End Pages history ----------------------------------
