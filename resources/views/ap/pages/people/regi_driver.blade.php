@@ -36,14 +36,14 @@
                             <form action="{{URL::to('regi-driver-save')}}" class="form-horizontal" data-parsley-validate="true" name="demo-form">
 
                                 <!-- begin Building Place -->
-<!--                                <div class="col-md-8 col-md-offset-1">
-                                    <div class="form-group">
-                                        <label class="control-label col-sm-4" for="fullname"><b>Select Driver Owner </b><span class="text-danger">*</span></label>
-                                        <div class="col-sm-8">
-                                            <input class="form-control" type="text" id="fullname" name="rntl_name" placeholder="Write Driver Owner Name" data-parsley-required="true" />
-                                        </div>
-                                    </div>
-                                </div>-->
+                                <!--                                <div class="col-md-8 col-md-offset-1">
+                                                                    <div class="form-group">
+                                                                        <label class="control-label col-sm-4" for="fullname"><b>Select Driver Owner </b><span class="text-danger">*</span></label>
+                                                                        <div class="col-sm-8">
+                                                                            <input class="form-control" type="text" id="fullname" name="rntl_name" placeholder="Write Driver Owner Name" data-parsley-required="true" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>-->
                                 <!-- end Building Place -->
 
                                 <div class="col-md-12 m-t-15">
@@ -104,35 +104,35 @@
                                             </div>
                                         </div>
 
-                                        
+
                                     </div>
                                     <!-- end Personal Information -->
 
                                     <!-- start Personal Information -->
                                     <div class="col-md-6">
                                         <strong class="text-success">Personal Information</strong>
-                                        
+
                                         <div class="form-group">
                                             <label class="control-label col-sm-4" for="email">Village</label>
                                             <div class="col-sm-8">
                                                 <input class="form-control" type="text" id="email" name="dpi_village"  placeholder="Driver Village"   />
                                             </div>
                                         </div>
-                                        
+
                                         <div class="form-group">
                                             <label class="control-label col-sm-4" for="email">Police Station <span class="text-danger">*</span></label>
                                             <div class="col-sm-8">
                                                 <input class="form-control" type="text" id="email" name="dpi_police_station"  placeholder="Driver Police Station"   />
                                             </div>
                                         </div>
-                                        
+
                                         <div class="form-group">
                                             <label class="control-label col-sm-4" for="email">District <span class="text-danger">*</span></label>
                                             <div class="col-sm-8">
                                                 <input class="form-control" type="text" id="email" name="dpi_district" placeholder="Driver district"/>
                                             </div>
                                         </div>
-                                        
+
                                         <div class="form-group  m-t-10">
                                             <label class="control-label col-sm-4">Country <span class="text-danger">*</span></label>
                                             <div class="col-sm-8">
@@ -145,12 +145,12 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        
-                                        
-                                        
-                                                                       
-                                        
-                                        
+
+
+
+
+
+
                                         <div class="form-group  m-t-10">
                                             <label class="control-label col-sm-4">Religion <span class="text-danger">*</span></label>
                                             <div class="col-sm-8">
@@ -158,7 +158,7 @@
                                                     <option value="">Select Religion</option>
                                                     <option value="islam">Islam</option>
                                                     <option value="hindue">Hindue</option>
-                                                    
+
                                                 </select>
                                             </div>
                                         </div>
@@ -181,7 +181,7 @@
                                                 <input  type="file" name="filename" id="fileToUpload" >
                                             </div>
                                         </div>
-                                        
+
                                     </div>
                                     <!-- end Personal Information -->
                                 </div>
