@@ -12,7 +12,12 @@ Route::get('fe', 'FrontEndController@index');
 
 
 
-
+/*Route::get('/index', [
+    'uses' => 'AuthController@index',
+    'as' => 'aa',
+    'middleware' => ['auth', 'roles'],
+    'roles' => ['Super-admin', 'Admin', 'employee']
+]);*/
 
 /*
 |--------------------------------------------------------------------------
