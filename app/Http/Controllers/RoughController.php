@@ -12,4 +12,6 @@ class RoughController extends Controller
     {
         return view('rough_info');
     }
+    
+    
 }
