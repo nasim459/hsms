@@ -64,16 +64,39 @@ class BroadCastingController extends Controller
 //        
 //    }
     public function notice_save(Request $request){
+//        echo $a;
+//        exit();
+        
+        $data = json_decode(file_get_contents("php://input"));
+        $title = mysql_real_escape_string($data->title);
+        $description = mysql_real_escape_string($data->description);
+        $status = mysql_real_escape_string($data->status);
         
         $save= array();
-        $save['title']=$request->title;
-        $save['description']=$request->description;
-        $save['publication_status']=$request->publication_status;
+        $save['notice_title'] = $title;
+        $save['notice_description'] = $description;
+        $save['notice_status'] = $status;
         
-        DB::table('tbl_notice')->insert($save);
-        Session::put('notice_inserted', 'Notice Inserted Successfully!!!');
-        return Redirect::to('broadcasting-notice');
+        $notice = DB::table('tbl_notice')->insert($save);
+        return $notice;
+        //Session::put('notice_inserted', 'Notice Inserted Successfully!!!');
+        //return Redirect::to('broadcasting-notice');
     }
+
+//    public function notice_save($a, $b, $c){
+//        
+//        echo $a;
+//        exit();
+//        
+//        $save= array();
+//        $save['notice_title'] = $a;
+//        $save['notice_description'] = $b;
+//        $save['notice_status'] = $c;
+//        
+//        DB::table('tbl_notice')->insert($save);
+//        Session::put('notice_inserted', 'Notice Inserted Successfully!!!');
+//        //return Redirect::to('broadcasting-notice');
+//    }
     
     
     

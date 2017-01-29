@@ -48,11 +48,13 @@ class BldController extends Controller
         
         $bld_show = DB::table('tbl_flat_info')
                 ->select('tbl_flat_info.*')
+                ->orderBy('bld_floor', 'asc')
+                ->orderBy('bld_unit', 'asc')
                 ->get();
         
         //----start total_number_of_building------------
         $length = count($bld_show);
-        $b = 0;
+        $b = 0; //------b means maximum building no
         for($i=0; $i<$length; $i++){
             $a = $bld_show[$i]->bld_name;
             if($a < $length){
@@ -61,17 +63,48 @@ class BldController extends Controller
                 }else {
                     $b = $a;
                 }
+            }
+        }
+        Session::put('bld_no', $b);
+        $bld_no = Session::get('bld_no');
+        //----end total_number_of_building-------------
+        
+        //----start total_number_of_floor_of_per_building------------
+        for($s=1; $s<=$bld_no; $s++){
+            
+            $b = 0; //------b means maximum floor no
+            for($i=0; $i<$length; $i++){
+                
+                $t = $bld_show[$i]->bld_name;
+                if($s == $t){
+                    
+                    $a = $bld_show[$i]->bld_floor;
+                    if($a < $length){
+                        if($b > $a){
+                            $b = $b;
+                        }else {
+                            $b = $a;
+                        }
+                    }
+                    
+                }
                 
             }
+            $bld_floor[$s-1] = $b;
+            Session::put($s-1, $b);
             
         }
-        //echo $b;
-        Session::put('bld_no', $b);
-        //----end total_number_of_building-------------
-
-//        echo '<pre>';
-//        print_r($bld_show);
-//        exit();
+        //----end total_number_of_floor_of_per_building------------
+        
+       // echo '<pre>';
+       // print_r($bld_floor);
+        //echo $bld_floor[3];
+        //exit();
+        //echo '----------------------------------'.'</br>';
+        
+        //echo '<pre>';
+        //print_r($bld_show);
+        //exit();
         
         $bld = view('ap.pages.settings.bld_add')
                 ->with('salary_view', $salary_view)
@@ -79,11 +112,13 @@ class BldController extends Controller
                 ->with('payment_paid', $payment_paid)
                 ->with('add_salary_statement', $add_salary_statement)
                 ->with('bld_show', $bld_show);
+                //->with('bld_floor', $bld_floor);
         $master = view('ap.pages.settings.settings_master')
                 ->with('settings_content', $bld);
         return view('master_ap')
                 ->with('maincontent', $master);
     }
+    
     
     
     

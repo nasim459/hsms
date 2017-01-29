@@ -44,112 +44,36 @@
                         <div class="row">
                             <!-- begin View_Salary -->
                             <div class="col-md-10 col-md-offset-2">
-
-                                <div class="col-md-3 m-l-10 well">
-                                    <div class="text-center text-success-light m-b-10"><b>01 Building</b></div>
-
-                                    <div class="" style="border: 1px solid white; border-radius: 5px; padding: 5px">
-                                        <a href="#" class="btn btn-white btn-sm m-t-5" style="width: 94px"><small>01</small> &nbsp; &nbsp; &nbsp;<b>A</b> &nbsp; &nbsp; &nbsp;<i class="fa fa-check text-success-light"> </i></a>
-                                        <a href="#" class="btn btn-white btn-sm m-t-5" style="width: 94px"><small>01</small> &nbsp; &nbsp; &nbsp;<b>B</b> &nbsp; &nbsp; &nbsp;<i class="fa fa-check text-success-light"> </i></a>
-                                        <a href="#" class="btn btn-white btn-sm m-t-5" style="width: 94px"><small>01</small> &nbsp; &nbsp; &nbsp;<b>C</b> &nbsp; &nbsp; &nbsp;<i class="fa fa-check text-success-light"> </i></a>
-                                        <a href="#" class="btn btn-white btn-sm m-t-5" style="width: 94px"><small>01</small> &nbsp; &nbsp; &nbsp;<b>D</b> &nbsp; &nbsp; &nbsp;<i class="fa fa-check text-success-light"> </i></a>
-                                    </div>
-                                    <div class="" style="border: 1px solid white; border-radius: 5px; padding: 5px">
-                                        <a href="#" class="btn btn-white btn-sm m-t-5" style="width: 94px"><small>02</small> &nbsp; &nbsp; &nbsp;<b>A</b> &nbsp; &nbsp; &nbsp;<i class="fa fa-check text-success-light"> </i></a>
-                                        <a href="#" class="btn btn-white btn-sm m-t-5" style="width: 94px"><small>2</small> &nbsp; &nbsp; &nbsp;<b>B</b> &nbsp; &nbsp; &nbsp;<i class="fa fa-check text-success-light"> </i></a>
-                                        <a href="#" class="btn btn-white btn-sm m-t-5" style="width: 94px"><small>02</small> &nbsp; &nbsp; &nbsp;<b>C</b> &nbsp; &nbsp; &nbsp;<i class="fa fa-check text-success-light"> </i></a>
-                                        <a href="#" class="btn btn-white btn-sm m-t-5" style="width: 94px"><small>2</small> &nbsp; &nbsp; &nbsp;<b>D</b> &nbsp; &nbsp; &nbsp;<i class="fa fa-check text-success-light"> </i></a>
-                                    </div>
-                                    <div class="" style="border: 1px solid white; border-radius: 5px; padding: 5px">
-                                        <a href="#" class="btn btn-white btn-sm m-t-5" style="width: 94px"><small>03</small> &nbsp; &nbsp; &nbsp;<b>A</b> &nbsp; &nbsp; &nbsp;<i class="fa fa-check text-success-light"> </i></a>
-                                        <a href="#" class="btn btn-white btn-sm m-t-5" style="width: 94px"><small>03</small> &nbsp; &nbsp; &nbsp;<b>B</b> &nbsp; &nbsp; &nbsp;<i class="fa fa-check text-success-light"> </i></a>
-                                        <a href="#" class="btn btn-white btn-sm m-t-5" style="width: 94px"><small>03</small> &nbsp; &nbsp; &nbsp;<b>C</b> &nbsp; &nbsp; &nbsp;<i class="fa fa-check text-success-light"> </i></a>
-                                        <a href="#" class="btn btn-white btn-sm m-t-5" style="width: 94px"><small>03</small> &nbsp; &nbsp; &nbsp;<b>D</b> &nbsp; &nbsp; &nbsp;<i class="fa fa-check text-success-light"> </i></a>
-                                    </div>
-                                    <div class="" style="border: 1px solid white; border-radius: 5px; padding: 5px">
-                                        <a href="#" class="btn btn-white btn-sm m-t-5" style="width: 94px"><small>04</small> &nbsp; &nbsp; &nbsp;<b>A</b> &nbsp; &nbsp; &nbsp;<i class="fa fa-check text-success-light"> </i></a>
-                                        <a href="#" class="btn btn-white btn-sm m-t-5" style="width: 94px"><small>04</small> &nbsp; &nbsp; &nbsp;<b>B</b> &nbsp; &nbsp; &nbsp;<i class="fa fa-check text-success-light"> </i></a>
-                                        <a href="#" class="btn btn-white btn-sm m-t-5" style="width: 94px"><small>04</small> &nbsp; &nbsp; &nbsp;<b>C</b> &nbsp; &nbsp; &nbsp;<i class="fa fa-check text-success-light"> </i></a>
-                                        <a href="#" class="btn btn-white btn-sm m-t-5" style="width: 94px"><small>04</small> &nbsp; &nbsp; &nbsp;<b>D</b> &nbsp; &nbsp; &nbsp;<i class="fa fa-check text-success-light"> </i></a>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-3 m-l-10 well">
-                                    <div class="text-center text-success-light m-b-10"><b>01 Building</b></div>
-
-                                    <div class="" style="border: 1px solid white; border-radius: 5px; padding: 5px">
-                                        <a href="#" class="btn btn-white btn-sm m-t-5" style="width: 94px"><small>01</small> &nbsp; &nbsp; &nbsp;<b>A</b> &nbsp; &nbsp; &nbsp;<i class="fa fa-check text-success-light"> </i></a>
-                                        <a href="#" class="btn btn-white btn-sm m-t-5" style="width: 94px"><small>01</small> &nbsp; &nbsp; &nbsp;<b>B</b> &nbsp; &nbsp; &nbsp;<i class="fa fa-check text-success-light"> </i></a>
-                                        <a href="#" class="btn btn-white btn-sm m-t-5" style="width: 94px"><small>01</small> &nbsp; &nbsp; &nbsp;<b>C</b> &nbsp; &nbsp; &nbsp;<i class="fa fa-check text-success-light"> </i></a>
-                                        <a href="#" class="btn btn-white btn-sm m-t-5" style="width: 94px"><small>01</small> &nbsp; &nbsp; &nbsp;<b>D</b> &nbsp; &nbsp; &nbsp;<i class="fa fa-check text-success-light"> </i></a>
-                                    </div>
-                                    <div class="" style="border: 1px solid white; border-radius: 5px; padding: 5px">
-                                        <a href="#" class="btn btn-white btn-sm m-t-5" style="width: 94px"><small>02</small> &nbsp; &nbsp; &nbsp;<b>A</b> &nbsp; &nbsp; &nbsp;<i class="fa fa-check text-success-light"> </i></a>
-                                        <a href="#" class="btn btn-white btn-sm m-t-5" style="width: 94px"><small>02</small> &nbsp; &nbsp; &nbsp;<b>B</b> &nbsp; &nbsp; &nbsp;<i class="fa fa-check text-success-light"> </i></a>
-                                        <a href="#" class="btn btn-white btn-sm m-t-5" style="width: 94px"><small>02</small> &nbsp; &nbsp; &nbsp;<b>C</b> &nbsp; &nbsp; &nbsp;<i class="fa fa-check text-success-light"> </i></a>
-                                        <a href="#" class="btn btn-white btn-sm m-t-5" style="width: 94px"><small>02</small> &nbsp; &nbsp; &nbsp;<b>D</b> &nbsp; &nbsp; &nbsp;<i class="fa fa-check text-success-light"> </i></a>
-                                    </div>
-                                    <div class="" style="border: 1px solid white; border-radius: 5px; padding: 5px">
-                                        <a href="#" class="btn btn-white btn-sm m-t-5" style="width: 94px"><small>03</small> &nbsp; &nbsp; &nbsp;<b>A</b> &nbsp; &nbsp; &nbsp;<i class="fa fa-check text-success-light"> </i></a>
-                                        <a href="#" class="btn btn-white btn-sm m-t-5" style="width: 94px"><small>03</small> &nbsp; &nbsp; &nbsp;<b>B</b> &nbsp; &nbsp; &nbsp;<i class="fa fa-check text-success-light"> </i></a>
-                                        <a href="#" class="btn btn-white btn-sm m-t-5" style="width: 94px"><small>03</small> &nbsp; &nbsp; &nbsp;<b>C</b> &nbsp; &nbsp; &nbsp;<i class="fa fa-check text-success-light"> </i></a>
-                                        <a href="#" class="btn btn-white btn-sm m-t-5" style="width: 94px"><small>03</small> &nbsp; &nbsp; &nbsp;<b>D</b> &nbsp; &nbsp; &nbsp;<i class="fa fa-check text-success-light"> </i></a>
-                                    </div>
-                                    <div class="" style="border: 1px solid white; border-radius: 5px; padding: 5px">
-                                        <a href="#" class="btn btn-white btn-sm m-t-5" style="width: 94px"><small>04</small> &nbsp; &nbsp; &nbsp;<b>A</b> &nbsp; &nbsp; &nbsp;<i class="fa fa-check text-success-light"> </i></a>
-                                        <a href="#" class="btn btn-white btn-sm m-t-5" style="width: 94px"><small>04</small> &nbsp; &nbsp; &nbsp;<b>B</b> &nbsp; &nbsp; &nbsp;<i class="fa fa-check text-success-light"> </i></a>
-                                        <a href="#" class="btn btn-white btn-sm m-t-5" style="width: 94px"><small>04</small> &nbsp; &nbsp; &nbsp;<b>C</b> &nbsp; &nbsp; &nbsp;<i class="fa fa-check text-success-light"> </i></a>
-                                        <a href="#" class="btn btn-white btn-sm m-t-5" style="width: 94px"><small>04</small> &nbsp; &nbsp; &nbsp;<b>D</b> &nbsp; &nbsp; &nbsp;<i class="fa fa-check text-success-light"> </i></a>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-3 m-l-10 well">
-                                    <div class="text-center text-success-light m-b-10"><b>01 Building</b></div>
-
-                                    <div class="" style="border: 1px solid white; border-radius: 5px; padding: 5px">
-                                        <a href="#" class="btn btn-white btn-sm m-t-5" style="width: 94px"><small>01</small> &nbsp; &nbsp; &nbsp;<b>A</b> &nbsp; &nbsp; &nbsp;<i class="fa fa-check text-success-light"> </i></a>
-                                        <a href="#" class="btn btn-white btn-sm m-t-5" style="width: 94px"><small>01</small> &nbsp; &nbsp; &nbsp;<b>B</b> &nbsp; &nbsp; &nbsp;<i class="fa fa-check text-success-light"> </i></a>
-                                        <a href="#" class="btn btn-white btn-sm m-t-5" style="width: 94px"><small>01</small> &nbsp; &nbsp; &nbsp;<b>C</b> &nbsp; &nbsp; &nbsp;<i class="fa fa-check text-success-light"> </i></a>
-                                        <a href="#" class="btn btn-white btn-sm m-t-5" style="width: 94px"><small>01</small> &nbsp; &nbsp; &nbsp;<b>D</b> &nbsp; &nbsp; &nbsp;<i class="fa fa-check text-success-light"> </i></a>
-                                    </div>
-                                    <div class="" style="border: 1px solid white; border-radius: 5px; padding: 5px">
-                                        <a href="#" class="btn btn-white btn-sm m-t-5" style="width: 94px"><small>02</small> &nbsp; &nbsp; &nbsp;<b>A</b> &nbsp; &nbsp; &nbsp;<i class="fa fa-check text-success-light"> </i></a>
-                                        <a href="#" class="btn btn-white btn-sm m-t-5" style="width: 94px"><small>02</small> &nbsp; &nbsp; &nbsp;<b>B</b> &nbsp; &nbsp; &nbsp;<i class="fa fa-check text-success-light"> </i></a>
-                                        <a href="#" class="btn btn-white btn-sm m-t-5" style="width: 94px"><small>02</small> &nbsp; &nbsp; &nbsp;<b>C</b> &nbsp; &nbsp; &nbsp;<i class="fa fa-check text-success-light"> </i></a>
-                                        <a href="#" class="btn btn-white btn-sm m-t-5" style="width: 94px"><small>02</small> &nbsp; &nbsp; &nbsp;<b>D</b> &nbsp; &nbsp; &nbsp;<i class="fa fa-check text-success-light"> </i></a>
-                                    </div>
-                                    <div class="" style="border: 1px solid white; border-radius: 5px; padding: 5px">
-                                        <a href="#" class="btn btn-white btn-sm m-t-5" style="width: 94px"><small>03</small> &nbsp; &nbsp; &nbsp;<b>A</b> &nbsp; &nbsp; &nbsp;<i class="fa fa-check text-success-light"> </i></a>
-                                        <a href="#" class="btn btn-white btn-sm m-t-5" style="width: 94px"><small>03</small> &nbsp; &nbsp; &nbsp;<b>B</b> &nbsp; &nbsp; &nbsp;<i class="fa fa-check text-success-light"> </i></a>
-                                        <a href="#" class="btn btn-white btn-sm m-t-5" style="width: 94px"><small>03</small> &nbsp; &nbsp; &nbsp;<b>C</b> &nbsp; &nbsp; &nbsp;<i class="fa fa-check text-success-light"> </i></a>
-                                        <a href="#" class="btn btn-white btn-sm m-t-5" style="width: 94px"><small>03</small> &nbsp; &nbsp; &nbsp;<b>D</b> &nbsp; &nbsp; &nbsp;<i class="fa fa-check text-success-light"> </i></a>
-                                    </div>
-                                    <div class="" style="border: 1px solid white; border-radius: 5px; padding: 5px">
-                                        <a href="#" class="btn btn-white btn-sm m-t-5" style="width: 94px"><small>04</small> &nbsp; &nbsp; &nbsp;<b>A</b> &nbsp; &nbsp; &nbsp;<i class="fa fa-check text-success-light"> </i></a>
-                                        <a href="#" class="btn btn-white btn-sm m-t-5" style="width: 94px"><small>04</small> &nbsp; &nbsp; &nbsp;<b>B</b> &nbsp; &nbsp; &nbsp;<i class="fa fa-check text-success-light"> </i></a>
-                                        <a href="#" class="btn btn-white btn-sm m-t-5" style="width: 94px"><small>04</small> &nbsp; &nbsp; &nbsp;<b>C</b> &nbsp; &nbsp; &nbsp;<i class="fa fa-check text-success-light"> </i></a>
-                                        <a href="#" class="btn btn-white btn-sm m-t-5" style="width: 94px"><small>04</small> &nbsp; &nbsp; &nbsp;<b>D</b> &nbsp; &nbsp; &nbsp;<i class="fa fa-check text-success-light"> </i></a>
-                                    </div>
-                                </div>
-
-                                <?php $bld_no = Session::get('bld_no'); ?>
                                 
+                                <?php
+                                $bld_no = Session::get('bld_no');
+                                ?>
+
                                 @for($n=1; $n<=$bld_no; $n++)
-                                
                                 <div class="col-md-3 m-l-10 well">
-                                    <div class="text-center text-success-light m-b-10"><b>{{$n}} Building</b></div>
+                                    <div class="text-center text-success-light m-b-10"><b>{{$n}} &nbsp; &nbsp; Building</b></div>
 
+                                    @for($m=1; $m<=Session::get($n-1); $m++)
                                     <div class="" style="border: 1px solid white; border-radius: 5px; padding: 5px">
+                                        
                                         @foreach($bld_show as $v)
-                                        @if($v->bld_name == $n)
-                                        <a href="#" class="btn btn-white btn-sm m-t-5" style="width: 94px"><small>{{$v->bld_floor}}</small> &nbsp; &nbsp; &nbsp;<b>{{$v->bld_unit}}</b> &nbsp; &nbsp; &nbsp;<i class="fa fa-check text-success-light"> </i></a>
-                                        @endif
+                                            @if($v->bld_name == $n && $v->bld_floor == $m)
+                                            <a href="#" class="btn btn-white btn-sm m-t-5" style="width: 94px"><small>{{$v->bld_floor}}</small> &nbsp; &nbsp; &nbsp;<b>{{$v->bld_unit}}</b> &nbsp; &nbsp; &nbsp;
+                                                @if($v->bld_status == 1)
+                                                <i class="fa fa-check text-success-light" title="Already Booked"> </i>
+                                                @else
+                                                <i class="fa fa-remove text-danger" title="This Unit Is Blank"> </i>
+                                                @endif
+                                            </a>
+                                            @endif
                                         @endforeach
+                                        
                                     </div>
+                                    @endfor
+
                                 </div>
-                                
                                 @endfor
-                                
+
                             </div>
                             <!-- end View_Salary -->
                         </div>

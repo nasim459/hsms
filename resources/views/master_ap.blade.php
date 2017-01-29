@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if !IE]><!-->
-<html lang="en">
+<html lang="en"  ng-app="adminapp">
     <!--<![endif]-->
 
     <!-- Mirrored from seantheme.com/source-admin-v1.2.1/admin/html/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 14 Aug 2016 06:21:13 GMT -->
@@ -68,9 +68,9 @@
         <!-- ================== END BASE JS ================== -->
         <link href="{{URL::asset('ap/assets/plugins/jquery-jvectormap/jquery-jvectormap-1.2.2.css')}}" rel="stylesheet" />
 
-        <!--[if lt IE 9]>
-            <script src="assets/crossbrowserjs/excanvas.min.js"></script>
-        <![endif]-->
+
+        <script src="{{URL::asset('ap/assets/jquery-3.1.1.js')}}" type="text/javascript"></script>
+
     </head>
     <body>
         <!-- begin #page-loader -->
@@ -401,7 +401,13 @@
         
         <!-- ================== END TABLE ================== -->
         <!-- <script src="{{URL::asset('ap/assets/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js')}}"></script> -->
-
+        
+        <!-- Begin_Angular_js -->
+        <script src="{{URL::asset('ap/assets/js/angular.js')}}"  type="text/javascript"></script>
+        <script src="{{URL::asset('ap/assets/js/homeController.js')}}"  type="text/javascript"></script>
+        <script src="{{URL::asset('ap/assets/js/notice_board.js')}}"  type="text/javascript"></script>
+        <!-- End_Angular_js -->
+        
         <script>
 $(document).ready(function() {
     App.init();

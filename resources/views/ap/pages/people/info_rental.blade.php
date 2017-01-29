@@ -1,9 +1,10 @@
 @section('people_content')
 <!-- begin section-container -->
-<div class="section-container">
+<div class="section-container" ng-controller="people">
     <!-- begin panel -->
     <div class="panel without-pagination clearfix m-b-0">
         <table id="data-table" class="table table-bordered table-hover">
+            @{{data.off}}
             <thead>
                 <tr class="success">
                     <th>Picture &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ID</th>
@@ -29,11 +30,12 @@
                     <td>{{$v->rental_email}}</td>
                     <td class="text-center"><a href="" class="btn btn-default btn-xs"> &nbsp; Paid &nbsp;</a> </td>
                     <td>
-                        @if($v->person_status == 1)
-                        <a href="{{URL::to('info-rental-status/'.$v->rental_id.'/'.$off)}}" class="btn btn-default btn-xs"><i class="fa fa-check text-success-light" title="Active Your Profile"></i></a> &nbsp;
-                        @else
-                        <a href="{{URL::to('info-rental-status/'.$v->rental_id.'/'.$on)}}" class="btn btn-warning btn-xs"><i class="fa fa-remove" title="Stop Your Profile"></i></a> &nbsp;
-                        @endif
+                        
+                        <a href="{{URL::to('info-rental-status/'.$v->rental_id.'/'.$v->person_status)}}" class="btn btn-default btn-xs" ng-click="rentalStatus({{$v->rental_id}},{{$v->person_status}})">
+                            <i class="fa fa-check text-success-light" title="Active Your Profile"></i>
+                            <i class="fa fa-remove" ng-if="rental.status == 0" title="Stop Your Profile"></i>
+                        </a> &nbsp;
+
 
                         <a href="{{URL::to('info-rental-details/'.$v->rental_details_id)}}" class="btn btn-default btn-xs"><i class="fa fa-list-alt"></i> Details</a>
                     </td>

@@ -56,6 +56,7 @@ Route::get('info-rental', 'PeopleController@rental_info');
 Route::get('info-rental-details/{rental_details_id}', 'PeopleController@details_rental_info');
 Route::get('info-rental-status/{rental_id}/{status}', 'PeopleController@status_rental_info');
 
+
 Route::get('info-driver', 'PeopleController@driver_info');
 Route::get('info-housekeeping', 'PeopleController@housekeeping_info');
 Route::get('info-visiting', 'PeopleController@visiting_info');
@@ -119,6 +120,7 @@ Route::get('broadcasting-sms-add', 'BroadCastingController@sms_add');
 Route::get('broadcasting-notice', 'BroadCastingController@notice');
 Route::get('broadcasting-notice-add', 'BroadCastingController@notice_add');
 Route::post('broadcasting-notice-save', 'BroadCastingController@notice_save');
+//Route::get('broadcasting-notice-save/{a}/{b}/{c}', 'BroadCastingController@notice_save');
 
 Route::get('broadcasting-email-inbox', 'EmailController@inbox_email');
 Route::get('broadcasting-email-compose', 'EmailController@compose_email');
@@ -161,6 +163,7 @@ Route::post('salary-due', 'SalaryMakeController@due_salary');
 //<<<<<<< HEAD=======
 //----------ServiceBill Controller
 Route::get('make-service-bill', 'ServiceBillController@bill_service_make');
+Route::get('service-bill-show/{rental_id}', 'ServiceBillController@service_bill_show');
 Route::post('service-bill-statement', 'ServiceBillController@statement_bill_service');
 Route::post('service-bill-generate', 'ServiceBillController@generate_bill_service');
 

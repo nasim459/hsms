@@ -1,6 +1,6 @@
 @section('settings_content')
 <!-- begin section-container -->
-<div class="section-container">
+<div class="section-container" ng-controller="serviceBill">
     <!-- begin row -->
     <div class="row">
         <!-- begin col-12 -->
@@ -57,7 +57,7 @@
                                     <table class="table table-bordered table-hover" style="border:5px solid #EBECED !important">
                                         <thead>
                                             <tr class="default">
-                                                <th class="text-center"><b>No</b></th>
+                                                <th class="text-center"><b>No </b></th>
                                                 <th class="text-center"><b>Building - Floor - Unit</b></th>
                                                 <th class="text-center"><b>Rental Name</b></th>
                                                 <th class="text-center"><b>Service Running</b></th>
@@ -75,11 +75,10 @@
                                                 <td class="text-center"><b>{{$v->bld_name}} - {{$v->bld_floor}} - {{$v->bld_unit}}</b></td>
                                                 <td>{{$v->rental_name}}</td>
                                                 <td class="text-center">
-                                                    <a href="#show-running-service" class="btn btn-default btn-xs"  data-toggle="modal"><i class="fa fa-list">&nbsp;</i> Your Running Service </a>
+                                                    <a href="#show-bill-statement" class="btn btn-default btn-xs" data-toggle="modal" title="Your Running Service" ng-click="serviceBillView({{$v->rental_id}})"><i class="fa fa-list">&nbsp;</i> Service </a>
                                                 </td>
                                                 <td class="text-center">
-                                                    <a href="#create-service-bill" class="btn btn-success btn-xs" data-toggle="modal" title="Click To Create Bill"><i class="fa fa-arrow-right"></i> Create</a>&nbsp; &nbsp;
-                                                    <a href="#show-bill-statement" class="btn btn-default btn-xs" data-toggle="modal" title="Show your"><i class="fa fa-eye"></i> View</a>
+                                                    <a href="#create-service-bill" class="btn btn-success btn-xs" data-toggle="modal" title="Click To Create Bill" ng-click="serviceBillView({{$v->rental_id}})"><i class="fa fa-arrow-right"></i> Create</a>&nbsp; &nbsp;
                                                 </td>
                                             </tr>
                                             @endforeach()
@@ -193,54 +192,57 @@
                                         <thead>
                                             <tr class="default">
                                                 <th class="text-center"><b>Invoice No</b></th>
-                                                <th class="text-center"><b>Employee ID</b></th>
+                                                <th class="text-center"><b>Building - Floor - Unit</b></th>
                                                 <th class="text-center"><b>Month</b></th>
-                                                <th class="text-center"><b>Year</b></th>
                                                 <th class="text-center"><b>Amount</b></th>
-                                                <th class="text-center"><b>Created Time</b></th>
+                                                <th class="text-center"><b>Created</b></th>
                                                 <th class="text-center"><b>Payment Action</b></th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            <?php $number = 0; $off = 0; $on = 1; ?>
+                                            @foreach($invoice_bill as $v) 
                                             <tr>
-                                                <td class="text-center"><span class="text-success"><b>#445</b></span></td>
-                                                <td class="text-center">emp_id_no</td>
+                                                <td class="text-center"><span class="text-success"><b class="btn btn-default btn-xs">#{{$v->invoice_id}}</b></span></td>
+                                                <td class="text-center" title="{{$v->rental_name}}">{{$v->bld_name}} - {{$v->bld_floor}} - {{$v->bld_unit}}</td>
                                                 <td class="text-center">
+                                                    <b>
+                                                        @if($v->invoice_moth == 1)
+                                                        January
+                                                        @elseif($v->invoice_moth == 2)
+                                                        February
+                                                        @elseif($v->invoice_moth == 3)
+                                                        March
+                                                        @elseif($v->invoice_moth == 4)
+                                                        April
+                                                        @elseif($v->invoice_moth == 5)
+                                                        May
+                                                        @elseif($v->invoice_moth == 6)
+                                                        June
+                                                        @elseif($v->invoice_moth == 7)
+                                                        July
+                                                        @elseif($v->invoice_moth == 8)
+                                                        August
+                                                        @elseif($v->invoice_moth == 9)
+                                                        September
+                                                        @elseif($v->invoice_moth == 10)
+                                                        October
+                                                        @elseif($v->invoice_moth == 11)
+                                                        November
+                                                        @elseif($v->invoice_moth == 12)
+                                                        December
+                                                        @endif
+                                                        - {{$v->invoice_year}}
+                                                    </b>
                                                 </td>
-                                                <td class="text-center">pay_year</td>
-                                                <td class="text-center">total_amount</td>
-                                                <td class="text-center">crated_at</td>
+                                                <td class="text-center">{{$v->invoice_amount_total}}</td>
+                                                <td class="text-center">{{$v->created_at}}</td>
                                                 <td class="text-center">
-                                                    <a href="#click-to-pay" class="btn btn-danger btn-xs" title="unPaid" data-toggle="modal"><i class="fa fa-remove"></i> Click To Pay</a>&nbsp; &nbsp;
-                                                    <a href="#view-rental-invoice" class="btn btn-default btn-xs" data-toggle="modal" title="Payment View"><i class="fa fa-eye"></i> View</a>
+                                                    <a href="#click-to-pay" class="btn btn-danger btn-xs" title="unPaid" data-toggle="modal" ng-click="serviceBillView({{$v->rental_id}})"><i class="fa fa-remove"></i> Click To Pay</a>&nbsp; &nbsp;
+                                                    <a href="#view-rental-invoice" class="btn btn-default btn-xs" data-toggle="modal" title="Invoice View" ng-click="serviceBillView({{$v->rental_id}})"><i class="fa fa-eye text-success-light"></i></a>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td class="text-center"><span class="text-success"><b>#445</b></span></td>
-                                                <td class="text-center">emp_id_no</td>
-                                                <td class="text-center">
-                                                </td>
-                                                <td class="text-center">pay_year</td>
-                                                <td class="text-center">total_amount</td>
-                                                <td class="text-center">crated_at</td>
-                                                <td class="text-center">
-                                                    <a href="#" class="btn btn-success btn-xs" title="Paid Payment">&nbsp; &nbsp; &nbsp;<i class="fa fa-check"></i> Paid &nbsp; &nbsp; &nbsp;</a>&nbsp; &nbsp;
-                                                    <a href="#invoice-view-rental" class="btn btn-default btn-xs" data-toggle="modal" title="Payment View"><i class="fa fa-eye"></i> View</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-center"><span class="text-success"><b>#445</b></span></td>
-                                                <td class="text-center">emp_id_no</td>
-                                                <td class="text-center">
-                                                </td>
-                                                <td class="text-center">pay_year</td>
-                                                <td class="text-center">total_amount</td>
-                                                <td class="text-center">crated_at</td>
-                                                <td class="text-center">
-                                                    <a href="#" class="btn btn-danger btn-xs" title="unPaid"><i class="fa fa-remove"></i> Click To Pay</a>&nbsp; &nbsp;
-                                                    <a href="#invoice-salary-statement" class="btn btn-default btn-xs" data-toggle="modal" title="Payment View"><i class="fa fa-eye"></i> View</a>
-                                                </td>
-                                            </tr>
+                                            @endforeach()
                                         </tbody>
                                     </table>
                                 </div>
@@ -386,16 +388,16 @@
 
 
                     <!-- begin modal -------------------------------------------->
-                    <!-- begin show-running-service modal -->
+                    <!-- begin show-bill-statement modal -->
                     <div class="col-md-6">
                         <div class="clearfix m-b-25">
                             <!-- #modal-dialog -->
-                            <div class="modal fade" id="show-running-service">
+                            <div class="modal fade" id="show-bill-statement">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                            <h4 class="modal-title text-center">Your Running Service </h4>
+                                            <h4 class="modal-title text-center">Your Running Service & Demo Bill Statement </h4>
                                         </div>
                                         <div class="modal-body">
                                             <!-- begin row panel body --->
@@ -405,17 +407,17 @@
                                                     <div class="col-md-12 col-md-offset-2 m-t-10">
                                                         <!-- start Personal Information -->
                                                         <div class="col-md-8">
-                                                            <dl class="dl-horizontal m-b-20 f-s-16">
-                                                                <dt>Gass :</dt>
-                                                                <dd>5200 /=</dd>
-                                                                <dt>Water :</dt>
-                                                                <dd>5200 /=</dd>
-                                                                <dt>Electricity :</dt>
-                                                                <dd>5200 /=</dd>
+                                                            <dl class="dl-horizontal m-b-20 f-s-17">
+                                                                <dt class="text-success">Taken Service</dt>
+                                                                <dd class="text-success"><b>Demo Amount</b></dd>
+                                                            </dl>
+                                                            <dl class="dl-horizontal m-b-20 f-s-14" ng-repeat="value in data">
+                                                                <dt>@{{value.service_type}} :</dt>
+                                                                <dd>@{{value.amount}} /=</dd>
                                                             </dl><hr class="hr-d">
                                                             <dl class="dl-horizontal m-b-20 f-s-16">
                                                                 <dt class="text-success">Total :</dt>
-                                                                <dd class="text-success">52000 /=</dd>
+                                                                <dd class="text-success"><b>@{{sum(data)}} /=</b></dd>
                                                             </dl>
                                                         </div>
                                                         <!-- end Personal Information -->
@@ -431,7 +433,7 @@
 
                         </div>
                     </div>
-                    <!-- end show-running-service modal -->
+                    <!-- end show-bill-statement modal -->
 
                     <!-- begin create-service-bill modal -->
                     <div class="col-md-6">
@@ -456,24 +458,10 @@
                                                             <!-- start Personal Information -->
                                                             <div class="col-md-12">
 
-                                                                <div class="form-group">
-                                                                    <label class="control-label col-sm-6" for="fullname"> <strong>Salary Transport</strong> <span class="text-danger">*</span></label>
+                                                                <div class="form-group" ng-repeat="value in data">
+                                                                    <label class="control-label col-sm-5" for="fullname"> <strong>@{{value.service_type}}</strong> <span class="text-danger">*</span></label>
                                                                     <div class="col-sm-3">
-                                                                        <input class="form-control text-center" type="text" id="fullname" name="d" placeholder="00.00" required="" data-parsley-required="true" />
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="form-group">
-                                                                    <label class="control-label col-sm-6" for="fullname"> <strong>Salary Transport</strong> <span class="text-danger">*</span></label>
-                                                                    <div class="col-sm-3">
-                                                                        <input class="form-control text-center" type="text" id="fullname" name="d" placeholder="00.00" required="" data-parsley-required="true" />
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="form-group">
-                                                                    <label class="control-label col-sm-6" for="fullname"> <strong>Salary Transport</strong> <span class="text-danger">*</span></label>
-                                                                    <div class="col-sm-3">
-                                                                        <input class="form-control text-center" type="text" id="fullname" name="d" placeholder="00.00" required="" data-parsley-required="true" />
+                                                                        <input class="form-control text-center" type="text" value="@{{value.amount}}" id="fullname" name="d" required="" data-parsley-required="true" />
                                                                     </div>
                                                                 </div><hr class="hr-d m-b-15">
 
@@ -483,9 +471,9 @@
 
                                                         <!-- begin submit button -->
                                                         <div class="form-group">
-                                                            <label class="control-label col-sm-4"></label>
+                                                            <label class="control-label col-sm-5"></label>
                                                             <div class="col-sm-5">
-                                                                <button type="submit" class="btn btn-success width-xs">Submit</button>
+                                                                <button type="submit" class="btn btn-success width-xs">Bill Generate</button>
                                                             </div>
                                                         </div>
                                                         <!-- end submit button -->
@@ -505,53 +493,6 @@
                     </div>
                     <!-- end create-service-bill modal -->
 
-                    <!-- begin show-bill-statement modal -->
-                    <div class="col-md-6">
-                        <div class="clearfix m-b-25">
-                            <!-- #modal-dialog -->
-                            <div class="modal fade" id="show-bill-statement">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                            <h4 class="modal-title text-center">Service Bill Statement </h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            <!-- begin row panel body --->
-                                            <div class="row">
-                                                <!-- begin section-container -->
-                                                <div class="section-container">
-                                                    <div class="col-md-12 col-md-offset-2 m-t-10">
-                                                        <!-- start Personal Information -->
-                                                        <div class="col-md-8">
-                                                            <dl class="dl-horizontal m-b-20 f-s-16">
-                                                                <dt>Gass :</dt>
-                                                                <dd>5200 /=</dd>
-                                                                <dt>Water :</dt>
-                                                                <dd>5200 /=</dd>
-                                                                <dt>Electricity :</dt>
-                                                                <dd>5200 /=</dd>
-                                                            </dl><hr class="hr-d">
-                                                            <dl class="dl-horizontal m-b-20 f-s-16">
-                                                                <dt class="text-success">Total :</dt>
-                                                                <dd class="text-success">52000 /=</dd>
-                                                            </dl>
-                                                        </div>
-                                                        <!-- end Personal Information -->
-                                                    </div>
-                                                </div>
-                                                <!-- end section-container -->    
-                                            </div>
-                                            <!-- end row panel body --->
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                    <!-- end show-bill-statement modal -->
-
                     <!-- begin click-to-pay modal -->
                     <div class="col-md-6">
                         <div class="clearfix m-b-25">
@@ -561,51 +502,74 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                            <h4 class="modal-title text-center">Receive Your Payment</h4>
+                                            <h4 class="text-center">Receive Payment</h4>
                                         </div>
                                         <div class="modal-body">
                                             <!-- begin row panel body --->
-                                            <div class="row well">
-                                                <!-- begin section-container -->
-                                                <div class="section-container">
-                                                    {!! Form::open(array('url'=>'-add-salary-', 'role'=>'form', 'method'=>'POST')) !!}
-                                                    <span class="form-horizontal" data-parsley-validate="true" name="demo-form">
-
-                                                        <div class="col-md-12 m-t-15">
-                                                            <!-- start Personal Information -->
-                                                            <div class="col-md-12">
-
-                                                                <div class="form-group">
-                                                                    <label class="control-label col-sm-4" for="fullname">Start Salary <span class="text-danger">*</span></label>
-                                                                    <div class="col-sm-6">
-                                                                        <input class="form-control" type="date" id="fullname" name="start" placeholder="Required" required="" data-parsley-required="true" />
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="form-group">
-                                                                    <label class="control-label col-sm-4" for="fullname"> <strong>Salary Transport</strong> <span class="text-danger">*</span></label>
-                                                                    <div class="col-sm-6">
-                                                                        <input class="form-control" type="text" id="fullname" name="d" placeholder="00.00" readonly="" data-parsley-required="true" />
-                                                                    </div>
-                                                                </div><hr class="hr-d m-b-15">
-
-                                                            </div>
-                                                            <!-- end Personal Information -->
-                                                        </div>
-
-                                                        <!-- begin submit button -->
-                                                        <div class="form-group">
-                                                            <label class="control-label col-sm-4"></label>
-                                                            <div class="col-sm-5">
-                                                                <button type="submit" class="btn btn-success width-xs">Submit</button>
-                                                            </div>
-                                                        </div>
-                                                        <!-- end submit button -->
-
-                                                    </span>
-                                                    {!! Form::close() !!}
+                                            <div class="row">
+                                                <!-- begin title -->
+                                                <div class="text-center">
+                                                    <sapn class="f-s-18">Housing Society Management System</sapn></br>
+                                                    <sapn>Dhanmondi, Dhaka - 1207</sapn></br>
+                                                    <sapn>Phone: 01777888757</sapn></br>
                                                 </div>
-                                                <!-- end section-container -->    
+                                                <!-- end title -->
+                                               
+                                                <!-- begin invoice -->
+                                                <div class="d_invoice" style="margin-left:40px; margin-right: 40px;">
+                                                    <!-- begin invoice-header -->
+                                                    <div class="invoice-header">
+                                                        <!-- begin row -->
+                                                        <div class="row">
+                                                            <!-- begin col-6 -->
+                                                            <div class="text-center">
+                                                                <h4>Invoice Number:&nbsp; #05</h4>
+                                                            </div>
+                                                            <!-- end col-6 -->
+                                                        </div>  
+                                                        <!-- end row -->
+                                                    </div>
+                                                    <!-- end invoice-header -->
+                                                    <!-- begin invoice-table -->
+                                                    <div class="m-b-10"><b>Invoice Summary</b></div>
+
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr class="default">
+                                                                <th class="text-center"><b>Service Name</b></th>
+                                                                <th class="text-center"><b>Price</b></th>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr ng-repeat="value in data">
+                                                                <td class="text-center">@{{value.service_type}}</td>
+                                                                <td class="text-center">@{{value.amount}}</td>
+                                                            </tr>
+                                                            <tr class="col-md-offset-4">
+                                                                <td class="text-right">
+                                                                    <div>Total :</div></br>
+                                                                    <div>Previous Due :</div></br>
+                                                                    <div><b>Grand Total :</b></div></br>
+                                                                    <div class="m-t-5"><b>Paid :</b></div></br>
+                                                                    <div class="text-danger">Now, Due : &nbsp; 00.00</div></br>
+                                                                    <div class="m-t-10">
+                                                                        <a href="javascript:;" onclick="window.print()" class="btn btn-sm width-100 btn-rounded btn-danger"><i class="fa fa-print m-r-3"></i> Print</a>
+                                                                    </div></br>
+                                                                    
+                                                                </td>
+                                                                <td class="text-center">
+                                                                    <div>@{{sum(data)}}</div></br>
+                                                                    <div>00.00</div></br>
+                                                                    <div><b>00.00</b></div></br>
+                                                                    <div class="col-md-6 col-md-offset-3">
+                                                                        <input class="form-control text-center f-s-16" type="text" name="d" value="" required="" placeholder=" 00.00 " data-parsley-required="true" /></br>
+                                                                    </div></br>
+                                                    </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <!-- end invoice-table -->
+                                                </div>
+                                                <!-- end invoice -->    
                                             </div>
                                             <!-- end row panel body --->
                                         </div>
@@ -664,26 +628,19 @@
                                                                 <th class="text-center"><b>Price</b></th>
                                                         </thead>
                                                         <tbody>
-                                                            <tr>
-                                                                <td class="text-center">Electricity</td>
-                                                                <td class="text-center">500</td>
+                                                            <tr ng-repeat="value in data">
+                                                                <td class="text-center">@{{value.service_type}}</td>
+                                                                <td class="text-center">@{{value.amount}}</td>
                                                             </tr>
                                                             <tr>
-                                                                <td class="text-center">Electricity</td>
-                                                                <td class="text-center">500</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-center">Electricity</td>
-                                                                <td class="text-center">500</td>
-                                                            </tr>
-                                                            <tr class="subtotal">
-                                                                <td class="text-right">Subtotal:</td>
-                                                                <td class="text-center value"><b>1500.00</b></td>
+                                                                <td class="text-center"><b>Total:</b></td>
+                                                                <td class="text-center"><b>@{{sum(data)}}</b></td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
                                                     <!-- end invoice-table -->
                                                 </div>
+                                                <!-- end invoice -->
                                             </div>
                                             <!-- end row panel body --->
                                         </div>
