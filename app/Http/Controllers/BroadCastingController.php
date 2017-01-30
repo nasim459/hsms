@@ -64,13 +64,10 @@ class BroadCastingController extends Controller
 //        
 //    }
     public function notice_save(Request $request){
-//        echo $a;
-//        exit();
         
-        $data = json_decode(file_get_contents("php://input"));
-        $title = mysql_real_escape_string($data->title);
-        $description = mysql_real_escape_string($data->description);
-        $status = mysql_real_escape_string($data->status);
+        $title = $request->title;
+        $description = $request->description;
+        $status = $request->status;
         
         $save= array();
         $save['notice_title'] = $title;
@@ -78,9 +75,14 @@ class BroadCastingController extends Controller
         $save['notice_status'] = $status;
         
         $notice = DB::table('tbl_notice')->insert($save);
-        return $notice;
         //Session::put('notice_inserted', 'Notice Inserted Successfully!!!');
         //return Redirect::to('broadcasting-notice');
+//        if($notice){
+//            $data['result']='Success';
+//        }else{
+//            $data['result']='Fail';
+//        }
+        return $notice;
     }
 
 //    public function notice_save($a, $b, $c){

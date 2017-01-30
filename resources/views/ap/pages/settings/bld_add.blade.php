@@ -31,10 +31,10 @@
                     </div>
                 </div>
                 <ul class="nav nav-tabs col-md-offset-1">
-                    <li class="active"><a href="#default-tab-1" data-toggle="tab"><i class="fa fa-list"> </i> Building</a></li>
+                    <li class="active"><a href="#default-tab-1" data-toggle="tab"><i class="fa fa-plus"></i> Add Building</a></li>
                     <li class=""><a href="#default-tab-2" data-toggle="tab"><i class="fa fa-save"> </i> Invoice hfg</a></li>
                     <li class=""><a href="#default-tab-3" data-toggle="tab"><i class="fa fa-credit-card"></i> Payment</a></li>
-                    <li class=""><a href="#default-tab-4" data-toggle="tab"><i class="fa fa-plus"></i> Add Salary Statement</a></li>
+                    <li class=""><a href="#default-tab-4" data-toggle="tab"><i class="fa fa-list"> </i> Building</a></li>
                     <!--  <li class=""><a href="#default-tab-5" data-toggle="tab"><i class="fa fa-user"></i> Complain</a></li>
                     <li class=""><a href="#default-tab-6" data-toggle="tab"><i class="fa fa-user"></i> Salary Statement</a></li>-->
                 </ul>
@@ -42,40 +42,104 @@
                     <div class="tab-pane fade active in" id="default-tab-1">
                         <!-- begin row -->
                         <div class="row">
-                            <!-- begin View_Salary -->
-                            <div class="col-md-10 col-md-offset-2">
-                                
-                                <?php
-                                $bld_no = Session::get('bld_no');
-                                ?>
-
-                                @for($n=1; $n<=$bld_no; $n++)
-                                <div class="col-md-3 m-l-10 well">
-                                    <div class="text-center text-success-light m-b-10"><b>{{$n}} &nbsp; &nbsp; Building</b></div>
-
-                                    @for($m=1; $m<=Session::get($n-1); $m++)
-                                    <div class="" style="border: 1px solid white; border-radius: 5px; padding: 5px">
-                                        
-                                        @foreach($bld_show as $v)
-                                            @if($v->bld_name == $n && $v->bld_floor == $m)
-                                            <a href="#" class="btn btn-white btn-sm m-t-5" style="width: 94px"><small>{{$v->bld_floor}}</small> &nbsp; &nbsp; &nbsp;<b>{{$v->bld_unit}}</b> &nbsp; &nbsp; &nbsp;
-                                                @if($v->bld_status == 1)
-                                                <i class="fa fa-check text-success-light" title="Already Booked"> </i>
-                                                @else
-                                                <i class="fa fa-remove text-danger" title="This Unit Is Blank"> </i>
-                                                @endif
-                                            </a>
+                            <!-- begin Add_Salary -->
+                            <div class="col-md-10 col-md-offset-1">
+                                <span><p class=""></p></span>
+                                <!-- begin panel -->
+                                <div class="panel without-pagination clearfix m-b-0">
+                                    <div class="form-group">
+                                        <div class="col-sm-4">
+                                            <strong class="text-success m-t-10">Create New Building, Floor, Unit</strong>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            @if(Session::get('bld_data') == '1')
+                                            <span class="text-success-light">Data Inserted Successfully!!!</span>
+                                            {{Session::put('bld_data', '')}}
+                                            @elseif (Session::get('bld_data') == '0')
+                                            <span class="text-danger">Data Not Inserted???</span>
+                                            {{Session::put('bld_data', '')}}
+                                            @elseif (Session::get('bld_data') == '11')
+                                            <span class="text-danger">Data Already Inserted!!!</span>
+                                            {{Session::put('bld_data', '')}}
+                                            @else 
+                                            <span class="text-remove-light"></span>
                                             @endif
-                                        @endforeach
-                                        
+                                        </div>
                                     </div>
-                                    @endfor
+                                    <table class="">
+                                        {!! Form::open(array('url'=>'bld-save', 'role'=>'form', 'method'=>'POST')) !!}
+                                        <!-- begin Building Place -->
+                                        <div class="col-md-8 col-md-offset-1" style="margin-top: 30px; margin-bottom: 40px;">
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-3 m-t-40">Building Place <span class="text-danger">*</span></label>
+                                                <div class="col-sm-3"><h5 class="text-center text-success">Building</h5>
+                                                    <select class="form-control" id="select-required" name="a" data-parsley-required="true">
+                                                        <option>Building</option>
+                                                        <option value="1">01</option>
+                                                        <option value="2">02</option>
+                                                        <option value="3">03</option>
+                                                        <option value="4">04</option>
+                                                        <option value="5">05</option>
+                                                        <option value="6">06</option>
+                                                        <option value="7">07</option>
+                                                        <option value="8">08</option>
+                                                        <option value="9">09</option>
+                                                        <option value="10">10</option>
+                                                        <option value="11">11</option>
+                                                        <option value="12">12</option>
+                                                        <option value="13">13</option>
+                                                        <option value="14">14</option>
+                                                        <option value="15">15</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-sm-3"><h5 class="text-center text-success">Floor</h5>
+                                                    <select class="form-control" id="select-required" name="b" data-parsley-required="true">
+                                                        <option>Floor</option>
+                                                        <option value="1">01 Floor</option>
+                                                        <option value="2">02 Floor</option>
+                                                        <option value="3">03 Floor</option>
+                                                        <option value="4">04 Floor</option>
+                                                        <option value="5">05 Floor</option>
+                                                        <option value="6">06 Floor</option>
+                                                        <option value="7">07 Floor</option>
+                                                        <option value="8">08 Floor</option>
+                                                        <option value="9">09 Floor</option>
+                                                        <option value="10">10 Floor</option>
+                                                        <option value="11">11 Floor</option>
+                                                        <option value="12">12 Floor</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-sm-3"><h5 class="text-center text-success">Unit</h5>
+                                                    <select class="form-control" id="select-required" name="c" data-parsley-required="true">
+                                                        <option>Unit</option>
+                                                        <option value="A">A</option>
+                                                        <option value="B">B</option>
+                                                        <option value="C">C</option>
+                                                        <option value="D">D</option>
+                                                        <option value="E">E</option>
+                                                        <option value="F">F</option>
+                                                        <option value="G">G</option>
+                                                        <option value="H">H</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- end Building Place -->
 
+                                        <!-- begin submit button -->
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-4"></label>
+                                            <div class="col-sm-6 col-md-offset-1 m-b-40">
+                                                <button type="submit" class="btn btn-success width-xs">Create</button>
+                                            </div>
+                                        </div>
+                                        <!-- end submit button -->
+                                        {!! Form::close() !!}
+                                    </table>
                                 </div>
-                                @endfor
-
+                                <!-- end panel -->
                             </div>
-                            <!-- end View_Salary -->
+                            <!-- end Add_Salary -->
                         </div>
                         <!-- end row-->
                     </div>
@@ -242,358 +306,40 @@
                     <div class="tab-pane fade" id="default-tab-4">
                         <!-- begin row -->
                         <div class="row">
-                            <!-- begin Add_Salary -->
-                            <div class="col-md-10 col-md-offset-1">
-                                <span><p class=""></p></span>
-                                <!-- begin panel -->
-                                <div class="panel without-pagination clearfix m-b-0">
-                                    <div class="form-group">
-                                        <div class="col-sm-4">
-                                            <strong class="text-success m-t-10">Assign Employer Salary or Create</strong>
-                                        </div>
-                                        <div class="col-sm-4 col-md-offset-4 m-b-10">
-                                            <input class="form-control text-center" type="text" id="fullname" value="" placeholder=" Search here..." data-parsley-required="true" />
-                                        </div>
+                            <!-- begin View_Salary -->
+                            <div class="col-md-10 col-md-offset-2">
+
+                                <?php
+                                $bld_no = Session::get('bld_no');
+                                ?>
+
+                                @for($n=1; $n<=$bld_no; $n++)
+                                <div class="col-md-3 m-l-10 well">
+                                    <div class="text-center text-success-light m-b-10"><b>{{$n}} &nbsp; &nbsp; Building</b></div>
+
+                                    @for($m=1; $m<=Session::get($n-1); $m++)
+                                    <div class="" style="border: 1px solid white; border-radius: 5px; padding: 5px">
+
+                                        @foreach($bld_show as $v)
+                                        @if($v->bld_name == $n && $v->bld_floor == $m)
+                                        <a href="#" class="btn btn-white btn-sm m-t-5" style="width: 94px"><small>{{$v->bld_floor}}</small> &nbsp; &nbsp; &nbsp;<b>{{$v->bld_unit}}</b> &nbsp; &nbsp; &nbsp;
+                                            @if($v->bld_status == 1)
+                                            <i class="fa fa-check text-success-light" title="Already Booked"> </i>
+                                            @else
+                                            <i class="fa fa-remove text-danger" title="This Unit Is Blank"> </i>
+                                            @endif
+                                        </a>
+                                        @endif
+                                        @endforeach
+
                                     </div>
-                                    <table class="table table-bordered table-hover" style="border:5px solid #EBECED !important">
-                                        <thead>
-                                            <tr class="default">
-                                                <th class="text-center"><b>Employee ID</b></th>
-                                                <th><b>Employee Name</b></th>
-                                                <th class="text-center"><b>Position</b></th>
-                                                <th class="text-center"><b>Join Date</b></th>
-                                                <th class="text-center"><b>Salary Statement</b></th>
-                                        </thead>
-                                        <tbody>
-                                            @foreach($add_salary_statement as $v)
-                                            <tr>
-                                                <td class="text-center"><b><a href="#">{{$v->emp_id_no}}</a></b></b></td>
-                                                <td>{{$v->emp_name}}</td>
-                                                <td class="text-center">{{$v->emp_position}}</td>
-                                                <td class="text-center">{{$v->created_at}}</td>
-                                                <td class="text-center">
-                                                    @if($v->salary_status == 1)
-                                                    <a href="#" class="btn btn-default btn-xs"><i class="fa fa-check text-success-light"></i> &nbsp; Running &nbsp;&nbsp;</a>
-                                                    @else
-                                                    <a href="#add-salary-statement" class="btn btn-warning btn-xs"  data-toggle="modal"><i class="fa fa-remove"></i> &nbsp; Pending &nbsp;&nbsp;</a>
-                                                    @endif
-                                                </td>
-                                            </tr>
-                                            @endforeach()
-                                        </tbody>
-                                    </table>
+                                    @endfor
+
                                 </div>
-                                <!-- end panel -->
+                                @endfor
+
                             </div>
-                            <!-- end Add_Salary -->
-                        </div>
-                        <!-- end row -->
-                    </div>
-
-                    <div class="tab-pane fade" id="default-tab-5">
-                        <!-- begin row -->
-                        <div class="row">
-                            <div class="col-md-10 col-md-offset-1 well">
-                                <!-- begin panel -->
-                                <div class="panel table-h-600">
-                                    <div class="panel-heading">
-                                        <div class="panel-heading-btn">
-                                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-grey" data-click="panel-expand"><i class="fa fa-expand"></i></a>
-                                        </div>
-                                        <h4 class="panel-title text-center"><b>Your Complain</b></h4>
-                                    </div>
-                                    <div class="table-responsive">
-                                        <table class="table table-td-valign-middle table-s">
-                                            <thead class="thead-s">
-                                                <tr class="success">
-                                                    <th> No </th>
-                                                    <th>Complain Name</th>
-                                                    <th class="text-center">Location</th>
-                                                    <th>Description </th>
-                                                    <th>&nbsp; &nbsp; Status</th>
-                                                    <th>&nbsp;&nbsp; Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody class="tbody-s">
-                                                <tr class="tr-s">
-                                                    <td><a href="#" class="btn btn-default btn-xs">1</a></td>
-                                                    <td>HIma Humo</td>
-                                                    <td>01 Building, D Unit</td>
-                                                    <td class="col-md-3">Kitchen Floor</td> 
-                                                    <td>
-                                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-check"></i> Solved &nbsp; </a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="{{URL::to('info-owner-invoice')}}" target="_blank" class="btn btn-default btn-xs"><i class="fa fa-list"></i> Details</a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="#" class="btn btn-default btn-xs">2</a></td>
-                                                    <td>HIma Humo</td>
-                                                    <td>01 Building, D Unit</td>
-                                                    <td class="">Damage Window</td> 
-                                                    <td>
-                                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-check"></i> Solved &nbsp; </a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="{{URL::to('info-owner-invoice')}}" target="_blank" class="btn btn-default btn-xs"><i class="fa fa-list"></i> Details</a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="#" class="btn btn-default btn-xs">3</a></td>
-                                                    <td>HIma Humo</td>
-                                                    <td>01 Building, D Unit</td>
-                                                    <td class="">Damage Window</td> 
-                                                    <td>
-                                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-check"></i> Solved &nbsp; </a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="{{URL::to('info-owner-invoice')}}" target="_blank" class="btn btn-default btn-xs"><i class="fa fa-list"></i> Details</a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="#" class="btn btn-default btn-xs">4</a></td>
-                                                    <td>HIma Humo</td>
-                                                    <td>01 Building, D Unit</td>
-                                                    <td class="">Damage Window</td> 
-                                                    <td>
-                                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-check"></i> Solved &nbsp; </a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="{{URL::to('info-owner-invoice')}}" target="_blank" class="btn btn-default btn-xs"><i class="fa fa-list"></i> Details</a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="#" class="btn btn-default btn-xs">1</a></td>
-                                                    <td>HIma Humo</td>
-                                                    <td>01 Building, D Unit</td>
-                                                    <td class="col-md-3">Kitchen Floor</td> 
-                                                    <td>
-                                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-check"></i> Solved &nbsp; </a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="{{URL::to('info-owner-invoice')}}" target="_blank" class="btn btn-default btn-xs"><i class="fa fa-list"></i> Details</a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="#" class="btn btn-default btn-xs">2</a></td>
-                                                    <td>HIma Humo</td>
-                                                    <td>01 Building, D Unit</td>
-                                                    <td class="">Damage Window</td> 
-                                                    <td>
-                                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-check"></i> Solved &nbsp; </a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="{{URL::to('info-owner-invoice')}}" target="_blank" class="btn btn-default btn-xs"><i class="fa fa-list"></i> Details</a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="#" class="btn btn-default btn-xs">3</a></td>
-                                                    <td>HIma Humo</td>
-                                                    <td>01 Building, D Unit</td>
-                                                    <td class="">Damage Window</td> 
-                                                    <td>
-                                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-check"></i> Solved &nbsp; </a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="{{URL::to('info-owner-invoice')}}" target="_blank" class="btn btn-default btn-xs"><i class="fa fa-list"></i> Details</a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="#" class="btn btn-default btn-xs">4</a></td>
-                                                    <td>HIma Humo</td>
-                                                    <td>01 Building, D Unit</td>
-                                                    <td class="">Damage Window</td> 
-                                                    <td>
-                                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-check"></i> Solved &nbsp; </a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="{{URL::to('info-owner-invoice')}}" target="_blank" class="btn btn-default btn-xs"><i class="fa fa-list"></i> Details</a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="#" class="btn btn-default btn-xs">1</a></td>
-                                                    <td>HIma Humo</td>
-                                                    <td>01 Building, D Unit</td>
-                                                    <td class="col-md-3">Kitchen Floor</td> 
-                                                    <td>
-                                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-check"></i> Solved &nbsp; </a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="{{URL::to('info-owner-invoice')}}" target="_blank" class="btn btn-default btn-xs"><i class="fa fa-list"></i> Details</a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="#" class="btn btn-default btn-xs">2</a></td>
-                                                    <td>HIma Humo</td>
-                                                    <td>01 Building, D Unit</td>
-                                                    <td class="">Damage Window</td> 
-                                                    <td>
-                                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-check"></i> Solved &nbsp; </a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="{{URL::to('info-owner-invoice')}}" target="_blank" class="btn btn-default btn-xs"><i class="fa fa-list"></i> Details</a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="#" class="btn btn-default btn-xs">3</a></td>
-                                                    <td>HIma Humo</td>
-                                                    <td>01 Building, D Unit</td>
-                                                    <td class="">Damage Window</td> 
-                                                    <td>
-                                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-check"></i> Solved &nbsp; </a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="{{URL::to('info-owner-invoice')}}" target="_blank" class="btn btn-default btn-xs"><i class="fa fa-list"></i> Details</a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="#" class="btn btn-default btn-xs">4</a></td>
-                                                    <td>HIma Humo</td>
-                                                    <td>01 Building, D Unit</td>
-                                                    <td class="">Damage Window</td> 
-                                                    <td>
-                                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-check"></i> Solved &nbsp; </a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="{{URL::to('info-owner-invoice')}}" target="_blank" class="btn btn-default btn-xs"><i class="fa fa-list"></i> Details</a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="#" class="btn btn-default btn-xs">1</a></td>
-                                                    <td>HIma Humo</td>
-                                                    <td>01 Building, D Unit</td>
-                                                    <td class="col-md-3">Kitchen Floor</td> 
-                                                    <td>
-                                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-check"></i> Solved &nbsp; </a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="{{URL::to('info-owner-invoice')}}" target="_blank" class="btn btn-default btn-xs"><i class="fa fa-list"></i> Details</a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="#" class="btn btn-default btn-xs">2</a></td>
-                                                    <td>HIma Humo</td>
-                                                    <td>01 Building, D Unit</td>
-                                                    <td class="">Damage Window</td> 
-                                                    <td>
-                                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-check"></i> Solved &nbsp; </a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="{{URL::to('info-owner-invoice')}}" target="_blank" class="btn btn-default btn-xs"><i class="fa fa-list"></i> Details</a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="#" class="btn btn-default btn-xs">3</a></td>
-                                                    <td>HIma Humo</td>
-                                                    <td>01 Building, D Unit</td>
-                                                    <td class="">Damage Window</td> 
-                                                    <td>
-                                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-check"></i> Solved &nbsp; </a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="{{URL::to('info-owner-invoice')}}" target="_blank" class="btn btn-default btn-xs"><i class="fa fa-list"></i> Details</a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="#" class="btn btn-default btn-xs">4</a></td>
-                                                    <td>HIma Humo</td>
-                                                    <td>01 Building, D Unit</td>
-                                                    <td class="">Damage Window</td> 
-                                                    <td>
-                                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-check"></i> Solved &nbsp; </a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="{{URL::to('info-owner-invoice')}}" target="_blank" class="btn btn-default btn-xs"><i class="fa fa-list"></i> Details</a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="#" class="btn btn-default btn-xs">1</a></td>
-                                                    <td>HIma Humo</td>
-                                                    <td>01 Building, D Unit</td>
-                                                    <td class="col-md-3">Kitchen Floor</td> 
-                                                    <td>
-                                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-check"></i> Solved &nbsp; </a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="{{URL::to('info-owner-invoice')}}" target="_blank" class="btn btn-default btn-xs"><i class="fa fa-list"></i> Details</a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="#" class="btn btn-default btn-xs">2</a></td>
-                                                    <td>HIma Humo</td>
-                                                    <td>01 Building, D Unit</td>
-                                                    <td class="">Damage Window</td> 
-                                                    <td>
-                                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-check"></i> Solved &nbsp; </a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="{{URL::to('info-owner-invoice')}}" target="_blank" class="btn btn-default btn-xs"><i class="fa fa-list"></i> Details</a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="#" class="btn btn-default btn-xs">3</a></td>
-                                                    <td>HIma Humo</td>
-                                                    <td>01 Building, D Unit</td>
-                                                    <td class="">Damage Window</td> 
-                                                    <td>
-                                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-check"></i> Solved &nbsp; </a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="{{URL::to('info-owner-invoice')}}" target="_blank" class="btn btn-default btn-xs"><i class="fa fa-list"></i> Details</a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="#" class="btn btn-default btn-xs">4</a></td>
-                                                    <td>HIma Humo</td>
-                                                    <td>01 Building, D Unit</td>
-                                                    <td class="">Damage Window</td> 
-                                                    <td>
-                                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-check"></i> Solved &nbsp; </a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="{{URL::to('info-owner-invoice')}}" target="_blank" class="btn btn-default btn-xs"><i class="fa fa-list"></i> Details</a>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                <!-- end panel -->
-                            </div>
-                        </div>
-                        <!-- end row -->
-                    </div>
-                    <div class="tab-pane fade" id="default-tab-6">
-                        <!-- begin row -->
-                        <div class="row">
-                            <div class="col-md-10 col-md-offset-1">
-                                <div class="col-md-8 col-md-offset-2">
-
-                                    <h4>
-                                        <strong class="text-success">Salary Statement Of Per Month</strong>
-                                        <a href="#salary-edit" class="col-md-offset-4 btn btn-default btn-xs" data-toggle="modal"><i class="fa fa-pencil"></i> </i> Edit Salary</a>
-
-                                    </h4>
-
-                                    <div class="col-sm-3 m-30">
-                                        <a href="#salary-satement" class="btn btn-success btn-lg m-r-5 m-b-20 width200" data-toggle="modal"><i class="fa fa-plus"></i></i> Add Salary</a>
-                                    </div>
-
-                                    <dl class="dl-horizontal m-b-20 m-t-30 f-s-18">
-                                        <dt>Basic :</dt>
-                                        <dd>444 Taka</dd>
-                                        <dt>House :</dt>
-                                        <dd>4555 Taka</dd>
-                                        <dt>Health :</dt>
-                                        <dd>1211212 Taka</dd>
-                                        <dt>Transport :</dt>
-                                        <dd>4554 Taka</dd><hr class="hr-d">
-                                        <dt>Total Salary :</dt>
-                                        <dd>454545545 Taka</dd>
-                                    </dl>
-                                </div>
-                            </div>
+                            <!-- end View_Salary -->
                         </div>
                         <!-- end row -->
                     </div>

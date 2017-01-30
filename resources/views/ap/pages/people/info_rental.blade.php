@@ -29,15 +29,16 @@
                     <td>{{$v->rental_phone_1}}</td>
                     <td>{{$v->rental_email}}</td>
                     <td class="text-center"><a href="" class="btn btn-default btn-xs"> &nbsp; Paid &nbsp;</a> </td>
-                    <td>
+                    <td ng-init="data.status[{{$v->rental_id}}]={{$v->person_status}}">
                         
-                        <a href="{{URL::to('info-rental-status/'.$v->rental_id.'/'.$v->person_status)}}" class="btn btn-default btn-xs" ng-click="rentalStatus({{$v->rental_id}},{{$v->person_status}})">
-                            <i class="fa fa-check text-success-light" title="Active Your Profile"></i>
-                            <i class="fa fa-remove" ng-if="rental.status == 0" title="Stop Your Profile"></i>
-                        </a> &nbsp;
-
-
-                        <a href="{{URL::to('info-rental-details/'.$v->rental_details_id)}}" class="btn btn-default btn-xs"><i class="fa fa-list-alt"></i> Details</a>
+                        <a href="{{URL::to('info-rental-details/'.$v->rental_details_id)}}" class="btn btn-default btn-xs" title="See Details Information"><i class="fa fa-list-alt"></i> Details</a>&nbsp;
+                        
+                        
+                        <a class="btn btn-default btn-xs"  ng-click="rentalStatus({{$v->rental_id}},data.status[{{$v->rental_id}}])" >
+                            <i class="fa fa-check text-success-light" ng-if="data.status[{{$v->rental_id}}]==1" title="Active Profile"></i>
+                            <i class="fa fa-remove" ng-if="data.status[{{$v->rental_id}}]==0" title="Stop Profile"></i>
+                        </a>
+                        
                     </td>
                 </tr>
                 @endforeach()

@@ -187,10 +187,11 @@ class PeopleController extends Controller
     //----Rental rental_satus
     public function status_rental_info($rental_id, $status)
     {
-            $status = DB::table('tbl_rental')
+            DB::table('tbl_rental')
                     ->where('rental_id', $rental_id)
-                    ->update(['person_status' => 1]);
-            return $status;
+                    ->update(['person_status' => $status]);
+            $data['status'][$rental_id] = $status;
+            return $data;
     }
     
     public function driver_info()

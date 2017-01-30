@@ -406,6 +406,7 @@
         <script src="{{URL::asset('ap/assets/js/angular.js')}}"  type="text/javascript"></script>
         <script src="{{URL::asset('ap/assets/js/homeController.js')}}"  type="text/javascript"></script>
         <script src="{{URL::asset('ap/assets/js/notice_board.js')}}"  type="text/javascript"></script>
+        <script src="{{URL::asset('ap/assets/js/bldController.js')}}"  type="text/javascript"></script>
         <!-- End_Angular_js -->
         
         <script>
