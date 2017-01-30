@@ -130,7 +130,6 @@ class BldController extends Controller {
             $save['bld_name'] = $a;
             $save['bld_floor'] = $b;
             $save['bld_unit'] = $c;
-
             $bld = DB::table('tbl_flat_info')->insert($save);
             
             if ($bld) {
@@ -146,5 +145,24 @@ class BldController extends Controller {
             return Redirect::to('bld-add');
         }
     }
+    
+    //----Publication bld_satus
+    public function status_bld($flat_info_id, $status)
+    {
+
+        if($status == 1){
+            DB::table('tbl_flat_info')
+                ->where('flat_info_id', $flat_info_id)
+                ->update(['bld_status' => 1]);
+            return Redirect::to('bld-add');
+
+        }else{
+            DB::table('tbl_flat_info')
+                ->where('flat_info_id', $flat_info_id)
+                ->update(['bld_status' => 0]);
+            return Redirect::to('bld-add');
+        }
+    }
+    
 
 }

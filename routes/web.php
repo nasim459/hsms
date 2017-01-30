@@ -109,6 +109,7 @@ Route::post('service-assigned-add', 'ServiceAssignedController@add_assigned_serv
 //----------Regi Building
 Route::get('bld-add', 'BldController@add_bld');
 Route::post('bld-save', 'BldController@save_bld');
+Route::get('bld-status/{flat_info_id}/{status}', 'BldController@status_bld');
 
 
 
