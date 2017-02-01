@@ -1,6 +1,6 @@
 @section('people_content')
 <!-- begin section-container -->
-<div class="section-container">
+<div class="section-container" ng-controller="servicePerson">
     <!-- begin panel -->
     <!-- begin row -->
     <div class="row">
@@ -38,18 +38,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php $number = 0;
+                        <?php
+                        $number = 0;
                         $off = 0;
-                        $on = 1; ?>
+                        $on = 1;
+                        ?>
                         @foreach($emp_show as $v) 
                         <tr>
                             <td>
                                 @if($v->service_person_image != NULL)
-                                <img src="{{URL::asset($v->service_person_image)}}" class="img-h-w" alt="" />
+                                <a href="#service-person-picture" data-toggle="modal" ng-click="service_person_pic_show({{$v->service_person_id}})" title="Click To See Picture"><img src="{{URL::asset($v->service_person_image)}}" class="img-h-w" alt="" /></a>
                                 @else
-                                <img src="{{URL::asset('ap/assets/img_blank/img_blank.jpg')}}" class="img-h-w" alt="" />
+                                <img src="{{URL::asset('ap/assets/img_blank/img_blank.jpg')}}" class="img-h-w" title="Please, Give Your Picture" alt="" />
                                 @endif
-                                
+
                                 <b  class="m-l-20">{{$number = $number + 1}}</b>
                             </td>
                             <td>{{$v->service_person_name}}</td>
@@ -82,8 +84,9 @@
     <!-- end panel -->
 
 
-    <!-- begin service_people registration -->
+    <!--start modal-->
     <div class="col-md-6">
+        <!--start service_people registration-->
         <div class="clearfix m-b-25">
             <!-- #modal-dialog -->
             <div class="modal fade" id="modal-s-people">
@@ -177,10 +180,54 @@
                     </div>
                 </div>
             </div>
-
         </div>
+        <!--end service_people registration-->
+
+        <!--start show_service_people_picture-->
+        <div class="clearfix m-b-25">
+            <!-- #modal-dialog-start-->
+            <div class="modal fade" id="service-person-picture">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="modal-title text-center">Service Person Picture</h4>
+                        </div>
+                        <div class="modal-body">
+                            <!-- begin row panel body --->
+                            <div class="row well">
+                                <!-- begin section-container -->
+                                <div class="section-container">
+                                    <span class="form-horizontal" data-parsley-validate="true" name="demo-form">
+                                        <div class="col-md-12 m-t-15">
+                                            <!--start service_person_Picture-->
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <div class="col-sm-4 col-md-offset-4 m-b-10" ng-repeat="picture in data">
+
+                                                        <a class="thumbnail m-b-mi-15">
+                                                            <img src="@{{picture.service_person_image}}" class="img-md-h-w" alt="">
+                                                        </a>
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--ends ervice_person_Picture-->
+                                        </div>
+                                    </span>
+                                </div>
+                                <!-- end section-container -->    
+                            </div>
+                            <!-- end row panel body --->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- #modal-dialog-end-->
+        </div>
+        <!--end show_service_people_picture-->
     </div>
-    <!-- end service_people registration -->
+    <!-- end modal -->
 
 
 </div>

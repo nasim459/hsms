@@ -9,6 +9,7 @@ app.controller('serviceBill', function($scope, $http) {
           $scope.data = response.data;
         });
     };
+    
     //-----calcutate_sum__
     $scope.sum = function(data) {
          var number =0;
@@ -59,6 +60,15 @@ app.controller('people', function($scope, $http) {
           $scope.data.status[rental_id]=off;
         });
     };
+    
+ 
+    //-----rental_picture_show
+    $scope.rental_picture_show = function(rental_id_pic) {
+        $http.get('/hsms/public/info-rental-pic/'+rental_id_pic).then(function(response) {
+          $scope.data = response.data;
+        });
+    };
+
     
 });
 

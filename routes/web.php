@@ -53,6 +53,7 @@ Route::get('info-driver-details/{driver_details_id}', 'PeopleController@details_
 
 Route::get('info-owner-invoice', 'InvoiceController@invoice_owner_info');
 Route::get('info-rental', 'PeopleController@rental_info');
+Route::get('info-rental-pic/{rental_id}', 'PeopleController@pic_rental_info');
 Route::get('info-rental-details/{rental_details_id}', 'PeopleController@details_rental_info');
 Route::get('info-rental-status/{rental_id}/{status}', 'PeopleController@status_rental_info');
 
@@ -94,7 +95,11 @@ Route::get('info-service', 'ServiceController@service_info');
 Route::get('info-service-details/{service_person_id}', 'ServiceController@details_service_info');
 Route::post('service-add', 'ServiceController@add_service');
 Route::post('service-add-name', 'ServiceController@name_add_service');
+Route::get('service-type-show/{service_id}', 'ServiceController@show_type_service');
+Route::get('service-person-pic-show/{service_person_id}', 'ServiceController@show_pic_person_service');
+
 Route::post('service-type-update', 'ServiceController@update_type_service');
+Route::post('service-people-pic-update', 'ServiceController@update_pic_people_service');
 Route::get('service-type-status/{service_id}/{status}', 'ServiceController@status_type_service');
 Route::get('info-service-edit/{service_person_id}', 'ServiceController@edit_service_info');
 Route::post('info-service-update', 'ServiceController@update_service_info');

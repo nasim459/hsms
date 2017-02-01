@@ -68,7 +68,7 @@
                     <li class=""><a href="#default-tab-5" data-toggle="tab"><i class="fa fa-user"></i> Complain</a></li>
                     <li class=""><a href="#default-tab-6" data-toggle="tab"><i class="fa fa-user"></i> Salary Statement</a></li>
                 </ul>
-                <div class="tab-content m-b-0">
+                <div class="tab-content m-b-0" style="overflow: scroll; overflow-x: hidden; overflow-y: auto; height: 300px;">
                     <div class="tab-pane fade active in" id="default-tab-1">
                         <div class="row">
                             <div class="col-md-10 col-md-offset-1">

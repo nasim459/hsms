@@ -81,13 +81,6 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-group">
-                                            <label class="control-label col-sm-3" for="fullname">Picture <span class="text-danger"></span></label>
-                                            <div class="col-sm-8">
-                                                <input  type="file" name="filename" id="fileToUpload" />
-                                            </div>
-                                        </div>
-
                                     </div>
                                     <!-- end Personal Information -->
                                 </div>

@@ -22,6 +22,19 @@
     background-repeat: no-repeat !important;
     border-radius: 5px 5px 5px;
 }
+.img-sm-h-w{
+    height: 96px !important;
+    width: 93px;
+    //margin-left: 5px;
+    background-repeat: no-repeat !important;
+    border-radius: 5px 5px 5px;
+}
+.img-md-h-w {
+    height: 140px !important;
+    width: 140px;
+    background-repeat: no-repeat !important;
+    border-radius: 5px 5px 5px;
+}
 .rough_border{
     border: 1px solid red;
 }

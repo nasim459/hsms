@@ -137,6 +137,15 @@ class PeopleController extends Controller
                 ->with('maincontent', $master);
     }
     
+    //--------------show rental_picture
+    public function pic_rental_info($rental_id) {
+        
+        $rental_pic = DB::table('tbl_rental')
+                        ->where('rental_id', $rental_id)
+                        ->get();
+        return $rental_pic;
+    }
+    
     //----Details informtation of details_rental_info
     public function details_rental_info($rental_details_id)
     {
