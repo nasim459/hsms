@@ -14,7 +14,7 @@
                             <th data-sorting="disabled">SL</th>
                             <th class="text-center">Title Notice</th>
                             <th class="text-center">Notice Description</th>
-                            <th>Created At</th>
+                            <th>Notice Area</th>
                             <th data-sorting="disabled">
                                 &nbsp; &nbsp;Action &nbsp; &nbsp; &nbsp;
                                 <a href="{{URL::to('broadcasting-notice-add')}}" class="btn btn-default btn-xs"><i class="fa fa-plus"></i> Add</a>
@@ -22,96 +22,19 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach($show_notice as $v) 
                         <tr class="odd gradeX">
-                            <td>01</td>
-                            <td><dl><dt>Gass Problem</dt></dl></td>
-                            <td class="col-md-5">
-                                <p class="well text-justify text-success">Cum sociis natoque penatibus et magnis dis parturient montes, 
-                                    nascetur ridiculus mus. Donec ullamcorper nulla non metus auctor fringilla. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, 
-                                    eget lacinia odio sem nec elit. Donec ullamcorper nulla non 
-                                    metus auctor fringilla.</p>
+                            <td>{{$v->notice_id}}</td>
+                            <td>
+                                <b>{{$v->notice_title}}</b></br>{{$v->notice_created}}
                             </td>
-                            <td>01-05-2016</td>
+                            <td class="col-md-5">
+                                <p class="text-justify text-success-light">{{$v->notice_description}}</p>
+                            </td>
+                            <td>{{$v->bld_name}}-bld: {{$v->bld_floor}}-floor: {{$v->bld_unit}}-unit, </td>
                             <td><a href="{{URL::to('')}}" class="btn btn-default btn-xs"><i class="fa fa-remove"></i> Delete</a></td>
                         </tr>
-                        <tr class="odd gradeX">
-                            <td>01</td>
-                            <td><dl><dt>Electricity</dt></dl></td>
-                            <td class="col-md-5">
-                                <p class="text-justify text-success">Water thakbe na 1:00PM - 5PM </p>
-                            </td>
-                            <td>01-05-2016</td>
-                            <td><a href="{{URL::to('')}}" class="btn btn-default btn-xs"><i class="fa fa-remove"></i> Delete</a></td>
-                        </tr>
-                        <tr class="odd gradeX">
-                            <td>01</td>
-                            <td><dl><dt>Payment Due</dt></dl></td>
-                            <td class="col-md-5">
-                                <p class="text-justify text-success">Pay your payment into 5-10-16</p>
-                            </td>
-                            <td>01-05-2016</td>
-                            <td><a href="{{URL::to('')}}" class="btn btn-default btn-xs"><i class="fa fa-remove"></i> Delete</a></td>
-                        </tr>
-                        <tr class="odd gradeX">
-                            <td>01</td>
-                            <td><dl><dt>Water Problem</dt></dl></td>
-                            <td class="col-md-5">
-                                <p class="text-justify text-success">Cum sociis natoque penatibus et magnis dis parturient montes, 
-                                    nascetur ridiculus mus. Donec ullamcorper nulla non metus auctor fringilla. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, 
-                                    eget lacinia odio sem nec elit. Donec ullamcorper nulla non 
-                                    metus auctor fringilla.</p>
-                            </td>
-                            <td>01-05-2016</td>
-                            <td><a href="{{URL::to('')}}" class="btn btn-default btn-xs"><i class="fa fa-remove"></i> Delete</a></td>
-                        </tr>
-                        <tr class="odd gradeX">
-                            <td>01</td>
-                            <td><dl><dt>Payment Due</dt></dl></td>
-                            <td class="col-md-5">
-                                <p class="text-justify text-success">Water thakbe na 1:00PM - 5PM </p>
-                            </td>
-                            <td>01-05-2016</td>
-                            <td><a href="{{URL::to('')}}" class="btn btn-default btn-xs"><i class="fa fa-remove"></i> Delete</a></td>
-                        </tr>
-                        <tr class="odd gradeX">
-                            <td>01</td>
-                            <td><dl><dt>Payment Due</dt></dl></td>
-                            <td class="col-md-5">
-                                <p class="text-justify text-success">Pay your payment into 5-10-16</p>
-                            </td>
-                            <td>01-05-2016</td>
-                            <td><a href="{{URL::to('')}}" class="btn btn-default btn-xs"><i class="fa fa-remove"></i> Delete</a></td>
-                        </tr>
-                        <tr class="odd gradeX">
-                            <td>01</td>
-                            <td><dl><dt>Cleaner Needed</dt></dl></td>
-                            <td class="col-md-5">
-                                <p class="text-justify text-success">Cum sociis natoque penatibus et magnis dis parturient montes, 
-                                    nascetur ridiculus mus. Donec ullamcorper nulla non metus auctor fringilla. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, 
-                                    eget lacinia odio sem nec elit. Donec ullamcorper nulla non 
-                                    metus auctor fringilla.</p>
-                            </td>
-                            <td>01-05-2016</td>
-                            <td><a href="{{URL::to('')}}" class="btn btn-default btn-xs"><i class="fa fa-remove"></i> Delete</a></td>
-                        </tr>
-                        <tr class="odd gradeX">
-                            <td>01</td>
-                            <td><dl><dt>Floor Sale</dt></dl></td>
-                            <td class="col-md-5">
-                                <p class="text-justify text-success">Water thakbe na 1:00PM - 5PM </p>
-                            </td>
-                            <td>01-05-2016</td>
-                            <td><a href="{{URL::to('')}}" class="btn btn-default btn-xs"><i class="fa fa-remove"></i> Delete</a></td>
-                        </tr>
-                        <tr class="odd gradeX">
-                            <td>01</td>
-                            <td><dl><dt>Floor Sale</dt></dl></td>
-                            <td class="col-md-5">
-                                <p class="text-justify text-success">Pay your payment into 5-10-16</p>
-                            </td>
-                            <td>01-05-2016</td>
-                            <td><a href="{{URL::to('')}}" class="btn btn-default btn-xs"><i class="fa fa-remove"></i> Delete</a></td>
-                        </tr>
+                        @endforeach()
                     </tbody>
                 </table>
             </div>

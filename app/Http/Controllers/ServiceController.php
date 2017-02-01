@@ -36,6 +36,23 @@ class ServiceController extends Controller
     //--------------regi serevice
     public function add_service(Request $request)
     {
+        //----start_service_people_image
+        $image = $request->file('image');
+
+        $image_name = str_random(20);
+        $ext = strtolower($image->getClientOriginalExtension());
+        $destination_path = 'ap/assets/img/s_people_img/';
+        $image_full_name = $image_name . '.' . $ext;
+        $image_url = $destination_path . $image_full_name;
+
+        $success = $image->move($destination_path, $image_full_name);
+        if ($success) {
+            $image_url = $destination_path . $image_full_name;
+        } else {
+            $image_url = NULL;
+        }
+        //----end_service_people_image
+        
         //------tbl_service_people
         $person = array();
         $person['service_person_name'] = $request->b;
@@ -43,6 +60,7 @@ class ServiceController extends Controller
         $person['service_person_phone2'] = $request->d;
         $person['service_person_address'] = $request->e;
         $person['service_person_gender'] = $request->g_radio;
+        $person['service_person_image'] = $image_url;
         $person_get_id = DB::table('tbl_service_person')->insertGetId($person);
         
         //------tbl_service

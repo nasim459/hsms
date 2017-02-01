@@ -55,7 +55,7 @@ class PeopleController extends Controller
                 ->where('tbl_rental_details.rental_details_id', '=', $rental_details_id)
                 ->orderBy('rental_id', 'asc')
                 ->get();
-        
+            
         $rental_id = $rental_details[0]->rental_id;
         $flat_info_id = $rental_details[0]->flat_info_id;
         Session::put('rental_id', $rental_id);
@@ -152,7 +152,9 @@ class PeopleController extends Controller
                 ->where('tbl_rental_details.rental_details_id', '=', $rental_details_id)
                 ->orderBy('rental_id', 'asc')
                 ->get();
-        
+//        echo '<pre>';
+//        print_r($rental_details);
+//        exit();
         $rental_id = $rental_details[0]->rental_id;
         $flat_info_id = $rental_details[0]->flat_info_id;
         Session::put('rental_id', $rental_id);

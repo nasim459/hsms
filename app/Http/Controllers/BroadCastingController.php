@@ -33,7 +33,20 @@ class BroadCastingController extends Controller
     
     public function notice()
     {
-        $broadcasting = view('ap.pages.broadcasting.bc_notice');
+        //---notice_show
+        $show_notice = DB::table('tbl_notice')
+                ->join('tbl_notice_area', 'tbl_notice.notice_area_id', '=', 'tbl_notice_area.notice_area_id')
+                //->join('tbl_flat_info', 'tbl_notice_area.flat_info_id', '=', 'tbl_notice_area.flat_info_id')
+                //->where('tbl_notice.notice_area_id', 'tbl_notice_area.notice_area_id')
+                ->select('tbl_notice.*', 'tbl_notice_area.*')
+                ->orderBy('notice_id', 'desc')
+                ->get();
+        echo '<pre>';
+        print_r($show_notice);
+        exit();
+        
+        $broadcasting = view('ap.pages.broadcasting.bc_notice')
+                ->with('show_notice', $show_notice);
         $master = view('ap.pages.broadcasting.bc_master')
                 ->with('broadcasting_content', $broadcasting);
         return view('master_ap')

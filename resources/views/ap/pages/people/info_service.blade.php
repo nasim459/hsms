@@ -38,11 +38,18 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php $number = 0; $off = 0; $on = 1; ?>
+                        <?php $number = 0;
+                        $off = 0;
+                        $on = 1; ?>
                         @foreach($emp_show as $v) 
                         <tr>
                             <td>
-                                <img src="{{URL::asset('ap/assets/img/user_profile.jpg')}}" class="img-h-w" alt="" />
+                                @if($v->service_person_image != NULL)
+                                <img src="{{URL::asset($v->service_person_image)}}" class="img-h-w" alt="" />
+                                @else
+                                <img src="{{URL::asset('ap/assets/img_blank/img_blank.jpg')}}" class="img-h-w" alt="" />
+                                @endif
+                                
                                 <b  class="m-l-20">{{$number = $number + 1}}</b>
                             </td>
                             <td>{{$v->service_person_name}}</td>
@@ -56,7 +63,7 @@
                                 <a href="{{URL::to('info-service-status/'.$v->service_id.'/'.$on)}}" class="btn btn-warning btn-xs"> &nbsp; Stop &nbsp; </a>
                                 @endif
                             </td>
-                            
+
                             <td>
                                 <a href="{{URL::to('info-service-details/'.$v->service_person_id)}}" class="btn btn-default btn-xs"><i class="fa fa-list-alt"></i> Details</a>
                             </td>
@@ -91,7 +98,7 @@
                             <div class="row well">
                                 <!-- begin section-container -->
                                 <div class="section-container">
-                                    {!! Form::open(array('url'=>'service-add', 'role'=>'form', 'method'=>'POST')) !!}
+                                    {!! Form::open(array('url'=>'service-add', 'role'=>'form', 'method'=>'POST', 'files'=>'true')) !!}
                                     <span action="{{URL::to('regi-s-people-save')}}" class="form-horizontal" data-parsley-validate="true" name="demo-form">
 
                                         <div class="col-md-12 m-t-15">
@@ -143,7 +150,7 @@
                                                 <div class="form-group">
                                                     <label class="control-label col-sm-3" for="fullname">Picture <span class="text-danger"></span></label>
                                                     <div class="col-sm-8">
-                                                        <input  type="file" name="filename" id="fileToUpload" />
+                                                        <input  type="file" name="image" id="fileToUpload" />
                                                     </div>
                                                 </div>
 

@@ -23,6 +23,30 @@
 
                     <span class="form-horizontal" data-parsley-validate="true" name="demo-form">
                         <div class="form-group">
+                            <label class="control-label col-sm-3">Message Area <span class="text-danger">*</span></label>
+                            <div class="col-sm-2">
+                                <select class="form-control" id="select-required" name="selectBox" data-parsley-required="true">
+                                    <option value="">Building</option>
+                                    <option value="1"> 01 </option>
+                                    <option value="2"> 02 </option>
+                                </select>
+                            </div>
+                            <div class="col-sm-2">
+                                <select class="form-control" id="select-required" name="selectBox" data-parsley-required="true">
+                                    <option> Floor</option>
+                                    <option value="1"> 01 </option>
+                                    <option value="2"> 02 </option>
+                                </select>
+                            </div>
+                            <div class="col-sm-2">
+                                <select class="form-control" id="select-required" name="selectBox" data-parsley-required="true">
+                                    <option> Unit </option>
+                                    <option value="A-Unit"> A-Unit</option>
+                                    <option value="B-Unit"> B-Unit</option>
+                                </select>
+                            </div>
+                        </div><div class="hr-d"></div>
+                        <div class="form-group">
                             <label class="control-label col-sm-3">Title Notice<span class="text-danger">*</span></label>
                             <div class="col-sm-3">
                                 <input class="form-control" type="text"  name="title" ng-model="title" placeholder="Write Title" required="" data-parsley-required="true" />
@@ -43,17 +67,6 @@
                                     <option value="0">Unpublished</option>
                                 </select>
                             </div>
-
-                            <div class="col-sm-3">
-                                <select class="form-control">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                </select>
-                            </div>
-
                         </div><p id="nas_rough"></p>
                         <div class="form-group m-b-0">
                             <label class="control-label col-sm-3"></label>

@@ -7,7 +7,9 @@
         <div class="col-md-12">
             <!-- begin panel -->
             <div class="panel panel-default">
-                <?php $number = 0; $off = 0; $on = 1; ?>
+                <?php $number = 0;
+                $off = 0;
+                $on = 1; ?>
                 @foreach($service_details as $v)
                 <div class="panel-heading">
                     <div class="btn-group pull-left">
@@ -30,7 +32,11 @@
                             <div class="col-md-6">
                                 <div class="col-md-4">
                                     <a href="" class="thumbnail m-b-mi-15">
-                                        <img src="{{URL::asset('ap/assets/img/user_profile.jpg')}}" alt="" />
+                                        @if($v->service_person_image != NULL)
+                                        <img src="{{URL::asset($v->service_person_image)}}" class="img-d-h-w" alt="Blank">
+                                        @else
+                                        <img src="{{URL::asset('ap/assets/img_blank/img_blank.jpg')}}" class="img-d-h-w" alt="" />
+                                        @endif
                                     </a>
                                 </div>
                                 <div class="col-md-8">
@@ -174,7 +180,9 @@
                                 <div class="col-md-10">
 
                                     <div class="col-md-8 col-md-offset-2 m-t-20 m-b-30">
-                                        <?php $number = 0; $off = 0; $on = 1; ?>
+<?php $number = 0;
+$off = 0;
+$on = 1; ?>
                                         @foreach($service_type as $v)
                                         <div class="col-md-12">
                                             <span class="col-md-8">
@@ -182,7 +190,7 @@
                                             </span>
                                             <span class="col-md-offset-4">
                                                 <!--<a href="{{URL::to('info-service/'.$v->service_id)}}" class="text-muted" title="Edit Service"><i class="fa fa-pencil"></i>&nbsp; Edit &nbsp;</a>-->
-                                                
+
                                                 @if($v->service_status == 1)
                                                 <a href="{{URL::to('service-type-status/'.$v->service_id.'/'.$off)}}" class="btn btn-default btn-xs">&nbsp; Running &nbsp;</a>
                                                 @else
@@ -190,7 +198,7 @@
                                                 @endif
                                                 &nbsp; &nbsp; &nbsp;
                                                 <a href="#modal-s-type" class="text-muted" data-toggle="modal" title="Edit Service"> Edit &nbsp;<i class="fa fa-pencil"></i></a>
-                                                
+
                                             </span>
                                         </div>&nbsp;</br>
                                         @endforeach()
@@ -366,7 +374,7 @@
                     </div>
                 </div>
                 <!-- end edit_service_people modal -->
-                
+
                 <!-- begin edit_service_people modal -->
                 <div class="col-md-6">
                     <div class="clearfix m-b-25">

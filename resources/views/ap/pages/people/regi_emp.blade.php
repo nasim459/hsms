@@ -36,7 +36,7 @@
                             @if(session()->get('emp_inserted') !== NULL)
                             <h4 class="text-center text-success">{{session()->get('emp_inserted')}}</h4>
                             @endif
-                            {!! Form::open(array('url'=>'regi-emp-save', 'role'=>'form', 'method'=>'POST')) !!}
+                            {!! Form::open(array('url'=>'regi-emp-save', 'role'=>'form', 'method'=>'POST', 'files'=>'true')) !!}
                             <span class="form-horizontal" data-parsley-validate="true" name="demo-form">
 
                                 <div class="col-md-12">
@@ -185,7 +185,7 @@
                                         <div class="form-group">
                                             <label class="control-label col-sm-4" for="fullname">Picture <span class="text-danger">*</span></label>
                                             <div class="col-sm-8">
-                                                <input  type="file" name="filename" id="fileToUpload" data-parsley-required="true">
+                                                <input  type="file" name="image" id="fileToUpload" />
                                             </div>
                                         </div>
                                         

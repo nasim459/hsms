@@ -20,7 +20,13 @@
                 @foreach($emp_show as $v) 
                 <tr>
                     <td>
-                        <img src="{{URL::asset('ap/assets/img/user_profile.jpg')}}" class="img-h-w" alt="" />
+                        <!--<img src="{{URL::asset('ap/assets/img/user_profile.jpg')}}" class="img-h-w" alt="" />-->
+                        @if($v->emp_image != NULL)
+                        <img src="{{URL::asset($v->emp_image)}}" class="img-h-w" alt="" />
+                        @else
+                        <img src="{{URL::asset('ap/assets/img_blank/img_blank.jpg')}}" class="img-h-w" alt="" />
+                        @endif
+                        
                         <b>&nbsp;{{$v->emp_id_no}}</b>
                     </td>
                     <td>{{$v->emp_name}}</td>

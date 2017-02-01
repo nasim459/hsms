@@ -3,59 +3,71 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use Session;
 use DB;
 use Illuminate\Support\Facades\Redirect;
 
-class RegiController extends Controller
-{
+class RegiController extends Controller {
+
     //
-    public function regi_info()
-    {
+    public function regi_info() {
         $regi = view('ap.pages.people.regi_info');
         return view('master_ap')
-                ->with('maincontent', $regi);
+                        ->with('maincontent', $regi);
     }
-    
+
     //=====Start Regi Rough Code================================
-    public function rental_regi()
-    {
+    public function rental_regi() {
         $regi = view('ap.pages.people.regi_rental');
         return view('master_ap')
-                ->with('maincontent', $regi);
+                        ->with('maincontent', $regi);
     }
-    public function driver_regi()
-    {
+
+    public function driver_regi() {
         $regi = view('ap.pages.people.regi_driver');
         return view('master_ap')
-                ->with('maincontent', $regi);
+                        ->with('maincontent', $regi);
     }
-    public function s_people_regi()
-    {
+
+    public function s_people_regi() {
         $regi = view('ap.pages.people.regi_s_people');
         return view('master_ap')
-                ->with('maincontent', $regi);
+                        ->with('maincontent', $regi);
     }
-    public function emp_regi()
-    {
+
+    public function emp_regi() {
         $regi = view('ap.pages.people.regi_emp');
         return view('master_ap')
-                ->with('maincontent', $regi);
+                        ->with('maincontent', $regi);
     }
-    public function visitor_regi()
-    {
+
+    public function visitor_regi() {
         $regi = view('ap.pages.people.regi_visitor');
         return view('master_ap')
-                ->with('maincontent', $regi);
+                        ->with('maincontent', $regi);
     }
+
     //=====End Regi Rough Code===================================
-    
     //=====Begin Registration====================================
     //--------------regi rental
-    public function save_rental_regi(Request $request)
-    {
+    public function save_rental_regi(Request $request) {
+
+        $image = $request->file('image');
+
+        $image_name = str_random(20);
+        $ext = strtolower($image->getClientOriginalExtension());
+        $destination_path = 'ap/assets/img/rental_img/';
+        $image_full_name = $image_name . '.' . $ext;
+        $image_url = $destination_path . $image_full_name;
+
+        $success = $image->move($destination_path, $image_full_name);
+        if ($success) {
+            $image_url = $destination_path . $image_full_name;
+        } else {
+            $image_url = NULL;
+        }
+
         //------tbl_rental_details---------------------
         $details = array();
         $details['son_wife_off'] = $request->son_wife_off;
@@ -81,10 +93,10 @@ class RegiController extends Controller
         $details['psi_phone'] = $request->psi_phone;
         $details['psi_cause'] = $request->psi_cause;
         $details['psi_address'] = $request->psi_address;
-        
+
         $details['phone_2'] = $request->rntl_phone2;
         $details_get_id = DB::table('tbl_rental_details')->insertGetId($details);
-        
+
         //------tbl_rental_family-----------------------a
         $f = array();
         $f['f_name'] = $request->f_name;
@@ -93,39 +105,55 @@ class RegiController extends Controller
         $f['f_staying'] = $request->f_staying;
         $f['f_age'] = $request->f_age;
         $f_get_id = DB::table('tbl_rental_family')->insertGetId($f);
-        
+
         //------tbl_rental_reference--------------------a
         $ref = array();
         $ref['r_name'] = $request->r_name;
         $ref['r_phone'] = $request->r_phone;
         $ref['r_address'] = $request->r_address;
         $ref_get_id = DB::table('tbl_rental_reference')->insertGetId($ref);
-        
+
         //------tbl_flat_info--------------------------
         $bld = array();
         $bld['bld_name'] = $request->building;
         $bld['bld_floor'] = $request->floor;
         $bld['bld_unit'] = $request->unit;
         $flat_info_get_id = DB::table('tbl_flat_info')->insertGetId($bld);
-        
+
         //------tbl_rental------------------------------
         $rental = array();
         $rental['rental_name'] = $request->rntl_name;
         $rental['rental_id_no'] = $request->rntl_id;
         $rental['rental_phone_1'] = $request->rntl_phone1;
+        $rental['rental_image'] = $image_url;
         $rental['rental_email'] = $request->rntl_email;
         $rental['rental_details_id'] = $details_get_id;
         $rental['rental_family_id'] = $f_get_id;
         $rental['rental_reference_id'] = $ref_get_id;
         $rental['flat_info_id'] = $flat_info_get_id;
         DB::table('tbl_rental')->insert($rental);
-        
+
         Session::put('rental_inserted', 'Data Inserted Successfully!!!');
         return Redirect::to('info-rental');
     }
+
     //--------------regi employee
-    public function save_emp_regi(Request $request)
-    {
+    public function save_emp_regi(Request $request) {
+
+        $image = $request->file('image');
+
+        $image_name = str_random(20);
+        $ext = strtolower($image->getClientOriginalExtension());
+        $destination_path = 'ap/assets/img/emp_img/';
+        $image_full_name = $image_name . '.' . $ext;
+        $image_url = $destination_path . $image_full_name;
+
+        $success = $image->move($destination_path, $image_full_name);
+        if ($success) {
+            $image_url = $destination_path . $image_full_name;
+        } else {
+            $image_url = NULL;
+        }
         
         //------tbl_emp_details---------------------
         $details = array();
@@ -142,26 +170,27 @@ class RegiController extends Controller
         $details['epa_thana'] = $request->thana;
         $details['epa_village'] = $request->village;
         $details_get_id = DB::table('tbl_emp_details')->insertGetId($details);
-        
+
         //------tbl_rental--------------------------
         $emp = array();
         $emp['emp_name'] = $request->emp_name;
         $emp['emp_position'] = $request->position;
         $emp['emp_phone1'] = $request->phone1;
         $emp['emp_email'] = $request->email;
+        $emp['emp_image'] = $image_url;
         $emp['emp_details_id'] = $details_get_id;
         DB::table('tbl_emp')->insertGetId($emp);
-        
+
         Session::put('emp_inserted', 'Data Inserted Successfully!!!');
         return Redirect::to('regi-emp');
 //        echo '<pre>';
 //        print_r($ref_get_id);
 //        exit();
     }
+
     //=====End Registration=====================================
-    
-    public function save_driver_regi(Request $request)
-    {
+
+    public function save_driver_regi(Request $request) {
         //------tbl_driver_details---------------------
         $details = array();
         $details['driver_son_wife_off'] = $request->son_wife_off;
@@ -179,7 +208,7 @@ class RegiController extends Controller
 
         $details['driver_phone2'] = $request->driver_phone2;
         $details_get_id = DB::table('tbl_driver_details')->insertGetId($details);
-        
+
 
 
         //------tbl_driver------------------------------
@@ -187,13 +216,11 @@ class RegiController extends Controller
         $driver['driver_name'] = $request->name;
         $driver['driver_phone1'] = $request->driver_phone1;
         $driver['driver_details_id'] = $details_get_id;
-  
+
         DB::table('tbl_driver')->insertGetId($driver);
-        
+
         Session::put('Driver_data_inserted', 'Data Inserted Successfully!!!');
         return Redirect::to('info-driver');
     }
-    
-    
- 
+
 }

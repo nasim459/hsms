@@ -32,7 +32,8 @@
 
                         <!-- begin section-container -->
                         <div class="section-container">
-                            <form action="{{URL::to('regi-rental-save')}}" class="form-horizontal" data-parsley-validate="true" name="demo-form">
+                            {!! Form::open(array('url'=>'regi-rental-save', 'role'=>'form', 'method'=>'POST', 'files'=>'true')) !!}
+                            <span class="form-horizontal" data-parsley-validate="true" name="demo-form">
 
                                 <!-- begin Building Place -->
                                 <div class="col-md-8 col-md-offset-1">
@@ -132,6 +133,13 @@
                                             </div>
                                             <div class="col-sm-4">
                                                 <input class="form-control" type="text" id="fullname" name="rntl_phone2" placeholder="01xxxxxxxxx" data-parsley-required="true" />
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-4" for="fullname">Picture <span class="text-danger"></span></label>
+                                            <div class="col-sm-4">
+                                                <input  type="file" name="image" id="fileToUpload" />
                                             </div>
                                         </div>
                                     </div>
@@ -394,7 +402,8 @@
                                 </div>
                                 <!-- end submit button -->
 
-                            </form>
+                            </span>
+                            {!! Form::close() !!} 
                         </div>
                         <!-- end section-container -->    
 

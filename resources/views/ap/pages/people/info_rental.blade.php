@@ -21,7 +21,12 @@
                 @foreach($rental_show as $v) 
                 <tr>
                     <td>
-                        <img src="{{URL::asset('ap/assets/img/user_profile.jpg')}}" class="img-h-w" alt="" />
+                        @if(isset($v->rental_image))
+                        <img src="{{URL::asset($v->rental_image)}}" class="img-h-w" alt="" />
+                        @else
+                        <img src="{{URL::asset('ap/assets/img_blank/img_blank.jpg')}}" class="img-h-w" alt="" />
+                        @endif
+                        
                         <b title="ID: {{$v->rental_id_no}}">{{$v->rental_id_no}}</b>
                     </td>
                     <td>{{$v->rental_name}}</td>

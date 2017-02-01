@@ -11,7 +11,7 @@
                 @foreach($rental_details as $v)
                 <div class="panel-heading">
                     <div class="btn-group pull-left">
-                        <a href="{{URL::to('info-owner')}}" class="btn btn-white btn-xs" title="Back to Owner"><i class="fa fa-arrow-left"></i>&nbsp;</a>
+                        <a href="{{URL::to('info-rental')}}" class="btn btn-white btn-xs" title="Back to Owner"><i class="fa fa-arrow-left"></i>&nbsp;</a>
                     </div>
                     <div class="btn-group pull-right">
                         <button type="button" class="btn btn-white btn-xs">Action</button>
@@ -32,7 +32,11 @@
                             <div class="col-md-6">
                                 <div class="col-md-4">
                                     <a href="" class="thumbnail m-b-mi-15">
-                                        <img src="{{URL::asset('ap/assets/img/user_profile.jpg')}}" alt="" />
+                                        @if(isset($v->rental_image))
+                                        <img src="{{URL::asset($v->rental_image)}}" class="img-d-h-w" alt="Blank">
+                                        @else
+                                        <img src="{{URL::asset('ap/assets/img_blank/img_blank.jpg')}}" class="img-d-h-w" alt="" />
+                                        @endif
                                     </a>
                                 </div>
                                 <div class="col-md-8">

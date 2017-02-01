@@ -32,7 +32,11 @@
                             <div class="col-md-6">
                                 <div class="col-md-4">
                                     <a href="" class="thumbnail m-b-mi-15">
-                                        <img src="{{URL::asset('ap/assets/img/user_profile.jpg')}}" alt="" />
+                                        @if($v->emp_image != NULL)
+                                        <img src="{{URL::asset($v->emp_image)}}" class="img-d-h-w" alt="Blank">
+                                        @else
+                                        <img src="{{URL::asset('ap/assets/img_blank/img_blank.jpg')}}" class="img-d-h-w" alt="" />
+                                        @endif
                                     </a>
                                 </div>
                                 <div class="col-md-8">
