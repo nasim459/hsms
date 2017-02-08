@@ -1,6 +1,6 @@
 @section('people_content')
 <!-- begin section-container -->
-<div class="section-container">
+<div class="section-container" ng-controller="rentalController">
     <!-- begin row -->
     <div class="row">
         <!-- begin col-12 -->
@@ -19,7 +19,7 @@
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{URL::to('info-owner')}}"><i class="fa fa-pencil"></i> Edit Picture</a></li>
+                            <li><a href="#info-rental-picture" data-toggle="modal" title="Update Picture"><i class="fa fa-pencil"></i> Edit Picture</a></li>
                             <li><a href="#rental-bld-edit" data-toggle="modal" title="Edit Buinding-Floor-Unit"><i class="fa fa-pencil"></i> Edit Building</a></li>
                             <li><a href="{{URL::to('info-rental-edit/'.$v->rental_id)}}"><i class="fa fa-edit"></i> Edit All Profile</a></li>
                             <li><a href="{{URL::to('dboard')}}"><i class="fa fa-home"></i> Go Dashboarde</a></li>
@@ -31,13 +31,12 @@
                         <div class="col-md-10 col-md-offset-2">
                             <div class="col-md-6">
                                 <div class="col-md-4">
-                                    <a href="" class="thumbnail m-b-mi-15">
-                                        @if(isset($v->rental_image))
-                                        <img src="{{URL::asset($v->rental_image)}}" class="img-d-h-w" alt="Blank">
-                                        @else
-                                        <img src="{{URL::asset('ap/assets/img_blank/img_blank.jpg')}}" class="img-d-h-w" alt="" />
-                                        @endif
-                                    </a>
+                                    
+                                    @if($v->rental_image != NULL)
+                                    <a href="#info-rental-picture" class="thumbnail m-b-mi-15" data-toggle="modal" title="Update Picture"><img src="{{URL::asset($v->rental_image)}}" class="img-d-h-w" alt="Blank"></a>
+                                    @else
+                                    <a href="#info-rental-picture" class="thumbnail m-b-mi-15" data-toggle="modal" title="Update Picture"><img src="{{URL::asset('ap/assets/img_blank/img_blank.jpg')}}" class="img-d-h-w" alt=""></a>
+                                    @endif
                                 </div>
                                 <div class="col-md-8">
                                     <p class="f-s-14">
@@ -70,6 +69,14 @@
                                     @if(Session::get('service_assigned') != NULL)
                                     <b class="text-success-light">{{Session::get('service_assigned')}}</b>
                                     @endif
+                                    
+                                    @if(Session::get('rental_img') != NULL)
+                                    <b class="text-success-light">{{Session::get('rental_img')}}</b>
+                                    @endif
+                                    
+                                    @if(Session::get('bld_updated') != NULL)
+                                    <b class="text-success-light">{{Session::get('bld_updated')}}{{Session::put('bld_updated', '')}}</b>
+                                    @endif
                                 </p>
                             </div>
                         </div>
@@ -78,8 +85,8 @@
                 <ul class="nav nav-tabs col-md-offset-1">
                     <li class="active"><a href="#default-tab-1" data-toggle="tab"><i class="fa fa-user"></i> Profile</a></li>
                     <li class=""><a href="#default-tab-2" data-toggle="tab"><i class="fa fa-list"></i> Details</a></li>
-                    <li class=""><a href="#default-tab-3" data-toggle="tab"><i class="fa fa-credit-card"></i> Payment</a></li>
-                    <li class=""><a href="#default-tab-4" data-toggle="tab"><i class="fa fa-cc-discover"></i> Invoice</a></li>
+                    <li class=""><a href="#default-tab-3" data-toggle="tab"><i class="fa fa-credit-card"></i> Invoice</a></li>
+                    <li class=""><a href="#default-tab-4" data-toggle="tab"><i class="fa fa-cc-discover"></i> Payment</a></li>
                     <li class=""><a href="#default-tab-5" data-toggle="tab"><i class="fa fa-user"></i> Complain</a></li>
                     <li class=""><a href="#default-tab-6" data-toggle="tab"><i class="fa fa-user"></i> Facilities</a></li>
                 </ul>
@@ -289,7 +296,7 @@
                                 <div class="panel without-pagination clearfix m-b-0">
                                     <div class="form-group">
                                         <div class="col-sm-4 m-b-10">
-                                            <strong class="text-success m-t-10">Rental Salary Has Been Completed</strong>
+                                            <strong class="text-success m-t-10">Invoice Information</strong>
                                         </div>
                                         <div class="col-sm-4 m-b-10 col-md-offset-4">
                                             <input class="form-control text-center" type="text" id="fullname" value="" placeholder=" Search here..." data-parsley-required="true" />
@@ -299,156 +306,73 @@
                                     <table class="table table-bordered table-hover" style="border:5px solid #EBECED !important">
                                         <thead>
                                             <tr class="default">
-                                                <th class="text-center"><b>Employee Id</b></th>
-                                                <th class="text-center"><b>Month</b></th>
-                                                <th class="text-center"><b>Salary Fixt</b></th>
-                                                <th class="text-center"><b>Give Salary</b></th>
-                                                <th class="text-center"><b>Due</b></th>
-                                                <th class="text-center"><b>Status</b></th>
+                                                <th class="text-center"><b>Invoice No</b></th>
+                                                <th class="text-center"><b>Year - Month</b></th>
+                                                <th class="text-center"><b>Amount Total</b></th>
+                                                <th class="text-center"><b>Previous Due</b></th>
+                                                <th class="text-center"><b>Grand Total</b></th>
+                                                <th class="text-center"><b>Created At</b></th>
+                                                <th class="text-center"><b>Item</b></th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @foreach($invoice_show as $v) 
                                             <tr>
-                                                <td class="text-center"><b><a href="#">sdfsd</a></b></td>
-                                                <td class="text-center">dfgdf</td>
-                                                <td class="text-center">353</td> 
-                                                <td class="text-center">5345</td> 
-                                                <td class="text-center">345</td> 
-                                                <td class="text-center"><a href="#" class="btn btn-default btn-xs"><i class="fa fa-check text-success-light"></i> &nbsp; Paid &nbsp;&nbsp;</a></td>
+                                                <td class="text-center"><b class="btn btn-default btn-xs">#{{$v->invoice_id}}</b></td>
+                                                <td>
+                                                    <b>
+                                                        {{$v -> invoice_year}} - 
+                                                        @if($v->invoice_month == 1)
+                                                        January
+                                                        @elseif($v->invoice_month == 2)
+                                                        February
+                                                        @elseif($v->invoice_month == 3)
+                                                        March
+                                                        @elseif($v->invoice_month == 4)
+                                                        April
+                                                        @elseif($v->invoice_month == 5)
+                                                        May
+                                                        @elseif($v->invoice_month == 6)
+                                                        June
+                                                        @elseif($v->invoice_month == 7)
+                                                        July
+                                                        @elseif($v->invoice_month == 8)
+                                                        August
+                                                        @elseif($v->invoice_month == 9)
+                                                        September
+                                                        @elseif($v->invoice_month == 10)
+                                                        October
+                                                        @elseif($v->invoice_month == 11)
+                                                        November
+                                                        @elseif($v->invoice_month == 12)
+                                                        December
+                                                        @endif
+                                                    </b>
+                                                </td>
+                                                <td class="text-center">{{$v->invoice_amount_total}}</td> 
+                                                <td class="text-center">
+                                                    @if($v->invoice_previous_due != 0)
+                                                    <span class="text-danger"><b>{{$v->invoice_previous_due}}</b></span>
+                                                    @else
+                                                    <span>00.00</span>
+                                                    @endif
+                                                </td> 
+                                                <td class="text-center">{{$v->invoice_grand_total}}</td> 
+                                                <td class="text-center">{{$v->created_at}}</td> 
+                                                <td class="text-center">
+                                                    <a href="#rental-invoice-item" class="btn btn-default btn-xs" data-toggle="modal" ng-click="invoice_item({{$v->invoice_id}})" title="Invoice Item"><i class="fa fa-list-ul text-success-light"></i> </a>
+                                                </td>
                                             </tr>
-                                            <tr>
-                                                <td class="text-center"><b><a href="#">sdfsd</a></b></td>
-                                                <td class="text-center">dfgdf</td>
-                                                <td class="text-center">353</td> 
-                                                <td class="text-center">5345</td> 
-                                                <td class="text-center">345</td> 
-                                                <td class="text-center"><a href="#" class="btn btn-default btn-xs"><i class="fa fa-check text-success-light"></i> &nbsp; Paid &nbsp;&nbsp;</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-center"><b><a href="#">sdfsd</a></b></td>
-                                                <td class="text-center">dfgdf</td>
-                                                <td class="text-center">353</td> 
-                                                <td class="text-center">5345</td> 
-                                                <td class="text-center">345</td> 
-                                                <td class="text-center"><a href="#" class="btn btn-default btn-xs"><i class="fa fa-check text-success-light"></i> &nbsp; Paid &nbsp;&nbsp;</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-center"><b><a href="#">sdfsd</a></b></td>
-                                                <td class="text-center">dfgdf</td>
-                                                <td class="text-center">353</td> 
-                                                <td class="text-center">5345</td> 
-                                                <td class="text-center">345</td> 
-                                                <td class="text-center"><a href="#" class="btn btn-default btn-xs"><i class="fa fa-check text-success-light"></i> &nbsp; Paid &nbsp;&nbsp;</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-center"><b><a href="#">sdfsd</a></b></td>
-                                                <td class="text-center">dfgdf</td>
-                                                <td class="text-center">353</td> 
-                                                <td class="text-center">5345</td> 
-                                                <td class="text-center">345</td> 
-                                                <td class="text-center"><a href="#" class="btn btn-default btn-xs"><i class="fa fa-check text-success-light"></i> &nbsp; Paid &nbsp;&nbsp;</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-center"><b><a href="#">sdfsd</a></b></td>
-                                                <td class="text-center">dfgdf</td>
-                                                <td class="text-center">353</td> 
-                                                <td class="text-center">5345</td> 
-                                                <td class="text-center">345</td> 
-                                                <td class="text-center"><a href="#" class="btn btn-default btn-xs"><i class="fa fa-check text-success-light"></i> &nbsp; Paid &nbsp;&nbsp;</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-center"><b><a href="#">sdfsd</a></b></td>
-                                                <td class="text-center">dfgdf</td>
-                                                <td class="text-center">353</td> 
-                                                <td class="text-center">5345</td> 
-                                                <td class="text-center">345</td> 
-                                                <td class="text-center"><a href="#" class="btn btn-default btn-xs"><i class="fa fa-check text-success-light"></i> &nbsp; Paid &nbsp;&nbsp;</a></td>
-                                            </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
-
-
-
+                                    
                                 </div>
                                 <!-- end panel -->
                             </div>
                             <!-- end Payment -->
                         </div>
                         <!-- end row -->
-
-
-                        <div class="row m-t-10">
-                            <div class="col-md-10 col-md-offset-1 well">
-                                <!-- begin panel -->
-                                <div class="panel">
-                                    <div class="panel-heading">
-                                        <div class="panel-heading-btn">
-                                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-grey" data-click="panel-expand"><i class="fa fa-expand"></i></a>
-                                        </div>
-                                        <h4 class="panel-title text-center"><b>Your Payment</b></h4>
-                                    </div>
-                                    <div class="table-responsive">
-                                        <table class="table table-td-valign-middle">
-                                            <thead>
-                                                <tr class="success">
-                                                    <th> No </th>
-                                                    <th>Mohnth</th>
-                                                    <th>Bill Jenareted</th>
-                                                    <th class="text-center">Payable </th>
-                                                    <th class="text-center">Reaceiable</th>
-                                                    <th class="text-center">Due</th>
-                                                    <th class="text-center">Total</th>
-                                                    <th class="text-center">Status</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td><a href="#" class="btn btn-default btn-xs">1</a></td>
-                                                    <td><b>January</b></td>
-                                                    <td>27-10-16</td>
-                                                    <td class="text-center">5000</td> 
-                                                    <td class="text-center">5000</td> 
-                                                    <td class="text-center">0.0</td> 
-                                                    <td><b>5000</b></td>
-                                                    <td><a href="#" class="btn btn-default btn-xs"><i class="fa fa-check"></i> &nbsp; Paid &nbsp;&nbsp;</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="#" class="btn btn-default btn-xs">2</a></td>
-                                                    <td><b>February</b></td>
-                                                    <td>29-01-16</td>
-                                                    <td class="text-center">6000</td> 
-                                                    <td class="text-center">5000</td> 
-                                                    <td class="text-center">1000</td> 
-                                                    <td><b>5000</b></td>
-                                                    <td><a href="#" class="btn btn-warning btn-xs"><i class="fa fa-remove"></i> UnPaid </a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="#" class="btn btn-default btn-xs">3</a></td>
-                                                    <td><b>March</b></td>
-                                                    <td>28-02-16</td>
-                                                    <td class="text-center">5000</td> 
-                                                    <td class="text-center">5000</td> 
-                                                    <td class="text-center">0.0</td> 
-                                                    <td><b>5000</b></td>
-                                                    <td><a href="#" class="btn btn-default btn-xs"><i class="fa fa-check"></i> &nbsp; Paid &nbsp;&nbsp;</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="#" class="btn btn-default btn-xs">4</a></td>
-                                                    <td><b>April</b></td>
-                                                    <td>28-03-16</td>
-                                                    <td class="text-center">6000</td> 
-                                                    <td class="text-center">5000</td> 
-                                                    <td class="text-center">1000</td> 
-                                                    <td><b>5000</b></td>
-                                                    <td><a href="#" class="btn btn-warning btn-xs"><i class="fa fa-remove"></i> UnPaid </a></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                <!-- end panel -->
-                            </div>
-                        </div>
                     </div>
 
                     <div class="tab-pane fade" id="default-tab-4">
@@ -468,81 +392,75 @@
                                         </div>
                                     </div>
 
-
-
                                     <table class="table table-bordered table-hover" style="border:5px solid #EBECED !important">
                                         <thead>
                                             <tr class="default">
-                                                <th class="text-center"><b>Employee Id</b></th>
-                                                <th class="text-center"><b>Month</b></th>
-                                                <th class="text-center"><b>Salary Fixt</b></th>
-                                                <th class="text-center"><b>Give Salary</b></th>
-                                                <th class="text-center"><b>Due</b></th>
+                                                <th class="text-center"><b>No</b></th>
+                                                <th><b>Year - Month</b></th>
+                                                <th class="text-center"><b>payable</b></th>
+                                                <th class="text-center"><b>Pay Amount</b></th>
+                                                <th class="text-center"><b>Due Amount</b></th>
                                                 <th class="text-center"><b>Status</b></th>
                                             </tr>
                                         </thead>
                                         <tbody class="scrollit">
+                                            <?php
+                                            $number = Session::get('p_s_l') +1;
+                                            ?>
+                                            @foreach($payment_show as $v)
                                             <tr>
-                                                <td class="text-center"><b><a href="#">sdfsd</a></b></td>
-                                                <td class="text-center">dfgdf</td>
-                                                <td class="text-center">353</td> 
-                                                <td class="text-center">5345</td> 
-                                                <td class="text-center">345</td> 
-                                                <td class="text-center"><a href="#" class="btn btn-default btn-xs"><i class="fa fa-check text-success-light"></i> &nbsp; Paid &nbsp;&nbsp;</a></td>
+                                                <td class="text-center"><b class="btn btn-default btn-xs">{{$number = $number - 1}}</b></td>
+                                                <td class="text-center">
+                                                    <b>
+                                                        {{$v -> pay_year}} - 
+                                                        @if($v->pay_month == 1)
+                                                        January
+                                                        @elseif($v->pay_month == 2)
+                                                        February
+                                                        @elseif($v->pay_month == 3)
+                                                        March
+                                                        @elseif($v->pay_month == 4)
+                                                        April
+                                                        @elseif($v->pay_month == 5)
+                                                        May
+                                                        @elseif($v->pay_month == 6)
+                                                        June
+                                                        @elseif($v->pay_month == 7)
+                                                        July
+                                                        @elseif($v->pay_month == 8)
+                                                        August
+                                                        @elseif($v->pay_month == 9)
+                                                        September
+                                                        @elseif($v->pay_month == 10)
+                                                        October
+                                                        @elseif($v->pay_month == 11)
+                                                        November
+                                                        @elseif($v->pay_month == 12)
+                                                        December
+                                                        @endif
+                                                    </b>
+                                                </td>
+                                                <td class="text-center">{{$v->payable_amount}}</td> 
+                                                <td class="text-center">{{$v->pay_amount}}</td> 
+                                                <td class="text-center">
+                                                    @if($v->due_amount != 0)
+                                                    <span class="text-danger"><b>{{$v->due_amount}}</b></span>
+                                                    @else
+                                                    <span>00.00</span>
+                                                    @endif
+                                                </td>
+                                                <td class="text-center">
+                                                    @if($v->pay_status == 1)
+                                                    <a class="btn btn-default btn-xs" title="Payment Paid "><i class="fa fa-check text-success-light"></i> &nbsp; Paid &nbsp;&nbsp;</a>&nbsp;
+                                                    @else
+                                                    <a class="btn btn-default btn-xs" title="Payment unPaid"><i class="fa fa-remove text-danger-light"></i><span class="text-danger-light"> unPaid</span></a>&nbsp;
+                                                    @endif
+                                                </td>
                                             </tr>
-                                            <tr>
-                                                <td class="text-center"><b><a href="#">sdfsd</a></b></td>
-                                                <td class="text-center">dfgdf</td>
-                                                <td class="text-center">353</td> 
-                                                <td class="text-center">5345</td> 
-                                                <td class="text-center">345</td> 
-                                                <td class="text-center"><a href="#" class="btn btn-default btn-xs"><i class="fa fa-check text-success-light"></i> &nbsp; Paid &nbsp;&nbsp;</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-center"><b><a href="#">sdfsd</a></b></td>
-                                                <td class="text-center">dfgdf</td>
-                                                <td class="text-center">353</td> 
-                                                <td class="text-center">5345</td> 
-                                                <td class="text-center">345</td> 
-                                                <td class="text-center"><a href="#" class="btn btn-default btn-xs"><i class="fa fa-check text-success-light"></i> &nbsp; Paid &nbsp;&nbsp;</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-center"><b><a href="#">sdfsd</a></b></td>
-                                                <td class="text-center">dfgdf</td>
-                                                <td class="text-center">353</td> 
-                                                <td class="text-center">5345</td> 
-                                                <td class="text-center">345</td> 
-                                                <td class="text-center"><a href="#" class="btn btn-default btn-xs"><i class="fa fa-check text-success-light"></i> &nbsp; Paid &nbsp;&nbsp;</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-center"><b><a href="#">sdfsd</a></b></td>
-                                                <td class="text-center">dfgdf</td>
-                                                <td class="text-center">353</td> 
-                                                <td class="text-center">5345</td> 
-                                                <td class="text-center">345</td> 
-                                                <td class="text-center"><a href="#" class="btn btn-default btn-xs"><i class="fa fa-check text-success-light"></i> &nbsp; Paid &nbsp;&nbsp;</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-center"><b><a href="#">sdfsd</a></b></td>
-                                                <td class="text-center">dfgdf</td>
-                                                <td class="text-center">353</td> 
-                                                <td class="text-center">5345</td> 
-                                                <td class="text-center">345</td> 
-                                                <td class="text-center"><a href="#" class="btn btn-default btn-xs"><i class="fa fa-check text-success-light"></i> &nbsp; Paid &nbsp;&nbsp;</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-center"><b><a href="#">sdfsd</a></b></td>
-                                                <td class="text-center">dfgdf</td>
-                                                <td class="text-center">353</td> 
-                                                <td class="text-center">5345</td> 
-                                                <td class="text-center">345</td> 
-                                                <td class="text-center"><a href="#" class="btn btn-default btn-xs"><i class="fa fa-check text-success-light"></i> &nbsp; Paid &nbsp;&nbsp;</a></td>
-                                            </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
-
-
-
+                                    
                                 </div>
                                 <!-- end panel -->
                             </div>
@@ -552,156 +470,54 @@
                     </div>
 
                     <div class="tab-pane fade" id="default-tab-5">
+                        <!-- begin row -->
                         <div class="row">
-                            <div class="col-md-10 col-md-offset-1 well">
+                            <!-- begin Payment -->
+                            <div class="col-md-10 col-md-offset-1">
+                                <span><p class=""></p></span>
                                 <!-- begin panel -->
-                                <div class="panel table-h-600">
-                                    <div class="panel-heading">
-                                        <div class="panel-heading-btn">
-                                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-grey" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                                <div class="panel without-pagination clearfix m-b-0">
+                                    <div class="form-group">
+                                        <div class="col-sm-4 m-b-10">
+                                            <strong class="text-success m-t-10">Complain Information</strong>
                                         </div>
-                                        <h4 class="panel-title text-center"><b>Your Complain</b></h4>
+                                        <div class="col-sm-4 m-b-10 col-md-offset-4">
+                                            <input class="form-control text-center" type="text" id="fullname" value="" placeholder=" Search here..." data-parsley-required="true" />
+                                        </div>
                                     </div>
-                                    <div class="table-responsive">
-                                        <table class="table table-td-valign-middle table-s">
-                                            <thead class="thead-s">
-                                                <tr class="success">
-                                                    <th> No </th>
-                                                    <th>Complain Name</th>
-                                                    <th class="text-center">Location</th>
-                                                    <th>Description </th>
-                                                    <th>&nbsp; &nbsp; Status</th>
-                                                    <th>&nbsp;&nbsp; Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody class="tbody-s">
-                                                <tr>
-                                                    <td><a href="#" class="btn btn-default btn-xs">3</a></td>
-                                                    <td>HIma Humo</td>
-                                                    <td>01 Building, D Unit</td>
-                                                    <td class="">Damage Window</td> 
-                                                    <td>
-                                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-check"></i> Solved &nbsp; </a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="{{URL::to('info-owner-invoice')}}" target="_blank" class="btn btn-default btn-xs"><i class="fa fa-list"></i> Details</a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="#" class="btn btn-default btn-xs">4</a></td>
-                                                    <td>HIma Humo</td>
-                                                    <td>01 Building, D Unit</td>
-                                                    <td class="">Damage Window</td> 
-                                                    <td>
-                                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-check"></i> Solved &nbsp; </a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="{{URL::to('info-owner-invoice')}}" target="_blank" class="btn btn-default btn-xs"><i class="fa fa-list"></i> Details</a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="#" class="btn btn-default btn-xs">1</a></td>
-                                                    <td>HIma Humo</td>
-                                                    <td>01 Building, D Unit</td>
-                                                    <td class="col-md-3">Kitchen Floor</td> 
-                                                    <td>
-                                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-check"></i> Solved &nbsp; </a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="{{URL::to('info-owner-invoice')}}" target="_blank" class="btn btn-default btn-xs"><i class="fa fa-list"></i> Details</a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="#" class="btn btn-default btn-xs">2</a></td>
-                                                    <td>HIma Humo</td>
-                                                    <td>01 Building, D Unit</td>
-                                                    <td class="">Damage Window</td> 
-                                                    <td>
-                                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-check"></i> Solved &nbsp; </a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="{{URL::to('info-owner-invoice')}}" target="_blank" class="btn btn-default btn-xs"><i class="fa fa-list"></i> Details</a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="#" class="btn btn-default btn-xs">3</a></td>
-                                                    <td>HIma Humo</td>
-                                                    <td>01 Building, D Unit</td>
-                                                    <td class="">Damage Window</td> 
-                                                    <td>
-                                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-check"></i> Solved &nbsp; </a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="{{URL::to('info-owner-invoice')}}" target="_blank" class="btn btn-default btn-xs"><i class="fa fa-list"></i> Details</a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="#" class="btn btn-default btn-xs">4</a></td>
-                                                    <td>HIma Humo</td>
-                                                    <td>01 Building, D Unit</td>
-                                                    <td class="">Damage Window</td> 
-                                                    <td>
-                                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-check"></i> Solved &nbsp; </a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="{{URL::to('info-owner-invoice')}}" target="_blank" class="btn btn-default btn-xs"><i class="fa fa-list"></i> Details</a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="#" class="btn btn-default btn-xs">1</a></td>
-                                                    <td>HIma Humo</td>
-                                                    <td>01 Building, D Unit</td>
-                                                    <td class="col-md-3">Kitchen Floor</td> 
-                                                    <td>
-                                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-check"></i> Solved &nbsp; </a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="{{URL::to('info-owner-invoice')}}" target="_blank" class="btn btn-default btn-xs"><i class="fa fa-list"></i> Details</a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="#" class="btn btn-default btn-xs">2</a></td>
-                                                    <td>HIma Humo</td>
-                                                    <td>01 Building, D Unit</td>
-                                                    <td class="">Damage Window</td> 
-                                                    <td>
-                                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-check"></i> Solved &nbsp; </a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="{{URL::to('info-owner-invoice')}}" target="_blank" class="btn btn-default btn-xs"><i class="fa fa-list"></i> Details</a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="#" class="btn btn-default btn-xs">3</a></td>
-                                                    <td>HIma Humo</td>
-                                                    <td>01 Building, D Unit</td>
-                                                    <td class="">Damage Window</td> 
-                                                    <td>
-                                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-check"></i> Solved &nbsp; </a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="{{URL::to('info-owner-invoice')}}" target="_blank" class="btn btn-default btn-xs"><i class="fa fa-list"></i> Details</a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="#" class="btn btn-default btn-xs">4</a></td>
-                                                    <td>HIma Humo</td>
-                                                    <td>01 Building, D Unit</td>
-                                                    <td class="">Damage Window</td> 
-                                                    <td>
-                                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-check"></i> Solved &nbsp; </a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="{{URL::to('info-owner-invoice')}}" target="_blank" class="btn btn-default btn-xs"><i class="fa fa-list"></i> Details</a>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
+
+                                    <table class="table table-bordered table-hover" style="border:5px solid #EBECED !important">
+                                        <thead>
+                                            <tr class="default">
+                                                <th class="text-center"><b>No</b></th>
+                                                <th class="text-center"><b>Subject</b></th>
+                                                <th class="text-center"><b>Description</b></th>
+                                                <th class="text-center"><b>Action</b></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @php
+                                                $number = 0;
+                                            @endphp
+                                            @foreach($invoice_show as $v) 
+                                            <tr>
+                                                <td class="text-center"><b class="btn btn-default btn-xs">{{$number = $number+1}}</b></td>
+                                                <td><b>Broken Glass Window</b></td> 
+                                                <td class="text-justify">If the glass in your window frame is foggy, it means the insulated seal was broken and the insulated glass unit needs to be replaced.
+                                                <td class="text-center">
+                                                    <a class="btn btn-default btn-xs" title="Work Not Done"><i class="fa fa-remove text-danger-light"></i><span class="text-danger-light"> </span></a>
+                                                </td> 
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                    
                                 </div>
                                 <!-- end panel -->
                             </div>
+                            <!-- end Payment -->
                         </div>
+                        <!-- end row -->
                     </div>
 
                     <div class="tab-pane fade" id="default-tab-6">
@@ -732,9 +548,9 @@
                                                 <td class="text-center">{{$v->service_person_phone1}}</td>
                                                 <td class="text-center">
                                                     @if($v->status == 1)
-                                                    <a href="#" class="btn btn-default btn-xs" title="Running Service"><i class="fa fa-check text-success-light"></i> </a>
+                                                    <a href="#" class="btn btn-default btn-xs" title="Running Service"><i class="fa fa-check text-success-light"></i> Running</a>
                                                     @else
-                                                    <a href="#" class="btn btn-default btn-xs" title="Stop Service">&nbsp;<i class="fa fa-remove text-danger-light"></i>&nbsp; </a>
+                                                    <a href="#" class="btn btn-default btn-xs" title="Stop Service">&nbsp;<i class="fa fa-remove text-danger-light"></i>&nbsp;&nbsp; Stop&nbsp;&nbsp;</a>
                                                     @endif
                                                 </td>
                                             </tr>
@@ -846,44 +662,40 @@
                             <div class="row well">
                                 <!-- begin section-container -->
                                 <div class="section-container">
-                                    {!! Form::open(array('url'=>'service-type-update', 'role'=>'form', 'method'=>'POST')) !!}
+                                    {!! Form::open(array('url'=>'info-rental-bld-update', 'role'=>'form', 'method'=>'POST')) !!}
                                     <span class="form-horizontal" data-parsley-validate="true" name="demo-form">
 
                                         <div class="col-md-12 m-t-15">
                                             <!-- begin Building Place -->
                                             <div class="col-md-12 col-md-offset-0">
+                                                @foreach($bld_show as $v) 
                                                 <div class="form-group">
-                                                    <label class="control-label col-sm-3">Building Place <span class="text-danger"></span></label>
-                                                    <div class="col-sm-3">
-                                                        <select class="form-control" id="select-required" name="building" data-parsley-required="true">
-                                                            <option>Building</option>
-                                                            <option value="01">01</option>
-                                                            <option value="02">02</option>
-                                                            <option value="03">03</option>
-                                                        </select>
+                                                    <label class="control-label col-sm-3"><span class="text-center text-success">Building Place : </span></label>
+                                                    <div class="col-sm-8">
+                                                        <h4 class="text-center text-success"><b>{{$v->bld_name}}</b> - building, <b>{{$v->bld_floor}}</b> - bloor, <b>{{$v->bld_unit}}</b> - unit</h4>
+                                                        <input type="hidden" name="a" value="{{$v->rental_id}}" />
+                                                        <input type="hidden" name="pre_a" value="{{$v->flat_info_id}}" />
                                                     </div>
-                                                    <div class="col-sm-3">
-                                                        <select class="form-control" id="select-required" name="floor" data-parsley-required="true">
-                                                            <option value="">Floor</option>
-                                                            <option value="01">01 Floor</option>
-                                                            <option value="02">02 Floor</option>
-                                                            <option value="03">03 Floor</option>
-                                                            <option value="04">04 Floor</option>
-                                                            <option value="05">05 Floor</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-sm-3">
-                                                        <select class="form-control" id="select-required" name="unit" data-parsley-required="true">
-                                                            <option value="">Unit</option>
-                                                            <option value="A">A</option>
-                                                            <option value="B">B</option>
-                                                            <option value="C">C</option>
-                                                            <option value="D">D</option>
+                                                </div>
+                                                @endforeach
+                                            </div>
+                                            <!-- end Building Place -->
+                                            
+                                            <!-- begin available Building Place -->
+                                            <div class="col-md-12 col-md-offset-0">
+                                                <div class="form-group">
+                                                    <label class="control-label col-sm-3">Available Place : <span class="text-danger"></span></label>
+                                                    <div class="col-sm-6 col-md-offset-1">
+                                                        <select class="form-control" id="select-required" name="b" required="" data-parsley-required="true">
+                                                            <option>Building - Floor - Unit</option>
+                                                            @foreach($bld_check as $v) 
+                                                            <option value="{{$v->flat_info_id}}">{{$v->bld_name}} - {{$v->bld_floor}} - {{$v->bld_unit}}</option>
+                                                            @endforeach
                                                         </select>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!-- end Building Place -->
+                                            <!-- end available Building Place -->
 
                                             <!-- begin submit button -->
                                             <div class="form-group">
@@ -910,6 +722,137 @@
     </div>
     <!-- end edit_rental_bld_floor_unit -->
     <!-- end modal -->
+    
+    <!--start modal------------------------------------------------------->
+    <div class="col-md-6">
+        <div class="clearfix m-b-25">
+        
+        <!--start modal info-rental-picture-->
+        <div class="modal fade" id="info-rental-picture">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="modal-title text-center">Profile Picture Edit</h4>
+                    </div>
+                    <div class="modal-body">
+                        <!-- begin row panel body --->
+                        <div class="row well">
+                            <!-- begin section-container -->
+                            <div class="section-container">
+                                {!! Form::open(array('url'=>'info-rental-pic-update', 'role'=>'form', 'method'=>'POST', 'files'=>'true')) !!}
+                                <span class="form-horizontal" data-parsley-validate="true" name="demo-form">
+                                    @foreach($rental_details as $v)
+                                    <div class="col-md-12 m-t-15">
+                                        <!--start service_person_Picture-->
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <div class="col-sm-3 m-b-10">
+
+                                                    <a class="thumbnail m-b-mi-15" title="Update Picture">
+                                                        @if($v->rental_image != NULL)
+                                                        <img src="{{URL::asset($v->rental_image)}}" class="img-sm-h-w" alt="Blank">
+                                                        @else
+                                                        <img src="{{URL::asset('ap/assets/img_blank/img_blank.jpg')}}" class="img-sm-h-w" alt="">
+                                                        @endif
+                                                    </a>
+
+                                                    <input type="hidden" name="a" value="{{$v->rental_id}}" />
+                                                </div>
+
+                                                <div class="col-sm-4 m-t-40 m-l-30">
+                                                    <input  type="file" name="image" id="fileToUpload" />
+                                                </div>
+                                            </div><hr class="hr-d m-b-15">
+                                        </div>
+                                        <!--ends ervice_person_Picture-->
+                                    </div>
+
+                                    <!-- begin submit button -->
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-4"></label>
+                                        <div class="col-sm-5">
+                                            <button type="submit" class="btn btn-success width-xs">Update</button>
+                                        </div>
+                                    </div>
+                                    <!-- end submit button -->
+                                    @endforeach()
+
+                                </span>
+                                {!! Form::close() !!}
+                            </div>
+                            <!-- end section-container -->    
+                        </div>
+                        <!-- end row panel body --->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end modal info-rental-picture-->
+        
+        <!--start modal rental-invoice-item-->
+        <div class="modal fade" id="rental-invoice-item">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="modal-title text-center">Rental Invoice Item</h4>
+                    </div>
+                    <div class="modal-body">
+                        <!-- begin row panel body --->
+                        <div class="row">
+                            <!-- begin section-container -->
+                            <div class="section-container">
+                                <span class="form-horizontal" data-parsley-validate="true" name="demo-form">
+
+                                    <div class="col-md-12 m-t-15">
+                                        <!-- start Personal Information -->
+                                        <div class="col-md-12">
+                                            <!-- begin table -->
+                                            <div class="m-b-10"><b>Your Invoice Item</b></div>
+
+                                            <table class="table">
+                                                <thead>
+                                                    <tr class="default" title="Selecte All">
+                                                        <th class="text-center"><b>No</b></th>
+                                                        <th class="text-center"><b>Service Name</b></th>
+                                                        <th class="text-center"><b>Amount</b></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="value in invoice_rental">
+                                                        <td class="text-center">@{{$index+1}}</td>
+                                                        <td class="text-center">@{{value.invoice_item_name}}</td>
+                                                        <td class="text-center">@{{value.invoice_item_amount}}</td>
+                                                    </tr>
+                                                    <tr ng-repeat="value in invoice_rental|limitTo:1">
+                                                        <td>&nbsp;</td>
+                                                        <td>&nbsp;</td>
+                                                        <td><h5><b class="text-success-light">Total Amount :&nbsp;&nbsp;   @{{value.invoice_amount_total}}</b></h5></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <!-- end table -->
+                                            <hr class="hr-d m-b-15">
+
+                                        </div>
+                                        <!-- end Personal Information -->
+                                    </div>
+
+                                </span>
+                            </div>
+                            <!-- end section-container -->    
+                        </div>
+                        <!-- end row panel body --->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end modal rental-invoice-item-->
+            
+        </div>
+    </div>
+    <!--end modal------------------------------------------------------->
 
 </div>
 <!-- end section-container -->

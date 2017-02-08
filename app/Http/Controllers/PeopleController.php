@@ -66,15 +66,14 @@ class PeopleController extends Controller
                 ->get();
         
         $service_assigned_show = DB::table('tbl_service_assigned')
-                    ->join('tbl_service_person', 'tbl_service_assigned.service_person_id', '=', 'tbl_service_person.service_person_id')
-                    ->join('tbl_service', 'tbl_service_assigned.service_id', '=', 'tbl_service.service_person_id')
-                    ->where('tbl_service_assigned.rental_id', $rental_id)
-                    ->get();
+                ->join('tbl_service', 'tbl_service_assigned.service_id', '=', 'tbl_service.service_person_id')
+                //->join('tbl_service_person', 'tbl_service_assigned.service_person_id', '=', 'tbl_service_person.service_person_id')
+                ->join('tbl_rental', 'tbl_service_assigned.rental_id', '=', 'tbl_service.rental_id')
+                ->where('tbl_service_assigned.rental_id', $rental_id)
+                ->get();
         
 //            echo '<pre>';
-//            print_r($rental_details);
-//            echo '<pre>';
-//            print_r($service_show);
+//            print_r($service_assigned_show);
 //            exit();
         
         
@@ -138,7 +137,8 @@ class PeopleController extends Controller
     }
     
     //--------------show rental_picture
-    public function pic_rental_info($rental_id) {
+    public function pic_rental_info($rental_id)
+    {
         
         $rental_pic = DB::table('tbl_rental')
                         ->where('rental_id', $rental_id)
@@ -150,7 +150,9 @@ class PeopleController extends Controller
     public function details_rental_info($rental_details_id)
     {
         $url_current = url()->current();
+        //$previous_url = url()->previous();
         Session::put('url_current', $url_current);
+        //Session::put('rental_pre_url', $previous_url);
 
         $rental_details = DB::table('tbl_rental_details')
                 ->join('tbl_rental', 'tbl_rental_details.rental_details_id', '=', 'tbl_rental.rental_details_id')
@@ -169,6 +171,20 @@ class PeopleController extends Controller
         Session::put('rental_id', $rental_id);
         Session::put('flat_info_id', $flat_info_id);
         
+        //-------bld_show for edit_building_location
+        $bld_show = DB::table('tbl_rental')
+                ->join('tbl_flat_info', 'tbl_rental.flat_info_id', '=', 'tbl_flat_info.flat_info_id')
+                ->where('tbl_rental.flat_info_id', $flat_info_id)
+                ->select('tbl_rental.rental_id', 'tbl_flat_info.*')
+                ->get();
+        
+        //-------bld_check for edit_building_location
+        $bld_check = DB::table('tbl_flat_info')
+                ->where('tbl_flat_info.bld_status', '0')
+                ->orderBy('bld_name', 'asc')
+                ->orderBy('bld_floor', 'asc')
+                ->get();
+        
         $service_show = DB::table('tbl_service')
                 ->select('tbl_service.*')
                 ->get();
@@ -179,16 +195,32 @@ class PeopleController extends Controller
                     ->where('tbl_service_assigned.rental_id', $rental_id)
                     ->get();
         
+        $invoice_show = DB::table('tbl_invoice')
+                ->where('rental_id', $rental_id)
+                ->orderBy('invoice_month', 'asc')
+                ->orderBy('invoice_year', 'asc')
+                ->get();
+        
+        $payment_show = DB::table('tbl_invoice_payment')
+                ->where('rental_id', $rental_id)
+                ->orderBy('pay_month', 'asc')
+                ->orderBy('pay_year', 'asc')
+                ->get();
+        $p_s_l = count($payment_show);  //----$p_s_l means payment_show_length
+        Session::put('p_s_l', $p_s_l);
+
 //            echo '<pre>';
-//            print_r($rental_details);
-//            echo '<pre>';
-//            print_r($service_show);
+//            print_r($p_s_l);
 //            exit();
         
         $owner = view('ap.pages.people.info_rantal_details')
                 ->with('rental_details', $rental_details)
                 ->with('service_show', $service_show)
-                ->with('service_assigned_show', $service_assigned_show);
+                ->with('service_assigned_show', $service_assigned_show)
+                ->with('invoice_show', $invoice_show)
+                ->with('payment_show', $payment_show)
+                ->with('bld_show', $bld_show)
+                ->with('bld_check', $bld_check);
         $master = view('ap.pages.people.people_master')
                 ->with('people_content', $owner);
         return view('master_ap')
@@ -196,13 +228,41 @@ class PeopleController extends Controller
     }
     
     //----Rental rental_satus
-    public function status_rental_info($rental_id, $status)
+    public function status_rental_info($rental_id)
     {
-            DB::table('tbl_rental')
-                    ->where('rental_id', $rental_id)
-                    ->update(['person_status' => $status]);
-            $data['status'][$rental_id] = $status;
-            return $data;
+        //------change_rental_status
+        DB::table('tbl_rental')
+                ->where('rental_id', $rental_id)
+                ->update(['person_status' => 0]);
+        
+        //-------change bld_status of tbl_flat_info
+        DB::table('tbl_rental')
+                ->join('tbl_flat_info', 'tbl_rental.flat_info_id', '=', 'tbl_flat_info.flat_info_id')
+                ->where('rental_id', $rental_id)
+                ->update(['bld_status' => 0]);
+        
+        return Redirect::to('info-rental');
+    }
+    
+    //----Rental rental_warning
+    public function warning_rental_info($rental_id)
+    {
+        $rental_details_id = DB::table('tbl_rental')
+                ->where('rental_id', $rental_id)
+                ->select('rental_details_id')
+                ->get();
+        return $rental_details_id;
+    }
+    
+    //----Rental rental_invoice
+    public function invoice_rental_info($invoice_id)
+    {
+        $invoice_item = DB::table('tbl_invoice')
+                ->join('tbl_invoice_item', 'tbl_invoice.invoice_id', '=', 'tbl_invoice_item.invoice_id')
+                ->where('tbl_invoice_item.invoice_id', $invoice_id)
+                ->select('tbl_invoice_item.*', 'tbl_invoice.invoice_amount_total')
+                ->get();
+        return $invoice_item;
     }
     
     public function driver_info()

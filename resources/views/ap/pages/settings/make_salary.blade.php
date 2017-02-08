@@ -113,11 +113,13 @@
                                                 <td class="text-center">{{$v->salary_house}}</td>
                                                 <td class="text-center">{{$v->salary_health}}</td>
                                                 <td class="text-center">{{$v->salary_transport}}</td>
-                                                <td class="text-center"><b>
+                                                <td class="text-center">
+                                                    <b>
                                                         {{$v->total_amount}}
-                                                        <input type="hidden"name="total_amount[{{$v->emp_salary_id}}]" value="{{$v->total_amount}}"  style="width:20px"/>
-                                                        <input type="hidden"name="emp_id[{{$v->emp_salary_id}}]" value="{{$v->emp_id}}"  style="width:20px"/>
-                                                    </b></td>
+                                                        <input type="hidden" name="total_amount[{{$v->emp_salary_id}}]" value="{{$v->total_amount}}"  style="width:20px"/>
+                                                        <input type="hidden" name="emp_id[{{$v->emp_salary_id}}]" value="{{$v->emp_id}}"  style="width:20px"/>
+                                                    </b>
+                                                </td>
                                                 <td class="text-center">
                                                     <input type="hidden" value="{{$v->emp_salary_id}}"  style="width:20px"/>
                                                     <input type="checkbox" name="employee_sal_id[]" value="{{$v->emp_salary_id}}" style="float: left; margin: 0 0 0 10px;width: 20px;height: 20px;">

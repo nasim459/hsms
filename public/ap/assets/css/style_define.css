@@ -35,6 +35,10 @@
     background-repeat: no-repeat !important;
     border-radius: 5px 5px 5px;
 }
+.b-b-dashed {
+    //border-style: dashed;
+    margin-bottom: 1 px solid green;
+}
 .rough_border{
     border: 1px solid red;
 }

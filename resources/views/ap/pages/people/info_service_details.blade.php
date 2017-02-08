@@ -34,7 +34,7 @@
                         <div class="col-md-10 col-md-offset-2">
                             <div class="col-md-6">
                                 <div class="col-md-4">
-
+                                    
                                     @if($v->service_person_image != NULL)
                                     <a href="#modal-s-type-picture" class="thumbnail m-b-mi-15" data-toggle="modal" title="Update Picture"><img src="{{URL::asset($v->service_person_image)}}" class="img-d-h-w" alt="Blank"></a>
                                     @else

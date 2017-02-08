@@ -55,7 +55,15 @@ Route::get('info-owner-invoice', 'InvoiceController@invoice_owner_info');
 Route::get('info-rental', 'PeopleController@rental_info');
 Route::get('info-rental-pic/{rental_id}', 'PeopleController@pic_rental_info');
 Route::get('info-rental-details/{rental_details_id}', 'PeopleController@details_rental_info');
-Route::get('info-rental-status/{rental_id}/{status}', 'PeopleController@status_rental_info');
+Route::get('info-rental-status/{rental_id}/', 'PeopleController@status_rental_info');
+Route::get('info-rental-warning/{rental_id}/', 'PeopleController@warning_rental_info');
+
+
+
+Route::post('info-rental-pic-update', 'imageController@update_pic_rental_info');
+Route::post('info-rental-bld-update', 'EditController@update_bld_rental_info');
+
+Route::get('info-rental-invoice/{invoice_id}', 'PeopleController@invoice_rental_info');
 
 
 Route::get('info-driver', 'PeopleController@driver_info');
@@ -171,9 +179,16 @@ Route::post('salary-due', 'SalaryMakeController@due_salary');
 //----------ServiceBill Controller
 Route::get('make-service-bill', 'ServiceBillController@bill_service_make');
 Route::get('service-bill-show/{rental_id}', 'ServiceBillController@service_bill_show');
+Route::get('service-bill-invoice-view/{rental_id}', 'ServiceBillController@service_bill_invoice_view');
+Route::get('service-bill-invoice-due/{rental_id}', 'ServiceBillController@service_bill_invoice_due');
 Route::post('service-bill-statement', 'ServiceBillController@statement_bill_service');
+Route::post('service-bill-payment', 'ServiceBillController@payment_bill_service');
+Route::post('service-bill-payment-due', 'ServiceBillController@due_payment_bill_service');
 Route::post('service-bill-generate', 'ServiceBillController@generate_bill_service');
 
+Route::get('view-rental-service/{rental_id}', 'ServiceBillController@service_rental_view');
+Route::get('running-rental-service/{rental_id}', 'ServiceBillController@service_rental_running');
+Route::post('add-rental-service', 'ServiceBillController@service_rental_add');
 
 //>>>>>>> 66c9a1207ab5d3ad0fc437c410ab0a208059e792
 //-------------------- End Pages history ----------------------------------

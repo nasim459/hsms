@@ -161,6 +161,36 @@ class EditController extends Controller
         //exit();
     }
     
+    //--------------update building information-------------------------
+    public function update_bld_rental_info(Request $request)
+    {
+        $rental_id = $request->a;
+        $pre_flat_info_id = $request->pre_a;    //---taken previous flat_info_id
+        $new_flat_info_id = $request->b;    //---now take new flat_info_id
+        
+        //-------update building_location with change rental_status
+        $update_bld = array();
+        $update_bld['flat_info_id'] = $new_flat_info_id;
+        $update_bld['person_status'] = 1;
+        DB::table('tbl_rental')
+            ->where('rental_id', $rental_id)
+            ->update($update_bld);
+        
+        //-------change taken previous bld location(bld_status of tbl_flat_info)
+        DB::table('tbl_flat_info')
+            ->where('flat_info_id', $pre_flat_info_id)
+            ->update(['bld_status' => 0]);
+        
+        //-------change bld_status of tbl_flat_info
+        DB::table('tbl_flat_info')
+            ->where('flat_info_id', $new_flat_info_id)
+            ->update(['bld_status' => 1]);
+        
+        Session::put('bld_updated', 'Successfully Updated!');
+        $previous_url = url()->previous();
+        return Redirect::to($previous_url);
+    }
+    
     public function update_emp_info(Request $request)
     {
         //------emp_id & emp_details_id---------------------

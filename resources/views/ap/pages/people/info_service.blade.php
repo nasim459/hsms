@@ -84,11 +84,11 @@
     <!-- end panel -->
 
 
-    <!--start modal-->
+    <!--start modal------------------------------------------------------->
     <div class="col-md-6">
-        <!--start service_people registration-->
         <div class="clearfix m-b-25">
-            <!-- #modal-dialog -->
+            
+            <!--start service_people registration-->
             <div class="modal fade" id="modal-s-people">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -180,12 +180,9 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <!--end service_people registration-->
+            <!--end service_people registration-->
 
-        <!--start show_service_people_picture-->
-        <div class="clearfix m-b-25">
-            <!-- #modal-dialog-start-->
+            <!--start show_service_people_picture-->
             <div class="modal fade" id="service-person-picture">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -223,11 +220,11 @@
                     </div>
                 </div>
             </div>
-            <!-- #modal-dialog-end-->
+            <!--end show_service_people_picture-->
+            
         </div>
-        <!--end show_service_people_picture-->
     </div>
-    <!-- end modal -->
+    <!--end modal------------------------------------------------------->
 
 
 </div>

@@ -64,7 +64,6 @@
         
         <!-- ================== BEGIN BASE JS ================== -->
         <script src="{{URL::asset('ap/assets/plugins/pace/pace.min.js')}}"></script>
-        <script src="{{URL::asset('ap/assets/js/style_defile.js')}}"></script>
         <!-- ================== END BASE JS ================== -->
         <link href="{{URL::asset('ap/assets/plugins/jquery-jvectormap/jquery-jvectormap-1.2.2.css')}}" rel="stylesheet" />
 
