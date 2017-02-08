@@ -539,7 +539,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php $number = 0; ?> 
+                                            <?php $number = 0; $a=1; ?> 
                                             @foreach($service_assigned_show as $v)
                                             <tr>
                                                 <td><b><i class="fa fa-arrow-right">&nbsp;</i> {{$v->service_type}}</b></td>
