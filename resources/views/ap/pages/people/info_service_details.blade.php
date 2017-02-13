@@ -8,10 +8,7 @@
             <!-- begin panel -->
             <div class="panel panel-default">
                 <?php
-                $number = 0;
-                $off = 0;
-                $on = 1;
-                ?>
+                $number = 0; $off = 0; $on = 1; ?>
                 @foreach($service_details as $v)
                 <div class="panel-heading">
                     <div class="btn-group pull-left">
