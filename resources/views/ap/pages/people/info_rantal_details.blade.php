@@ -77,6 +77,10 @@
                                     @if(Session::get('bld_updated') != NULL)
                                     <b class="text-success-light">{{Session::get('bld_updated')}}{{Session::put('bld_updated', '')}}</b>
                                     @endif
+                                    
+                                    @if(Session::get('bld_updated_not') != NULL)
+                                    <b class="text-danger-light">{{Session::get('bld_updated_not')}}{{Session::put('bld_updated_not', '')}}</b>
+                                    @endif
                                 </p>
                             </div>
                         </div>
@@ -118,7 +122,7 @@
                                         <table class="">
                                             <thead>
                                                 <tr>
-                                                    <th class="text-center">Facilities</th>
+                                                    <th class="text-center text-success">Private Facilities</th>
                                                     <th class="text-center"></th>
                                                     <th class="text-center"></th>
                                                 </tr>
@@ -529,8 +533,8 @@
                                             <tr class="default">
                                                 <th class="text-center">Service Name</th>
                                                 <th class="text-center"> Amount</span></th>
-                                                <th><span class="m-l-20"> Person</span></th>
-                                                <th class="text-center">Mobile Number</th>
+                                                <!--<th><span class="m-l-20"> Person</span></th>-->
+                                                <!--<th class="text-center">Mobile Number</th>-->
                                                 <th class="text-right">
                                                     Status &nbsp; &nbsp; &nbsp;
                                                     <a href="{{URL::to('regi-driver')}}" class="btn btn-white btn-xs"><i class="fa fa-plus"></i> Driver </a>
@@ -544,8 +548,6 @@
                                             <tr>
                                                 <td><b><i class="fa fa-arrow-right">&nbsp;</i> {{$v->service_type}}</b></td>
                                                 <td class="text-center">{{$v->amount}}</td>
-                                                <td>{{$v->service_person_name}}</td>
-                                                <td class="text-center">{{$v->service_person_phone1}}</td>
                                                 <td class="text-center">
                                                     @if($v->status == 1)
                                                     <a href="#" class="btn btn-default btn-xs" title="Running Service"><i class="fa fa-check text-success-light"></i> Running</a>
@@ -687,7 +689,7 @@
                                                     <label class="control-label col-sm-3">Available Place : <span class="text-danger"></span></label>
                                                     <div class="col-sm-6 col-md-offset-1">
                                                         <select class="form-control" id="select-required" name="b" required="" data-parsley-required="true">
-                                                            <option>Building - Floor - Unit</option>
+                                                            <option value="">Building - Floor - Unit</option>
                                                             @foreach($bld_check as $v) 
                                                             <option value="{{$v->flat_info_id}}">{{$v->bld_name}} - {{$v->bld_floor}} - {{$v->bld_unit}}</option>
                                                             @endforeach

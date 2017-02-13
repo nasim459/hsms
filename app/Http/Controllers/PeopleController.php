@@ -65,10 +65,16 @@ class PeopleController extends Controller
                 ->select('tbl_service.*')
                 ->get();
         
+//        $service_assigned_show = DB::table('tbl_service_assigned')
+//                ->join('tbl_service', 'tbl_service_assigned.service_id', '=', 'tbl_service.service_person_id')
+//                //->join('tbl_service_person', 'tbl_service_assigned.service_person_id', '=', 'tbl_service_person.service_person_id')
+//                ->join('tbl_rental', 'tbl_service_assigned.rental_id', '=', 'tbl_service.rental_id')
+//                ->where('tbl_service_assigned.rental_id', $rental_id)
+//                ->get();
         $service_assigned_show = DB::table('tbl_service_assigned')
-                ->join('tbl_service', 'tbl_service_assigned.service_id', '=', 'tbl_service.service_person_id')
+                ->join('tbl_rental', 'tbl_service_assigned.rental_id', '=', 'tbl_rental.rental_id')
                 //->join('tbl_service_person', 'tbl_service_assigned.service_person_id', '=', 'tbl_service_person.service_person_id')
-                ->join('tbl_rental', 'tbl_service_assigned.rental_id', '=', 'tbl_service.rental_id')
+                // ->join('tbl_service', 'tbl_service_assigned.service_id', '=', 'tbl_service.service_id')
                 ->where('tbl_service_assigned.rental_id', $rental_id)
                 ->get();
         
@@ -317,11 +323,35 @@ class PeopleController extends Controller
     
     public function visiting_info()
     {
+        //$guest_show = DB::table('tbl_guest')
+        //        ->get();
+        //return $guest_show;
+        
+        //$count = count($guest_show);
+        //Session::put('count_visitor', $count);
+        
         $owner = view('ap.pages.people.info_visiting');
         $master = view('ap.pages.people.people_master')
                 ->with('people_content', $owner);
         return view('master_ap')
                 ->with('maincontent', $master);
+    }
+    
+    //------show_visiting_people
+    public function show_visitor_info()
+    {
+        $visitor_show = DB::table('tbl_guest')
+                ->get();
+        return $visitor_show;
+    }
+    
+    //------show_guest_people
+    public function show_guest_info()
+    {
+        $guest_show = DB::table('tbl_visitor')
+                ->join('tbl_emp', 'tbl_visitor.emp_id', '=', 'tbl_emp.emp_id')
+                ->get();
+        return $guest_show;
     }
     
     public function service_info()

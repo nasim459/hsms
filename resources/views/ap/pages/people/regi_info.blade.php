@@ -11,7 +11,7 @@
 <!-- end breadcrumb -->
 
 <!-- begin section-container -->
-<div class="section-container">
+<div class="section-container" ng-controller="RegiController">
     <!-- begin row -->
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
@@ -182,74 +182,75 @@
     </div>
     <!-- end service_people registration -->
 
-    <!-- begin guest registration -->
+    <!--start modal------------------------------------------------------------>
     <div class="col-md-6">
         <div class="clearfix m-b-25">
-            <!-- #modal-dialog -->
+            
+            <!-- begin guest registration -->
             <div class="modal fade" id="modal-guest">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                            <h4 class="modal-title">Collect Guest Information</h4>
+                            <h4 class="modal-title text-center text-success-light">Collect Guest Information</h4>
                         </div>
                         <div class="modal-body">
                             <!-- begin row panel body --->
                             <div class="row well">
                                 <!-- begin section-container -->
                                 <div class="section-container">
-                                    <form action="{{URL::to('regi-s-people-save')}}" class="form-horizontal" data-parsley-validate="true" name="demo-form">
+                                    {!! Form::open(array('url'=>'regi-guest-save', 'role'=>'form', 'method'=>'POST')) !!}
+                                    <span class="form-horizontal" data-parsley-validate="true" name="demo-form">
 
                                         <div class="col-md-12 m-t-15">
                                             <!-- start Personal Information -->
                                             <div class="col-md-12">
 
                                                 <div class="form-group">
-                                                    <label class="control-label col-sm-3" for="fullname"> <strong>Service Name</strong> <span class="text-danger">*</span></label>
+                                                    <label class="control-label col-sm-3" for="fullname"> <b>Whose Guest</b> <span class="text-danger">*</span></label>
                                                     <div class="col-sm-8">
-                                                        <input class="form-control" type="text" id="fullname" name="service_name" placeholder="Write Service Name" data-parsley-required="true" />
+                                                        <input class="form-control" type="text" id="fullname" name="service_name" ng-model="searchText" placeholder="Search...  Whose Guest" data-parsley-required="true" />
+                                                        
+                                                        <ul ng-repeat="v in search_show | filter:searchText">
+                                                            <a ng-hide="!searchText">@{{v.rental_id_no}}</a>
+                                                        </ul>
+<!--                                                        <ul ng-repeat="v in search_show | filter:searchText">
+                                                            <li ng-hide="searchText">@{{v.rental_id_no}}</li>
+                                                        </ul>-->
+<!--                                                        <select class="form-control" id="select-required" name="floor" ng-repeat="v in search_show | filter:searchText" data-parsley-required="true">
+                                                            <option value="">Floor</option>
+                                                            <option ng-hide="searchText" value="">@{{v.rental_id_no}}</option>
+                                                        </select>-->
                                                     </div>
-                                                </div><hr class="hr-d m-b-15">
+                                                </div>
+                                                
+                                                <hr class="hr-d m-b-15">
 
                                                 <strong class="text-success">Personal Information</strong>
                                                 <div class="form-group m-t-10">
                                                     <label class="control-label col-sm-3" for="fullname">Person Name <span class="text-danger">*</span></label>
                                                     <div class="col-sm-8">
-                                                        <input class="form-control" type="text" id="fullname" name="person_name" placeholder="Service Person Name" data-parsley-required="true" />
+                                                        <input class="form-control" type="text" id="fullname" name="b" placeholder="Service Person Name" required="" data-parsley-required="true" />
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label class="control-label col-sm-3" for="fullname">Mobile No <span class="text-danger">*</span></label>
                                                     <div class="col-sm-4">
-                                                        <input class="form-control" type="text" id="fullname" name="service_phone1" placeholder="01xxxxxxxxx" data-parsley-required="true" />
+                                                        <input class="form-control" type="number" id="fullname" name="c" placeholder="01xxxxxxxxx" required="" data-parsley-required="true" />
                                                     </div>
-                                                    <div class="col-sm-4">
-                                                        <input class="form-control" type="text" id="fullname" name="service_phone2" placeholder="01xxxxxxxxx" />
+                                                    <div class="col-sm-4 m-t-5">
+                                                        <label>
+                                                            <input type="radio" value="1" name="d" id="radio-required" required="" data-parsley-required="true" /> Male <span class="m-l-40"></span>
+                                                            <input type="radio" value="2" name="d" id="radio-required2" /> Female
+                                                        </label>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label class="control-label col-sm-3" for="fullname">Address <span class="text-danger">*</span></label>
                                                     <div class="col-sm-8">
-                                                        <input class="form-control" type="text" id="fullname" name="service_address" placeholder="Write Address" data-parsley-required="true" />
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label class="control-label col-sm-3">Gender <span class="text-danger">*</span></label>
-                                                    <div class="col-sm-8 m-t-5">
-                                                        <label>
-                                                            <input type="radio" value="1" name="g_radio" id="radio-required" data-parsley-required="true" /> Male <span class="m-l-40"></span>
-                                                            <input type="radio" value="2" name="g_radio" id="radio-required2" /> Female
-                                                        </label>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label class="control-label col-sm-3" for="fullname">Picture <span class="text-danger"></span></label>
-                                                    <div class="col-sm-8">
-                                                        <input  type="file" name="filename" id="fileToUpload" />
+                                                        <input class="form-control" type="text" id="fullname" name="e" placeholder="Write Address" required="" data-parsley-required="true" />
                                                     </div>
                                                 </div>
 
@@ -266,7 +267,8 @@
                                         </div>
                                         <!-- end submit button -->
 
-                                    </form>
+                                    </span>
+                                    {!! Form::close() !!}
                                 </div>
                                 <!-- end section-container -->    
                             </div>
@@ -275,15 +277,9 @@
                     </div>
                 </div>
             </div>
-
-        </div>
-    </div>
-    <!-- end guest registration -->
-
-    <!-- begin visitor registration -->
-    <div class="col-md-6">
-        <div class="clearfix m-b-25">
-            <!-- #modal-dialog -->
+            <!-- end guest registration -->
+            
+            <!-- begin visitor registration -->
             <div class="modal fade" id="modal-visitor">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -332,14 +328,11 @@
                     </div>
                 </div>
             </div>
-
+            <!-- end visitor registration -->
+            
         </div>
     </div>
-    <!-- end visitor registration -->
-
-
-
-
+    <!--end modal------------------------------------------------------------>
 
 </div>
 <!-- end section-container -->

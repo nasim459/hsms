@@ -209,8 +209,6 @@ class RegiController extends Controller {
         $details['driver_phone2'] = $request->driver_phone2;
         $details_get_id = DB::table('tbl_driver_details')->insertGetId($details);
 
-
-
         //------tbl_driver------------------------------
         $driver = array();
         $driver['driver_name'] = $request->name;
@@ -222,5 +220,44 @@ class RegiController extends Controller {
         Session::put('Driver_data_inserted', 'Data Inserted Successfully!!!');
         return Redirect::to('info-driver');
     }
+    
+    public function save_guest_regi(Request $request) {
+        
+        //------save Guest Informarion into tbl_guest---------------------
+        $guest = array();
+        $guest['guest_whose_id'] = 'nasim rafi';
+        $guest['guest_name'] = $request->b;
+        $guest['guest_mobile'] = $request->c;
+        $guest['guest_gender'] = $request->d;
+        $guest['guest_address'] = $request->e;
+        DB::table('tbl_guest')->insert($guest);
+        
+//        echo '<pre>';
+//        print_r($guest);
+//        exit();
+                
+        $previous_url = url()->previous();
+        return Redirect::to($previous_url);
+    }
+    
+    //-----
+    public function save_visitor_regi(Request $request) {
+        
+        //------save Visitor Informarion into tbl_visitor---------------------
+        $visitor = array();
+        $visitor['emp_id'] = $request->v_id;
+        
+        $save_visitor = DB::table('tbl_visitor')->insert($visitor);
+        return $save_visitor;
+        
+//        echo '<pre>';
+//        print_r($guest);
+//        exit();
+                
+        //$previous_url = url()->previous();
+        //return Redirect::to($previous_url);
+    }
+    
+    
 
 }

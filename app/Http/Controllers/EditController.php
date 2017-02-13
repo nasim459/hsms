@@ -168,6 +168,13 @@ class EditController extends Controller
         $pre_flat_info_id = $request->pre_a;    //---taken previous flat_info_id
         $new_flat_info_id = $request->b;    //---now take new flat_info_id
         
+        //----when $new_flat_info_id value not found then execuit it
+        if($new_flat_info_id == '') {
+            Session::put('bld_updated_not', 'Not Updated! Please, Choose Option ?');
+            $previous_url = url()->previous();
+            return Redirect::to($previous_url);
+        }
+        
         //-------update building_location with change rental_status
         $update_bld = array();
         $update_bld['flat_info_id'] = $new_flat_info_id;

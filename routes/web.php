@@ -57,6 +57,8 @@ Route::get('info-rental-pic/{rental_id}', 'PeopleController@pic_rental_info');
 Route::get('info-rental-details/{rental_details_id}', 'PeopleController@details_rental_info');
 Route::get('info-rental-status/{rental_id}/', 'PeopleController@status_rental_info');
 Route::get('info-rental-warning/{rental_id}/', 'PeopleController@warning_rental_info');
+//----rentalSearch
+Route::get('info-rental-search', 'SearchController@search_rental_info');
 
 
 
@@ -69,6 +71,8 @@ Route::get('info-rental-invoice/{invoice_id}', 'PeopleController@invoice_rental_
 Route::get('info-driver', 'PeopleController@driver_info');
 Route::get('info-housekeeping', 'PeopleController@housekeeping_info');
 Route::get('info-visiting', 'PeopleController@visiting_info');
+Route::get('info-visiting-show', 'PeopleController@show_visitor_info');
+Route::get('info-guest-show', 'PeopleController@show_guest_info');
 Route::get('info-service', 'PeopleController@service_info');
 
 
@@ -95,6 +99,8 @@ Route::get('regi-visitor', 'RegiController@visitor_regi');
 Route::post('regi-rental-save', 'RegiController@save_rental_regi');
 Route::post('regi-emp-save', 'RegiController@save_emp_regi');
 Route::get('regi-driver-save', 'RegiController@save_driver_regi');
+Route::post('regi-guest-save', 'RegiController@save_guest_regi');
+Route::post('regi-visitor-save', 'RegiController@save_visitor_regi');
 
 //----------End Regi Controller--------------------
 //
