@@ -90,7 +90,33 @@ app.controller('people', function($scope, $http) {
 //        });
 //    };
     
- 
+    
+    //-----info_rental_show
+    $scope.info_rental_show = function() {
+        $http.get('/hsms/public/info-rental-show').then(function(response) {
+          $scope.rental_show = response.data;
+        });
+    };
+    $scope.info_rental_show();
+    
+    //-----rental_status_change
+    $scope.rental_status = function(rental_id) {
+        $http.get('/hsms/public/info-rental-status/'+rental_id).then(function(response) {
+          $scope.rntl_status_change = response.data;
+        });
+    };
+    
+    //-----show_visitor_people
+//    $scope.showVisitor = function() {
+//        $http.get('/hsms/public/info-visiting-show').then(function(response) {
+//          $scope.visitor_show = response.data;
+//        });
+//    }
+//    $scope.showVisitor();
+    
+    
+    
+    
  
     //-----rental_picture_show
     $scope.rental_picture_show = function(rental_id_pic) {

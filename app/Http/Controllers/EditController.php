@@ -60,6 +60,8 @@ class EditController extends Controller
                 ->where('tbl_driver.driver_details_id', '=', $driver_details_id)
                 ->get();
         
+        $previous_url = url()->previous();
+        Session::put('url_p_i_d_d', $previous_url); //--url_previous_info_driver_details
 //        echo '<pre>';
 //        print_r($edit_driver);
 //        exit();
@@ -69,6 +71,16 @@ class EditController extends Controller
         return view('master_ap')
                 ->with('maincontent', $edit);
         
+    }
+    
+    //-------edit_guest_info
+    public function edit_guest_info($guest_id) {
+        
+        $edit_guest_show = DB::table('tbl_guest')
+                //->join('tbl_driver_details', 'tbl_driver.driver_details_id', '=', 'tbl_driver_details.driver_details_id')
+                ->where('guest_id', $guest_id)
+                ->get();
+        return $edit_guest_show;
     }
     //--------------End edit information-------------------------
     
@@ -280,14 +292,12 @@ class EditController extends Controller
         $driver= array();
         $driver['driver_name'] = $request->name;
         $driver['driver_phone1'] = $request->driver_phone1;
-      
-        
         DB::table('tbl_driver')
                 ->where('tbl_driver.driver_id', $driver_id)
                 ->update($driver);
         
-        return redirect()->route('driver-info', $driver_id);
-        
+        $previous_url = Session::get('url_p_i_d_d');  //---url_previous_info_driver_details
+        return Redirect::to($previous_url);
         //echo '<pre>';
         //print_r($ref_get_id);
         //exit();

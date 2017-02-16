@@ -191,6 +191,27 @@ class RegiController extends Controller {
     //=====End Registration=====================================
 
     public function save_driver_regi(Request $request) {
+        
+        $image = $request->file('image');
+
+        if(!isset($image)){
+            $image_url = NULL;
+        } else {
+            $image_name = str_random(20);
+            $ext = strtolower($image->getClientOriginalExtension());
+            $destination_path = 'ap/assets/img/driver_img/';
+            $image_full_name = $image_name . '.' . $ext;
+            $image_url = $destination_path . $image_full_name;
+
+            $success = $image->move($destination_path, $image_full_name);
+            if ($success) {
+                $image_url = $destination_path . $image_full_name;
+            } else {
+                $image_url = NULL;
+            }
+        }
+        
+        
         //------tbl_driver_details---------------------
         $details = array();
         $details['driver_son_wife_off'] = $request->son_wife_off;
@@ -213,6 +234,7 @@ class RegiController extends Controller {
         $driver = array();
         $driver['driver_name'] = $request->name;
         $driver['driver_phone1'] = $request->driver_phone1;
+        $driver['driver_image'] = $image_url;
         $driver['driver_details_id'] = $details_get_id;
 
         DB::table('tbl_driver')->insertGetId($driver);

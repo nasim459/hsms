@@ -45,6 +45,40 @@ class imageController extends Controller
         //------end_picture
     }
     
+    //--------------update update_picture_of_driver
+    public function update_pic_driver_info(Request $request) {
+        //------start_image
+        $image = $request->file('image');
+        $driver_id = $request->a;
+
+        if (isset($image)) {
+            $image_name = str_random(20);
+            $ext = strtolower($image->getClientOriginalExtension());
+            $destination_path = 'ap/assets/img/driver_img/';
+            $image_full_name = $image_name . '.' . $ext;
+            $image_url = $destination_path . $image_full_name;
+            $success = $image->move($destination_path, $image_full_name);
+
+            if ($success) {
+
+                $service_person = array();
+                $service_person['driver_image'] = $image_url;
+                DB::table('tbl_driver')
+                        ->where('driver_id', $driver_id)
+                        ->update(['driver_image' => $image_url]);
+
+                Session::put('driver_img', 'Profile Picture Successfully Update!');
+                $previous_url = url()->previous();
+                return Redirect::to($previous_url);
+            }
+        } else {
+            Session::put('driver_img_error', 'Nothing To Update!');
+            $previous_url = url()->previous();
+            return Redirect::to($previous_url);
+        }
+        //------end_imge
+    }
+    
     
     
 }

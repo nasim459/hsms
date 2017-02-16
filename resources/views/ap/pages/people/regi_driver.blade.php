@@ -11,7 +11,7 @@
 <!-- end breadcrumb -->
 
 <!-- begin section-container -->
-<div class="section-container">
+<div class="section-container" ng-controller="driverController">
     <!-- begin row -->
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
@@ -33,19 +33,9 @@
 
                         <!-- begin section-container -->
                         <div class="section-container">
-                            <form action="{{URL::to('regi-driver-save')}}" class="form-horizontal" data-parsley-validate="true" name="demo-form">
-
-                                <!-- begin Building Place -->
-                                <!--                                <div class="col-md-8 col-md-offset-1">
-                                                                    <div class="form-group">
-                                                                        <label class="control-label col-sm-4" for="fullname"><b>Select Driver Owner </b><span class="text-danger">*</span></label>
-                                                                        <div class="col-sm-8">
-                                                                            <input class="form-control" type="text" id="fullname" name="rntl_name" placeholder="Write Driver Owner Name" data-parsley-required="true" />
-                                                                        </div>
-                                                                    </div>
-                                                                </div>-->
-                                <!-- end Building Place -->
-
+                            {!! Form::open(array('url'=>'regi-driver-save', 'role'=>'form', 'method'=>'POST', 'files'=>'true')) !!}
+                            <span class="form-horizontal" data-parsley-validate="true" name="demo-form">
+                            
                                 <div class="col-md-12 m-t-15">
                                     &nbsp;<hr class="hr-d m-b-30">&nbsp;
                                     <!-- start Personal Information -->
@@ -69,7 +59,7 @@
                                         <div class="form-group">
                                             <label class="control-label col-sm-4" for="fullname">National ID <span class="text-danger">*</span></label>
                                             <div class="col-sm-8">
-                                                <input class="form-control" type="text" id="fullname" name="national_id" placeholder=" National ID" data-parsley-required="true" />
+                                                <input class="form-control" type="number" id="fullname" name="national_id" placeholder=" National ID" data-parsley-required="true" />
                                             </div>
                                         </div>
 
@@ -97,10 +87,10 @@
                                         <div class="form-group">
                                             <label class="control-label col-sm-4" for="fullname">Mobile No <span class="text-danger">*</span></label>
                                             <div class="col-sm-4">
-                                                <input class="form-control" type="text" id="fullname" name="driver_phone1" placeholder="01xxxxxxxxx"  />
+                                                <input class="form-control" type="number" id="fullname" name="driver_phone1" placeholder="01xxxxxxxxx"  />
                                             </div>
                                             <div class="col-sm-4">
-                                                <input class="form-control" type="text" id="fullname" name="driver_phone2" placeholder="01xxxxxxxxx"  />
+                                                <input class="form-control" type="number" id="fullname" name="driver_phone2" placeholder="01xxxxxxxxx"  />
                                             </div>
                                         </div>
 
@@ -145,12 +135,7 @@
                                                 </select>
                                             </div>
                                         </div>
-
-
-
-
-
-
+                                        
                                         <div class="form-group  m-t-10">
                                             <label class="control-label col-sm-4">Religion <span class="text-danger">*</span></label>
                                             <div class="col-sm-8">
@@ -178,7 +163,7 @@
                                         <div class="form-group">
                                             <label class="control-label col-sm-4" for="fullname">Picture <span class="text-danger">*</span></label>
                                             <div class="col-sm-8">
-                                                <input  type="file" name="filename" id="fileToUpload" >
+                                                <input  type="file" name="image" id="fileToUpload" />
                                             </div>
                                         </div>
 
@@ -196,7 +181,8 @@
                                 </div>
                                 <!-- end submit button -->
 
-                            </form>
+                            </span>
+                            {!! Form::close() !!}
                         </div>
                         <!-- end section-container -->    
 
@@ -209,6 +195,55 @@
     </div>
     <!-- end row -->
 
+    <!--start modal------------------------------------------------------->
+    <div class="col-md-6">
+        <div class="clearfix m-b-25">
+
+            <!--start show_service_people_picture-->
+            <div class="modal fade" id="driver-picture">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="modal-title text-center">Service Person Picture</h4>
+                        </div>
+                        <div class="modal-body">
+                            <!-- begin row panel body --->
+                            <div class="row well">
+                                <!-- begin section-container -->
+                                <div class="section-container">
+                                    <span class="form-horizontal" data-parsley-validate="true" name="demo-form">
+                                        <div class="col-md-12 m-t-15">
+                                            <!--start service_person_Picture-->
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <div class="col-sm-4 col-md-offset-4 m-b-10" ng-repeat="picture in data">
+
+                                                        <a class="thumbnail m-b-mi-15">
+                                                            <img src="@{{picture.service_person_image}}" class="img-md-h-w" alt="">
+                                                        </a>
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--ends ervice_person_Picture-->
+                                        </div>
+                                    </span>
+                                </div>
+                                <!-- end section-container -->    
+                            </div>
+                            <!-- end row panel body --->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end show_service_people_picture-->
+            
+        </div>
+    </div>
+    <!--end modal------------------------------------------------------->
+    
+    
 </div>
 <!-- end section-container -->
 @endsection

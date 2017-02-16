@@ -33,18 +33,9 @@
 
                         <!-- begin section-container -->
                         <div class="section-container">
-                            <!--<form action="{{URL::to('info-driver-update')}}" method="post" class="form-horizontal" data-parsley-validate="true" name="demo-form">-->
-                                {!! Form::open(array('url'=>'info-driver-update', 'role'=>'form', 'method'=>'POST')) !!}
-                                <!-- begin Building Place -->
-<!--                                <div class="col-md-8 col-md-offset-1">
-                                    <div class="form-group">
-                                        <label class="control-label col-sm-4" for="fullname"><b>Select Driver Owner </b><span class="text-danger">*</span></label>
-                                        <div class="col-sm-8">
-                                            <input class="form-control" type="text" id="fullname" name="rntl_name" placeholder="Write Driver Owner Name" data-parsley-required="true" />
-                                        </div>
-                                    </div>
-                                </div>-->
-                                <!-- end Building Place -->
+                            {!! Form::open(array('url'=>'info-driver-update', 'role'=>'form', 'method'=>'POST')) !!}
+                            <span class="form-horizontal" data-parsley-validate="true" name="demo-form">
+                                
                                 @foreach($edit_driver as $d)
                                 <div class="col-md-12 m-t-15">
                                     &nbsp;<hr class="hr-d m-b-30">&nbsp;
@@ -99,10 +90,10 @@
                                         <div class="form-group">
                                             <label class="control-label col-sm-4" for="fullname">Mobile No <span class="text-danger">*</span></label>
                                             <div class="col-sm-4">
-                                                <input class="form-control" type="text" id="fullname" name="driver_phone1" value="{{$d->driver_phone1}}" placeholder="01xxxxxxxxx"  />
+                                                <input class="form-control" type="number" id="fullname" name="driver_phone1" value="{{$d->driver_phone1}}" placeholder="01xxxxxxxxx"  />
                                             </div>
                                             <div class="col-sm-4">
-                                                <input class="form-control" type="text" id="fullname" name="driver_phone2" value="{{$d->driver_phone2}}" placeholder="01xxxxxxxxx"  />
+                                                <input class="form-control" type="number" id="fullname" name="driver_phone2" value="{{$d->driver_phone2}}" placeholder="01xxxxxxxxx"  />
                                             </div>
                                         </div>
 
@@ -146,8 +137,7 @@
                                                     <option value="Sri_lanka">Sri Lanka</option>
                                                 </select>
                                             </div>
-                                        </div>                     
-                                        
+                                        </div>
                                         
                                         <div class="form-group  m-t-10">
                                             <label class="control-label col-sm-4">Religion <span class="text-danger">*</span></label>
@@ -166,20 +156,15 @@
                                                 <label class="control-label col-sm-4">Gender <span class="text-danger">*</span></label>
                                                 <div class="col-sm-8 m-t-5">
                                                     <label>
-                                                        @if($d->dpi_gender== 1)
-                                                        <input type="radio" value="1" name="g_radio" checked="" id="radio-required"  /> Male <span class="m-l-40"></span>
+                                                        @if($d->dpi_gender ==1)
+                                                        <input type="radio" value="1" name="g_radio" checked id="radio-required" data-parsley-required="true" /> Mail <span class="m-l-40"></span>
+                                                        <input type="radio" value="2" name="g_radio" id="radio-required2" /> Femail
                                                         @else
-                                                        <input type="radio" value="2" name="g_radio" checked="" id="radio-required2" /> Female
+                                                        <input type="radio" value="1" name="g_radio" id="radio-required" data-parsley-required="true" /> Mail <span class="m-l-40"></span>
+                                                        <input type="radio" value="2" name="g_radio" checked id="radio-required2" /> Femail
                                                         @endif
                                                     </label>
                                                 </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label class="control-label col-sm-4" for="fullname">Picture <span class="text-danger">*</span></label>
-                                            <div class="col-sm-8">
-                                                <input  type="file" name="filename" id="fileToUpload" >
                                             </div>
                                         </div>
                                         
@@ -196,7 +181,7 @@
                                     </div>
                                 </div>
                                 <!-- end submit button -->
-                               
+                            </span>
                             {!! Form::close() !!}
                         </div>
                         <!-- end section-container -->    

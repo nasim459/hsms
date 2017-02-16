@@ -129,17 +129,25 @@ class PeopleController extends Controller
     
     public function rental_info()
     {
-        $rental_show = DB::table('tbl_rental')
-                ->join('tbl_flat_info', 'tbl_rental.flat_info_id', '=', 'tbl_flat_info.flat_info_id')
-                ->select('tbl_rental.*', 'tbl_flat_info.*')
-                ->get();
+//        $rental_show = DB::table('tbl_rental')
+//                ->join('tbl_flat_info', 'tbl_rental.flat_info_id', '=', 'tbl_flat_info.flat_info_id')
+//                ->select('tbl_rental.*', 'tbl_flat_info.*')
+//                ->get();
         
-        $owner = view('ap.pages.people.info_rental')
-                ->with('rental_show', $rental_show);
+        $owner = view('ap.pages.people.info_rental');
+                //->with('rental_show', $rental_show);
         $master = view('ap.pages.people.people_master')
                 ->with('people_content', $owner);
         return view('master_ap')
                 ->with('maincontent', $master);
+    }
+    public function show_rental_info()
+    {
+        $show_rental = DB::table('tbl_rental')
+                ->join('tbl_flat_info', 'tbl_rental.flat_info_id', '=', 'tbl_flat_info.flat_info_id')
+                ->select('tbl_rental.*', 'tbl_flat_info.*')
+                ->get();
+        return $show_rental;
     }
     
     //--------------show rental_picture
@@ -242,12 +250,12 @@ class PeopleController extends Controller
                 ->update(['person_status' => 0]);
         
         //-------change bld_status of tbl_flat_info
-        DB::table('tbl_rental')
+        $bld_status = DB::table('tbl_rental')
                 ->join('tbl_flat_info', 'tbl_rental.flat_info_id', '=', 'tbl_flat_info.flat_info_id')
                 ->where('rental_id', $rental_id)
                 ->update(['bld_status' => 0]);
         
-        return Redirect::to('info-rental');
+        return $bld_status;
     }
     
     //----Rental rental_warning
@@ -284,6 +292,16 @@ class PeopleController extends Controller
                 ->with('people_content', $driver);
         return view('master_ap')
                 ->with('maincontent', $master);
+      
+    }
+    
+    public function show_pic_driver_info($driver_id)
+    {
+        $driver_pic= DB::table('tbl_driver')
+                ->where('driver_id', $driver_id)
+                //->select('tbl_driver.*')
+                ->get();
+        return $driver_pic;
       
     }
     

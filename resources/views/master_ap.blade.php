@@ -70,6 +70,46 @@
 
         <script src="{{URL::asset('ap/assets/jquery-3.1.1.js')}}" type="text/javascript"></script>
 
+        <style type="text/css">
+            .table-scroll tbody {
+                position: absolute;
+                overflow-y: scroll;
+                overflow: auto;
+                height: 338px;
+                border-bottom: 1px solid #EBECED;
+                border-left: 1px solid #EBECED;
+                border-right: 1px solid #EBECED;
+                margin-right: 11px;
+                //margin-top: 43px;
+                background-color: white;
+            }
+            .table-scroll tr {
+                width: 100%;
+                table-layout: fixed;
+                display: inline-table;
+            }
+            .table-scroll thead > tr > th {
+                border: none;
+            }
+            
+            
+            
+            
+            div.absolute {
+                position: absolute;
+                top: 546px;
+                //right: 0;
+                //width: 200px;
+                //height: 100px;
+                //border: 3px solid #73AD21;
+                margin-bottom: 100px;
+                
+                border-bottom-left-radius: 5px;
+                border-bottom-right-radius: 5px;
+                //border-radius: 5px;
+                background-color: #fff;
+            }
+        </style>
     </head>
     <body>
         <!-- begin #page-loader -->
@@ -368,40 +408,13 @@
         <script src="{{URL::asset('ap/assets/js/demo.min.js')}}"></script>
         <script src="{{URL::asset('ap/assets/js/apps.min.js')}}"></script>
         <!-- ================== END PAGE LEVEL JS ================== -->
-
-        <!-- ================== BEGIN TABLE ================== -->
-        <script src="{{URL::asset('ap/assets/plugins/DataTables/media/js/jquery.dataTables.js')}}"></script>
-        <script src="{{URL::asset('ap/assets/plugins/DataTables/media/js/dataTables.bootstrap.min.js')}}"></script>
-        <script src="{{URL::asset('ap/assets/plugins/DataTables/extensions/FixedColumns/js/dataTables.fixedColumns.min.js')}}"></script>
-        <script src="{{URL::asset('ap/assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js')}}"></script>
-        <script src="{{URL::asset('ap/assets/js/page-table-manage-fixed-columns.demo.min.js')}}"></script>
         
         <!--<script src="{{URL::asset('ap/')}}"></script>--!>
-        
-        <!-- ================== Begin Form Plugins ================== -->
-	<script src="{{URL::asset('aap/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js')}}"></script>
-	<script src="{{URL::asset('aap/assets/plugins/ionRangeSlider/js/ion-rangeSlider/ion.rangeSlider.min.js')}}"></script>
-	<script src="{{URL::asset('aap/assets/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js')}}"></script>
-	<script src="{{URL::asset('aap/assets/plugins/masked-input/masked-input.min.js')}}"></script>
-	<script src="{{URL::asset('aap/assets/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js')}}"></script>
-	<script src="{{URL::asset('aap/assets/plugins/strength-js/strength.js')}}"></script>
-	<script src="{{URL::asset('aap/assets/plugins/bootstrap-combobox/js/bootstrap-combobox.js')}}"></script>
-	<script src="{{URL::asset('aap/assets/plugins/bootstrap-select/bootstrap-select.min.js')}}"></script>
-	<script src="{{URL::asset('aap/assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js')}}"></script>
-	<script src="{{URL::asset('aap/assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput-typeahead.js')}}"></script>
-	<script src="{{URL::asset('aap/assets/plugins/jquery-tag-it/js/tag-it.min.js')}}"></script>
-        <script src="{{URL::asset('aap/assets/plugins/bootstrap-daterangepicker/moment.js')}}"></script>
-        <script src="{{URL::asset('aap/assets/plugins/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
-        <script src="{{URL::asset('aap/assets/plugins/select2/dist/js/select2.min.js')}}"></script>
-        <script src="{{URL::asset('aap/assets/plugins/bootstrap-eonasdan-datetimepicker/build/js/bootstrap-datetimepicker.min.js')}}"></script>
-       
-        <script src="{{URL::asset('aap/assets/js/page-form-plugins.demo.min.js')}}"></script>
-        <!-- ================== End Form Plugins ================== -->
         
         <!-- ================== END TABLE ================== -->
         <!-- <script src="{{URL::asset('ap/assets/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js')}}"></script> -->
         
-        <!-- Begin_Angular_js -->
+        <!--Start_Angular_js -->
         <script src="{{URL::asset('ap/assets/js/angular.js')}}"  type="text/javascript"></script>
         <script src="{{URL::asset('ap/assets/js/homeController.js')}}"  type="text/javascript"></script>
         <script src="{{URL::asset('ap/assets/js/notice_board.js')}}"  type="text/javascript"></script>
@@ -409,7 +422,8 @@
         <script src="{{URL::asset('ap/assets/js/service_person.js')}}"  type="text/javascript"></script>
         <script src="{{URL::asset('ap/assets/js/rentalController.js')}}"  type="text/javascript"></script>
         <script src="{{URL::asset('ap/assets/js/RegiController.js')}}"  type="text/javascript"></script>
-        <!-- End_Angular_js -->
+        <script src="{{URL::asset('ap/assets/js/driverController.js')}}"  type="text/javascript"></script>
+        <!--End_Angular_js -->
         
         <script>
 $(document).ready(function() {

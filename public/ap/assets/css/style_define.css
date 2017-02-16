@@ -127,17 +127,6 @@ hr.hr-w {
     width: 20px;
     height: 20px;
 }
-//--------rough
-
-
-//-------------------overflow
-/*.overflow-use{
-    overflow: scroll !important; 
-    overflow-x: hidden !important; 
-    overflow-y: no-content !important; 
-    height: 350px !important;
-}*/
-//-------------------rough_test
 
 .d_invoice {
     //padding: 40px !important;
@@ -146,3 +135,14 @@ hr.hr-w {
     margin: 0 auto 20px;
     max-width: 980px;
 }
+
+//---------starat_table
+//-------well-table
+.well-t {
+    border: none;
+    padding: 0px!important;
+    //background: #ebeced;
+    //-webkit-box-shadow: 0 1px rgba(0,0,0,.125);
+    //box-shadow: 0 1px rgba(0,0,0,.125);
+}
+//------------end_table

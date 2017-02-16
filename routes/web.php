@@ -49,10 +49,11 @@ Route::get('info-emp', 'PeopleController@emp_info');
 
 Route::get('info-owner-details/{rental_details_id}', 'PeopleController@details_owner_info');
 Route::get('info-emp-details/{emp_details_id}', 'PeopleController@details_emp_info')->name('emp-info');
-Route::get('info-driver-details/{driver_details_id}', 'PeopleController@details_driver_info')->name('driver-info');
+Route::get('info-driver-details/{driver_details_id}', 'PeopleController@details_driver_info');
 
 Route::get('info-owner-invoice', 'InvoiceController@invoice_owner_info');
 Route::get('info-rental', 'PeopleController@rental_info');
+Route::get('info-rental-show', 'PeopleController@show_rental_info');
 Route::get('info-rental-pic/{rental_id}', 'PeopleController@pic_rental_info');
 Route::get('info-rental-details/{rental_details_id}', 'PeopleController@details_rental_info');
 Route::get('info-rental-status/{rental_id}/', 'PeopleController@status_rental_info');
@@ -63,12 +64,14 @@ Route::get('info-rental-search', 'SearchController@search_rental_info');
 
 
 Route::post('info-rental-pic-update', 'imageController@update_pic_rental_info');
+Route::post('info-driver-pic-update', 'imageController@update_pic_driver_info');
 Route::post('info-rental-bld-update', 'EditController@update_bld_rental_info');
 
 Route::get('info-rental-invoice/{invoice_id}', 'PeopleController@invoice_rental_info');
 
 
 Route::get('info-driver', 'PeopleController@driver_info');
+Route::get('info-driver-pic-show/{driver_id}', 'PeopleController@show_pic_driver_info');
 Route::get('info-housekeeping', 'PeopleController@housekeeping_info');
 Route::get('info-visiting', 'PeopleController@visiting_info');
 Route::get('info-visiting-show', 'PeopleController@show_visitor_info');
@@ -81,6 +84,7 @@ Route::get('info-service', 'PeopleController@service_info');
 Route::get('info-rental-edit/{rental_id}', 'EditController@edit_rental_info')->name('rental-edit');
 Route::get('info-emp-edit/{emp_details_id}', 'EditController@edit_emp_info')->name('emp-edit');
 Route::get('info-driver-edit/{driver_details_id}', 'EditController@edit_driver_info')->name('driver-edit');
+Route::get('info-guest-edit/{guest_id}', 'EditController@edit_guest_info');
 
 //----------People Update Controller
 Route::post('info-rental-update', 'EditController@update_rental_info');
@@ -98,7 +102,7 @@ Route::get('regi-visitor', 'RegiController@visitor_regi');
 //----------Regi Save
 Route::post('regi-rental-save', 'RegiController@save_rental_regi');
 Route::post('regi-emp-save', 'RegiController@save_emp_regi');
-Route::get('regi-driver-save', 'RegiController@save_driver_regi');
+Route::post('regi-driver-save', 'RegiController@save_driver_regi');
 Route::post('regi-guest-save', 'RegiController@save_guest_regi');
 Route::post('regi-visitor-save', 'RegiController@save_visitor_regi');
 

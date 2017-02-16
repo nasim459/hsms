@@ -109,10 +109,10 @@
                                         <div class="form-group">
                                             <label class="control-label col-sm-4" for="fullname">Mobile No <span class="text-danger">*</span></label>
                                             <div class="col-sm-4">
-                                                <input class="form-control" type="text" id="fullname" value="{{$v->rental_phone_1}}" name="rntl_phone1" placeholder="01xxxxxxxxx" data-parsley-required="true" />
+                                                <input class="form-control" type="number" id="fullname" value="{{$v->rental_phone_1}}" name="rntl_phone1" placeholder="01xxxxxxxxx" data-parsley-required="true" />
                                             </div>
                                             <div class="col-sm-4">
-                                                <input class="form-control" type="text" id="fullname" value="{{$v->phone_2}}" name="rntl_phone2" placeholder="01xxxxxxxxx" data-parsley-required="true" />
+                                                <input class="form-control" type="number" id="fullname" value="{{$v->phone_2}}" name="rntl_phone2" placeholder="01xxxxxxxxx" data-parsley-required="true" />
                                             </div>
                                         </div>
                                     </div>
@@ -239,7 +239,7 @@
                                         <div class="form-group">
                                             <label class="control-label col-sm-4" for="fullname">Mobile No <span class="text-danger">*</span></label>
                                             <div class="col-sm-8">
-                                                <input class="form-control" type="text" id="fullname" value="{{$v->ei_phone}}" name="ei_phone" placeholder="01xxxxxxxxxx" data-parsley-required="true" />
+                                                <input class="form-control" type="number" id="fullname" value="{{$v->ei_phone}}" name="ei_phone" placeholder="01xxxxxxxxxx" data-parsley-required="true" />
                                             </div>
                                         </div>
 
@@ -276,7 +276,7 @@
                                         <div class="form-group">
                                             <label class="control-label col-sm-4" for="fullname">Mobile No <span class="text-danger">*</span></label>
                                             <div class="col-sm-8">
-                                                <input class="form-control" type="text" id="fullname" value="{{$v->psi_phone}}" name="psi_phone" placeholder="01xxxxxxxxxx" data-parsley-required="true" />
+                                                <input class="form-control" type="number" id="fullname" value="{{$v->psi_phone}}" name="psi_phone" placeholder="01xxxxxxxxxx" data-parsley-required="true" />
                                             </div>
                                         </div>
 
@@ -311,7 +311,7 @@
                                         <div class="form-group">
                                             <label class="control-label col-sm-4" for="fullname">Mobile No <span class="text-danger">*</span></label>
                                             <div class="col-sm-8">
-                                                <input class="form-control" type="text" id="fullname" value="{{$v->r_phone}}" name="r_phone" placeholder="01xxxxxxxxxx" data-parsley-required="true" />
+                                                <input class="form-control" type="number" id="fullname" value="{{$v->r_phone}}" name="r_phone" placeholder="01xxxxxxxxxx" data-parsley-required="true" />
                                             </div>
                                         </div>
 
@@ -347,7 +347,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-sm-3" for="fullname">Mobile No <span class="text-danger">*</span></label>
                                         <div class="col-sm-6">
-                                            <input class="form-control" type="text" id="fullname" value="{{$v->f_phone}}" name="f_phone" placeholder="01xxxxxxxxxx" data-parsley-required="true" />
+                                            <input class="form-control" type="number" id="fullname" value="{{$v->f_phone}}" name="f_phone" placeholder="01xxxxxxxxxx" data-parsley-required="true" />
                                         </div>
                                     </div>
                                     <div class="form-group">

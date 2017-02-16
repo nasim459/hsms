@@ -12,13 +12,13 @@
                 {!! Form::open(array('url'=>'make-salary-invoice', 'role'=>'form', 'method'=>'POST')) !!}
                 <div class="form-group">
                     <div class="col-md-3 m-b-10">
-                        <input class="form-control text-center" type="text" id="fullname" value="" placeholder=" Search here..." data-parsley-required="true" />
+                        <input class="form-control text-center" type="text" ng-model="search_g_v" id="fullname" placeholder=" Search here..." data-parsley-required="true" />
                     </div>
                     <div class="col-md-3 col-md-offset-2">
-                        <!--                        <ul class="nav nav-tabs col-md-offset-0">
-                                                    <li class="active"><a href="#default-tab-1" data-toggle="tab"><i class="fa fa-user"></i> Guest</a></li>
-                                                    <li class=""><a href="#default-tab-2" data-toggle="tab"><i class="fa fa-list"></i> Visitors</a></li>
-                                                </ul>-->
+                        <!--<ul class="nav nav-tabs col-md-offset-0">
+                            <li class="active"><a href="#default-tab-1" data-toggle="tab"><i class="fa fa-user"></i> Guest</a></li>
+                            <li class=""><a href="#default-tab-2" data-toggle="tab"><i class="fa fa-list"></i> Visitors</a></li>
+                        </ul>-->
                     </div>
                     <div class="col-md-0"></div>
                     <div class="col-md-4">
@@ -46,23 +46,31 @@
                                         <th class="text-center">Gender</th>
                                         <th class="text-center">Entry Time</th>
                                         <th class="text-center">Whose Guest Name</th>
+                                        <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @php
                                     $number = Session::get('count_visitor') + 1;
                                     @endphp
-                                    <tr ng-repeat="v in visitor_show">
+                                    <tr ng-repeat="v in visitor_show | filter:search_g_v">
                                         <td
                                             <b><a class="btn btn-default btn-xs">@{{$index+1}}</a></b>
                                         </td>
                                         <td><b>@{{v.guest_name}}</b></td>
                                         <td class="text-center">@{{v.guest_mobile}}</td>
-                                        <td class="text-center">@{{v.guest_address}}</td>
+                                        <td ng-init="limit = 20; moreShown=false">
+                                            @{{v.guest_address | limitTo: limit}} @{{v.guest_address.length >limit ? '...': ''}}
+                                            <a ng-show="v.guest_address.length >limit" href ng-click="limit=v.guest_address.length; moreShown=ture">More</a>
+                                            <a ng-show="moreShown" href ng-click="limit=256; moreShown=false">Less</a>
+                                        </td>
                                         <td class="text-center" ng-if="v.guest_gender == '1'">Male</td>
                                         <td class="text-center" ng-if="v.guest_gender == '2'">Female</td>
                                         <td class="text-center">@{{v.guest_created_at}}
                                         <td>TonMoy Khan</td>
+                                        <td class="text-center">
+                                            <a href="#modal-guest-edit" data-toggle="modal" title="Click To Edit" ng-click="guestEdit(@{{v.guest_id}})"><i class="fa fa-edit"></i></a>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -79,7 +87,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr ng-repeat="v in guest_show">
+                                    <tr ng-repeat="v in guest_show | filter:search_g_v">
                                         <td>
                                             <img src="{{URL::asset('ap/assets/img_blank/img_blank.jpg')}}" class="img-h-w" title="Please, Give Your Picture" alt="" />
                                             <b  class="m-l-20">@{{$index+1}}</b>
@@ -256,6 +264,104 @@
                 </div>
             </div>
             <!--end modal modal-visitor-->
+            
+            <!--start modal modal-guest-edit-->
+            <div class="modal fade" id="modal-guest-edit">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="modal-title text-center text-success-light">Collect Guest Information</h4>
+                        </div>
+                        <div class="modal-body">
+                            <!-- begin row panel body --->
+                            <div class="row well">
+                                <!-- begin section-container -->
+                                <div class="section-container">
+                                    {!! Form::open(array('url'=>'regi-guest-save', 'role'=>'form', 'method'=>'POST')) !!}
+                                    <span class="form-horizontal" data-parsley-validate="true" name="demo-form">
+
+                                        <div class="col-md-12 m-t-15">
+                                            <!-- start Personal Information -->
+                                            <div class="col-md-12">
+
+                                                <div class="form-group">
+                                                    <label class="control-label col-sm-3" for="fullname"> <b>Whose Guest</b> <span class="text-danger">*</span></label>
+                                                    <div class="col-sm-8">
+                                                        <input class="form-control" type="text" id="fullname" name="service_name" ng-model="searchText" placeholder="Search...  Whose Guest" data-parsley-required="true" />
+                                                        
+                                                        <ul ng-repeat="v in search_show | filter:searchText">
+                                                            <a ng-hide="!searchText">@{{v.rental_id_no}}</a>
+                                                        </ul>
+<!--                                                        <ul ng-repeat="v in search_show | filter:searchText">
+                                                            <li ng-hide="searchText">@{{v.rental_id_no}}</li>
+                                                        </ul>-->
+<!--                                                        <select class="form-control" id="select-required" name="floor" ng-repeat="v in search_show | filter:searchText" data-parsley-required="true">
+                                                            <option value="">Floor</option>
+                                                            <option ng-hide="searchText" value="">@{{v.rental_id_no}}</option>
+                                                        </select>-->
+                                                    </div>
+                                                </div>
+                                                
+                                                <hr class="hr-d m-b-15">
+                                                
+                                                <div ng-repeat="v in guest_edit">
+                                                    <strong class="text-success">Personal Information</strong>
+                                                    <div class="form-group m-t-10">
+                                                        <label class="control-label col-sm-3" for="fullname">Person Name <span class="text-danger">*</span></label>
+                                                        <div class="col-sm-8">
+                                                            <input class="form-control" type="text" id="fullname" name="b" value="@{{v.guest_id}}" placeholder="Service Person Name" required="" data-parsley-required="true" />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label class="control-label col-sm-3" for="fullname">Mobile No <span class="text-danger">*</span></label>
+                                                        <div class="col-sm-4">
+                                                            <input class="form-control" type="number" id="fullname" name="c" placeholder="01xxxxxxxxx" required="" data-parsley-required="true" />
+                                                        </div>
+                                                        <div class="col-sm-4 m-t-5">
+                                                            <label>
+                                                                <input type="radio" value="1" name="d" id="radio-required" required="" data-parsley-required="true" /> Male <span class="m-l-40"></span>
+                                                                <input type="radio" value="2" name="d" id="radio-required2" /> Female
+                                                            </label>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label class="control-label col-sm-3" for="fullname">Address <span class="text-danger">*</span></label>
+                                                        <div class="col-sm-8">
+                                                            <input class="form-control" type="text" id="fullname" name="e" placeholder="Write Address" required="" data-parsley-required="true" />
+    <!--                                                        <input type="hidden" name="rough_" value="" />-->
+                                                        </div>
+                                                    </div>
+                                                
+                                                </div>
+
+                                            </div>
+                                            <!-- end Personal Information -->
+                                        </div>
+
+                                        <!-- begin submit button -->
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-4"></label>
+                                            <div class="col-sm-5 m-t-30">
+                                                <button type="submit" class="btn btn-success width-xs">Submit</button>
+                                            </div>
+                                        </div>
+                                        <!-- end submit button -->
+
+                                    </span>
+                                    {!! Form::close() !!}
+                                </div>
+                                <!-- end section-container -->    
+                            </div>
+                            <!-- end row panel body --->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end modal modal-guest-edit-->
+            
         </div>
     </div>
     <!--end modal------------------------------------------------------------>

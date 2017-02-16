@@ -278,13 +278,13 @@
                                 <!-- begin panel -->
                                 <div class="panel">
                                     <div class="panel-heading">
-                                        <div class="panel-heading-btn">
-                                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-grey" data-click="panel-expand"><i class="fa fa-expand"></i></a>
-                                        </div>
-                                        <h4 class="panel-title text-center"><b>Your Payment</b></h4>
+                                        <h4 class="panel-title text-center"><b>Your Payment Table</b></h4>
+                                    </div>
+                                    <div class="panel-body text-success">
+                                    Basic panel example
                                     </div>
                                     <div class="table-responsive">
-                                        <table class="table table-td-valign-middle">
+                                        <table class="table table-hover">
                                             <thead>
                                                 <tr class="success">
                                                     <th> No </th>
@@ -348,253 +348,462 @@
                     </div>
 
                     <div class="tab-pane fade" id="default-tab-4">
-                        <!-- begin row -->
+                        <!--start_row-->
                         <div class="row">
                             <!-- begin Add_Salary -->
                             <div class="col-md-10 col-md-offset-1">
-                                <span><p class=""></p></span>
-                                <!-- begin panel -->
-                                <div class="panel without-pagination clearfix m-b-0">
-                                    <div class="form-group">
-                                        <div class="col-sm-4 m-b-10">
-                                            <strong class="text-success m-t-10">Employer Salary Has Been Completed</strong>
-                                        </div>
-                                        <div class="col-sm-4 m-b-10 col-md-offset-4">
-                                            <input class="form-control text-center" type="text" id="fullname" value="" placeholder=" Search here..." data-parsley-required="true" />
-                                        </div>
-                                    </div>
-
-
-
-                                    <table class="table table-bordered table-hover" style="border:5px solid #EBECED !important">
+                                <div>
+                                    <table class="table table-hover table-scroll">
                                         <thead>
-                                            <tr class="default">
-                                                <th class="text-center"><b>Employee Id</b></th>
-                                                <th class="text-center"><b>Month</b></th>
-                                                <th class="text-center"><b>Salary Fixt</b></th>
-                                                <th class="text-center"><b>Give Salary</b></th>
-                                                <th class="text-center"><b>Due</b></th>
-                                                <th class="text-center"><b>Status</b></th>
+                                            <tr>
+                                                <th><b>#</b></th>
+                                                <th><b>First Name</b></th>
+                                                <th><b>Last Name</b></th>
+                                                <th><b>County</b></th>
                                             </tr>
                                         </thead>
-                                        <tbody class="scrollit">
+                                        <tbody>
                                             <tr>
-                                                <td class="text-center"><b><a href="#">sdfsd</a></b></td>
-                                                <td class="text-center">dfgdf</td>
-                                                <td class="text-center">353</td> 
-                                                <td class="text-center">5345</td> 
-                                                <td class="text-center">345</td> 
-                                                <td class="text-center"><a href="#" class="btn btn-default btn-xs"><i class="fa fa-check text-success-light"></i> &nbsp; Paid &nbsp;&nbsp;</a></td>
+                                                <td>13</td>
+                                                <td>Ashton</td>
+                                                <td>Fox</td>
+                                                <td>Calhoun</td>
                                             </tr>
                                             <tr>
-                                                <td class="text-center"><b><a href="#">sdfsd</a></b></td>
-                                                <td class="text-center">dfgdf</td>
-                                                <td class="text-center">353</td> 
-                                                <td class="text-center">5345</td> 
-                                                <td class="text-center">345</td> 
-                                                <td class="text-center"><a href="#" class="btn btn-default btn-xs"><i class="fa fa-check text-success-light"></i> &nbsp; Paid &nbsp;&nbsp;</a></td>
+                                                <td>14</td>
+                                                <td>Garrett</td>
+                                                <td>John</td>
+                                                <td>Madison</td>
                                             </tr>
                                             <tr>
-                                                <td class="text-center"><b><a href="#">sdfsd</a></b></td>
-                                                <td class="text-center">dfgdf</td>
-                                                <td class="text-center">353</td> 
-                                                <td class="text-center">5345</td> 
-                                                <td class="text-center">345</td> 
-                                                <td class="text-center"><a href="#" class="btn btn-default btn-xs"><i class="fa fa-check text-success-light"></i> &nbsp; Paid &nbsp;&nbsp;</a></td>
+                                                <td>13</td>
+                                                <td>Ashton</td>
+                                                <td>Fox</td>
+                                                <td>Calhoun</td>
                                             </tr>
                                             <tr>
-                                                <td class="text-center"><b><a href="#">sdfsd</a></b></td>
-                                                <td class="text-center">dfgdf</td>
-                                                <td class="text-center">353</td> 
-                                                <td class="text-center">5345</td> 
-                                                <td class="text-center">345</td> 
-                                                <td class="text-center"><a href="#" class="btn btn-default btn-xs"><i class="fa fa-check text-success-light"></i> &nbsp; Paid &nbsp;&nbsp;</a></td>
+                                                <td>14</td>
+                                                <td>Garrett</td>
+                                                <td>John</td>
+                                                <td>Madison</td>
                                             </tr>
                                             <tr>
-                                                <td class="text-center"><b><a href="#">sdfsd</a></b></td>
-                                                <td class="text-center">dfgdf</td>
-                                                <td class="text-center">353</td> 
-                                                <td class="text-center">5345</td> 
-                                                <td class="text-center">345</td> 
-                                                <td class="text-center"><a href="#" class="btn btn-default btn-xs"><i class="fa fa-check text-success-light"></i> &nbsp; Paid &nbsp;&nbsp;</a></td>
+                                                <td>13</td>
+                                                <td>Ashton</td>
+                                                <td>Fox</td>
+                                                <td>Calhoun</td>
                                             </tr>
                                             <tr>
-                                                <td class="text-center"><b><a href="#">sdfsd</a></b></td>
-                                                <td class="text-center">dfgdf</td>
-                                                <td class="text-center">353</td> 
-                                                <td class="text-center">5345</td> 
-                                                <td class="text-center">345</td> 
-                                                <td class="text-center"><a href="#" class="btn btn-default btn-xs"><i class="fa fa-check text-success-light"></i> &nbsp; Paid &nbsp;&nbsp;</a></td>
+                                                <td>14</td>
+                                                <td>Garrett</td>
+                                                <td>John</td>
+                                                <td>Madison</td>
                                             </tr>
                                             <tr>
-                                                <td class="text-center"><b><a href="#">sdfsd</a></b></td>
-                                                <td class="text-center">dfgdf</td>
-                                                <td class="text-center">353</td> 
-                                                <td class="text-center">5345</td> 
-                                                <td class="text-center">345</td> 
-                                                <td class="text-center"><a href="#" class="btn btn-default btn-xs"><i class="fa fa-check text-success-light"></i> &nbsp; Paid &nbsp;&nbsp;</a></td>
+                                                <td>13</td>
+                                                <td>Ashton</td>
+                                                <td>Fox</td>
+                                                <td>Calhoun</td>
+                                            </tr>
+                                            <tr>
+                                                <td>14</td>
+                                                <td>Garrett</td>
+                                                <td>John</td>
+                                                <td>Madison</td>
+                                            </tr>
+                                            <tr>
+                                                <td>13</td>
+                                                <td>Ashton</td>
+                                                <td>Fox</td>
+                                                <td>Calhoun</td>
+                                            </tr>
+                                            <tr>
+                                                <td>14</td>
+                                                <td>Garrett</td>
+                                                <td>John</td>
+                                                <td>Madison</td>
+                                            </tr>
+                                            <tr>
+                                                <td>13</td>
+                                                <td>Ashton</td>
+                                                <td>Fox</td>
+                                                <td>Calhoun</td>
+                                            </tr>
+                                            <tr>
+                                                <td>14</td>
+                                                <td>Garrett</td>
+                                                <td>John</td>
+                                                <td>Madison</td>
+                                            </tr>
+                                            <tr>
+                                                <td>13</td>
+                                                <td>Ashton</td>
+                                                <td>Fox</td>
+                                                <td>Calhoun</td>
+                                            </tr>
+                                            <tr>
+                                                <td>14</td>
+                                                <td>Garrett</td>
+                                                <td>John</td>
+                                                <td>Madison</td>
+                                            </tr>
+                                            <tr>
+                                                <td>15</td>
+                                                <td>Fredie</td>
+                                                <td>Winters</td>
+                                                <td>Washington</td>
                                             </tr>
                                         </tbody>
                                     </table>
-
-
-
                                 </div>
-                                <!-- end panel -->
                             </div>
                         </div>
-                        <!-- end row -->
+                        <!--end_row-->
+                    </div>
+                    
+                    <div class="tab-pane fade" id="default-tab-5">
+                        <!--start_row-->
+                        <div class="row">
+                            <!-- begin Add_Salary -->
+                            <div class="col-md-10 col-md-offset-1">
+                                <div>
+                                    <table class="table table-hover table-scroll table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th><b>#</b></th>
+                                                <th><b>First Name</b></th>
+                                                <th><b>Last Name</b></th>
+                                                <th><b>County</b></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>13</td>
+                                                <td>Ashton</td>
+                                                <td>Fox</td>
+                                                <td>Calhoun</td>
+                                            </tr>
+                                            <tr>
+                                                <td>14</td>
+                                                <td>Garrett</td>
+                                                <td>John</td>
+                                                <td>Madison</td>
+                                            </tr>
+                                            <tr>
+                                                <td>13</td>
+                                                <td>Ashton</td>
+                                                <td>Fox</td>
+                                                <td>Calhoun</td>
+                                            </tr>
+                                            <tr>
+                                                <td>14</td>
+                                                <td>Garrett</td>
+                                                <td>John</td>
+                                                <td>Madison</td>
+                                            </tr>
+                                            <tr>
+                                                <td>13</td>
+                                                <td>Ashton</td>
+                                                <td>Fox</td>
+                                                <td>Calhoun</td>
+                                            </tr>
+                                            <tr>
+                                                <td>14</td>
+                                                <td>Garrett</td>
+                                                <td>John</td>
+                                                <td>Madison</td>
+                                            </tr>
+                                            <tr>
+                                                <td>13</td>
+                                                <td>Ashton</td>
+                                                <td>Fox</td>
+                                                <td>Calhoun</td>
+                                            </tr>
+                                            <tr>
+                                                <td>14</td>
+                                                <td>Garrett</td>
+                                                <td>John</td>
+                                                <td>Madison</td>
+                                            </tr>
+                                            <tr>
+                                                <td>13</td>
+                                                <td>Ashton</td>
+                                                <td>Fox</td>
+                                                <td>Calhoun</td>
+                                            </tr>
+                                            <tr>
+                                                <td>14</td>
+                                                <td>Garrett</td>
+                                                <td>John</td>
+                                                <td>Madison</td>
+                                            </tr>
+                                            <tr>
+                                                <td>13</td>
+                                                <td>Ashton</td>
+                                                <td>Fox</td>
+                                                <td>Calhoun</td>
+                                            </tr>
+                                            <tr>
+                                                <td>14</td>
+                                                <td>Garrett</td>
+                                                <td>John</td>
+                                                <td>Madison</td>
+                                            </tr>
+                                            <tr>
+                                                <td>13</td>
+                                                <td>Ashton</td>
+                                                <td>Fox</td>
+                                                <td>Calhoun</td>
+                                            </tr>
+                                            <tr>
+                                                <td>14</td>
+                                                <td>Garrett</td>
+                                                <td>John</td>
+                                                <td>Madison</td>
+                                            </tr>
+                                            <tr>
+                                                <td>15</td>
+                                                <td>Fredie</td>
+                                                <td>Winters</td>
+                                                <td>Washington</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end_row-->
                     </div>
 
-                    <div class="tab-pane fade" id="default-tab-5">
+                    <div class="tab-pane fade" id="default-tab-0">
                         <div class="row">
                             <div class="col-md-10 col-md-offset-1 well">
-                                <!-- begin panel -->
-                                <div class="panel table-h-600">
-                                    <div class="panel-heading">
-                                        <div class="panel-heading-btn">
-                                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-grey" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                                <!-- begin row -->
+                                <div class="row">
+                                    <!-- begin Add_Salary -->
+                                    <div class="col-md-10 col-md-offset-1">
+                                        <span><p class=""></p></span>
+                                        <!-- begin panel -->
+                                        <div class="panel without-pagination clearfix m-b-0">
+                                            <div class="form-group">
+                                                <div class="col-sm-4 m-b-10">
+                                                    <strong class="text-success m-t-10">Employer Salary Has Been Completed</strong>
+                                                </div>
+                                                <div class="col-sm-4 m-b-10 col-md-offset-4">
+                                                    <input class="form-control text-center" type="text" id="fullname" value="" placeholder=" Search here..." data-parsley-required="true" />
+                                                </div>
+                                            </div>
+
+
+
+                                            <table class="table table-bordered table-hover" style="border:5px solid #EBECED !important">
+                                                <thead>
+                                                    <tr class="default">
+                                                        <th class="text-center"><b>Employee Id</b></th>
+                                                        <th class="text-center"><b>Month</b></th>
+                                                        <th class="text-center"><b>Salary Fixt</b></th>
+                                                        <th class="text-center"><b>Give Salary</b></th>
+                                                        <th class="text-center"><b>Due</b></th>
+                                                        <th class="text-center"><b>Status</b></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="scrollit">
+                                                    <tr>
+                                                        <td class="text-center"><b><a href="#">sdfsd</a></b></td>
+                                                        <td class="text-center">dfgdf</td>
+                                                        <td class="text-center">353</td> 
+                                                        <td class="text-center">5345</td> 
+                                                        <td class="text-center">345</td> 
+                                                        <td class="text-center"><a href="#" class="btn btn-default btn-xs"><i class="fa fa-check text-success-light"></i> &nbsp; Paid &nbsp;&nbsp;</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-center"><b><a href="#">sdfsd</a></b></td>
+                                                        <td class="text-center">dfgdf</td>
+                                                        <td class="text-center">353</td> 
+                                                        <td class="text-center">5345</td> 
+                                                        <td class="text-center">345</td> 
+                                                        <td class="text-center"><a href="#" class="btn btn-default btn-xs"><i class="fa fa-check text-success-light"></i> &nbsp; Paid &nbsp;&nbsp;</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-center"><b><a href="#">sdfsd</a></b></td>
+                                                        <td class="text-center">dfgdf</td>
+                                                        <td class="text-center">353</td> 
+                                                        <td class="text-center">5345</td> 
+                                                        <td class="text-center">345</td> 
+                                                        <td class="text-center"><a href="#" class="btn btn-default btn-xs"><i class="fa fa-check text-success-light"></i> &nbsp; Paid &nbsp;&nbsp;</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-center"><b><a href="#">sdfsd</a></b></td>
+                                                        <td class="text-center">dfgdf</td>
+                                                        <td class="text-center">353</td> 
+                                                        <td class="text-center">5345</td> 
+                                                        <td class="text-center">345</td> 
+                                                        <td class="text-center"><a href="#" class="btn btn-default btn-xs"><i class="fa fa-check text-success-light"></i> &nbsp; Paid &nbsp;&nbsp;</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-center"><b><a href="#">sdfsd</a></b></td>
+                                                        <td class="text-center">dfgdf</td>
+                                                        <td class="text-center">353</td> 
+                                                        <td class="text-center">5345</td> 
+                                                        <td class="text-center">345</td> 
+                                                        <td class="text-center"><a href="#" class="btn btn-default btn-xs"><i class="fa fa-check text-success-light"></i> &nbsp; Paid &nbsp;&nbsp;</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-center"><b><a href="#">sdfsd</a></b></td>
+                                                        <td class="text-center">dfgdf</td>
+                                                        <td class="text-center">353</td> 
+                                                        <td class="text-center">5345</td> 
+                                                        <td class="text-center">345</td> 
+                                                        <td class="text-center"><a href="#" class="btn btn-default btn-xs"><i class="fa fa-check text-success-light"></i> &nbsp; Paid &nbsp;&nbsp;</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-center"><b><a href="#">sdfsd</a></b></td>
+                                                        <td class="text-center">dfgdf</td>
+                                                        <td class="text-center">353</td> 
+                                                        <td class="text-center">5345</td> 
+                                                        <td class="text-center">345</td> 
+                                                        <td class="text-center"><a href="#" class="btn btn-default btn-xs"><i class="fa fa-check text-success-light"></i> &nbsp; Paid &nbsp;&nbsp;</a></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+
+
                                         </div>
-                                        <h4 class="panel-title text-center"><b>Your Complain</b></h4>
-                                    </div>
-                                    <div class="table-responsive">
-                                        <table class="table table-td-valign-middle table-s">
-                                            <thead class="thead-s">
-                                                <tr class="success">
-                                                    <th> No </th>
-                                                    <th>Complain Name</th>
-                                                    <th class="text-center">Location</th>
-                                                    <th>Description </th>
-                                                    <th>&nbsp; &nbsp; Status</th>
-                                                    <th>&nbsp;&nbsp; Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody class="tbody-s">
-                                                <tr>
-                                                    <td><a href="#" class="btn btn-default btn-xs">3</a></td>
-                                                    <td>HIma Humo</td>
-                                                    <td>01 Building, D Unit</td>
-                                                    <td class="">Damage Window</td> 
-                                                    <td>
-                                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-check"></i> Solved &nbsp; </a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="{{URL::to('info-owner-invoice')}}" target="_blank" class="btn btn-default btn-xs"><i class="fa fa-list"></i> Details</a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="#" class="btn btn-default btn-xs">4</a></td>
-                                                    <td>HIma Humo</td>
-                                                    <td>01 Building, D Unit</td>
-                                                    <td class="">Damage Window</td> 
-                                                    <td>
-                                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-check"></i> Solved &nbsp; </a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="{{URL::to('info-owner-invoice')}}" target="_blank" class="btn btn-default btn-xs"><i class="fa fa-list"></i> Details</a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="#" class="btn btn-default btn-xs">1</a></td>
-                                                    <td>HIma Humo</td>
-                                                    <td>01 Building, D Unit</td>
-                                                    <td class="col-md-3">Kitchen Floor</td> 
-                                                    <td>
-                                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-check"></i> Solved &nbsp; </a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="{{URL::to('info-owner-invoice')}}" target="_blank" class="btn btn-default btn-xs"><i class="fa fa-list"></i> Details</a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="#" class="btn btn-default btn-xs">2</a></td>
-                                                    <td>HIma Humo</td>
-                                                    <td>01 Building, D Unit</td>
-                                                    <td class="">Damage Window</td> 
-                                                    <td>
-                                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-check"></i> Solved &nbsp; </a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="{{URL::to('info-owner-invoice')}}" target="_blank" class="btn btn-default btn-xs"><i class="fa fa-list"></i> Details</a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="#" class="btn btn-default btn-xs">3</a></td>
-                                                    <td>HIma Humo</td>
-                                                    <td>01 Building, D Unit</td>
-                                                    <td class="">Damage Window</td> 
-                                                    <td>
-                                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-check"></i> Solved &nbsp; </a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="{{URL::to('info-owner-invoice')}}" target="_blank" class="btn btn-default btn-xs"><i class="fa fa-list"></i> Details</a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="#" class="btn btn-default btn-xs">4</a></td>
-                                                    <td>HIma Humo</td>
-                                                    <td>01 Building, D Unit</td>
-                                                    <td class="">Damage Window</td> 
-                                                    <td>
-                                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-check"></i> Solved &nbsp; </a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="{{URL::to('info-owner-invoice')}}" target="_blank" class="btn btn-default btn-xs"><i class="fa fa-list"></i> Details</a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="#" class="btn btn-default btn-xs">1</a></td>
-                                                    <td>HIma Humo</td>
-                                                    <td>01 Building, D Unit</td>
-                                                    <td class="col-md-3">Kitchen Floor</td> 
-                                                    <td>
-                                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-check"></i> Solved &nbsp; </a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="{{URL::to('info-owner-invoice')}}" target="_blank" class="btn btn-default btn-xs"><i class="fa fa-list"></i> Details</a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="#" class="btn btn-default btn-xs">2</a></td>
-                                                    <td>HIma Humo</td>
-                                                    <td>01 Building, D Unit</td>
-                                                    <td class="">Damage Window</td> 
-                                                    <td>
-                                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-check"></i> Solved &nbsp; </a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="{{URL::to('info-owner-invoice')}}" target="_blank" class="btn btn-default btn-xs"><i class="fa fa-list"></i> Details</a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="#" class="btn btn-default btn-xs">3</a></td>
-                                                    <td>HIma Humo</td>
-                                                    <td>01 Building, D Unit</td>
-                                                    <td class="">Damage Window</td> 
-                                                    <td>
-                                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-check"></i> Solved &nbsp; </a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="{{URL::to('info-owner-invoice')}}" target="_blank" class="btn btn-default btn-xs"><i class="fa fa-list"></i> Details</a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="#" class="btn btn-default btn-xs">4</a></td>
-                                                    <td>HIma Humo</td>
-                                                    <td>01 Building, D Unit</td>
-                                                    <td class="">Damage Window</td> 
-                                                    <td>
-                                                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-check"></i> Solved &nbsp; </a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="{{URL::to('info-owner-invoice')}}" target="_blank" class="btn btn-default btn-xs"><i class="fa fa-list"></i> Details</a>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                        <!-- end panel -->
                                     </div>
                                 </div>
-                                <!-- end panel -->
+                                <!-- end row -->
+                                
+                                
+                                <!-- begin row -->
+                                <div class="row">
+                                    <!-- begin Add_Salary -->
+                                    <div class="col-md-10 col-md-offset-1">
+                                        <span><p class=""></p></span>
+                                        <!-- begin panel -->
+                                        <div class="panel without-pagination clearfix m-b-0">
+                                            <div class="form-group">
+                                                <div class="col-sm-4 m-b-10">
+                                                    <strong class="text-success m-t-10">Employer Salary Has Been Completed</strong>
+                                                </div>
+                                                <div class="col-sm-4 m-b-10 col-md-offset-4">
+                                                    <input class="form-control text-center" type="text" id="fullname" value="" placeholder=" Search here..." data-parsley-required="true" />
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-xs-offset-0 well">
+                                                <table class="table table-scroll table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>#</th>
+                                                            <th>First Name</th>
+                                                            <th>Last Name</th>
+                                                            <th>County</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>1</td>
+                                                            <td>Andrew</td>
+                                                            <td>Jackson</td>
+                                                            <td>Washington</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>2</td>
+                                                            <td>Thomas</td>
+                                                            <td>Marion</td>
+                                                            <td>Jackson</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>3</td>
+                                                            <td>Benjamin</td>
+                                                            <td>Warren</td>
+                                                            <td>Lincoln</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>4</td>
+                                                            <td>Grant</td>
+                                                            <td>Wayne</td>
+                                                            <td>Union</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>5</td>
+                                                            <td>John</td>
+                                                            <td>Adams</td>
+                                                            <td>Marshall</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>6</td>
+                                                            <td>Morgan</td>
+                                                            <td>Lee</td>
+                                                            <td>Lake</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>7</td>
+                                                            <td>John</td>
+                                                            <td>Henry</td>
+                                                            <td>Brown</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>8</td>
+                                                            <td>William</td>
+                                                            <td>Jacob</td>
+                                                            <td>Orange</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>9</td>
+                                                            <td>Kelly</td>
+                                                            <td>Davidson</td>
+                                                            <td>Taylor</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>10</td>
+                                                            <td>Colleen</td>
+                                                            <td>Hurst</td>
+                                                            <td>Randolph</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>11</td>
+                                                            <td>Rhona</td>
+                                                            <td>Herrod</td>
+                                                            <td>Cumberland</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>12</td>
+                                                            <td>Jane</td>
+                                                            <td>Paul</td>
+                                                            <td>Marshall</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>13</td>
+                                                            <td>Ashton</td>
+                                                            <td>Fox</td>
+                                                            <td>Calhoun</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>14</td>
+                                                            <td>Garrett</td>
+                                                            <td>John</td>
+                                                            <td>Madison</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>15</td>
+                                                            <td>Fredie</td>
+                                                            <td>Winters</td>
+                                                            <td>Washington</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+
+
+                                        </div>
+                                        <!-- end panel -->
+                                    </div>
+                                </div>
+                                <!-- end row -->
                             </div>
                         </div>
                     </div>

@@ -33,6 +33,14 @@ app.controller('RegiController', function($scope, $http) {
     }
     $scope.showGuest();
     
+    //-----guest_edit
+    $scope.guestEdit = function(guest_id) {
+        console.log('Yes OK');
+        $http.get('/hsms/public/info-guest-edit/'+guest_id).then(function(response) {
+          $scope.guest_edit = response.data;
+        });
+    }
+    
     //-----addVisitor
     $scope.regiVisitor = function() {
         console.log('text me');
