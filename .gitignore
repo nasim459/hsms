@@ -5,6 +5,8 @@ nbproject
 /.idea
 Homestead.json
 Homestead.yaml
-.env
+/.env
 /config/database.php
 /public/front_end/fonts/
+/bootstrap/cache/services.php
+/storage/logs/laravel.log
