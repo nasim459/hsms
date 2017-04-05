@@ -50,9 +50,42 @@
                             <!-- end mail-box-wrapper -->
                         </div>
                         <!-- end email-sidebar -->
+                        {!! Form::open(array('url'=>'', 'role'=>'form', 'method'=>'POST', 'files'=>'true')) !!}
+                            <span class="form-horizontal" data-parsley-validate="true" name="demo-form">
+
+                        <div class="pull-center">
+                                <div class="form-group  m-t-10">
+                                            <label class="control-label col-sm-4">Building <span class="text-danger">*</span></label>
+                                            <div class="col-sm-8">
+                                                <select class="form-control" id="select-required" name="country" data-parsley-required="true">
+                                                    <option value="">All</option>
+                                                    
+                                                </select>
+                                            </div>
+                                        </div>
+                                <div class="form-group  m-t-10">
+                                            <label class="control-label col-sm-4">Floor <span class="text-danger">*</span></label>
+                                            <div class="col-sm-8">
+                                                <select class="form-control" id="select-required" name="country" data-parsley-required="true">
+                                                    <option value="">all</option>
+                                                    
+                                                </select>
+                                            </div>
+                                        </div>
+                                <div class="form-group  m-t-10">
+                                            <label class="control-label col-sm-4">Unit <span class="text-danger">*</span></label>
+                                            <div class="col-sm-8">
+                                                <select class="form-control" id="select-required" name="country" data-parsley-required="true">
+                                                    <option value="">All</option>
+                                                    >
+                                                </select>
+                                            </div>
+                                        </div>
+                            </div>
                     </div>
                     <!-- end mail-box-sidebar -->
                     <!-- begin mail-box-content -->
+                    
                     <div class="mail-box-content">
                         <!-- begin mail-box-toolbar -->
                         <div class="mail-box-toolbar">
@@ -60,6 +93,7 @@
                                 <a href="email_inbox.html" class="btn btn-white btn-sm m-r-5">Cancel</a>
                                 <a href="#" class="btn btn-white btn-sm">Save Draft</a>
                             </div>
+                            
                             <div class="pull-right">
                                 <a href="#" class="btn btn-success width-100 btn-sm">SEND</a>
                             </div>
