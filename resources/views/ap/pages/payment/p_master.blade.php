@@ -15,7 +15,7 @@
     <!-- begin row -->
     <div class="row">
         <!-- begin col-12 -->
-        <div class="col-md-12">
+        <div class="col-md-12 m-b-25">
             <!-- begin menu bar -->
             <p class="text-center  m-b-mi-23">
                 <a href="{{URL::to('payment-all')}}" class="btn btn-default widtg115">All Payment</a>

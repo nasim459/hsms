@@ -22,7 +22,6 @@
                 <a href="{{URL::to('info-emp')}}" class="btn btn-default widtg115">Employee</a>
                 <a href="{{URL::to('info-owner')}}" class="btn btn-default widtg115">Owner</a>
                 <a href="{{URL::to('info-driver')}}" class="btn btn-default widtg115">Driver</a>
-                <a href="{{URL::to('info-housekeeping')}}" class="btn btn-default widtg115">Housekeeping</a>
                 <a href="{{URL::to('info-visiting')}}" class="btn btn-default widtg115">Visiting</a>
                 <a href="{{URL::to('info-service')}}" class="btn btn-default widtg115">Service People</a>
             </p>

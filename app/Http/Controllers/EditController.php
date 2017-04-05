@@ -53,6 +53,51 @@ class EditController extends Controller
         
     }
     
+    //----------------------update_guest_info
+    public function update_guest_info(Request $request) {
+        
+        //------save Guest Informarion into tbl_guest---------------------
+        $flat_info_id = $request->id;
+
+        if ($flat_info_id == '') {
+            return Redirect::to('info-visiting');
+        } else {
+            $guest = array();
+            $guest['guest_name'] = $request->b;
+            $guest['guest_mobile'] = $request->c;
+            $guest['guest_gender'] = $request->d;
+            $guest['guest_address'] = $request->e;
+            DB::table('tbl_guest')
+                    ->where('flat_info_id', $flat_info_id)
+		    ->update($guest);
+
+            Session::put('upd_guest', 'Updated');
+            return Redirect::to('info-visiting');
+        }
+        
+    }
+    
+    //----------------------update_visitor_info
+    public function update_visitor_info(Request $request) {
+        
+        //------save Guest Informarion into tbl_guest---------------------
+        $emp_id = $request->id;
+        $v_id = $request->v_id;
+
+        if ($emp_id == '') {
+            return Redirect::to('info-visiting');
+        } else {
+            DB::table('tbl_visitor')
+                    ->where('visitor_id', $v_id)
+                    ->update(['emp_id' => $emp_id]);
+            
+            Session::put('upd_visitor', 'Updated');
+            return Redirect::to('info-visiting');
+        }
+        
+    }
+
+
     public function edit_driver_info($driver_details_id) {
         
         $edit_driver = DB::table('tbl_driver')
@@ -74,13 +119,25 @@ class EditController extends Controller
     }
     
     //-------edit_guest_info
-    public function edit_guest_info($guest_id) {
+    public function edit_guest_info($flat_info_id) {
         
-        $edit_guest_show = DB::table('tbl_guest')
-                //->join('tbl_driver_details', 'tbl_driver.driver_details_id', '=', 'tbl_driver_details.driver_details_id')
-                ->where('guest_id', $guest_id)
+        $edit_guest_show = DB::table('tbl_flat_info')
+                ->join('tbl_guest', 'tbl_flat_info.flat_info_id', '=', 'tbl_guest.flat_info_id')
+                ->join('tbl_rental', 'tbl_flat_info.flat_info_id', '=', 'tbl_rental.flat_info_id')
+                ->where('tbl_flat_info.flat_info_id', $flat_info_id)
                 ->get();
         return $edit_guest_show;
+    }
+    
+    //-------edit_visitor_info
+    public function edit_visitor_info($emp_id) {
+        
+        $edit_visitor_show = DB::table('tbl_emp')
+                ->join('tbl_visitor', 'tbl_emp.emp_id', '=', 'tbl_visitor.emp_id')
+                ->where('tbl_emp.emp_id', $emp_id)
+                ->select('tbl_emp.*', 'tbl_visitor.*')
+                ->get();
+        return $edit_visitor_show;
     }
     //--------------End edit information-------------------------
     

@@ -547,7 +547,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
-                                                                <label class="control-label col-sm-4 for="fullname"> <strong>Salary Health</strong> <span class="text-danger">*</span></label>
+                                                                <label class="control-label col-sm-4" for="fullname"> <strong>Salary Health</strong> <span class="text-danger">*</span></label>
                                                                 <div class="col-sm-6">
                                                                     <input class="form-control" type="text" id="fullname" name="c" value="" data-parsley-required="true" />
                                                                 </div>

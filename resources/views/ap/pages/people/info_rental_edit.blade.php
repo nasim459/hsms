@@ -170,7 +170,7 @@
                                                 <label class="control-label col-sm-4">Gender <span class="text-danger">*</span></label>
                                                 <div class="col-sm-8 m-t-5">
                                                     <label>
-                                                        @if($v->gender ==1)
+                                                        @if($v->gender == 1)
                                                         <input type="radio" value="1" name="g_radio" checked id="radio-required" data-parsley-required="true" /> Mail <span class="m-l-40"></span>
                                                         <input type="radio" value="2" name="g_radio" id="radio-required2" /> Femail
                                                         @else

@@ -11,7 +11,7 @@
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
 	<meta content="" name="description" />
 	<meta content="" name="author" />
-	<link rel="icon" type="image/png" href="{{URL::asset('ap/assets/img/favicon.png')}}">
+	<link rel="icon" type="image/png" href="{{URL::asset('ap/assets/img/icon_1.jpg')}}">
 	
 	<!-- ================== BEGIN BASE CSS STYLE ================== -->
 	<link href="http://fonts.googleapis.com/css?family=Nunito:400,300,700" rel="stylesheet" id="fontFamilySrc" />
@@ -79,7 +79,7 @@
                         </div>
                     </div>
                     <div class="text-center">
-                        Already a member? <a href="{{URL::to('login')}}" class="text-muted">Login with your account</a>
+                        Already a member? <a href="{{URL::to('signin-panel-hsms')}}" class="text-muted">Login with your account</a>
                     </div>
                 </form>
             </div>

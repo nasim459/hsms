@@ -1,17 +1,17 @@
-@section('people_content')
+@section('maincontent')
 <!-- begin section-container -->
 <div class="section-container" ng-controller="rentalController">
     <!-- begin row -->
     <div class="row">
         <!-- begin col-12 -->
-        <div class="col-md-12">
+        <div class="col-md-12" style="margin-top: -22px!important">
             <!-- begin panel -->
             <div class="panel panel-default">
 
                 @foreach($rental_details as $v)
                 <div class="panel-heading">
                     <div class="btn-group pull-left">
-                        <a href="{{URL::to('info-rental')}}" class="btn btn-white btn-xs" title="Back to Owner"><i class="fa fa-arrow-left"></i>&nbsp;</a>
+                        <a href="{{URL::to(Session::get('details_rental_p_u'))}}" class="btn btn-white btn-xs" title="Back to Owner"><i class="fa fa-arrow-left"></i>&nbsp;</a>
                     </div>
                     <div class="btn-group pull-right">
                         <button type="button" class="btn btn-white btn-xs">Action</button>
@@ -24,13 +24,20 @@
                             <li><a href="{{URL::to('info-rental-edit/'.$v->rental_id)}}"><i class="fa fa-edit"></i> Edit All Profile</a></li>
                             <li><a href="{{URL::to('dboard')}}"><i class="fa fa-home"></i> Go Dashboarde</a></li>
                             <li class="divider"></li>
-                            <li><a href="{{URL::to('')}}"><i class="fa fa-power-off"></i> SignOut</a></li>
+                            <li><a href="{{URL::to('info-rental')}}"><i class="fa fa-user"></i> Rental</a></li>
+                            <li><a href="{{URL::to('info-emp')}}"><i class="fa fa-user"></i> Employee</a></li>
+                            <li><a href="{{URL::to('info-owner')}}"><i class="fa fa-user"></i> Owner</a></li>
+                            <li><a href="{{URL::to('info-driver')}}"><i class="fa fa-user"></i> Driver</a></li>
+                            <li><a href="{{URL::to('info-visiting')}}"><i class="fa fa-user"></i> Visiting</a></li>
+                            <li><a href="{{URL::to('info-service')}}"><i class="fa fa-user"></i> Service People</a></li>
+                            <li class="divider"></li>
+                            <li><a href="{{URL::to('')}}"><i class="fa fa-power-off text-success-light"></i> SignOut</a></li>
                         </ul>
                     </div> 
                     <div class="row">
                         <div class="col-md-10 col-md-offset-2">
                             <div class="col-md-6">
-                                <div class="col-md-4">
+                                <div class="col-md-4 m-b-10">
                                     
                                     @if($v->rental_image != NULL)
                                     <a href="#info-rental-picture" class="thumbnail m-b-mi-15" data-toggle="modal" title="Update Picture"><img src="{{URL::asset($v->rental_image)}}" class="img-d-h-w" alt="Blank"></a>
@@ -58,7 +65,7 @@
                             <div class="col-md-4">
                                 <p class="f-s-15">
                                     {{$v->bld_name}} - Building, {{$v->bld_floor}} - Floor, {{$v->bld_unit}} - Unit &nbsp;
-                                    <a href="#rental-bld-edit" class="text-white" data-toggle="modal" title="Edit Buinding-Floor-Unit"> Edit &nbsp;<i class="fa fa-pencil"></i></a><br/>
+                                    <a href="#rental-bld-edit" class="text-white" data-toggle="modal" title="Edit Buinding-Floor-Unit"><i class="fa fa-pencil"></i></a><br/>
                                     Sukrabad, Dhanmondi, Dhaka<br/>
                                     &nbsp;<br/>
 
@@ -91,13 +98,14 @@
                     <li class=""><a href="#default-tab-2" data-toggle="tab"><i class="fa fa-list"></i> Details</a></li>
                     <li class=""><a href="#default-tab-3" data-toggle="tab"><i class="fa fa-credit-card"></i> Invoice</a></li>
                     <li class=""><a href="#default-tab-4" data-toggle="tab"><i class="fa fa-cc-discover"></i> Payment</a></li>
-                    <li class=""><a href="#default-tab-5" data-toggle="tab"><i class="fa fa-user"></i> Complain</a></li>
+                    <li class=""><a href="#default-tab-5" data-toggle="tab"><i class="fa fa-warning"></i> Complain</a></li>
                     <li class=""><a href="#default-tab-6" data-toggle="tab"><i class="fa fa-user"></i> Facilities</a></li>
+                    <li class=""><a href="#default-tab-7" data-toggle="tab"><i class="fa fa-pie-chart"></i> At A Glance</a></li>
                 </ul>
-                <div class="tab-content m-b-0" style="overflow: scroll; overflow-x: hidden; overflow-y: auto; height: 427px;">
+                <div class="tab-content m-b-0" style="overflow: scroll; overflow-x: hidden; overflow-y: auto; height: 450px;">
                     <div class="tab-pane fade active in" id="default-tab-1">
                         <div class="row">
-                            <div class="col-md-10 col-md-offset-1">
+                            <div class="col-md-10 col-md-offset-2">
                                 <div class="col-md-7">
                                     <dl class="dl-horizontal m-b-20">
                                         <dt>Owner Name :</dt>
@@ -116,48 +124,6 @@
                                         <dt>Email Address :<dt>
                                         <dd>{{$v->rental_email}}</dd>
                                     </dl>
-                                </div>
-                                <div class="col-md-5 well">
-                                    <div class="table-responsive">
-                                        <table class="">
-                                            <thead>
-                                                <tr>
-                                                    <th class="text-center text-success">Private Facilities</th>
-                                                    <th class="text-center"></th>
-                                                    <th class="text-center"></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td class="">
-                                                        <a href="" class="btn btn-white btn-icon btn-circle btn-sm"><i class="fa fa-automobile"></i></a>&nbsp; 
-                                                        <a href=""><b>Driver</b></a>
-                                                    </td>
-                                                    <td class="text-center">&nbsp; 
-                                                        <a href="">Khan Tuhin Alam Khan </a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="">
-                                                        <a href="" class="btn btn-white btn-icon btn-circle btn-sm"><i class="fa fa-plug"></i></a>&nbsp; 
-                                                        <a href=""><b>Cleaner</b></a>
-                                                    </td>
-                                                    <td class="text-center">&nbsp; 
-                                                        <a href="">Khan Tuhin Alam Khan </a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="">
-                                                        <a href="" class="btn btn-white btn-icon btn-circle btn-sm"><i class="fa fa-street-view"></i></a>&nbsp; 
-                                                        <a href=""><b>Housekeeping</b></a>
-                                                    </td>
-                                                    <td class="text-center">&nbsp; 
-                                                        <a href="">Khan Tuhin Alam Khan </a>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -296,6 +262,7 @@
                             <!-- begin Payment -->
                             <div class="col-md-10 col-md-offset-1">
                                 <span><p class=""></p></span>
+                                @if(!$invoice_show->isEmpty())
                                 <!-- begin panel -->
                                 <div class="panel without-pagination clearfix m-b-0">
                                     <div class="form-group">
@@ -306,23 +273,23 @@
                                             <input class="form-control text-center" type="text" id="fullname" value="" placeholder=" Search here..." data-parsley-required="true" />
                                         </div>
                                     </div>
-
-                                    <table class="table table-bordered table-hover" style="border:5px solid #EBECED !important">
+                                    
+                                    <table class="table table-hover table-bordered table-scroll" style="border-bottom:1px solid #EBECED !important;">
                                         <thead>
                                             <tr class="default">
-                                                <th class="text-center"><b>Invoice No</b></th>
-                                                <th class="text-center"><b>Year - Month</b></th>
+                                                <th><b>Invoice No</b></th>
+                                                <th><b>Year - Month</b></th>
                                                 <th class="text-center"><b>Amount Total</b></th>
                                                 <th class="text-center"><b>Previous Due</b></th>
                                                 <th class="text-center"><b>Grand Total</b></th>
-                                                <th class="text-center"><b>Created At</b></th>
-                                                <th class="text-center"><b>Item</b></th>
+                                                <th><b>Created At</b></th>
+                                                <th><b>Item</b></th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach($invoice_show as $v) 
                                             <tr>
-                                                <td class="text-center"><b class="btn btn-default btn-xs">#{{$v->invoice_id}}</b></td>
+                                                <td>#{{$v->invoice_id}}</td>
                                                 <td>
                                                     <b>
                                                         {{$v -> invoice_year}} - 
@@ -362,17 +329,22 @@
                                                     @endif
                                                 </td> 
                                                 <td class="text-center">{{$v->invoice_grand_total}}</td> 
-                                                <td class="text-center">{{$v->created_at}}</td> 
-                                                <td class="text-center">
+                                                <td><span style="width: 100px!important">{{$v->created_at}}</span></td> 
+                                                <td>
                                                     <a href="#rental-invoice-item" class="btn btn-default btn-xs" data-toggle="modal" ng-click="invoice_item({{$v->invoice_id}})" title="Invoice Item"><i class="fa fa-list-ul text-success-light"></i> </a>
                                                 </td>
                                             </tr>
                                             @endforeach
                                         </tbody>
+                                        
                                     </table>
                                     
                                 </div>
                                 <!-- end panel -->
+                                @else
+                                <h2 class="text-center text-danger m-t-20"><b>Now, Your Invoice Is Empty!!!</b></h2>
+                                <h4 class="text-center text-success m-t-20"><b>When, Give Your Payment Of Your Service Bill, Then You Will See Your Invoice.</b></h4>
+                                @endif
                             </div>
                             <!-- end Payment -->
                         </div>
@@ -385,6 +357,7 @@
                             <!-- begin Invoice -->
                             <div class="col-md-10 col-md-offset-1">
                                 <span><p class=""></p></span>
+                                @if(!$payment_show->isEmpty())
                                 <!-- begin panel -->
                                 <div class="panel without-pagination clearfix m-b-0">
                                     <div class="form-group">
@@ -396,7 +369,7 @@
                                         </div>
                                     </div>
 
-                                    <table class="table table-bordered table-hover" style="border:5px solid #EBECED !important">
+                                    <table class="table table-hover table-bordered table-scroll" style="border-bottom:1px solid #EBECED !important;">
                                         <thead>
                                             <tr class="default">
                                                 <th class="text-center"><b>No</b></th>
@@ -414,7 +387,7 @@
                                             @foreach($payment_show as $v)
                                             <tr>
                                                 <td class="text-center"><b class="btn btn-default btn-xs">{{$number = $number - 1}}</b></td>
-                                                <td class="text-center">
+                                                <td>
                                                     <b>
                                                         {{$v -> pay_year}} - 
                                                         @if($v->pay_month == 1)
@@ -467,6 +440,9 @@
                                     
                                 </div>
                                 <!-- end panel -->
+                                @else
+                                <h2 class="text-center text-danger m-t-20"><b>Now, Your Payment Is Empty!!!</b></h2>
+                                @endif
                             </div>
                             <!-- end Invoice -->
                         </div>
@@ -479,6 +455,7 @@
                             <!-- begin Payment -->
                             <div class="col-md-10 col-md-offset-1">
                                 <span><p class=""></p></span>
+                                @if(!$invoice_show->isEmpty())
                                 <!-- begin panel -->
                                 <div class="panel without-pagination clearfix m-b-0">
                                     <div class="form-group">
@@ -490,10 +467,9 @@
                                         </div>
                                     </div>
 
-                                    <table class="table table-bordered table-hover" style="border:5px solid #EBECED !important">
+                                    <table class="table table-hover table-bordered table-scroll" style="border-bottom:1px solid #EBECED !important;">
                                         <thead>
                                             <tr class="default">
-                                                <th class="text-center"><b>No</b></th>
                                                 <th class="text-center"><b>Subject</b></th>
                                                 <th class="text-center"><b>Description</b></th>
                                                 <th class="text-center"><b>Action</b></th>
@@ -505,8 +481,10 @@
                                             @endphp
                                             @foreach($invoice_show as $v) 
                                             <tr>
-                                                <td class="text-center"><b class="btn btn-default btn-xs">{{$number = $number+1}}</b></td>
-                                                <td><b>Broken Glass Window</b></td> 
+                                                <td>
+                                                    <b class="btn btn-default btn-xs text-success">{{$number = $number+1}}</b>&nbsp;&nbsp;
+                                                    <b>Broken Glass Window</b>
+                                                </td> 
                                                 <td class="text-justify">If the glass in your window frame is foggy, it means the insulated seal was broken and the insulated glass unit needs to be replaced.
                                                 <td class="text-center">
                                                     <a class="btn btn-default btn-xs" title="Work Not Done"><i class="fa fa-remove text-danger-light"></i><span class="text-danger-light"> </span></a>
@@ -518,6 +496,9 @@
                                     
                                 </div>
                                 <!-- end panel -->
+                                @else
+                                <h2 class="text-center text-danger m-t-20"><b>Now, You Don't Have Any Complain!!!</b></h2>
+                                @endif
                             </div>
                             <!-- end Payment -->
                         </div>
@@ -525,21 +506,31 @@
                     </div>
 
                     <div class="tab-pane fade" id="default-tab-6">
+                        <!-- begin row -->
                         <div class="row">
+                            <!-- begin Payment -->
                             <div class="col-md-10 col-md-offset-1">
-                                <div class="col-md-12">
-                                    <table class="table table-bordered table-hover" style="border:1px solid #EBECED !important;border-bottom:1px solid #EBECED !important;">
+                                <span><p class=""></p></span>
+                                @if(!$service_assigned_show->isEmpty())
+                                <!-- begin panel -->
+                                <div class="panel without-pagination clearfix m-b-0">
+                                    <div class="form-group">
+                                        <div class="col-sm-4 m-b-10">
+                                            <strong class="text-success m-t-20">Facilities Taken</strong>
+                                        </div>
+                                        <div class="col-sm-4 m-b-10"></div>
+                                        <div class="col-sm-4 m-b-10 text-right">
+                                            <a href="{{URL::to('regi-driver')}}" class="btn btn-default btn-sm"><i class="fa fa-plus text-success"></i> Driver </a>
+                                            <a href="#service-assign" class="btn btn-default btn-sm" data-toggle="modal"><i class="fa fa-plus text-success"></i> Service </a>
+                                        </div>
+                                    </div>
+
+                                    <table class="table table-hover table-bordered table-scroll" style="border-bottom:1px solid #EBECED !important;">
                                         <thead>
                                             <tr class="default">
-                                                <th class="text-center">Service Name</th>
-                                                <th class="text-center"> Amount</span></th>
-                                                <!--<th><span class="m-l-20"> Person</span></th>-->
-                                                <!--<th class="text-center">Mobile Number</th>-->
-                                                <th class="text-right">
-                                                    Status &nbsp; &nbsp; &nbsp;
-                                                    <a href="{{URL::to('regi-driver')}}" class="btn btn-white btn-xs"><i class="fa fa-plus"></i> Driver </a>
-                                                    <a href="#service-assign" class="btn btn-white btn-xs" data-toggle="modal"><i class="fa fa-plus"></i> Service </a>
-                                                </th>
+                                                <th class="text-center"><b>Service Name</b></th>
+                                                <th class="text-center"><b>Amount</span></b></th>
+                                                <th class="text-center"><b>Status</b></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -559,9 +550,70 @@
                                             @endforeach
                                         </tbody>
                                     </table>
+                                    
                                 </div>
+                                <!-- end panel -->
+                                @else
+                                <h2 class="text-center text-danger m-t-20"><b>Don't Taken Any Facilities!!!</b></h2>
+                                <h4 class="text-center m-t-5"><b>Now, You Don't Have Any Facilities!!!</b></h4>
+                                <h5 class="text-center m-t-5"><b>Now, Add Your Facilities!!!</b></h5>
+                                <p class="text-center text-success m-t-20">
+                                    <a href="{{URL::to('regi-driver')}}" class="btn btn-success"><i class="fa fa-plus"></i> Driver </a>
+                                    <a href="#service-assign" class="btn btn-success" data-toggle="modal"><i class="fa fa-plus"></i> Service </a>
+                                </p>
+                                @endif
                             </div>
+                            <!-- end Payment -->
                         </div>
+                        <!-- end row -->
+                    </div>
+                    
+                    <div class="tab-pane fade" id="default-tab-7">
+                        <!-- begin row -->
+                        <div class="row">
+                            <!-- begin Invoice -->
+                            <div class="col-md-10 col-md-offset-1">
+                                <span><p class=""></p></span>
+                                @if(!$payment_show->isEmpty())
+                                <!-- begin panel -->
+                                <div class="panel without-pagination clearfix m-b-0">
+                                    <div class="form-group">
+                                        <div class="col-sm-4 m-b-10">
+                                            <h5>Your Payment Status Is
+                                            @if((Session::get('rental_payable_amount') - Session::get('rental_pay_amount')) != 0)
+                                            <b class="text-danger-light"> unPaid</b>
+                                            @else
+                                            <b class="text-success-light"> Paid</b>
+                                            @endif
+                                            </h5>
+                                        </div><br/>
+                                        <div class="col-sm-4 m-b-10 col-md-offset-4">
+                                        </div><br/>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-4 col-md-offset-3 f-s-16">
+                                            <dl class="dl-horizontal m-b-20">
+                                                <dt>payable :</dt>
+                                                <dd>{{Session::get('rental_payable_amount')}} /=</dd>
+                                                <dt>Pay Amount :</dt>
+                                                <dd>{{Session::get('rental_pay_amount')}} /=</dd>
+                                            </dl><hr/>
+                                            <dl class="dl-horizontal m-b-20">
+                                                <dt>Due Amount :</dt>
+                                                <dd>{{Session::get('rental_payable_amount') - Session::get('rental_pay_amount')}} /=</dd>
+                                            </dl>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <!-- end panel -->
+                                @else
+                                <h2 class="text-center text-danger m-t-20"><b>Now, Your Payment Is Empty!!!</b></h2>
+                                @endif
+                            </div>
+                            <!-- end Invoice -->
+                        </div>
+                        <!-- end row -->
                     </div>
                 </div>
                 @endforeach()
@@ -583,7 +635,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                            <h4 class="modal-title text-center">Choose Your Service To Use</h4>
+                            <h4 class="modal-title text-center text-success-light">Choose Your Service To Use</h4>
                         </div>
                         <div class="modal-body">
                             <!-- begin row panel body --->

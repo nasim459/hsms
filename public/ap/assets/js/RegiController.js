@@ -10,12 +10,12 @@ app.controller('RegiController', function($scope, $http) {
 //        });
 //    };
     //-----rental_search
-    $scope.showData = function() {
-        $http.get('/hsms/public/info-rental-search').then(function(response) {
-          $scope.search_show = response.data;
-        });
-    }
-    $scope.showData();
+//    $scope.showData = function() {
+//        $http.get('/hsms/public/info-rental-search').then(function(response) {
+//          $scope.search_show = response.data;
+//        });
+//    }
+//    $scope.showData();
     
     //-----show_visitor_people
     $scope.showVisitor = function() {
@@ -33,11 +33,25 @@ app.controller('RegiController', function($scope, $http) {
     }
     $scope.showGuest();
     
+    //-----show_guest_details_people
+    $scope.showGuestDetails = function(flat_info_id) {
+        $http.get('/hsms/public/info-guest-show-details/'+flat_info_id).then(function(response) {
+          $scope.show_guest_details = response.data;
+        });
+    }
+    
     //-----guest_edit
-    $scope.guestEdit = function(guest_id) {
-        console.log('Yes OK');
-        $http.get('/hsms/public/info-guest-edit/'+guest_id).then(function(response) {
+    $scope.guestEdit = function(flat_info_id) {
+        //console.log('Yes OK');
+        $http.get('/hsms/public/info-guest-edit/'+flat_info_id).then(function(response) {
           $scope.guest_edit = response.data;
+        });
+    }
+    
+    //-----visitor_edit
+    $scope.visitorEdit = function(emp_id) {
+        $http.get('/hsms/public/info-visitor-edit/'+emp_id).then(function(response) {
+          $scope.visitor_edit = response.data;
         });
     }
     

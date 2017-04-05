@@ -12,7 +12,7 @@
                 {!! Form::open(array('url'=>'make-salary-invoice', 'role'=>'form', 'method'=>'POST')) !!}
                 <div class="form-group">
                     <div class="col-sm-3 m-b-10">
-                        <input class="form-control text-center" type="text" id="fullname" value="" placeholder=" Search here..." data-parsley-required="true" />
+                        <input class="form-control text-center" type="text" id="fullname" ng-model="search_driver" placeholder=" Search here..." data-parsley-required="true" />
                     </div>
                     <div class="col-sm-3">
                         @if(Session::get('add_service') != NULL)
@@ -36,24 +36,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php $number=0; ?>
-                        @foreach($driver_show as $v)
-                        <tr class="odd gradeX">
+                        <tr class="odd gradeX" ng-repeat="v in driver_show | filter:search_driver">
                             <td>
-                                @if($v->driver_image != NULL)
-                                <a href="#driver-picture" data-toggle="modal" ng-click="info_driver_pic_show({{$v->driver_id}})" title="Click To See Picture"><img src="{{URL::asset($v->driver_image)}}" class="img-h-w" alt="" /></a>
-                                @else
-                                <img src="{{URL::asset('ap/assets/img_blank/img_blank.jpg')}}" class="img-h-w" title="Please, Give Your Picture" alt="" />
-                                @endif
+                                <a ng-if="v.driver_image != NULL" href="#driver-picture" data-toggle="modal" ng-click="info_driver_pic_show(v.driver_id)" title="Click To See Picture"><img src="@{{v.driver_image}}" class="img-h-w" alt="" /></a>
+                                <img ng-if="v.driver_image == NULL" src="ap/assets/img_blank/img_blank.jpg" class="img-h-w" title="Please, Give Your Picture" alt="" />
                                 
-                                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<b>{{$v->driver_name}}</b>
+                                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<b>@{{v.driver_name}}</b>
                             </td>
                             <td>Kamrul Hassan</td>
                             <td>01-Buliding, D-Unit</td>
-                            <td class="text-center">{{$v->driver_phone1}}</td>
-                            <td class="text-center"><a href="{{URL::to('info-driver-details/'.$v->driver_details_id)}}" class="btn btn-default btn-xs"><i class="fa fa-list-alt"></i> Details</a></td>
+                            <td class="text-center">@{{v.driver_phone1}}</td>
+                            <td class="text-center">
+                                <a href="info-driver-details/@{{v.driver_details_id}}" class="btn btn-default btn-xs"><i class="fa fa-list-alt"></i> Details</a>
+                            </td>
                         </tr>
-                      @endforeach()
                     </tbody> 
                     <!--<a href="javascript:;" id="add-gritter-light" class="btn btn-white btn-sm m-l-5">Show</a>-->
                 </table>

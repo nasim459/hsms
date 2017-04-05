@@ -10,7 +10,7 @@
                 
                 <div class="panel-heading">
                     <div class="col-md-3 m-b-15">
-                        <input class="form-control text-center" type="text" ng-model="search_rental" id="fullname" placeholder=" Search here..." data-parsley-required="true" />
+                        <input class="form-control text-center" type="text" ng-model="search_emp" id="fullname" placeholder=" Search here..." data-parsley-required="true" />
                     </div>
                     <div class="col-md-5 col-md-offset-3"></div>
                     <div class="col-md-1">
@@ -18,7 +18,7 @@
                     </div>
                 </div>
                 
-                <table class="table table-hover table-scroll" style="border-bottom:1px solid #EBECED !important;">
+                <table class="table table-hover table-bordered table-scroll" style="height: 418px!important; border-bottom:1px solid #EBECED !important;">
                     <thead>
                         <tr class="success">
                             <th>Picture &nbsp; &nbsp;  ID</th>
@@ -31,35 +31,24 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php $number = 0; ?>
-                        @foreach($emp_show as $v) 
-                        <tr>
+                        <tr ng-repeat="v in emp_show | filter:search_emp">
                             <td>
-                                <!--<img src="{{URL::asset('ap/assets/img/user_profile.jpg')}}" class="img-h-w" alt="" />-->
-                                @if($v->emp_image != NULL)
-                                <img src="{{URL::asset($v->emp_image)}}" class="img-h-w" alt="" />
-                                @else
-                                <img src="{{URL::asset('ap/assets/img_blank/img_blank.jpg')}}" class="img-h-w" alt="" />
-                                @endif
-
-                                <b>&nbsp;{{$v->emp_id_no}}</b>
+                                <a ng-if="v.emp_image != NULL" href="#rental-picture-show" data-toggle="modal" ng-click="rental_picture_show(v.emp_id)" title="Click To See Picture"><img src="@{{v.emp_image}}" class="img-h-w" alt="" /></a>
+                                <img ng-if="v.emp_image == NULL" src="ap/assets/img_blank/img_blank.jpg" title="Blank Picture. Please, Give Your Picture" class="img-h-w" alt="" />
+                                
+                                <b title="ID: @{{v.emp_id_no}}">@{{v.emp_id_no}}</b>
                             </td>
-                            <td>{{$v->emp_name}}</td>
-                            <td class="text-center"><b>{{$v->emp_position}}</b></td>
-                            <td>{{$v->emp_phone1}}</td>
-                            <td>{{$v->emp_email}}</td>
-                            <td class="text-center"><a href="" class="btn btn-default btn-xs">Paid</a> </td>
-                            <td class="text-center"><a href="{{URL::to('info-emp-details/'.$v->emp_details_id)}}" class="btn btn-default btn-xs"><i class="fa fa-list-alt"></i> Details</a></td>
-                        </tr>
-                        @endforeach()
-                        <tr>
-                            <td>Showing 13 entries</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            
+                            <td>@{{v.emp_name}}</td>
+                            <td class="text-center"><b>@{{v.emp_position}}</b></td>
+                            <td>@{{v.emp_phone1}}</td>
+                            <td>@{{v.emp_email}}</td>
+                            <td class="text-center">
+                                <a href="" class="btn btn-default btn-xs">Paid</a>
+                            </td>
+                            <td class="text-center">
+                                <a href="info-emp-details/@{{v.emp_details_id}}" class="btn btn-default btn-xs"><i class="fa fa-list-alt"></i> Details</a>
+                            </td>
                         </tr>
                     </tbody>
                 </table>

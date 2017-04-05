@@ -11,9 +11,16 @@ app.controller('serviceBill', function($scope, $http) {
     };
     
     //-----rental_running_service_bill_view
-    $scope.service_bill_invoice_view = function(rental_id) {
-        $http.get('/hsms/public/service-bill-invoice-view/'+rental_id).then(function(response) {
+    $scope.service_bill_invoice_view = function(invoice_id) {
+        $http.get('/hsms/public/service-bill-invoice-view/'+invoice_id).then(function(response) {
           $scope.invoice_view = response.data;
+        });
+    };
+    
+    //-----rental_running_service_bill_view
+    $scope.service_bill_invoice_item_view = function(invoice_id) {
+        $http.get('/hsms/public/service-bill-invoice-item-view/'+invoice_id).then(function(response) {
+          $scope.invoice_item_view = response.data;
         });
     };
     
@@ -105,6 +112,14 @@ app.controller('people', function($scope, $http) {
           $scope.rntl_status_change = response.data;
         });
     };
+    
+    //-----info_rental_show
+    $scope.info_emp_show = function() {
+        $http.get('/hsms/public/info-emp-show').then(function(response) {
+          $scope.emp_show = response.data;
+        });
+    };
+    $scope.info_emp_show();
     
     //-----show_visitor_people
 //    $scope.showVisitor = function() {

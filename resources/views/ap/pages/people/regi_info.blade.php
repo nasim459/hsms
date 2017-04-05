@@ -19,9 +19,9 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <div class="panel-heading-btn">
-                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-inverse" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                        <!--<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-inverse" data-click="panel-expand"><i class="fa fa-expand"></i></a>
                         <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-inverse" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
-                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-inverse" data-click="panel-remove"><i class="fa fa-times"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-inverse" data-click="panel-remove"><i class="fa fa-times"></i></a>-->
                     </div>
                     <h4 class="panel-title text-center">
                         <strong class="text-success ">Create Your Registration</strong>
@@ -98,8 +98,8 @@
                             <div class="row well">
                                 <!-- begin section-container -->
                                 <div class="section-container">
-                                    {!! Form::open(array('url'=>'service-add', 'role'=>'form', 'method'=>'POST')) !!}
-                                    <span action="{{URL::to('regi-s-people-save')}}" class="form-horizontal" data-parsley-validate="true" name="demo-form">
+                                    {!! Form::open(array('url'=>'service-add', 'role'=>'form', 'method'=>'POST', 'files'=>'true')) !!}
+                                    <span class="form-horizontal" data-parsley-validate="true" name="demo-form">
 
                                         <div class="col-md-12 m-t-15">
                                             <!-- start Personal Information -->
@@ -123,10 +123,10 @@
                                                 <div class="form-group">
                                                     <label class="control-label col-sm-3" for="fullname">Mobile No <span class="text-danger">*</span></label>
                                                     <div class="col-sm-4">
-                                                        <input class="form-control" type="text" id="fullname" name="c" placeholder="01xxxxxxxxx" data-parsley-required="true" />
+                                                        <input class="form-control" type="number" id="fullname" name="c" placeholder="01xxxxxxxxx" data-parsley-required="true" />
                                                     </div>
                                                     <div class="col-sm-4">
-                                                        <input class="form-control" type="text" id="fullname" name="d" placeholder="01xxxxxxxxx" />
+                                                        <input class="form-control" type="number" id="fullname" name="d" placeholder="01xxxxxxxxx" />
                                                     </div>
                                                 </div>
 
@@ -150,7 +150,7 @@
                                                 <div class="form-group">
                                                     <label class="control-label col-sm-3" for="fullname">Picture <span class="text-danger"></span></label>
                                                     <div class="col-sm-8">
-                                                        <input  type="file" name="filename" id="fileToUpload" />
+                                                        <input  type="file" name="image" id="fileToUpload" />
                                                     </div>
                                                 </div>
 
@@ -186,7 +186,7 @@
     <div class="col-md-6">
         <div class="clearfix m-b-25">
             
-            <!-- begin guest registration -->
+            <!--start modal modal-guest-->
             <div class="modal fade" id="modal-guest">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -207,24 +207,16 @@
                                             <div class="col-md-12">
 
                                                 <div class="form-group">
-                                                    <label class="control-label col-sm-3" for="fullname"> <b>Whose Guest</b> <span class="text-danger">*</span></label>
+                                                    <label class="control-label col-sm-3"><b>Whose Guest</b><span class="text-danger">*</span></label>
                                                     <div class="col-sm-8">
-                                                        <input class="form-control" type="text" id="fullname" name="service_name" ng-model="searchText" placeholder="Search...  Whose Guest" data-parsley-required="true" />
-                                                        
-                                                        <ul ng-repeat="v in search_show | filter:searchText">
-                                                            <a ng-hide="!searchText">@{{v.rental_id_no}}</a>
-                                                        </ul>
-<!--                                                        <ul ng-repeat="v in search_show | filter:searchText">
-                                                            <li ng-hide="searchText">@{{v.rental_id_no}}</li>
-                                                        </ul>-->
-<!--                                                        <select class="form-control" id="select-required" name="floor" ng-repeat="v in search_show | filter:searchText" data-parsley-required="true">
-                                                            <option value="">Floor</option>
-                                                            <option ng-hide="searchText" value="">@{{v.rental_id_no}}</option>
-                                                        </select>-->
+                                                        <select class="form-control" id="select-required" name="id" required="" data-parsley-required="true">
+                                                            <option value="">Select Building-Floor-Unit</option>
+                                                            @foreach($flat_info_show as $v) 
+                                                            <option value="{{$v->flat_info_id}}">{{$v->bld_name}}&nbsp;&nbsp; - &nbsp;&nbsp;{{$v->bld_floor}}&nbsp;&nbsp; -  &nbsp;&nbsp;{{$v->bld_unit}}</option>
+                                                            @endforeach
+                                                        </select>
                                                     </div>
-                                                </div>
-                                                
-                                                <hr class="hr-d m-b-15">
+                                                </div><hr class="hr-d m-b-15">
 
                                                 <strong class="text-success">Personal Information</strong>
                                                 <div class="form-group m-t-10">
@@ -241,7 +233,7 @@
                                                     </div>
                                                     <div class="col-sm-4 m-t-5">
                                                         <label>
-                                                            <input type="radio" value="1" name="d" id="radio-required" required="" data-parsley-required="true" /> Male <span class="m-l-40"></span>
+                                                            <input type="radio" value="1" name="d" id="radio-required" required="" data-parsley-required="true" /> Male <span class="m-l-20"></span>
                                                             <input type="radio" value="2" name="d" id="radio-required2" /> Female
                                                         </label>
                                                     </div>
@@ -251,6 +243,7 @@
                                                     <label class="control-label col-sm-3" for="fullname">Address <span class="text-danger">*</span></label>
                                                     <div class="col-sm-8">
                                                         <input class="form-control" type="text" id="fullname" name="e" placeholder="Write Address" required="" data-parsley-required="true" />
+<!--                                                        <input type="hidden" name="rough_" value="" />-->
                                                     </div>
                                                 </div>
 
@@ -277,9 +270,9 @@
                     </div>
                 </div>
             </div>
-            <!-- end guest registration -->
+            <!--end modal modal-guest-->
             
-            <!-- begin visitor registration -->
+            <!--start modal modal-visitor-->
             <div class="modal fade" id="modal-visitor">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -292,34 +285,40 @@
                             <div class="row well">
                                 <!-- begin section-container -->
                                 <div class="section-container">
-                                    <form action="{{URL::to('regi-s-people-save')}}" class="form-horizontal" data-parsley-validate="true" name="demo-form">
+                                    <span class="form-horizontal" data-parsley-validate="true" name="demo-form">
 
+                                        {!! Form::open(array('url'=>'info-visiting-add', 'role'=>'form', 'method'=>'POST')) !!}
                                         <div class="col-md-12 m-t-15">
                                             <!-- start Personal Information -->
                                             <div class="col-md-12">
-
                                                 <div class="form-group">
-                                                    <label class="control-label col-sm-3" for="fullname"> <strong>Visitor ID</strong> <span class="text-danger">*</span></label>
+                                                    <label class="control-label col-sm-3"><b>Employee</b><span class="text-danger">*</span></label>
                                                     <div class="col-sm-8">
-                                                        <input class="form-control" type="text" id="fullname" name="visitor_id" placeholder="Enter Visitor id..." data-parsley-required="true" />
+                                                        <select class="form-control" id="select-required" name="id" required="" data-parsley-required="true">
+                                                            <option value="">Select Visiting Employee</option>
+                                                            @foreach($emp_show as $v) 
+                                                            <option value="{{$v->emp_id}}">{{$v->emp_id_no}} &nbsp;&nbsp;&nbsp; {{$v->emp_name}}</option>
+                                                            @endforeach
+                                                        </select>
                                                     </div>
                                                 </div><hr class="hr-d m-b-15">
-
                                             </div>
                                             <!-- end Personal Information -->
                                         </div>
+                                        
 
 
                                         <!-- begin submit button -->
                                         <div class="form-group">
                                             <label class="control-label col-sm-4"></label>
                                             <div class="col-sm-5">
-                                                <button type="submit" class="btn btn-success width-xs">Submit</button>
+                                                <button type="submit" class="btn btn-success width-xs"">Save</button>
                                             </div>
                                         </div>
                                         <!-- end submit button -->
+                                        {!! Form::close() !!}
 
-                                    </form>
+                                    </span>
                                 </div>
                                 <!-- end section-container -->    
                             </div>
@@ -328,7 +327,7 @@
                     </div>
                 </div>
             </div>
-            <!-- end visitor registration -->
+            <!--end modal modal-visitor-->
             
         </div>
     </div>

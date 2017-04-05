@@ -42,13 +42,41 @@
 .rough_border{
     border: 1px solid red;
 }
-.m-b-mi-15 {
+.m-b-mi-0 {
+    margin-bottom: -0px!important;
+}
+.m-b-mi-1 {
+    margin-bottom: -1px!important;
+}
+.m-b-mi-2 {
+    margin-bottom: -2px!important;
+}
+.m-b-mi-3 {
+    margin-bottom: -3px!important;
+}
+.m-b-mi-4 {
+    margin-bottom: -4px!important;
+}
+.m-b-mi-5 {
+    margin-bottom: -5px!important;
+}
+.m-b-mi-10 {
     margin-bottom: -10px!important;
-    //margin-bottom-minus-15;
+}
+.m-b-mi-14 {
+    margin-bottom: -14px!important;
+}
+.m-b-mi-15 {
+    margin-bottom: -15px!important;
+}
+.m-b-mi-20 {
+    margin-bottom: -20px!important;
 }
 .m-b-mi-23 {
     margin-bottom: -23px!important;
-    //margin-bottom-minus-23;
+}
+.m-b-mi-81 {
+    margin-top: -81px!important;
 }
 .well-d {
     border:none;

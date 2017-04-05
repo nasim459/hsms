@@ -33,11 +33,12 @@
                     <li class="active"><a href="#default-tab-1" data-toggle="tab"><i class="fa fa-list"> </i> Service Bill Statement</a></li>
                     <li class=""><a href="#default-tab-2" data-toggle="tab"><i class="fa fa-save"> </i> Invoice</a></li>
                     <li class=""><a href="#default-tab-3" data-toggle="tab"><i class="fa fa-credit-card"></i> Payment</a></li>
-                    <li class=""><a href="#default-tab-4" data-toggle="tab"><i class="fa fa-plus"></i> Add Service</a></li>
+                    <li class=""><a href="#default-tab-4" data-toggle="tab"><i class="fa fa-save"></i> Invoice All</a></li>
+                    <li class=""><a href="#default-tab-5" data-toggle="tab"><i class="fa fa-plus"></i> Add Service</a></li>
                     <!--  <li class=""><a href="#default-tab-5" data-toggle="tab"><i class="fa fa-user"></i> Complain</a></li>
                     <li class=""><a href="#default-tab-6" data-toggle="tab"><i class="fa fa-user"></i> Salary Statement</a></li>-->
                 </ul>
-                <div class="tab-content m-b-0" style="overflow: scroll; overflow-x: hidden; overflow-y: auto; height: 440px;">
+                <div class="tab-content m-b-0" style="overflow: scroll; overflow-x: hidden; overflow-y: auto; height: 450px;">
                     <div class="tab-pane fade active in" id="default-tab-1">
                         <!-- begin row -->
                         <div class="row">
@@ -52,7 +53,10 @@
                                         <div class="col-sm-4">
                                             <strong class="text-success m-t-10">Rental Service Statement</strong>
                                         </div>
-                                        <div class="col-sm-4 m-b-10 col-md-offset-4">
+                                        <div class="col-sm-4">
+                                            <strong class="text-danger m-t-10">{{Session::get('pay_amount_not_big')}}</strong>
+                                        </div>
+                                        <div class="col-sm-4 m-b-10">
                                             <input class="form-control text-center" type="text" id="fullname" value="" placeholder=" Search here..." data-parsley-required="true" />
                                         </div>
                                     </div>
@@ -77,8 +81,9 @@
                                                 <td class="text-center"><span class="btn btn-default btn-xs">{{$number = $number - 1}}</span></td>
                                                 <td class="text-center"><b>{{$v -> bld_name}} - {{$v -> bld_floor}} - {{$v -> bld_unit}}</b></td>
                                                 <td>{{$v-> rental_name}}</td>
-                                                <td class="text-center">
+                                                <td>
                                                     <b>
+                                                        {{$v -> year_define}} - 
                                                         @if($v->month_define == 1)
                                                         January
                                                         @elseif($v->month_define == 2)
@@ -104,14 +109,13 @@
                                                         @elseif($v->month_define == 12)
                                                         December
                                                         @endif
-                                                        - {{$v -> year_define}}
                                                     </b>
                                                 </td>
                                                 <td class="text-center">
-                                                    <a href="#show-bill-statement" class="btn btn-default btn-xs" data-toggle="modal" title="Your Running Service" ng-click="serviceBillView({{$v -> rental_id}})"><i class="fa fa-list">&nbsp;</i> Service </a>
+                                                    <a href="#show-bill-statement" class="btn btn-default btn-xs" data-toggle="modal" title="Your Running Service" ng-click="serviceBillView({{$v->rental_id}})"><i class="fa fa-list">&nbsp;</i> Service </a>
                                                 </td>
                                                 <td class="text-center">
-                                                    <a href="#create-service-bill" class="btn btn-success btn-xs" data-toggle="modal" title="Click To Create Bill" ng-click="serviceBillView({{$v -> rental_id}})"><i class="fa fa-arrow-right"></i> Create</a>&nbsp; &nbsp;
+                                                    <a href="#create-service-bill" class="btn btn-success btn-xs" data-toggle="modal" title="Click To Create Bill" ng-click="serviceBillView({{$v->rental_id}})"><i class="fa fa-arrow-right"></i> Create</a>&nbsp; &nbsp;
                                                 </td>
                                             </tr>
                                             @endforeach()
@@ -255,18 +259,23 @@
                         <!-- begin row -->
                         <div class="row">
                             <!-- begin Add_Salary -->
-                            <div class="col-md-10 col-md-offset-1">
+                            <div class="col-md-12 col-md-offset-0">
                                 <span><p class=""></p></span>
+                                @if(!$invoice_bill->isEmpty())
                                 <!-- begin panel -->
                                 <div class="panel without-pagination clearfix m-b-0">
                                     <div class="form-group">
                                         <div class="col-sm-4">
                                             <strong class="text-success m-t-10">Rental Invoice</strong>
                                         </div>
-                                        <div class="col-sm-4 m-b-10 col-md-offset-4">
+                                        <div class="col-sm-4">
+                                            <strong class="text-danger m-t-10">{{Session::get('pay_amount_not_big')}}{{Session::put('pay_amount_not_big', '')}}</strong>
+                                        </div>
+                                        <div class="col-sm-4 m-b-10">
                                             <input class="form-control text-center" type="text" id="fullname" value="" placeholder=" Search here..." data-parsley-required="true" />
                                         </div>
                                     </div>
+                                    
                                     <table class="table table-bordered table-hover" style="border:5px solid #EBECED !important">
                                         <thead>
                                             <tr class="default">
@@ -286,8 +295,9 @@
                                             <tr>
                                                 <td class="text-center"><span class="text-success"><b class="btn btn-default btn-xs">#{{$v -> invoice_id}}</b></span></td>
                                                 <td class="text-center" title="{{$v -> rental_name}}">{{$v -> bld_name}} - {{$v -> bld_floor}} - {{$v -> bld_unit}}</td>
-                                                <td class="text-center">
+                                                <td>
                                                     <b>
+                                                        {{$v -> invoice_year}} - 
                                                         @if($v->invoice_month == 1)
                                                         January
                                                         @elseif($v->invoice_month == 2)
@@ -313,14 +323,13 @@
                                                         @elseif($v->invoice_month == 12)
                                                         December
                                                         @endif
-                                                        - {{$v -> invoice_year}}
                                                     </b>
                                                 </td>
                                                 <td class="text-center">{{$v -> invoice_amount_total}}</td>
                                                 <td class="text-center">{{$v -> created_at}}</td>
                                                 <td class="text-center">
-                                                    <a href="#click-to-pay" class="btn btn-danger btn-xs" title="unPaid" data-toggle="modal" ng-click="service_bill_invoice_view({{$v -> rental_id}})"><i class="fa fa-remove"></i> Click To Pay</a>&nbsp; &nbsp;
-                                                    <a href="#view-rental-invoice" class="btn btn-default btn-xs" data-toggle="modal" title="Invoice View" ng-click="service_bill_invoice_view({{$v -> rental_id}})"><i class="fa fa-eye text-success-light"></i></a>
+                                                    <a href="#click-to-pay" class="btn btn-danger btn-xs" title="unPaid" data-toggle="modal" ng-click="service_bill_invoice_view({{$v -> invoice_id}})"><i class="fa fa-remove"></i> Click To Pay</a>&nbsp; &nbsp;
+                                                    <a href="#view-rental-invoice" class="btn btn-default btn-xs" data-toggle="modal" title="Invoice View" ng-click="service_bill_invoice_view({{$v -> invoice_id}})"><i class="fa fa-eye text-success-light"></i></a>
                                                 </td>
                                             </tr>
                                             @endforeach()
@@ -328,6 +337,10 @@
                                     </table>
                                 </div>
                                 <!-- end panel -->
+                                @else
+                                <h2 class="text-center text-danger m-t-20"><b>Now, Invoice Is Empty!!!</b></h2>
+                                <h4 class="text-center text-success m-t-20"><b>Create Service Bill To See Invoice...</b></h4>
+                                @endif
                             </div>
                             <!-- end Add_Salary -->
                         </div>
@@ -338,24 +351,29 @@
                         <!-- begin row -->
                         <div class="row">
                             <!-- begin Add_Salary -->
-                            <div class="col-md-10 col-md-offset-1">
+                            <div class="col-md-12 col-md-offset-0">
                                 <span><p class=""></p></span>
+                                @if(!$payment_paid->isEmpty())
                                 <!-- begin panel -->
                                 <div class="panel without-pagination clearfix m-b-0">
                                     <div class="form-group">
                                         <div class="col-sm-4 m-b-10">
                                             <strong class="text-success m-t-10">Monthly Rental Bill History</strong>
                                         </div>
-                                        <div class="col-sm-4 m-b-10 col-md-offset-4">
+                                        <div class="col-sm-4">
+                                            <strong class="text-danger m-t-10">{{Session::get('pay_amount_due_not_big')}}{{Session::put('pay_amount_due_not_big', '')}}</strong>
+                                        </div>
+                                        <div class="col-sm-4 m-b-10">
                                             <input class="form-control text-center" type="text" id="fullname" value="" placeholder=" Search here..." data-parsley-required="true" />
                                         </div>
                                     </div>
+                                    
                                     <table class="table table-bordered table-hover" style="border:5px solid #EBECED !important">
                                         <thead>
 
                                             <tr class="default">
                                                 <th class="text-center"><b>No </b></th>
-                                                <th class="text-center"><b>Building - Floor - Unit</b></th>
+                                                <th class="text-center"><b>Location</b></th>
                                                 <th class="text-center"><b>Rental Name</b></th>
                                                 <th class="text-center"><b>Month</b></th>
                                                 <th class="text-center"><b>Payable</b></th>
@@ -375,8 +393,9 @@
                                                 <td class="text-center"><span class="btn btn-default btn-xs">{{$number = $number - 1}}</span></td>
                                                 <td class="text-center"><b>{{$v -> bld_name}} - {{$v -> bld_floor}} - {{$v -> bld_unit}}</b></td>
                                                 <td>{{$v-> rental_name}}</td>
-                                                <td class="text-center">
+                                                <td>
                                                     <b>
+                                                        {{$v -> pay_year}} - 
                                                         @if($v->pay_month == 1)
                                                         January
                                                         @elseif($v->pay_month == 2)
@@ -402,23 +421,24 @@
                                                         @elseif($v->pay_month == 12)
                                                         December
                                                         @endif
-                                                        - {{$v -> pay_year}}
                                                     </b>
                                                 </td>
                                                 <td class="text-center">{{$v -> payable_amount}}</td>
                                                 <td class="text-center">{{$v -> pay_amount}}</td>
                                                 <td class="text-center">
                                                     @if($v->due_amount != 0)
-                                                    <span class="text-danger">{{$v -> due_amount}}</span>
+                                                    <b class="text-danger">{{$v -> due_amount}}</b>
                                                     @else
                                                     <span>00.00</span>
                                                     @endif
                                                 </td>
                                                 <td class="text-center">
                                                     @if($v->pay_status == 1)
-                                                    <a class="btn btn-default btn-xs" title="Payment Paid "><i class="fa fa-check text-success-light"></i> &nbsp; Paid &nbsp;&nbsp;</a>&nbsp;
+                                                    <a class="btn btn-default btn-xs" title="Payment Paid "><i class="fa fa-check text-success-light"></i>&nbsp;&nbsp; Paid &nbsp; &nbsp;&nbsp;</a>&nbsp;
+                                                    @elseif($v->pay_status == 2 && ($v->due_amount < 0))
+                                                    <a class="btn btn-default btn-xs" title="Payment Advance {{$v -> due_amount}} Taka"><i class="fa fa-plus text-warning-light"></i><span class="text-warning-light"> Advance</span></a>&nbsp;
                                                     @else
-                                                    <a href="#click-to-due-pay" class="btn btn-default btn-xs" data-toggle="modal" ng-click="service_bill_invoice_due({{$v -> rental_id}})" title="Payment unPaid, Click To Pay"><i class="fa fa-remove text-danger-light"></i><span class="text-danger-light"> unPaid</span></a>&nbsp;
+                                                    <a href="#click-to-due-pay" class="btn btn-default btn-xs" data-toggle="modal" ng-click="service_bill_invoice_due({{$v -> rental_id}})" title="Payment unPaid, Click To Pay"><i class="fa fa-remove text-danger-light"> </i><span class="text-danger-light"> &nbsp; unPaid&nbsp;</span></a>&nbsp;
                                                     @endif
                                                     
                                                     <a href="{{URL::to('info-rental-details/'.$v->rental_details_id)}}" class="btn btn-default btn-xs" title="See Details Information"><i class="fa fa-list-ul"></i> </a>
@@ -429,12 +449,105 @@
                                     </table>
                                 </div>
                                 <!-- end panel -->
+                                @else
+                                <h2 class="text-center text-danger m-t-20"><b>Now, Payment Is Empty!!!</b></h2>
+                                <h4 class="text-center text-success m-t-20"><b>When, Submit Bill Pay To See Payment...</b></h4>
+                                @endif
                             </div>
                         </div>
                         <!-- end row -->
                     </div>
 
                     <div class="tab-pane fade" id="default-tab-4">
+                        <!-- begin row -->
+                        <div class="row">
+                            <!-- begin Add_Salary -->
+                            <div class="col-md-12 col-md-offset-0">
+                                <span><p class=""></p></span>
+                                @if(!$invoice_bill_all->isEmpty())
+                                <!-- begin panel -->
+                                <div class="panel without-pagination clearfix m-b-0">
+                                    <div class="form-group">
+                                        <div class="col-sm-4">
+                                            <strong class="text-success m-t-10">All Invoice</strong>
+                                        </div>
+                                        <div class="col-sm-4 m-b-10 col-md-offset-4">
+                                            <input class="form-control text-center" type="text" id="fullname" value="" placeholder=" Search here..." data-parsley-required="true" />
+                                        </div>
+                                    </div>
+                                    
+                                    <table class="table table-bordered table-hover" style="border:5px solid #EBECED !important">
+                                        <thead>
+                                            <tr class="default">
+                                                <th class="text-center"><b>Invoice No</b></th>
+                                                <th class="text-center"><b>Building - Floor - Unit</b></th>
+                                                <th class="text-center"><b>Month</b></th>
+                                                <th class="text-center"><b>Amount</b></th>
+                                                <th class="text-center"><b>Created</b></th>
+                                                <th class="text-center"><b>Payment Action</b></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php $number = 0;
+                                            $off = 0;
+                                            $on = 1; ?>
+                                            @foreach($invoice_bill_all as $v) 
+                                            <tr>
+                                                <td class="text-center"><span class="text-success"><b class="btn btn-default btn-xs">#{{$v -> invoice_id}}</b></span></td>
+                                                <td class="text-center" title="{{$v -> rental_name}}">{{$v -> bld_name}} - {{$v -> bld_floor}} - {{$v -> bld_unit}}</td>
+                                                <td>
+                                                    <b>
+                                                        {{$v -> invoice_year}} - 
+                                                        @if($v->invoice_month == 1)
+                                                        January
+                                                        @elseif($v->invoice_month == 2)
+                                                        February
+                                                        @elseif($v->invoice_month == 3)
+                                                        March
+                                                        @elseif($v->invoice_month == 4)
+                                                        April
+                                                        @elseif($v->invoice_month == 5)
+                                                        May
+                                                        @elseif($v->invoice_month == 6)
+                                                        June
+                                                        @elseif($v->invoice_month == 7)
+                                                        July
+                                                        @elseif($v->invoice_month == 8)
+                                                        August
+                                                        @elseif($v->invoice_month == 9)
+                                                        September
+                                                        @elseif($v->invoice_month == 10)
+                                                        October
+                                                        @elseif($v->invoice_month == 11)
+                                                        November
+                                                        @elseif($v->invoice_month == 12)
+                                                        December
+                                                        @endif
+                                                    </b>
+                                                </td>
+                                                <td class="text-center">{{$v -> invoice_amount_total}}</td>
+                                                <td class="text-center">{{$v -> created_at}}</td>
+                                                <td class="text-center">
+                                                    <a href="#view-service-download" class="btn btn-default btn-xs" data-toggle="modal" title="Invoice Download" ng-click="service_bill_invoice_view({{$v->rental_id}})"><i class="fa fa-download text-success-light">&nbsp; Download</i></a>&nbsp; &nbsp;
+                                                    <a href="#view-service-taken" class="btn btn-default btn-xs" title="view Service Taken" data-toggle="modal" ng-click="service_bill_invoice_item_view({{$v->invoice_id}})"><i class="fa fa-list text-success-light"></i> </a>
+                                                </td>
+                                            </tr>
+                                            @endforeach()
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- end panel -->
+                                @else
+                                <h2 class="text-center text-danger m-t-20"><b>Now, Invoice Is Empty!!!</b></h2>
+                                <h4 class="text-center text-success m-t-20"><b>Create Service Bill To See Invoice...</b></h4>
+                                @endif
+                            </div>
+                            <!-- end Add_Salary -->
+                        </div>
+                        <!-- end row -->
+                    </div>
+
+                    <div class="tab-pane fade" id="default-tab-5">
                         <!-- begin row -->
                         <div class="row">
                             <!-- begin Add_Salary -->
@@ -453,7 +566,7 @@
                                             <input class="form-control text-center" type="text" id="fullname" value="" placeholder=" Search here..." data-parsley-required="true" />
                                         </div>
                                     </div>
-
+                                     
                                     <table class="table table-bordered table-hover" style="border:5px solid #EBECED !important">
                                         <thead>
                                             <tr class="default">
@@ -487,7 +600,7 @@
                                                     @else
                                                     <a href="#add-service-running" class="btn btn-default btn-xs" data-toggle="modal" ng-click="running_rental_service({{$v->rental_id}})"><i class="fa fa-check text-success-light"></i> Running</a>&nbsp;
                                                     @endif
-                                                    
+
                                                     <a href="{{URL::to('info-rental-details/'.$v->rental_details_id)}}" class="btn btn-default btn-xs" title="See Details Information"><i class="fa fa-list-ul"></i> </a>
                                                 </td>
                                             </tr>
@@ -616,7 +729,7 @@
                                         </div>
                                         <div class="modal-body">
                                             <!-- begin row panel body --->
-                                            <div class="row">
+                                            <div class="row" id="pintAreaSelect">
                                                 <!-- begin title -->
                                                 <div class="text-center">
                                                     <sapn class="f-s-18">Housing Society Management System</sapn></br>
@@ -625,7 +738,7 @@
                                                 </div>
                                                 <div class="col-md-10 col-md-offset-1 p-10 m-l-40 b-b-dashed" ng-repeat="invoice in invoice_view|limitTo:1" style="border-bottom: 1px solid #e6ebf1; margin-bottom: 10px;">
                                                     <div class="col-md-6 text-left"><b>@{{invoice.rental_name}}</b></br>@{{invoice.rental_id_no}}</div>
-                                                    <div class="col-md-6 text-right"><b>1</b> building - <b>5</b> floor - <b>A</b> unit</br>@{{1288323623006| date:"MM/dd/yyyy 'at' h:mma"}}</div>
+                                                    <div class="col-md-6 text-right"><b>@{{invoice.bld_name}}</b> building - <b>@{{invoice.bld_floor}}</b> floor - <b>@{{invoice.bld_unit}}</b> unit</br>@{{1288323623006| date:"MM/dd/yyyy 'at' h:mma"}}</div>
                                                 </div></br>
                                                 <!-- end title -->
 
@@ -637,7 +750,22 @@
                                                         <div class="row">
                                                             <!-- begin col-6 -->
                                                             <div class="text-center" ng-repeat="invoice in invoice_view|limitTo:1">
-                                                                <h4>Invoice Number:&nbsp; #@{{invoice.invoice_id}}</h4>
+                                                                <h4>
+                                                                    Invoice Number:&nbsp; #@{{invoice.invoice_id}} &nbsp; &nbsp;  &nbsp; 
+                                                                    @{{invoice.invoice_year}} - 
+                                                                    <span ng-if="invoice.invoice_month == 1">January</span>
+                                                                    <span ng-if="invoice.invoice_month == 2">February</span>
+                                                                    <span ng-if="invoice.invoice_month == 3">March</span>
+                                                                    <span ng-if="invoice.invoice_month == 4">April</span>
+                                                                    <span ng-if="invoice.invoice_month == 5">May</span>
+                                                                    <span ng-if="invoice.invoice_month == 6">June</span>
+                                                                    <span ng-if="invoice.invoice_month == 7">July</span>
+                                                                    <span ng-if="invoice.invoice_month == 8">August</span>
+                                                                    <span ng-if="invoice.invoice_month == 9">September</span>
+                                                                    <span ng-if="invoice.invoice_month == 10">October</span>
+                                                                    <span ng-if="invoice.invoice_month == 11">November</span>
+                                                                    <span ng-if="invoice.invoice_month == 12">December</span> - @{{invoice.invoice_year}}
+                                                                </h4>
                                                             </div>
                                                             <!-- end col-6 -->
                                                         </div>  
@@ -673,7 +801,7 @@
                                                                 <div><b>Grand Total :</b></div></br>
                                                                 <div class="m-t-5"><b>Paid :</b></div></br>
                                                                 <div class="m-t-5 text-danger"><b>Now, Due :</b></div></br>
-                                                                <div class="m-t-10">
+                                                                <div class="m-t-0">
                                                                     <!--<a href="javascript:;" onclick="window.print()" class="btn btn-sm width-100 btn-rounded btn-danger"><i class="fa fa-print m-r-3"></i> Print</a>-->
                                                                     <button type="submit" class="btn btn-sm width-100 btn-rounded btn-danger"><i class="fa fa-print m-r-3"></i> Print</button>
                                                                 </div></br>
@@ -688,7 +816,10 @@
 
                                                                 </div></br>
                                                                 <div class="col-md-6 col-md-offset-3">
-                                                                    <b class="text-danger" ng-hide="!paid_amount">@{{invoice.invoice_grand_total - paid_amount}}</b>
+                                                                    <b class="text-danger" ng-hide="!paid_amount">
+                                                                        <span ng-if="paid_amount >= 0">@{{invoice.invoice_grand_total - paid_amount}}</span>
+                                                                        <span ng-if="paid_amount < 0">Do Not Input</span>
+                                                                    </b>
                                                                 </div></br>
                                                             </td>
                                                         </tr>
@@ -700,6 +831,12 @@
                                                 <!-- end invoice -->    
                                             </div>
                                             <!-- end row panel body --->
+                                            
+                                            <!--start row print -->
+                                            <div class="row text-center m-b-20">
+                                                <!--<button onclick="printContent('pintAreaSelect')" class="btn btn-sm width-100 btn-rounded btn-danger"><i class="fa fa-print m-r-3"></i> Print</button>-->
+                                            </div>
+                                            <!--end row print -->
                                         </div>
                                     </div>
                                 </div>
@@ -798,14 +935,6 @@
                                     </div>
                                 </div>
                             <!--end modal click-to-due-pay-->
-
-                        </div>
-                    </div>
-                    <!--end modal------------------------------------------------------->
-                    
-                    <!--start modal------------------------------------------------------->
-                    <div class="col-md-6">
-                        <div class="clearfix m-b-25">
                             
                             <!--start modal view-rental-invoice-->
                             <div class="modal fade" id="view-rental-invoice">
@@ -817,7 +946,7 @@
                                         </div>
                                         <div class="modal-body">
                                             <!-- begin row panel body --->
-                                            <div class="row">
+                                            <div class="row" id="pintAreaSelect_invoice_show">
                                                 <!-- begin title -->
                                                 <div class="text-center">
                                                     <sapn class="f-s-18">Housing Society Management System</sapn></br>
@@ -838,7 +967,21 @@
                                                         <div class="row">
                                                             <!-- begin col-6 -->
                                                             <div class="text-center" ng-repeat="invoice in invoice_view|limitTo:1">
-                                                                <h4>Invoice Number:&nbsp; #@{{invoice.invoice_id}}</h4>
+                                                                <h4>
+                                                                    Invoice Number:&nbsp; #@{{invoice.invoice_id}} &nbsp; &nbsp;  &nbsp; 
+                                                                    <span ng-if="invoice.invoice_month == 1">January</span>
+                                                                    <span ng-if="invoice.invoice_month == 2">February</span>
+                                                                    <span ng-if="invoice.invoice_month == 3">March</span>
+                                                                    <span ng-if="invoice.invoice_month == 4">April</span>
+                                                                    <span ng-if="invoice.invoice_month == 5">May</span>
+                                                                    <span ng-if="invoice.invoice_month == 6">June</span>
+                                                                    <span ng-if="invoice.invoice_month == 7">July</span>
+                                                                    <span ng-if="invoice.invoice_month == 8">August</span>
+                                                                    <span ng-if="invoice.invoice_month == 9">September</span>
+                                                                    <span ng-if="invoice.invoice_month == 10">October</span>
+                                                                    <span ng-if="invoice.invoice_month == 11">November</span>
+                                                                    <span ng-if="invoice.invoice_month == 12">December</span> - @{{invoice.invoice_year}}
+                                                                </h4>
                                                             </div>
                                                             <!-- end col-6 -->
                                                         </div>  
@@ -863,8 +1006,8 @@
                                                                 <div>Total :</div></br>
                                                                 <div>Previous Due :</div></br>
                                                                 <div><b>Grand Total :</b></div></br>
-                                                                <div class="m-t-10">
-                                                                    <a href="javascript:;" onclick="window.print()" class="btn btn-sm width-100 btn-rounded btn-danger"><i class="fa fa-print m-r-3"></i> Print</a>
+                                                                <div class="m-t-0">
+                                                                    <!--<a href="javascript:;" onclick="window.print()" class="btn btn-sm width-100 btn-rounded btn-danger"><i class="fa fa-print m-r-3"></i> Print</a>-->
                                                                 </div></br>
                                                             </td>
                                                             <td class="text-center">
@@ -880,6 +1023,12 @@
                                                 <!-- end invoice -->    
                                             </div>
                                             <!-- end row panel body --->
+                                            
+                                            <!--start row print -->
+                                            <div class="row text-center m-b-20">
+                                                <button onclick="printContent('pintAreaSelect_invoice_show')" class="btn btn-sm width-100 btn-rounded btn-danger"><i class="fa fa-print m-r-3"></i> Print</button>
+                                            </div>
+                                            <!--end row print -->
                                         </div>
                                     </div>
                                 </div>
@@ -1009,6 +1158,107 @@
                                 </div>
                             </div>
                             <!--end modal add-service-->
+                            
+                            <!--start modal view-service-taken-->
+                            <div class="modal fade" id="view-service-taken">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                            <h4 class="modal-title text-center">See Rental Invoice Statement</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <!-- begin row panel body --->
+                                            <div class="row" id="pintAreaSelect">
+                                                <!-- begin title -->
+                                                <div class="text-center">
+                                                    <sapn class="f-s-18">Housing Society Management System</sapn></br>
+                                                    <sapn>Dhanmondi, Dhaka - 1207</sapn></br>
+                                                    <sapn>Phone: 01777888757</sapn></br>
+                                                </div>
+                                                <div class="col-md-10 col-md-offset-1 p-10 m-l-40 b-b-dashed" ng-repeat="invoice in invoice_item_view|limitTo:1" style="border-bottom: 1px solid #e6ebf1; margin-bottom: 10px;">
+                                                    <div class="col-md-6 text-left"><b>@{{invoice.rental_name}}</b></br>@{{invoice.rental_id_no}}</div>
+                                                    <div class="col-md-6 text-right"><b>@{{invoice.bld_name}}</b> building - <b>@{{invoice.bld_floor}}</b> floor - <b>@{{invoice.bld_unit}}</b> unit</br>@{{invoice.created_at}}</div>
+                                                </div></br>
+                                                <!-- end title -->
+
+                                                <!-- begin invoice -->
+                                                <div class="d_invoice" style="margin-left:40px; margin-right: 40px;">
+                                                    <!-- begin invoice-header -->
+                                                    <div class="invoice-header">
+                                                        <!-- begin row -->
+                                                        <div class="row">
+                                                            <!-- begin col-6 -->
+                                                            <div class="text-center" ng-repeat="invoice in invoice_item_view|limitTo:1">
+                                                                <h4>
+                                                                    Invoice Number:&nbsp; #@{{invoice.invoice_id}} &nbsp; &nbsp;  &nbsp; 
+                                                                    <span ng-if="invoice.invoice_month == 1">January</span>
+                                                                    <span ng-if="invoice.invoice_month == 2">February</span>
+                                                                    <span ng-if="invoice.invoice_month == 3">March</span>
+                                                                    <span ng-if="invoice.invoice_month == 4">April</span>
+                                                                    <span ng-if="invoice.invoice_month == 5">May</span>
+                                                                    <span ng-if="invoice.invoice_month == 6">June</span>
+                                                                    <span ng-if="invoice.invoice_month == 7">July</span>
+                                                                    <span ng-if="invoice.invoice_month == 8">August</span>
+                                                                    <span ng-if="invoice.invoice_month == 9">September</span>
+                                                                    <span ng-if="invoice.invoice_month == 10">October</span>
+                                                                    <span ng-if="invoice.invoice_month == 11">November</span>
+                                                                    <span ng-if="invoice.invoice_month == 12">December</span> - @{{invoice.invoice_year}}
+                                                                </h4>
+                                                            </div>
+                                                            <!-- end col-6 -->
+                                                        </div>  
+                                                        <!-- end row -->
+                                                    </div>
+                                                    <!-- end invoice-header -->
+                                                    <!-- begin invoice-table -->
+                                                    <div class="m-b-10"><b>Invoice Summary</b></div>
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr class="default">
+                                                                <th class="text-center"><b>Service Name</b></th>
+                                                                <th class="text-center"><b>Price</b></th>
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr ng-repeat="invoice in invoice_item_view">
+                                                            <td class="text-center">@{{invoice.invoice_item_name}}</td>
+                                                            <td class="text-center">@{{invoice.invoice_item_amount}}</td>
+                                                        </tr>
+                                                        <tr class="col-md-offset-4" ng-repeat="invoice in invoice_item_view|limitTo:1">
+                                                            <td class="text-right">
+                                                                <div>Total :</div></br>
+                                                                <div>Previous Due :</div></br>
+                                                                <div><b>Grand Total :</b></div></br>
+                                                                <div class="m-t-0">
+                                                                    <!--<a href="javascript:;" onclick="window.print()" class="btn btn-sm width-100 btn-rounded btn-danger"><i class="fa fa-print m-r-3"></i> Print</a>-->
+                                                                    <!--<button onclick="printContent('')" class="btn btn-sm width-100 btn-rounded btn-danger"><i class="fa fa-print m-r-3"></i> Print</button>-->
+                                                                </div></br>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div>@{{invoice.invoice_amount_total}}</div></br>
+                                                                <div>@{{invoice.invoice_previous_due}}</div></br>
+                                                                <div><b>@{{invoice.invoice_grand_total}}</b></div></br>
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <!-- end invoice-table -->
+                                                </div>
+                                                <!-- end invoice -->    
+                                            </div>
+                                            <!-- end row panel body --->
+                                            
+                                            <!--start row print--->
+                                            <div class="row text-center m-b-20">
+                                                <button onclick="printContent('pintAreaSelect')" class="btn btn-sm width-100 btn-rounded btn-danger"><i class="fa fa-print m-r-3"></i> Print</button>
+                                            </div>
+                                            <!--end row print--->
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end modal view-service-taken-->
                             
                         </div>
                     </div>

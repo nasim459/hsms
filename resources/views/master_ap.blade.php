@@ -1,10 +1,6 @@
 <!DOCTYPE html>
-<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
-<!--[if !IE]><!-->
-<html lang="en"  ng-app="adminapp">
-    <!--<![endif]-->
+<html lang="en" ng-app="adminapp">
 
-    <!-- Mirrored from seantheme.com/source-admin-v1.2.1/admin/html/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 14 Aug 2016 06:21:13 GMT -->
     <head>
         <meta charset="utf-8" />
         <title>HSMS</title>
@@ -75,7 +71,7 @@
                 position: absolute;
                 overflow-y: scroll;
                 overflow: auto;
-                height: 338px;
+                height: 330px;
                 border-bottom: 1px solid #EBECED;
                 border-left: 1px solid #EBECED;
                 border-right: 1px solid #EBECED;
@@ -92,9 +88,6 @@
                 border: none;
             }
             
-            
-            
-            
             div.absolute {
                 position: absolute;
                 top: 546px;
@@ -110,15 +103,21 @@
                 background-color: #fff;
             }
         </style>
+        <script>
+        function printContent(el) { 
+            var restorepage = document.body.innerHTML;
+            var printContent = document.getElementById(el).innerHTML;
+            document.body.innerHTML = printContent;
+            window.print();
+            document.body.innerHTML = restorepage;
+        }
+        </script>
     </head>
     <body>
-        <!-- begin #page-loader -->
-        <!-- <div id="page-loader" class="page-loader fade in"><span class="spinner">Loading...</span></div> -->
-        <!-- end #page-loader -->
-
-        <!-- begin #page-container -->
+        <!--start #page-container-->
         <div id="page-container" class="b_l_r_t_b_content fade page-container page-header-fixed page-sidebar-fixed page-with-two-sidebar page-with-footer">
-            <!-- begin #header -->
+            
+            <!--start #header-->
             <div id="header" class="header navbar navbar-default navbar-fixed-top b_t_header">
                 <!-- begin container-fluid -->
                 <div class="container-fluid">
@@ -136,12 +135,12 @@
                     <!-- begin navbar-right -->
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <form class="navbar-form form-input-flat">
+<!--                            <form class="navbar-form form-input-flat">
                                 <div class="form-group">
                                     <input type="text" class="form-control" placeholder="Enter keyword..." />
                                     <button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>
                                 </div>
-                            </form>
+                            </form>-->
                         </li>
                         <li class="dropdown">
                             <a href="javascript:;" data-toggle="dropdown" class="dropdown-toggle has-notify" data-click="toggle-notify">
@@ -231,7 +230,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="javascript:;" data-click="right-sidebar-toggled" class="m-r-20">
+                            <a href="#are-you-sure-to-exit" data-toggle="modal" class="m-r-20">
                                 <i class="fa fa-times" title="Are You Sure To Exit ?"></i> 
                             </a>
                         </li>
@@ -240,9 +239,9 @@
                 </div>
                 <!-- end container-fluid -->
             </div>
-            <!-- end #header -->
+            <!--end #header-->
 
-            <!-- begin #sidebar -->
+            <!--start #sidebar-->
             <div id="sidebar" class="sidebar b_t_sidebar">
                 <!-- begin sidebar scrollbar -->
                 <div data-scrollbar="true" data-height="100%">
@@ -305,7 +304,7 @@
                                 <p>
                                     <a href="{{URL::to('inventory-ataglance')}}" class="btn btn-lg btn-success widtg150">
                                         <i class="fa fa-newspaper-o fa-2x"></i><br />
-                                        <small>Inventory</small>
+                                        <small>Accounts</small>
                                     </a>
                                 </p>
                                 <!-- end widget -->
@@ -347,9 +346,9 @@
                 <!-- end sidebar scrollbar -->
             </div>
             <div class="sidebar-bg"></div>
-            <!-- end #sidebar -->
+            <!--end #sidebar-->
 
-            <!-- begin #content -->
+            <!--start #content-->
             <div id="content" class="content">
 
                 @yield('maincontent')
@@ -367,9 +366,47 @@
                 -->
                 <!-- end #footer -->
             </div>
-            <!-- end #content -->
+            <!--end #content-->
+            
+            <!--start_modal_are_you_sure_to_exit-->
+            <div class="modal fade" id="are-you-sure-to-exit">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="modal-title text-center text-danger"><b>Are You Sure To Exit ?</b></h4>
+                        </div>
+                        <div class="modal-body">
+                            <!-- begin row panel body --->
+                            <div class="row m-b-30">
+                                <!-- begin section-container -->
+                                <div class="section-container">
+                                    <!-- begin submit button -->
+                                    <div class="form-group col-md-offset-2">
+                                        <div class="col-sm-4">
+                                            {!! Form::open(array('url'=>'-service-bill-statement-', 'role'=>'form', 'method'=>'POST')) !!}
+                                            <input type="hidden" name="a" value="@{{select_month}}" />
+                                            <input type="hidden" name="b" value="@{{select_year}}" />
+                                            <button type="submit" class="btn btn-success btn-lg widtg150"><i class="fa fa-check"></i> Yes</button>
+                                            {!! Form::close() !!}
+                                        </div>
+                                        <div class="col-sm-4 m-l-20">
+                                            <button type="submit" class="btn btn-danger btn-lg widtg150" data-dismiss="modal"><i class="fa fa-remove"></i> No</button>
+                                        </div>
+                                    </div>
+                                    <!-- end submit button -->
+                                </div>
+                                <!-- end section-container -->    
+                            </div>
+                            <!-- end row panel body --->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end_modal_are_you_sure_to_exit-->
+            
         </div>
-        <!-- end page container -->
+        <!--end page container-->
 
         <!-- ================== BEGIN BASE JS ================== -->
         <script src="{{URL::asset('ap/assets/plugins/jquery/jquery-1.9.1.min.js')}}"></script>
@@ -423,6 +460,8 @@
         <script src="{{URL::asset('ap/assets/js/rentalController.js')}}"  type="text/javascript"></script>
         <script src="{{URL::asset('ap/assets/js/RegiController.js')}}"  type="text/javascript"></script>
         <script src="{{URL::asset('ap/assets/js/driverController.js')}}"  type="text/javascript"></script>
+        <script src="{{URL::asset('ap/assets/js/HousekeeptingController.js')}}"  type="text/javascript"></script>
+        <script src="{{URL::asset('ap/assets/js/NoticeController.js')}}"  type="text/javascript"></script>
         <!--End_Angular_js -->
         
         <script>
@@ -466,7 +505,6 @@ $(document).ready(function() {
             ga('send', 'pageview');
         </script>
         <!-- ================== End Table Fixed Colum Script JS ================== -->
-
     </body>
 
 </html>

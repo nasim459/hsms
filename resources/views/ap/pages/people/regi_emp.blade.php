@@ -1,15 +1,4 @@
 @section('maincontent')
-<!-- begin breadcrumb -->
-<ol class="breadcrumb pull-right">
-    <li><a href="{{URL::to('dboard')}}" title="Go Dahsboard">Dashboard</a></li>
-    <li class="active">Registration</li>
-</ol>
-<ol class="breadcrumb pull-left">
-    <li><a href="{{URL::to('info-owner')}}" class="btn btn-sm btn-white" title="Go Back"><i class="fa fa-arrow-left"></i></a></li>
-    <span class="text-white m-l-15"> Create A New Account </span>
-</ol>
-<!-- end breadcrumb -->
-
 <!-- begin section-container -->
 <div class="section-container">
     <!-- begin row -->
@@ -19,11 +8,13 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <div class="panel-heading-btn">
-                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-inverse" data-click="panel-expand"><i class="fa fa-expand"></i></a>
-                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-inverse" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
-                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-inverse" data-click="panel-remove"><i class="fa fa-times"></i></a>
+                        <a href="javascript:;" class="btn btn-sm btn-white btn-inverse" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                        <a href="javascript:;" class="btn btn-sm btn-white btn-inverse" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                     </div>
-                    <h4 class="panel-title text-center">
+                    <h4 class="panel-title text-left">
+                        <a href="{{URL::to(Session::get('regi_emp_p_u'))}}" class="btn btn-sm btn-white" title="Go Back"><i class="fa fa-arrow-left"></i></a>
+                    </h4>
+                    <h4 class="panel-title text-center" style="margin-top: -18px">
                         <strong class="text-success ">Employer Registration Form</strong>
                     </h4>
                 </div>

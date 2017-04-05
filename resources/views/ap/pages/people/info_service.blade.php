@@ -12,7 +12,7 @@
                 {!! Form::open(array('url'=>'make-salary-invoice', 'role'=>'form', 'method'=>'POST')) !!}
                 <div class="form-group">
                     <div class="col-sm-3 m-b-10">
-                        <input class="form-control text-center" type="text" id="fullname" value="" placeholder=" Search here..." data-parsley-required="true" />
+                        <input class="form-control text-center" type="text" id="fullname" ng-model="search_service" placeholder=" Search here..." data-parsley-required="true" />
                     </div>
                     <div class="col-sm-3">
                         @if(Session::get('add_service') != NULL)
@@ -22,7 +22,7 @@
                     <div class="col-sm-2"></div>
                     <div class="col-sm-2"></div>
                     <div class="col-sm-2">
-                        <a href="#modal-s-people" class="btn btn-default width-xs m-l-30" title="Create Service People" data-toggle="modal"><i class="fa fa-plus text-success-light"> </i> Add People</a>
+                        <a href="#modal-s-people" class="btn btn-default width-xs m-l-0" title="Create Service People" data-toggle="modal"><i class="fa fa-plus text-success-light"> </i> Add People</a>
                     </div>
                 </div>
                 <table class="table table-bordered table-hover" style="border-bottom:1px solid #EBECED !important; ">
@@ -43,34 +43,28 @@
                         $off = 0;
                         $on = 1;
                         ?>
-                        @foreach($emp_show as $v) 
-                        <tr>
+                        <tr ng-repeat="v in service_show | filter:search_service">
                             <td>
-                                @if($v->service_person_image != NULL)
-                                <a href="#service-person-picture" data-toggle="modal" ng-click="service_person_pic_show({{$v->service_person_id}})" title="Click To See Picture"><img src="{{URL::asset($v->service_person_image)}}" class="img-h-w" alt="" /></a>
-                                @else
-                                <img src="{{URL::asset('ap/assets/img_blank/img_blank.jpg')}}" class="img-h-w" title="Please, Give Your Picture" alt="" />
-                                @endif
+                                <a ng-if="v.service_person_image != NULL" href="#service-person-picture" data-toggle="modal" ng-click="service_person_pic_show(v.service_person_id)" title="Click To See Picture"><img src="@{{v.service_person_image}}" class="img-h-w" alt="" /></a>
+                                <img ng-if="v.service_person_image == NULL" src="ap/assets/img_blank/img_blank.jpg" class="img-h-w" title="Please, Give Your Picture" alt="" />
 
                                 <b  class="m-l-20">{{$number = $number + 1}}</b>
                             </td>
-                            <td>{{$v->service_person_name}}</td>
-                            <td><b>{{$v->service_type}}</b></td>
-                            <td class="text-center">{{$v->service_person_phone1}}</td>
-                            <td class="text-center">{{$v->service_person_phone2}}</td>
+                            <td>@{{v.service_person_name}}</td>
+                            <td><b>@{{v.service_type}}</b></td>
+                            <td class="text-center">@{{v.service_person_phone1}}</td>
+                            <td class="text-center">@{{v.service_person_phone2}}</td>
                             <td class="text-center">
-                                @if($v->service_status == 1)
-                                <a href="{{URL::to('info-service-status/'.$v->service_id.'/'.$off)}}" class="btn btn-default btn-xs"> Active </a>
-                                @else
-                                <a href="{{URL::to('info-service-status/'.$v->service_id.'/'.$on)}}" class="btn btn-warning btn-xs"> &nbsp; Stop &nbsp; </a>
-                                @endif
+                                
+                                <a ng-if="v.service_status == 1" href="info-service-status/@{{v.service_person_id}}/{{$off}}" class="btn btn-default btn-xs"> Active </a>
+                                <a ng-if="v.service_status != 1" href="info-service-status/@{{v.service_person_id}}/{{$on}}" class="btn btn-warning btn-xs"> &nbsp; Stop &nbsp; </a>
+                                
                             </td>
 
                             <td>
-                                <a href="{{URL::to('info-service-details/'.$v->service_person_id)}}" class="btn btn-default btn-xs"><i class="fa fa-list-alt"></i> Details</a>
+                                <a href="info-service-details/@{{v.service_person_id}}" class="btn btn-default btn-xs"><i class="fa fa-list-alt"></i> Details</a>
                             </td>
                         </tr>
-                        @endforeach()
                     </tbody>
                     <!--<a href="javascript:;" id="add-gritter-light" class="btn btn-white btn-sm m-l-5">Show</a>-->
                 </table>
@@ -102,7 +96,7 @@
                                 <!-- begin section-container -->
                                 <div class="section-container">
                                     {!! Form::open(array('url'=>'service-add', 'role'=>'form', 'method'=>'POST', 'files'=>'true')) !!}
-                                    <span action="{{URL::to('regi-s-people-save')}}" class="form-horizontal" data-parsley-validate="true" name="demo-form">
+                                    <span class="form-horizontal" data-parsley-validate="true" name="demo-form">
 
                                         <div class="col-md-12 m-t-15">
                                             <!-- start Personal Information -->
@@ -126,10 +120,10 @@
                                                 <div class="form-group">
                                                     <label class="control-label col-sm-3" for="fullname">Mobile No <span class="text-danger">*</span></label>
                                                     <div class="col-sm-4">
-                                                        <input class="form-control" type="text" id="fullname" name="c" placeholder="01xxxxxxxxx" data-parsley-required="true" />
+                                                        <input class="form-control" type="number" id="fullname" name="c" placeholder="01xxxxxxxxx" data-parsley-required="true" />
                                                     </div>
                                                     <div class="col-sm-4">
-                                                        <input class="form-control" type="text" id="fullname" name="d" placeholder="01xxxxxxxxx" />
+                                                        <input class="form-control" type="number" id="fullname" name="d" placeholder="01xxxxxxxxx" />
                                                     </div>
                                                 </div>
 
@@ -160,7 +154,7 @@
                                             </div>
                                             <!-- end Personal Information -->
                                         </div>
-
+                                        
                                         <!-- begin submit button -->
                                         <div class="form-group">
                                             <label class="control-label col-sm-4"></label>

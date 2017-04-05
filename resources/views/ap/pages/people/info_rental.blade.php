@@ -18,7 +18,7 @@
                     </div>
                 </div>
                 
-                <table class="table table-hover table-scroll" style="border-bottom:1px solid #EBECED !important;">
+                <table class="table table-hover table-bordered table-scroll" style="height: 418px!important; border-bottom:1px solid #EBECED !important;">
                     <thead>
                         <tr class="success">
                             <th>Picture &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ID</th>
@@ -26,12 +26,11 @@
                             <th>Building - Floor - Unit</th>
                             <th>Mobile Number</th>
                             <th>E-Mail Address</th>
-                            <th>Payment</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="v in rental_show |filter:search_rental">
+                        <tr ng-repeat="v in rental_show | filter:search_rental">
                             <td>
                                 <a ng-if="v.rental_image != NULL" href="#rental-picture-show" data-toggle="modal" ng-click="rental_picture_show(v.rental_id)" title="Click To See Picture"><img src="@{{v.rental_image}}" class="img-h-w" alt="" /></a>
                                 <img ng-if="v.rental_image == NULL" src="ap/assets/img_blank/img_blank.jpg" title="Blank Picture. Please, Give Your Picture" class="img-h-w" alt="" />
@@ -42,9 +41,8 @@
                             <td class="text-center"><b>@{{v.bld_name}} - @{{v.bld_floor}} - @{{v.bld_unit}}</b></td>
                             <td>@{{v.rental_phone_1}}</td>
                             <td>@{{v.rental_email}}</td>
-                            <td class="text-center"><a href="" class="btn btn-default btn-xs"> &nbsp; Paid &nbsp;</a> </td>
                             <td>
-                                <a href="info-rental-details/@{{v.rental_details_id}}" class="btn btn-default btn-xs" title="See Details Information"><i class="fa fa-list-alt"></i> Details</a>&nbsp; &nbsp;
+                                <a href="info-rental-details/@{{v.rental_details_id}}" class="btn btn-default btn-xs" title="See Details Information"><i class="fa fa-list-alt"></i> Details</a>&nbsp; &nbsp; &nbsp;
                                 
                                 <a ng-if="v.person_status == 1" ng-click="rental_status(v.rental_id)" class="btn btn-default btn-xs" title="Active Profile">
                                     <i class="fa fa-check text-success-light"></i>
@@ -52,15 +50,6 @@
                                 
                                 <a ng-if="v.person_status != 1" href="#info-rental-warning" data-toggle="modal" ng-click="info_rental_warning(v.rental_id)" class="btn btn-default btn-xs" title="deActive Profile"><i class="fa fa-remove text-danger-light"></i></a>
                             </td>
-                        </tr>
-                        <tr ng-repeat="v in rental_show | limitTo:1">
-                            <td>Showing @{{rental_show.length}} entries</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
                         </tr>
                     </tbody>
                 </table>
@@ -116,6 +105,8 @@
                 </div>
             </div>
             <!--end rental-picture-show-->
+            
+            <!--start info-rental-warning-->
             <div class="modal fade" id="info-rental-warning">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -157,9 +148,7 @@
                     </div>
                 </div>
             </div>
-            <!--start edit_service_people_picture-->
-            
-            <!--end edit_service_people_picture-->
+            <!--end info-rental-warning-->
             
         </div>
         <!--end show_service_people_picture-->

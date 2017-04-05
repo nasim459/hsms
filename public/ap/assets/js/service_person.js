@@ -2,6 +2,15 @@
 
 app.controller('servicePerson', function($scope, $http) {
     
+    //-----info_service_show
+    $scope.info_service_show = function() {
+        $http.get('/hsms/public/info-service-show').then(function(response) {
+          $scope.service_show = response.data;
+        });
+    };
+    $scope.info_service_show();
+    
+    
     
     //-----rental_running_service_bill_view
     $scope.service_type_update = function(service_id) {

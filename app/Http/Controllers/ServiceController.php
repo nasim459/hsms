@@ -12,39 +12,57 @@ class ServiceController extends Controller {
 
     //
     public function service_info() {
-        $emp_show = DB::table('tbl_service')
-                ->join('tbl_service_person', 'tbl_service.service_person_id', '=', 'tbl_service_person.service_person_id')
-                ->select('tbl_service.*', 'tbl_service_person.*')
-                ->orderBy('tbl_service.service_id', 'desc')
-                //->where('service_status', 1)
-                ->get();
+//        $emp_show = DB::table('tbl_service')
+//                ->join('tbl_service_person', 'tbl_service.service_person_id', '=', 'tbl_service_person.service_person_id')
+//                ->select('tbl_service.*', 'tbl_service_person.*')
+//                ->orderBy('tbl_service.service_id', 'desc')
+//                //->where('service_status', 1)
+//                ->get();
 
 //        echo '<pre>';
 //        print_r($emp_show);
 //        exit();
 
-        $emp = view('ap.pages.people.info_service')
-                ->with('emp_show', $emp_show);
+        $emp = view('ap.pages.people.info_service');
+                //->with('emp_show', $emp_show);
         $master = view('ap.pages.people.people_master')
                 ->with('people_content', $emp);
         return view('master_ap')
                         ->with('maincontent', $master);
     }
+    
+    //--------------show_service_info 0f tbl_service
+    public function show_service_info()
+    {
+        $show_service = DB::table('tbl_service')
+                ->join('tbl_service_person', 'tbl_service.service_person_id', '=', 'tbl_service_person.service_person_id')
+                ->select('tbl_service.*', 'tbl_service_person.*')
+                ->orderBy('tbl_service.service_id', 'desc')
+                //->where('service_status', 1)
+                ->get();
+        
+        return $show_service;
+    }
 
     //--------------regi serevice
     public function add_service(Request $request) {
+        
         //----start_service_people_image
         $image = $request->file('image');
-
-        $image_name = str_random(20);
-        $ext = strtolower($image->getClientOriginalExtension());
-        $destination_path = 'ap/assets/img/s_people_img/';
-        $image_full_name = $image_name . '.' . $ext;
-        $image_url = $destination_path . $image_full_name;
-
-        $success = $image->move($destination_path, $image_full_name);
-        if ($success) {
+        
+        if (isset($image)) {
+            $image_name = str_random(20);
+            $ext = strtolower($image->getClientOriginalExtension());
+            $destination_path = 'ap/assets/img/s_people_img/';
+            $image_full_name = $image_name . '.' . $ext;
             $image_url = $destination_path . $image_full_name;
+
+            $success = $image->move($destination_path, $image_full_name);
+            if ($success) {
+                $image_url = $destination_path . $image_full_name;
+            } else {
+                $image_url = NULL;
+            }
         } else {
             $image_url = NULL;
         }
@@ -251,19 +269,20 @@ class ServiceController extends Controller {
 
     //--------------publication status
     public function status_service_info($service_person_id, $status) {
-
+//        echo $service_person_id.'-'.$status;
+//        exit();
         if ($status == 1) {
             DB::table('tbl_service_person')
                     ->where('service_person_id', $service_person_id)
                     ->update(['service_person_status' => 1]);
-            $url_current = Session::get('url_current');
-            return Redirect::to($url_current);
+            $previous_url = url()->previous();
+            return Redirect::to($previous_url);
         } else {
             DB::table('tbl_service_person')
                     ->where('service_person_id', $service_person_id)
                     ->update(['service_person_status' => 0]);
-            $url_current = Session::get('url_current');
-            return Redirect::to($url_current);
+            $previous_url = url()->previous();
+            return Redirect::to($previous_url);
         }
     }
 

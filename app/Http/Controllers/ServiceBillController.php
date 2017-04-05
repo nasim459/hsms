@@ -44,7 +44,7 @@ class ServiceBillController extends Controller {
         $rental_total = count($rental_show);
         Session::put('rental_total', $rental_total);
         
-        //------Rental_Invoice_Bill_Show
+        //------Invoice_Bill_Show
         $invoice_bill = DB::table('tbl_invoice')
                 ->join('tbl_flat_info', 'tbl_invoice.flat_info_id', '=', 'tbl_flat_info.flat_info_id')
                 ->join('tbl_rental', 'tbl_invoice.rental_id', '=', 'tbl_rental.rental_id')
@@ -53,16 +53,27 @@ class ServiceBillController extends Controller {
                 ->orderBy('invoice_id', 'desc')
                 ->get();
         
+        //------Invoice_Bill_Show_all
+        $invoice_bill_all = DB::table('tbl_invoice')
+                ->join('tbl_flat_info', 'tbl_invoice.flat_info_id', '=', 'tbl_flat_info.flat_info_id')
+                ->join('tbl_rental', 'tbl_invoice.rental_id', '=', 'tbl_rental.rental_id')
+                ->where('invoice_status', 1)        //-- 1 means invoice_submit
+                ->select('tbl_invoice.*', 'tbl_flat_info.*', 'tbl_rental.*')
+                ->orderBy('invoice_id', 'desc')
+                ->get();
+        
+        //------payment_paid_Show
         $payment_paid = DB::table('tbl_invoice_payment')
                 ->join('tbl_invoice', 'tbl_invoice_payment.invoice_id', '=', 'tbl_invoice.invoice_id')
                 ->join('tbl_rental', 'tbl_invoice_payment.rental_id', '=', 'tbl_rental.rental_id')
                 ->join('tbl_flat_info', 'tbl_invoice_payment.flat_info_id', '=', 'tbl_flat_info.flat_info_id')
                 ->select('tbl_invoice_payment.*', 'tbl_rental.*', 'tbl_flat_info.*')
-                ->orderBy('bld_name', 'asc')
-                ->orderBy('bld_floor', 'asc')
-                ->orderBy('bld_unit', 'asc')
+                //->orderBy('bld_name', 'asc')
+                //->orderBy('bld_floor', 'asc')
+                //->orderBy('bld_unit', 'asc')
+                ->orderBy('invoice_id', 'desc')
                 ->get();
-        $p_p_l = count($payment_paid);
+        $p_p_l = count($payment_paid);  //-----$p_p_l means payment_paid_length(length of paymen paid)
         Session::put('payment_paid', $p_p_l);
 
         //------Rental_Bill_Statement_Show
@@ -82,6 +93,7 @@ class ServiceBillController extends Controller {
                 ->with('salary_view', $salary_view)
                 ->with('rental_show', $rental_show)
                 ->with('invoice_bill', $invoice_bill)
+                ->with('invoice_bill_all', $invoice_bill_all)
                 ->with('payment_paid', $payment_paid)
                 ->with('assign_statement', $assign_statement);
         $master = view('ap.pages.settings.settings_master')
@@ -99,7 +111,7 @@ class ServiceBillController extends Controller {
         if($a != Null && $b != Null){
             
             $bill = array();
-            $bill['rental_bill_status'] = 11;
+            $bill['rental_bill_status'] = 11; //----11 means( 11 = On_rental_bill_statement, 22 = Off_rental_bill_statement )
             $bill['month_define'] = $a;
             $bill['year_define'] = $b;
             DB::table('tbl_rental')
@@ -117,15 +129,36 @@ class ServiceBillController extends Controller {
     //-----generate_rental_service_bill
     public function generate_bill_service(Request $request) {
         
-        //$re = $request->all();
+        $re = $request->all();
         $rental_id = $request->rntl_id;
         $service_assigned_id = $request->s_a_id;
         $amount = $request->amount;
+        
+//        echo '<pre>';
+//        print_r($re);
+//        exit();
+        
+        
+        
         
         //----when $rental_id will not found then use_this_function 
         if($rental_id == NULL){
             return Redirect::to('make-service-bill');
         }
+        
+        
+        //---------Firstly_Check_on_rental_bill_statement of tbl_rental, (check that are given rental_bill_status = 11)
+        $check_on_rental_bill_statement = DB::table('tbl_rental')
+                ->where('rental_id', $rental_id)
+                ->where('rental_bill_status', 11)
+                ->select('tbl_rental.*')
+                ->get();
+        //return Redirect::to('make-service-bill');
+        if(!isset($check_on_rental_bill_statement)) {
+            echo 'not found';
+            exit();
+        }
+        
         $length = count($service_assigned_id);
         
         for($i=0; $i<$length; $i++){
@@ -167,6 +200,7 @@ class ServiceBillController extends Controller {
         $rental_info = DB::table('tbl_rental')
                 ->join('tbl_flat_info', 'tbl_rental.flat_info_id', '=', 'tbl_flat_info.flat_info_id')
                 ->where('tbl_rental.rental_id', $rental_id)
+                ->where('rental_bill_status', 11)   //----11 means on_rental_bill_statement
                 ->select('tbl_rental.*', 'tbl_flat_info.*')
                 ->get();
         $rental_name = $rental_info[0]->rental_name;
@@ -232,23 +266,36 @@ class ServiceBillController extends Controller {
     }
     
     //-----rental_service_bill_invoice_view
-    public function service_bill_invoice_view($rental_id) {
+    public function service_bill_invoice_view($invoice_id) {
         
       $bill_show = DB::table('tbl_invoice')
                 ->join('tbl_invoice_item', 'tbl_invoice.invoice_id', '=', 'tbl_invoice_item.invoice_id')
                 ->join('tbl_rental', 'tbl_invoice.rental_id', '=', 'tbl_rental.rental_id')
-                ->where('tbl_invoice.rental_id', $rental_id)
+                ->join('tbl_flat_info', 'tbl_invoice.flat_info_id', '=', 'tbl_flat_info.flat_info_id')
+                ->where('tbl_invoice.invoice_id', $invoice_id)
                 ->where('invoice_status', 2)
-                ->select('tbl_invoice.*', 'tbl_invoice_item.*', 'tbl_rental.*')
+                ->select('tbl_invoice.*', 'tbl_invoice_item.*', 'tbl_rental.*', 'tbl_flat_info.*')
                 //->orderBy('service_type', 'asc')
                 ->get();
-//        echo '<pre>';
-//        print_r($rental_show);
-//        exit();
       return $bill_show;
     }
     
-    //-----rental_service_bill_invoice_view
+    //-----rental_service_bill_invoice_item_view
+    public function service_bill_invoice_item_view($invoice_id) {
+
+        $bill_show = DB::table('tbl_invoice')
+                ->join('tbl_invoice_item', 'tbl_invoice.invoice_id', '=', 'tbl_invoice_item.invoice_id')
+                ->join('tbl_rental', 'tbl_invoice.rental_id', '=', 'tbl_rental.rental_id')
+                ->join('tbl_flat_info', 'tbl_invoice.flat_info_id', '=', 'tbl_flat_info.flat_info_id')
+                ->where('tbl_invoice.invoice_id', $invoice_id)
+                ->where('invoice_status', 1)
+                ->select('tbl_invoice.*', 'tbl_invoice_item.*', 'tbl_rental.*', 'tbl_flat_info.*')
+                //->orderBy('service_type', 'asc')
+                ->get();
+        return $bill_show;
+    }
+    
+    //-----rental_service_bill_invoice_due
     public function service_bill_invoice_due($rental_id) {
         
       $bill_due = DB::table('tbl_invoice_payment')
@@ -274,6 +321,12 @@ class ServiceBillController extends Controller {
         $payable_amount = $request->f;
         $pay_amount = $request->g;
         $due_amount = $payable_amount - $pay_amount;
+        
+        //----if found $pay_amount Will Not Big From $payable_amount then_go_back
+        if($pay_amount > $payable_amount){
+            Session::put('pay_amount_not_big', 'Paid Amount Will Not Big From Grand Total ?');
+            return Redirect::to('make-service-bill');
+        }
         
         //----------change pay_status  
         if($due_amount == 0){
@@ -327,8 +380,15 @@ class ServiceBillController extends Controller {
         $pay_year = $request->e;
         
         $payable_amount = $request->f;
+        $payable_amount_default = 0;
         $pay_amount = $request->g;
         $due_amount = $payable_amount - $pay_amount;
+        
+        //----if found $pay_amount Due Will Not Big From $payable_amount then_go_back
+        if($pay_amount > $payable_amount){
+            Session::put('pay_amount_due_not_big', 'Paid Amount Due Will Not Big From Grand Total ?');
+            return Redirect::to('make-service-bill');
+        }
         
         //----------change pay_status  
         if($due_amount == 0){
@@ -359,7 +419,7 @@ class ServiceBillController extends Controller {
         $payment = array();
         $payment['pay_month'] = $pay_month;
         $payment['pay_year'] = $pay_year;
-        $payment['payable_amount'] = $payable_amount;
+        $payment['payable_amount'] = $payable_amount_default;
         $payment['pay_amount'] = $pay_amount;
         $payment['due_amount'] = $due_amount;
         $payment['pay_status'] = $pay_status;

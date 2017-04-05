@@ -19,6 +19,17 @@ Route::get('fe', 'FrontEndController@index');
     'roles' => ['Super-admin', 'Admin', 'employee']
 ]);*/
 
+//Route::get('admin', function(){
+//    echo 'you habe access';
+//})->middleware('admin');
+//
+//Route::group(['middleware' => 'admin'], function(){
+//    
+//});
+
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -38,7 +49,8 @@ Route::get('rental-dboard', 'RentalDboardController@rental_dboard');
 //-------------Employee Dboard Controller
 Route::get('emp-dboard', 'EmpDboardController@emp_dboard');
 
-Route::get('', 'LoginController@index');
+Route::get('signin-panel-hsms', 'LoginController@hsms_panel_signin');
+Route::post('signin-panel-check', 'LoginController@check_panel_signin');
 Route::get('signup', 'LoginController@signup');
 Route::get('dboard', 'HomeController@dashboard');
 
@@ -46,6 +58,7 @@ Route::get('dboard', 'HomeController@dashboard');
 //----------People Controller
 Route::get('info-owner', 'PeopleController@owner_info');
 Route::get('info-emp', 'PeopleController@emp_info');
+Route::get('info-emp-show', 'PeopleController@show_emp_info');
 
 Route::get('info-owner-details/{rental_details_id}', 'PeopleController@details_owner_info');
 Route::get('info-emp-details/{emp_details_id}', 'PeopleController@details_emp_info')->name('emp-info');
@@ -59,7 +72,7 @@ Route::get('info-rental-details/{rental_details_id}', 'PeopleController@details_
 Route::get('info-rental-status/{rental_id}/', 'PeopleController@status_rental_info');
 Route::get('info-rental-warning/{rental_id}/', 'PeopleController@warning_rental_info');
 //----rentalSearch
-Route::get('info-rental-search', 'SearchController@search_rental_info');
+//Route::get('info-rental-search', 'SearchController@search_rental_info');
 
 
 
@@ -71,11 +84,16 @@ Route::get('info-rental-invoice/{invoice_id}', 'PeopleController@invoice_rental_
 
 
 Route::get('info-driver', 'PeopleController@driver_info');
+Route::get('info-driver-show', 'PeopleController@show_driver_info');
 Route::get('info-driver-pic-show/{driver_id}', 'PeopleController@show_pic_driver_info');
-Route::get('info-housekeeping', 'PeopleController@housekeeping_info');
+//Route::get('info-housekeeping', 'HousekeeptingController@housekeeping_info');
+//Route::get('info-housekeeping-show', 'HousekeeptingController@show_housekeeping_info');
+
 Route::get('info-visiting', 'PeopleController@visiting_info');
 Route::get('info-visiting-show', 'PeopleController@show_visitor_info');
+Route::post('info-visiting-add', 'PeopleController@add_visitor_info');
 Route::get('info-guest-show', 'PeopleController@show_guest_info');
+Route::get('info-guest-show-details/{flat_info_id}', 'PeopleController@details_show_guest_info');
 Route::get('info-service', 'PeopleController@service_info');
 
 
@@ -84,7 +102,11 @@ Route::get('info-service', 'PeopleController@service_info');
 Route::get('info-rental-edit/{rental_id}', 'EditController@edit_rental_info')->name('rental-edit');
 Route::get('info-emp-edit/{emp_details_id}', 'EditController@edit_emp_info')->name('emp-edit');
 Route::get('info-driver-edit/{driver_details_id}', 'EditController@edit_driver_info')->name('driver-edit');
-Route::get('info-guest-edit/{guest_id}', 'EditController@edit_guest_info');
+
+Route::get('info-guest-edit/{flat_info_id}', 'EditController@edit_guest_info');
+Route::post('info-guest-update', 'EditController@update_guest_info');
+Route::get('info-visitor-edit/{emp_id}', 'EditController@edit_visitor_info');
+Route::post('info-visitor-update', 'EditController@update_visitor_info');
 
 //----------People Update Controller
 Route::post('info-rental-update', 'EditController@update_rental_info');
@@ -110,6 +132,7 @@ Route::post('regi-visitor-save', 'RegiController@save_visitor_regi');
 //
 //----------Regi Save
 Route::get('info-service', 'ServiceController@service_info');
+Route::get('info-service-show', 'ServiceController@show_service_info');
 Route::get('info-service-details/{service_person_id}', 'ServiceController@details_service_info');
 Route::post('service-add', 'ServiceController@add_service');
 Route::post('service-add-name', 'ServiceController@name_add_service');
@@ -139,12 +162,16 @@ Route::get('bld-status/{flat_info_id}/{status}', 'BldController@status_bld');
 
 
 //----------BroadCasting Controller
-Route::get('broadcasting-sms', 'BroadCastingController@sms');
-Route::get('broadcasting-sms-add', 'BroadCastingController@sms_add');
+Route::get('broadcasting-sms', 'BroadCastingController@sms_bc');
+//Route::get('broadcasting-sms-add', 'BroadCastingController@sms_add');
+Route::post('broadcasting-sms-send', 'BroadCastingController@send_sms_bc');
 
 Route::get('broadcasting-notice', 'BroadCastingController@notice');
 Route::get('broadcasting-notice-add', 'BroadCastingController@notice_add');
 Route::post('broadcasting-notice-save', 'BroadCastingController@notice_save');
+Route::get('broadcasting-notice-edit/{notice_id}', 'BroadCastingController@edit_notice_broadcasting');
+Route::post('broadcasting-notice-update', 'BroadCastingController@update_notice_broadcasting');
+Route::get('broadcasting-status/{notice_id}/{status}', 'BroadCastingController@status_broadcasting');
 //Route::get('broadcasting-notice-save/{a}/{b}/{c}', 'BroadCastingController@notice_save');
 
 Route::get('broadcasting-email-inbox', 'EmailController@inbox_email');
@@ -159,6 +186,7 @@ Route::get('payment-bkash', 'PaymentController@bkash_payment');
 Route::get('payment-bank', 'PaymentController@bank_payment');
 //----------Inventory Controller
 Route::get('inventory-ataglance', 'InventoryController@ataglance_inventory');
+Route::get('inventory-ataglance-show', 'InventoryController@show_ataglance_inventory');
 Route::get('inventory-grant-total', 'InventoryController@grant_total_inventory');
 Route::get('inventory-utilities', 'InventoryController@utilities_inventory');
 Route::get('inventory-utilities-add', 'InventoryController@utilities_add_inventory');
@@ -189,7 +217,8 @@ Route::post('salary-due', 'SalaryMakeController@due_salary');
 //----------ServiceBill Controller
 Route::get('make-service-bill', 'ServiceBillController@bill_service_make');
 Route::get('service-bill-show/{rental_id}', 'ServiceBillController@service_bill_show');
-Route::get('service-bill-invoice-view/{rental_id}', 'ServiceBillController@service_bill_invoice_view');
+Route::get('service-bill-invoice-view/{invoice_id}', 'ServiceBillController@service_bill_invoice_view');
+Route::get('service-bill-invoice-item-view/{invoice_id}', 'ServiceBillController@service_bill_invoice_item_view');
 Route::get('service-bill-invoice-due/{rental_id}', 'ServiceBillController@service_bill_invoice_due');
 Route::post('service-bill-statement', 'ServiceBillController@statement_bill_service');
 Route::post('service-bill-payment', 'ServiceBillController@payment_bill_service');
@@ -199,6 +228,14 @@ Route::post('service-bill-generate', 'ServiceBillController@generate_bill_servic
 Route::get('view-rental-service/{rental_id}', 'ServiceBillController@service_rental_view');
 Route::get('running-rental-service/{rental_id}', 'ServiceBillController@service_rental_running');
 Route::post('add-rental-service', 'ServiceBillController@service_rental_add');
+
+
+//------------pdf
+Route::get('pdfview',array('as'=>'pdfview','uses'=>'PdfController@pdfview'));
+//------------pdf
+
+
+
 
 //>>>>>>> 66c9a1207ab5d3ad0fc437c410ab0a208059e792
 //-------------------- End Pages history ----------------------------------

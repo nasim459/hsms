@@ -11,7 +11,7 @@
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
 	<meta content="" name="description" />
 	<meta content="" name="author" />
-	<link rel="icon" type="image/png" href="assets/img/favicon.png">
+	<link rel="icon" type="image/png" href="{{URL::asset('ap/assets/img/icon_1.jpg')}}">
 	
 	<!-- ================== BEGIN BASE CSS STYLE ================== -->
 	<link href="http://fonts.googleapis.com/css?family=Nunito:400,300,700" rel="stylesheet" id="fontFamilySrc" />
@@ -41,110 +41,43 @@
 		<div class="login">
 		    <!-- begin login-brand -->
             <div class="login-brand bg-inverse text-white">
-                <img src="{{URL::asset('ap/assets/img/logo-white.png')}}" height="36" class="pull-right" alt="" /> Login Panel
+                <i class="fa fa-power-off pull-right m-t-10"></i> Login Panel
             </div>
 		    <!-- end login-brand -->
 		    <!-- begin login-content -->
             <div class="login-content">
-                <h4 class="text-center m-t-0 m-b-20">Housing Society Management System</h4>
-                <form action="{{URL::to('dboard')}}" method="POST" name="login_form" class="form-input-flat">
+                <div>
+                    <div>
+                        <h4 class="text-center text-success m-t-0 m-b-40">Housing Society Management System</h4>
+                    </div>
+                    <div>
+                        <h4 class="text-center text-danger m-t-0 m-b-20">
+                        {{Session::get('wrong_entry')}}{{Session::put('wrong_entry', '')}}
+                        </h4>
+                    </div>
+                </div>
+                
+                
+                {!! Form::open(array('url'=>'signin-panel-check', 'role'=>'form', 'method'=>'POST')) !!}
+                <span class="form-input-flat">
                     <div class="form-group">
-                        <input type="text" class="form-control input-lg" placeholder="Email Address" />
+                        <input type="email" name="username" class="form-control input-lg" placeholder="Email Address" />
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control input-lg" placeholder="Password" />
+                        <input type="password" name="password" class="form-control input-lg" placeholder="Password" />
                     </div>
                     <div class="row m-b-20">
                         <div class="col-md-12">
-                            <!--<button type="submit" class="btn btn-lime btn-lg btn-block">Sign in to your account</button>-->
-                            <a href="{{URL::to('dboard')}}" type="submit" class="btn btn-lime btn-lg btn-block">Sign in to your account</a>
-                        </div>
+                            <button type="submit" class="btn btn-lime btn-lg btn-block">Sign In</button>
                     </div>
-                    <div class="text-center">
-                        New here? <a href="{{URL::to('signup')}}" class="text-muted">Create a new account</a>
-                    </div>
-                </form>
+                </span>
+                {!! Form::close() !!}
             </div>
 		    <!-- end login-content -->
 		</div>
 		<!-- end login -->
 	</div>
 	<!-- end page container -->
-	
-    <!-- begin theme-panel -->
-<!--    <div class="theme-panel">
-        <a href="javascript:;" data-click="theme-panel-expand" class="theme-collapse-btn"><i class="fa fa-tint"></i></a>
-    <div class="theme-panel-content">
-        <h5 class="m-t-0">Font Family</h5>
-        <div class="row row-space-10">
-            <div class="col-md-6">
-                <a href="#" class="btn btn-default btn-block btn-sm m-b-10 active" data-value="" data-src="http://fonts.googleapis.com/css?family=Nunito:400,300,700" data-click="body-font-family">
-                    Nunito (Default)
-                </a>
-            </div>
-            <div class="col-md-6">
-                <a href="#" class="btn btn-default btn-block btn-sm m-b-10" data-value="font-open-sans" data-src="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" data-click="body-font-family">
-                    Open Sans
-                </a>
-            </div>
-            <div class="col-md-6">
-                <a href="#" class="btn btn-default btn-block btn-sm m-b-10" data-value="font-roboto" data-src="https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900" data-click="body-font-family">
-                    Roboto
-                </a>
-            </div>
-            <div class="col-md-6">
-                <a href="#" class="btn btn-default btn-block btn-sm m-b-10" data-value="font-lato" data-src="https://fonts.googleapis.com/css?family=Lato:400,100,300,700,900" data-click="body-font-family">
-                    Lato
-                </a>
-            </div>
-            <div class="col-md-12">
-                <a href="#" class="btn btn-default btn-block btn-sm" data-value="font-helvetica-arial" data-src="" data-click="body-font-family">
-                    Helvetica Neue, Helvetica , Arial
-                </a>
-            </div>
-        </div>
-        <div class="horizontal-divider"></div>
-        <h5 class="m-t-0">Header Theme</h5>
-            <ul class="theme-list clearfix">
-                <li><a href="javascript:;" class="bg-inverse" data-value="navbar-inverse" data-click="header-theme-selector" data-toggle="tooltip" data-title="Default">&nbsp;</a></li>
-                <li><a href="javascript:;" class="bg-grey" data-value="navbar-grey" data-click="header-theme-selector" data-toggle="tooltip" data-title="Grey">&nbsp;</a></li>
-                <li class="active"><a href="javascript:;" class="bg-white" data-value="navbar-default" data-click="header-theme-selector" data-toggle="tooltip" data-title="Light">&nbsp;</a></li>
-                <li><a href="javascript:;" class="bg-purple" data-value="navbar-purple" data-click="header-theme-selector" data-toggle="tooltip" data-title="Purple">&nbsp;</a></li>
-                <li><a href="javascript:;" class="bg-primary" data-value="navbar-primary" data-click="header-theme-selector" data-toggle="tooltip" data-title="Primary">&nbsp;</a></li>
-                <li><a href="javascript:;" class="bg-success" data-value="navbar-success" data-click="header-theme-selector" data-toggle="tooltip" data-title="Success">&nbsp;</a></li>
-                <li><a href="javascript:;" class="bg-lime" data-value="navbar-lime" data-click="header-theme-selector" data-toggle="tooltip" data-title="Lime">&nbsp;</a></li>
-                <li><a href="javascript:;" class="bg-warning" data-value="navbar-warning" data-click="header-theme-selector" data-toggle="tooltip" data-title="Warning">&nbsp;</a></li>
-                <li><a href="javascript:;" class="bg-danger" data-value="navbar-danger" data-click="header-theme-selector" data-toggle="tooltip" data-title="Danger">&nbsp;</a></li>
-            </ul>
-            <div class="horizontal-divider"></div>
-            <h5 class="m-t-0">Sidebar Highlight Color</h5>
-            <ul class="theme-list clearfix">
-                <li><a href="javascript:;" class="bg-inverse" data-value="sidebar-highlight-inverse" data-click="sidebar-highlight-selector" data-toggle="tooltip" data-title="Inverse">&nbsp;</a></li>
-                <li><a href="javascript:;" class="bg-grey" data-value="sidebar-highlight-grey" data-click="sidebar-highlight-selector" data-toggle="tooltip" data-title="Grey">&nbsp;</a></li>
-                <li><a href="javascript:;" class="bg-white" data-value="sidebar-highlight-light" data-click="sidebar-highlight-selector" data-toggle="tooltip" data-title="Light">&nbsp;</a></li>
-                <li><a href="javascript:;" class="bg-purple" data-value="sidebar-highlight-purple" data-click="sidebar-highlight-selector" data-toggle="tooltip" data-title="Purple">&nbsp;</a></li>
-                <li><a href="javascript:;" class="bg-primary" data-value="sidebar-highlight-primary" data-click="sidebar-highlight-selector" data-toggle="tooltip" data-title="Primary">&nbsp;</a></li>
-                <li class="active"><a href="javascript:;" class="bg-success" data-value="" data-click="sidebar-highlight-selector" data-toggle="tooltip" data-title="Default">&nbsp;</a></li>
-                <li><a href="javascript:;" class="bg-lime" data-value="sidebar-highlight-lime" data-click="sidebar-highlight-selector" data-toggle="tooltip" data-title="Lime">&nbsp;</a></li>
-                <li><a href="javascript:;" class="bg-warning" data-value="sidebar-highlight-warning" data-click="sidebar-highlight-selector" data-toggle="tooltip" data-title="Warning">&nbsp;</a></li>
-                <li><a href="javascript:;" class="bg-danger" data-value="sidebar-highlight-danger" data-click="sidebar-highlight-selector" data-toggle="tooltip" data-title="Danger">&nbsp;</a></li>
-            </ul>
-            <div class="horizontal-divider"></div>
-            <h5 class="m-t-0">Sidebar Theme</h5>
-            <ul class="theme-list clearfix">
-                <li class="active"><a href="javascript:;" class="bg-inverse" data-value="" data-click="sidebar-theme-selector" data-toggle="tooltip" data-title="Default">&nbsp;</a></li>
-                <li><a href="javascript:;" class="bg-grey" data-value="sidebar-grey" data-click="sidebar-theme-selector" data-toggle="tooltip" data-title="Grey">&nbsp;</a></li>
-                <li><a href="javascript:;" class="bg-white" data-value="sidebar-light" data-click="sidebar-theme-selector" data-toggle="tooltip" data-title="Light">&nbsp;</a></li>
-                <li><a href="javascript:;" class="bg-purple" data-value="sidebar-purple" data-click="sidebar-theme-selector" data-toggle="tooltip" data-title="Purple">&nbsp;</a></li>
-                <li><a href="javascript:;" class="bg-primary" data-value="sidebar-primary" data-click="sidebar-theme-selector" data-toggle="tooltip" data-title="Primary">&nbsp;</a></li>
-                <li><a href="javascript:;" class="bg-success" data-value="sidebar-success" data-click="sidebar-theme-selector" data-toggle="tooltip" data-title="Success">&nbsp;</a></li>
-                <li><a href="javascript:;" class="bg-lime" data-value="sidebar-lime" data-click="sidebar-theme-selector" data-toggle="tooltip" data-title="Lime">&nbsp;</a></li>
-                <li><a href="javascript:;" class="bg-warning" data-value="sidebar-warning" data-click="sidebar-theme-selector" data-toggle="tooltip" data-title="Warning">&nbsp;</a></li>
-                <li><a href="javascript:;" class="bg-danger" data-value="sidebar-danger" data-click="sidebar-theme-selector" data-toggle="tooltip" data-title="Danger">&nbsp;</a></li>
-            </ul>
-        </div>
-    </div>-->
-    <!-- end theme-panel -->
 	
 	<!-- ================== BEGIN BASE JS ================== -->
 	<script src="{{URL::asset('ap/assets/plugins/jquery/jquery-1.9.1.min.js')}}"></script>

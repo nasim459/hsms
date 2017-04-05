@@ -13,22 +13,32 @@ use Illuminate\Support\Facades\Redirect;
 class BroadCastingController extends Controller
 {
     //
-    public function sms()
+    public function sms_bc()
     {
-        $broadcasting = view('ap.pages.broadcasting.bc_sms');
+        //---show-sms-broadcasting
+        $show_sms = DB::table('tbl_sms')
+                ->select('tbl_sms.*')
+                ->orderBy('sms_id', 'desc')
+                ->get();
+        
+        $broadcasting = view('ap.pages.broadcasting.bc_sms')
+                ->with('show_sms', $show_sms);
         $master = view('ap.pages.broadcasting.bc_master')
                 ->with('broadcasting_content', $broadcasting);
         return view('master_ap')
                 ->with('maincontent', $master);
     }
     
-    public function sms_add()
-    {
-        $broadcasting = view('ap.pages.broadcasting.bc_sms_add');
-        $master = view('ap.pages.broadcasting.bc_master')
-                ->with('broadcasting_content', $broadcasting);
-        return view('master_ap')
-                ->with('maincontent', $master);
+    //-----send-sms-broadcasting
+    public function send_sms_bc(Request $request) {
+
+        $sms= array();
+        $sms['sms_area']= $request->sms_area;
+        $sms['sms_description']= $request->sms_desc;
+        DB::table('tbl_sms')->insertGetId($sms);
+        
+        Session::put('sms_send', 'SMS Send Successfully!!!');
+        return Redirect::to('broadcasting-sms');
     }
     
     public function notice()
@@ -41,9 +51,9 @@ class BroadCastingController extends Controller
                 ->select('tbl_notice.*', 'tbl_notice_area.*')
                 ->orderBy('notice_id', 'desc')
                 ->get();
-        echo '<pre>';
-        print_r($show_notice);
-        exit();
+//        echo '<pre>';
+//        print_r($show_notice);
+//        exit();
         
         $broadcasting = view('ap.pages.broadcasting.bc_notice')
                 ->with('show_notice', $show_notice);
@@ -51,6 +61,23 @@ class BroadCastingController extends Controller
                 ->with('broadcasting_content', $broadcasting);
         return view('master_ap')
                 ->with('maincontent', $master);
+    }
+    
+    //--------------publication staus change
+    public function status_broadcasting($notice_id, $status)
+    {
+        //------change notice_status of tbl_notice
+        if($status == 0) {
+            DB::table('tbl_notice')
+                ->where('notice_id', $notice_id)
+                ->update(['notice_status' => '0']);
+            return Redirect::to('broadcasting-notice');
+        } else {
+            DB::table('tbl_notice')
+                ->where('notice_id', $notice_id)
+                ->update(['notice_status' => '1']);
+            return Redirect::to('broadcasting-notice');
+        }
     }
     
     public function notice_add()
@@ -62,21 +89,60 @@ class BroadCastingController extends Controller
                 ->with('maincontent', $master);
     }
     
-//    public function notice_save(Request $request) {
-//        
-//        $a= array();
-//        $a['title']= $request('title');
-//        $a['description']= $request('description');
-//        $a['publication_status']= $request('publication_status');
-//        
-//        DB::table('tbl_notice')->insert($a);
-//        
-//        Session::put('notice_inserted', 'Notice Inserted Successfully!!!');
-//        return Redirect::to('broadcasting-notice');
-//        
-//        
-//    }
-    public function notice_save(Request $request){
+    public function notice_save(Request $request) {
+
+        $notice_area= array();
+        $notice_area['notice_area_description']= $request->b;
+        $notice_area_id = DB::table('tbl_notice_area')->insertGetId($notice_area);
+        
+        $notice= array();
+        $notice['notice_title']= $request->a;
+        $notice['notice_description']= $request->c;
+        $notice['notice_area_id']= $notice_area_id;
+        DB::table('tbl_notice')->insertGetId($notice);
+        
+        Session::put('notice_inserted', 'Notice Inserted Successfully!!!');
+        return Redirect::to('broadcasting-notice');
+    }
+    
+    //----Edit_Notice_Broadcasting
+    public function edit_notice_broadcasting($notice_id) {
+        
+        //---notice_show
+        $edit_notice_show = DB::table('tbl_notice')
+                ->join('tbl_notice_area', 'tbl_notice.notice_area_id', '=', 'tbl_notice_area.notice_area_id')
+                ->where('notice_id', $notice_id)
+                ->select('tbl_notice.*', 'tbl_notice_area.*')
+                ->orderBy('notice_id', 'desc')
+                ->get();
+        return $edit_notice_show;
+    }
+    
+    public function update_notice_broadcasting(Request $request) {
+
+        $notice_id = $request->id;
+        $notice_area_id = $request->area_id;
+        
+        $notice_area= array();
+        $notice_area['notice_area_description']= $request->area;
+        DB::table('tbl_notice_area')
+                ->where('notice_area_id', $notice_area_id)
+                ->update($notice_area);
+        
+        $notice= array();
+        $notice['notice_title']= $request->title;
+        $notice['notice_description']= $request->description;
+        $notice['notice_status']= $request->status;
+        DB::table('tbl_notice')
+                ->where('notice_id', $notice_id)
+                ->update($notice);
+        
+        Session::put('notice_inserted', 'Notice Inserted Successfully!!!');
+        return Redirect::to('broadcasting-notice');
+    }
+
+
+    public function n_notice_save(Request $request){
         
         $title = $request->title;
         $description = $request->description;

@@ -11,20 +11,41 @@ use Illuminate\Support\Facades\Redirect;
 class RegiController extends Controller {
 
     //
+
     public function regi_info() {
-        $regi = view('ap.pages.people.regi_info');
+        $emp_show = DB::table('tbl_emp')
+                ->get();
+        
+        $flat_info_show = DB::table('tbl_flat_info')
+                ->where('bld_status', 1)
+                ->orderBy('bld_name', 'asc')
+                ->orderBy('bld_floor', 'asc')
+                ->orderBy('bld_unit', 'asc')
+                ->get();
+
+        $regi = view('ap.pages.people.regi_info')
+                ->with('emp_show', $emp_show)
+                ->with('flat_info_show', $flat_info_show);
         return view('master_ap')
                         ->with('maincontent', $regi);
     }
 
     //=====Start Regi Rough Code================================
     public function rental_regi() {
+        
+        $previous_url = url()->previous();
+        Session::put('regi_rental_p_u', $previous_url); //---regi_rental_previous_url means regisrtation_driver_previous_url
+        
         $regi = view('ap.pages.people.regi_rental');
         return view('master_ap')
                         ->with('maincontent', $regi);
     }
 
     public function driver_regi() {
+        
+        $previous_url = url()->previous();
+        Session::put('regi_d_p_u', $previous_url); //---regi_d_p_u means regisrtation_driver_previous_url
+        
         $regi = view('ap.pages.people.regi_driver');
         return view('master_ap')
                         ->with('maincontent', $regi);
@@ -37,6 +58,10 @@ class RegiController extends Controller {
     }
 
     public function emp_regi() {
+        
+        $previous_url = url()->previous();
+        Session::put('regi_emp_p_u', $previous_url); //---regi_emp_previous_u means regisrtation_driver_previous_url
+        
         $regi = view('ap.pages.people.regi_emp');
         return view('master_ap')
                         ->with('maincontent', $regi);
@@ -154,7 +179,7 @@ class RegiController extends Controller {
         } else {
             $image_url = NULL;
         }
-        
+
         //------tbl_emp_details---------------------
         $details = array();
         $details['son_wife_off'] = $request->son_wife_off;
@@ -191,10 +216,10 @@ class RegiController extends Controller {
     //=====End Registration=====================================
 
     public function save_driver_regi(Request $request) {
-        
+
         $image = $request->file('image');
 
-        if(!isset($image)){
+        if (!isset($image)) {
             $image_url = NULL;
         } else {
             $image_name = str_random(20);
@@ -210,8 +235,8 @@ class RegiController extends Controller {
                 $image_url = NULL;
             }
         }
-        
-        
+
+
         //------tbl_driver_details---------------------
         $details = array();
         $details['driver_son_wife_off'] = $request->son_wife_off;
@@ -242,44 +267,44 @@ class RegiController extends Controller {
         Session::put('Driver_data_inserted', 'Data Inserted Successfully!!!');
         return Redirect::to('info-driver');
     }
-    
+
     public function save_guest_regi(Request $request) {
-        
+
         //------save Guest Informarion into tbl_guest---------------------
-        $guest = array();
-        $guest['guest_whose_id'] = 'nasim rafi';
-        $guest['guest_name'] = $request->b;
-        $guest['guest_mobile'] = $request->c;
-        $guest['guest_gender'] = $request->d;
-        $guest['guest_address'] = $request->e;
-        DB::table('tbl_guest')->insert($guest);
-        
-//        echo '<pre>';
-//        print_r($guest);
-//        exit();
-                
-        $previous_url = url()->previous();
-        return Redirect::to($previous_url);
+        $flat_info_id = $request->id;
+
+        if ($flat_info_id == '') {
+            $previous_url = url()->previous();
+            return Redirect::to($previous_url);
+        } else {
+            $guest = array();
+            $guest['guest_name'] = $request->b;
+            $guest['guest_mobile'] = $request->c;
+            $guest['guest_gender'] = $request->d;
+            $guest['guest_address'] = $request->e;
+            $guest['flat_info_id'] = $flat_info_id;
+            DB::table('tbl_guest')->insert($guest);
+
+            $previous_url = url()->previous();
+            return Redirect::to($previous_url);
+        }
     }
-    
+
     //-----
     public function save_visitor_regi(Request $request) {
-        
+
         //------save Visitor Informarion into tbl_visitor---------------------
         $visitor = array();
         $visitor['emp_id'] = $request->v_id;
-        
+
         $save_visitor = DB::table('tbl_visitor')->insert($visitor);
         return $save_visitor;
-        
+
 //        echo '<pre>';
 //        print_r($guest);
 //        exit();
-                
         //$previous_url = url()->previous();
         //return Redirect::to($previous_url);
     }
-    
-    
 
 }
